@@ -25,6 +25,11 @@ internal class Program
         //5
         ExerciseFive exerFive = new ExerciseFive();
         exerFive.CaclulateSeconds();
+        
+
+        //6
+        ExerciseSix exerSix = new ExerciseSix();
+        exerSix.CaclulateSecondsUsingLibraries();
         Console.ReadLine();
     }
 }
