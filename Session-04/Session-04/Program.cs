@@ -11,6 +11,11 @@ internal class Program
         //2
         ExerciseTwo exerTwo = new ExerciseTwo();
         exerTwo.SumAndDivition();
+
+        //3
+
+        ExerciseThree exerThree = new ExerciseThree();
+        exerThree.MathOperations();
         Console.ReadLine();
     }
 }
