@@ -16,6 +16,10 @@ internal class Program
 
         ExerciseThree exerThree = new ExerciseThree();
         exerThree.MathOperations();
+
+        //4
+        ExerciseFour exerFour = new ExerciseFour();
+        exerFour.DisplayMessage();
         Console.ReadLine();
     }
 }
