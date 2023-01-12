@@ -20,6 +20,11 @@ internal class Program
         //4
         ExerciseFour exerFour = new ExerciseFour();
         exerFour.DisplayMessage();
+        
+
+        //5
+        ExerciseFive exerFive = new ExerciseFive();
+        exerFive.CaclulateSeconds();
         Console.ReadLine();
     }
 }
