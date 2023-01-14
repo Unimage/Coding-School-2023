@@ -44,6 +44,14 @@ internal class Program
             Console.WriteLine("Error at choosing function. either press 1 or 2.");
         }
 
+        //3
+        ExerciseThree findPrimes = new ExerciseThree();
+        Console.WriteLine("enter an integer: ");
+        input = Console.ReadLine();
+        int number = Convert.ToInt32(input);
+
+        int[] primes;
+        //TODO: finish up 
 
 
         //4 
