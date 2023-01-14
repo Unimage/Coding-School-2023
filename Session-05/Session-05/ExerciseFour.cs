@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_05
 {
-    public class ExerciseThree
+    public class ExerciseFour
     {
         public int[] MultiplyArray(int[] arrayOne, int[] arrayTwo)
         {

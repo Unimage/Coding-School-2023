@@ -46,8 +46,8 @@ internal class Program
 
 
 
-        //3 
-        ExerciseThree multiplication = new ExerciseThree();
+        //4 
+        ExerciseFour multiplication = new ExerciseFour();
         int[] arrayOne = new int[] { 2, 4, 9, 12 };
         int[] arrayTwo = new int[] { 1, 3, 7, 10 };
         int[] result = multiplication.MultiplyArray(arrayOne, arrayTwo);
@@ -69,7 +69,7 @@ internal class Program
         }
         Console.ReadLine();
 
-
+        
 
     }
 }
