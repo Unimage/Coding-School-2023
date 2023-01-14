@@ -1,4 +1,5 @@
 ﻿using Session_05;
+using System;
 
 internal class Program
 {
@@ -42,6 +43,33 @@ internal class Program
         {
             Console.WriteLine("Error at choosing function. either press 1 or 2.");
         }
+
+
+
+        //3 
+        ExerciseThree multiplication = new ExerciseThree();
+        int[] arrayOne = new int[] { 2, 4, 9, 12 };
+        int[] arrayTwo = new int[] { 1, 3, 7, 10 };
+        int[] result = multiplication.MultiplyArray(arrayOne, arrayTwo);
+        Console.WriteLine("Array1: ");
+        foreach (var value in arrayOne)
+        {
+            Console.Write(value + " ");
+        }
+
+        Console.WriteLine("\nArray2: ");
+        foreach (var value in arrayTwo)
+        {
+            Console.Write(value + " ");
+        }
+        Console.WriteLine("\nProduct of two arrays is: ");
+        foreach (var value in result)
+        {
+            Console.Write(value + " ");
+        }
         Console.ReadLine();
+
+
+
     }
 }
