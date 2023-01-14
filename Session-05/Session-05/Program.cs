@@ -5,7 +5,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // 1 
+        //--------------- 1---------------- 
         Console.WriteLine("Please enter a string to be reversed: ");
         string input = Console.ReadLine();
 
@@ -13,7 +13,7 @@ internal class Program
         ;
         Console.WriteLine("Reversed String : {0} ", reverser.ReverseString(input));
 
-        //2
+        //---------------2------------------
         Console.WriteLine("Enter a posivite integer:");
         input = Console.ReadLine();
         int inputInt;
@@ -44,22 +44,27 @@ internal class Program
             Console.WriteLine("Error at choosing function. either press 1 or 2.");
         }
 
-        //3
+        //--------------3--------------------
         ExerciseThree findPrimes = new ExerciseThree();
         Console.WriteLine("\nEnter an integer: ");
         input = Console.ReadLine();
         int number = Convert.ToInt32(input);
 
-        int[] primes;
-        //TODO: finish up 
+        int[] primes = findPrimes.FindAllPrimes(number);
+        foreach(var value in primes)
+        {
+            Console.Write(value + " ");
+        }
+        Console.WriteLine();
+        
 
 
-        //4 
+        //----------------4---------------------- 
         ExerciseFour multiplication = new ExerciseFour();
         int[] arrayOne = new int[] { 2, 4, 9, 12 };
         int[] arrayTwo = new int[] { 1, 3, 7, 10 };
         int[] result = multiplication.MultiplyArray(arrayOne, arrayTwo);
-        Console.WriteLine("Array1: ");
+        Console.WriteLine("\nArray1: ");
         foreach (var value in arrayOne)
         {
             Console.Write(value + " ");
@@ -70,29 +75,28 @@ internal class Program
         {
             Console.Write(value + " ");
         }
-        Console.WriteLine("\nProduct of two arrays is: \n");
+        
+        Console.WriteLine("\n\nProduct of two arrays is: ");
         foreach (var value in result)
         {
             Console.Write(value + " ");
         }
 
 
-        //5
-        ExerciseFive arraySorting = new ExerciseFive();
+        //-----------------5-----------------------------
+        ExerciseFive arraySort = new ExerciseFive();
         int[] unsortedArray = { 0, -2, 1, 20, -31, 50, -4, 17, 89, 100 };
-        int[] sortedArray = arraySorting.SortArray(unsortedArray);
-        Console.WriteLine("\nInitial Array:");
+        Console.WriteLine("\n\nInitial Array:");
         foreach (var value in unsortedArray)
         {
             Console.Write(value + " ");
         }
-
+        int[] sortedArray = arraySort.SortArray(unsortedArray);
         Console.WriteLine("\nPrinting sorted array using bubble sort");
         foreach (var value in sortedArray)
         {
             Console.Write(value + " ");
         }
-
         Console.ReadLine();
         
 
