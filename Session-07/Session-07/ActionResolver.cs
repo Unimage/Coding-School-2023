@@ -14,14 +14,47 @@ namespace Session_07{
         public ActionResolver() {
             Logger = new MessageLogger();
         }
+        public ActionResponse Excecute(ActionRequest request) {
+            var response = new ActionResponse();
+            response.RequestID = request.RequestID;
+
+            switch (request.Action) {
+                case ActionEnum.Convert:
+                    response.Output = DecimalToBinary(request.RequestID, request.Input);
+                    if (response.Output != null) {
+                        LogEventMessage(request.RequestID, request.Input, response.Output, request.Action, DateTime.Now);
+                    }
+
+                    break;
+                case ActionEnum.Uppercase:
+                    response.Output = UppercaseTheBiggest(request.Input, request.RequestID);
+                    if (response.Output != null) {
+                        LogEventMessage(request.RequestID, request.Input, response.Output, request.Action, DateTime.Now);
+                    }
+                    break;
+                case ActionEnum.Reverse:
+                    response.Output = ReverseString(request.Input, request.RequestID);
+                    if (response.Output != null) {
+                        LogEventMessage(request.RequestID, request.Input, response.Output, request.Action, DateTime.Now);
+                    }
+                    break;
+                default:
+                    response.Output = null;
+                    LogEventError(request.RequestID, request.Input, request.Action, DateTime.Now);
+                    break;
+
+            }
+
+            return response;
+        }
 
 
-        
 
 
 
 
-//convert to binary call / calculate and exception /
+
+        //convert to binary call / calculate and exception /
         public string  DecimalToBinary(Guid requestID, string input) {
             string binaryOutput = null;
             int number;
@@ -52,7 +85,7 @@ namespace Session_07{
             return result;
         }
         
-        public void LogEventExceptionConvert(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
+        public override void LogEventExceptionConvert(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [Convert]: {exeption}. Input was'{requestIn}'.",
                 TimeStamp = timeStamp
@@ -77,7 +110,8 @@ namespace Session_07{
             }
         }
 
-        public void LogEventExceptionReverse(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
+        //overide from resovler.cs
+        public override void LogEventExceptionReverse(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [Reverse]: {exeption}. Input was'{requestIn}'.",
                 TimeStamp = timeStamp
@@ -131,11 +165,34 @@ namespace Session_07{
             return outputUpper;
         }
 
-        public void LogEventExceptionUppercase(string requestInput, Exception exeption, DateTime timeStamp, Guid requestID) {
+        //override virtual from resovler.cs
+        public override void LogEventExceptionUppercase(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
-                Content = $"## Request [{requestID}] : Exception in Action [UpperCase]: {exeption}. Input was: '{requestInput}'.",
+                Content = $"## Request [{requestID}] : Exception in Action [UpperCase]: {exeption}. Input was: '{requestIn}'.",
                 TimeStamp = timeStamp});
         }
 
+
+        //override virtual from resovler.cs
+        public override void LogEventMessage(string description, DateTime timeStamp) {
+            Logger.Write(new Message() {
+                Content = description,
+                TimeStamp = timeStamp
+            });
+        }
+
+        //override virtual from resovler.cs
+        public override void LogEventMessage(Guid requestID, string requestIn, string requestOut, ActionEnum action, DateTime timeStamp) {
+            Logger.Write(new Message() {
+                Content = $"Request [{requestID}] : Opperation {action} on input: '{requestIn}'. Response output: '{requestOut}' .",
+                TimeStamp = timeStamp
+            });
+        }
+        public override void LogEventError(Guid requestID, string requestIn, ActionEnum action, DateTime timeStamp) {
+            Logger.Write(new Message() {
+                Content = $"## ERROR: Request [{requestID}] : Action was out of Scope: '{action}' with input: '{requestIn}'.",
+                TimeStamp = timeStamp
+            });
+        }
     }
 }
