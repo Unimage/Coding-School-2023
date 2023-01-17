@@ -1,6 +1,18 @@
-﻿internal class Program {
+﻿using Session_07;
+
+internal class Program {
     private static void Main(string[] args) {
-        Console.WriteLine("Building Completed");
-        Console.ReadLine();
+        ActionResolver resolver= new ActionResolver();
+        ActionResponse response= new ActionResponse();
+        ActionRequest request1= new ActionRequest() { Input="By fire be Purged",Action=ActionEnum.Uppercase};
+
+        ActionRequest request2 = new ActionRequest() { Input = "Illidan", Action = ActionEnum.Reverse };
+
+        ActionRequest request3 = new ActionRequest() { Input = "30", Action = ActionEnum.Convert };
+
+        ActionRequest requestNull = new ActionRequest() { Input = null, Action = ActionEnum.Uppercase };
+
+
+
     }
 }
