@@ -8,7 +8,7 @@ internal class Program {
 
         ActionRequest request2 = new ActionRequest() { Input = "Illidan", Action = ActionEnum.Reverse };
 
-        ActionRequest request3 = new ActionRequest() { Input = "30", Action = ActionEnum.Convert };
+        ActionRequest request3 = new ActionRequest() { Input = "43", Action = ActionEnum.Convert };
 
         //ActionRequest requestNull = new ActionRequest() { Input = null, Action = ActionEnum.Uppercase };
 

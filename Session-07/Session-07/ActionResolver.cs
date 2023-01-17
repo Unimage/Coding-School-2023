@@ -71,8 +71,6 @@ namespace Session_07{
                 LogEventExceptionConvert(input, ex, DateTime.Now, requestID);
                 return null;
             }
-
-
         }
         public string Calculate(int number) {
             string result = string.Empty;
@@ -81,7 +79,7 @@ namespace Session_07{
                 result = Convert.ToString(remainder) + result;
                 number /= 2;
             }
-            result=Convert.ToString(number);
+            result = Convert.ToString(number);
             return result;
         }
         
