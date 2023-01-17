@@ -16,9 +16,9 @@ namespace Session_07 {
 
         public string ReadAll() {
             string msgLog = String.Empty;
-           foreach(var message in Messages) {
-                msgLog += message.Content + "\n"; 
-           }
+            for (int i = 0; i < storedMessages; i++) {
+                msgLog += Messages[i].Content + "\n";
+            }
             return msgLog;
         }
 
