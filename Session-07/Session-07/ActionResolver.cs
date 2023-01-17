@@ -60,11 +60,11 @@ namespace Session_07{
         }
 
 // reverse string call / recursion handling and excepton
-        string ReverseString(string str, Guid requestID) {
+        public string ReverseString(string str, Guid requestID) {
             return ReverseStringRecursion(str, requestID);
         }
 
-        private string ReverseStringRecursion(string str, Guid requestID) {
+        public string ReverseStringRecursion(string str, Guid requestID) {
             try {
                 if (str.Length > 0)
                     return str[str.Length - 1] + ReverseString(str.Substring(0, str.Length - 1), requestID);
@@ -77,12 +77,64 @@ namespace Session_07{
             }
         }
 
-        private void LogEventExceptionReverse(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
+        public void LogEventExceptionReverse(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [Reverse]: {exeption}. Input was'{requestIn}'.",
                 TimeStamp = timeStamp
             });
 
+        }
+
+//uppercase segment 
+
+    
+        public string UppercaseTheBiggest(string str , Guid requestID) {
+            int numOfWords = 0;
+            int maxWordSize = 0;
+            int? index = null;
+            string outputUpper = str;
+
+            try {
+                string[] words = str.Split(' ');
+                for (int i = 0; i < words.Length; i++) {
+                    if (words[i] != String.Empty) {
+                        CheckWordSize(ref numOfWords, ref maxWordSize, ref index, words, i);
+                    }
+                }
+                if (index != null && numOfWords > 1) {
+                    outputUpper = Rebuild(index, words);
+                }
+            }
+            catch (Exception ex) {
+                LogEventExceptionUppercase(str, ex, DateTime.Now, requestID);
+                return null;
+            }
+            return outputUpper;
+        }
+
+        public void CheckWordSize(ref int numOfWords, ref int maxLength, ref int? index, string[] words, int i) {
+            numOfWords++;
+            if (words[i].Length > maxLength) {
+                SwapBiggerWord(out maxLength, out index, words, i);
+            }
+        }
+
+        public void SwapBiggerWord(out int maxLength, out int? index, string[] words, int i) {
+            maxLength = words[i].Length;
+            index = i;
+        }
+
+        public string Rebuild(int? index, string[] words) {
+            string outputUpper;
+            words[(int)index] = words[(int)index].ToUpper();
+            outputUpper = string.Join(' ', words);
+            return outputUpper;
+        }
+
+        public void LogEventExceptionUppercase(string requestInput, Exception exeption, DateTime timeStamp, Guid requestID) {
+            Logger.Write(new Message() {
+                Content = $"## Request [{requestID}] : Exception in Action [UpperCase]: {exeption}. Input was: '{requestInput}'.",
+                TimeStamp = timeStamp});
         }
 
     }
