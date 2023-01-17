@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Session_07 {
-    internal enum ActionEnumeration {
+    internal enum ActionEnum{
         Convert,
         Uppercase,
         Reverse
