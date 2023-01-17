@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Collections.Specialized.BitVector32;
 
-namespace Session_07{
+namespace Session_07 {
     internal class ActionResolver : Resovler {
         public MessageLogger Logger { get; set; }
 
@@ -55,15 +55,15 @@ namespace Session_07{
 
 
         //convert to binary call / calculate and exception /
-        public string  DecimalToBinary(Guid requestID, string input) {
+        public string DecimalToBinary(Guid requestID, string input) {
             string binaryOutput = null;
             int number;
             try {
-                if(input== null) {
+                if (input == null) {
                     throw new ArgumentNullException("Parameter is null");
                 }
-                if(Int32.TryParse(input,out number)) {
-                    binaryOutput = Calculate(number);     
+                if (Int32.TryParse(input, out number)) {
+                    binaryOutput = Calculate(number);
                 }
                 return binaryOutput;
             }
@@ -82,7 +82,7 @@ namespace Session_07{
             result = Convert.ToString(number);
             return result;
         }
-        
+
         public override void LogEventExceptionConvert(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [Convert]: {exeption}. Input was'{requestIn}'.",
@@ -90,7 +90,7 @@ namespace Session_07{
             });
         }
 
-// reverse string call / recursion handling and excepton
+        // reverse string call / recursion handling and excepton
         public string ReverseString(string str, Guid requestID) {
             return ReverseStringRecursion(str, requestID);
         }
@@ -117,30 +117,33 @@ namespace Session_07{
 
         }
 
-//uppercase segment 
+        //uppercase segment 
 
-    
-        public string UppercaseTheBiggest(string str , Guid requestID) {
+
+        public string UppercaseTheBiggest(string str, Guid requestID) {
             int numOfWords = 0;
             int maxWordSize = 0;
             int? index = null;
             string outputUpper = str;
+            if (!String.IsNullOrEmpty(str)) {
 
-            try {
-                string[] words = str.Split(' ');
-                for (int i = 0; i < words.Length; i++) {
-                    if (words[i] != String.Empty) {
-                        CheckWordSize(ref numOfWords, ref maxWordSize, ref index, words, i);
+                try {
+                    string[] words = str.Split(' ');
+                    for (int i = 0; i < words.Length; i++) {
+                        if (words[i] != String.Empty) {
+                            CheckWordSize(ref numOfWords, ref maxWordSize, ref index, words, i);
+                        }
+                    }
+                    if (index != null && numOfWords > 1) {
+                        outputUpper = Rebuild(index, words);
                     }
                 }
-                if (index != null && numOfWords > 1) {
-                    outputUpper = Rebuild(index, words);
+                catch (Exception ex) {
+                    LogEventExceptionUppercase(str, ex, DateTime.Now, requestID);
+                    return null;
                 }
             }
-            catch (Exception ex) {
-                LogEventExceptionUppercase(str, ex, DateTime.Now, requestID);
-                return null;
-            }
+            else { LogNullEventError(requestID, "NULL_TYPE", DateTime.Now);return null; }
             return outputUpper;
         }
 
@@ -167,7 +170,8 @@ namespace Session_07{
         public override void LogEventExceptionUppercase(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [UpperCase]: {exeption}. Input was: '{requestIn}'.",
-                TimeStamp = timeStamp});
+                TimeStamp = timeStamp
+            });
         }
 
 
@@ -189,6 +193,12 @@ namespace Session_07{
         public override void LogEventError(Guid requestID, string requestIn, ActionEnum action, DateTime timeStamp) {
             Logger.Write(new Message() {
                 Content = $"## ERROR: Request [{requestID}] : Action was out of Scope: '{action}' with input: '{requestIn}'.",
+                TimeStamp = timeStamp
+            });
+        }
+        public void LogNullEventError(Guid requestID, string requestIn, DateTime timeStamp) {
+            Logger.Write(new Message() {
+                Content = $"## ERROR: Request [{requestID}] : Null string handling.  with input: '{requestIn}'.",
                 TimeStamp = timeStamp
             });
         }

@@ -10,12 +10,12 @@ internal class Program {
 
         ActionRequest request3 = new ActionRequest() { Input = "43", Action = ActionEnum.Convert };
 
-        //ActionRequest requestNull = new ActionRequest() { Input = null, Action = ActionEnum.Uppercase };
+        ActionRequest requestNull = new ActionRequest() { Input = null, Action = ActionEnum.Uppercase };
 
         response = resolver.Excecute(request1); 
         response = resolver.Excecute(request2); 
         response = resolver.Excecute(request3);
-        // response = resolver.Excecute(requestNull);
+        response = resolver.Excecute(requestNull);
 
         Console.Write(resolver.Logger.ReadAll());
 
