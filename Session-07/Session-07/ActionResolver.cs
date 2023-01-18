@@ -47,13 +47,6 @@ namespace Session_07 {
 
             return response;
         }
-
-
-
-
-
-
-
         //convert to binary call / calculate and exception /
         public string DecimalToBinary(Guid requestID, string input) {
             string binaryOutput = null;
