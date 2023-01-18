@@ -101,8 +101,6 @@ namespace Session_07 {
         }
 
         //uppercase segment 
-
-
         public string UppercaseTheBiggest(string str, Guid requestID) {
             int numOfWords = 0;
             int maxWordSize = 0;
