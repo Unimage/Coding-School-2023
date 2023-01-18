@@ -28,9 +28,10 @@ namespace Session_07 {
         }
 
         public void Write(Message msg) {
-            //TODO:IMPLEMENT a check in case we hit max cap.
-            Messages[storedMessages] = msg;
-            storedMessages++;
+            if (storedMessages <= maxStoredMessages) {
+                Messages[storedMessages] = msg;
+                storedMessages++;
+            }
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Session_07 {
                     throw new ArgumentNullException("Parameter is null");
                 }
                 if (Int32.TryParse(input, out number)) {
-                    binaryOutput = Calculate(number);
+                    binaryOutput = Convert.ToString((int)number, 2);
                 }
                 return binaryOutput;
             }
@@ -65,17 +65,7 @@ namespace Session_07 {
                 return null;
             }
         }
-        public string Calculate(int number) {
-            string result = string.Empty;
-            while (number > 1) {
-                int remainder = number % 2;
-                result = Convert.ToString(remainder) + result;
-                number /= 2;
-            }
-            result = Convert.ToString(number);
-            return result;
-        }
-
+        
         public override void LogEventExceptionConvert(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [Convert]: {exeption}. Input was'{requestIn}'.",
@@ -159,7 +149,7 @@ namespace Session_07 {
             return outputUpper;
         }
 
-        //override virtual from resovler.cs
+        //override abstract from resovler.cs
         public override void LogEventExceptionUppercase(string requestIn, Exception exeption, DateTime timeStamp, Guid requestID) {
             Logger.Write(new Message() {
                 Content = $"## Request [{requestID}] : Exception in Action [UpperCase]: {exeption}. Input was: '{requestIn}'.",
@@ -168,7 +158,7 @@ namespace Session_07 {
         }
 
 
-        //override virtual from resovler.cs
+        //override abstract from resovler.cs
         public override void LogEventMessage(string description, DateTime timeStamp) {
             Logger.Write(new Message() {
                 Content = description,
@@ -176,7 +166,7 @@ namespace Session_07 {
             });
         }
 
-        //override virtual from resovler.cs
+        //override abstract from resovler.cs
         public override void LogEventMessage(Guid requestID, string requestIn, string requestOut, ActionEnum action, DateTime timeStamp) {
             Logger.Write(new Message() {
                 Content = $"Request [{requestID}] : Opperation {action} on input: '{requestIn}'. Response output: '{requestOut}' .",
@@ -189,7 +179,7 @@ namespace Session_07 {
                 TimeStamp = timeStamp
             });
         }
-        public void LogNullEventError(Guid requestID, string requestIn, DateTime timeStamp) {
+        public override void LogNullEventError(Guid requestID, string requestIn, DateTime timeStamp) {
             Logger.Write(new Message() {
                 Content = $"## ERROR: Request [{requestID}] : Null string handling.  with input: '{requestIn}'.",
                 TimeStamp = timeStamp
