@@ -16,24 +16,25 @@ namespace Session_09 {
         int foundVars = 0;
         bool isValid;
         bool isSqrt;
-        
+
 
         public string[] Values { get; set; }
         public string Operators { get; set; }
 
         public Expression(string mathExpression) {
             Operators = FindOperationSymbol(mathExpression);
-            Values = SplitExpression(mathExpression);        
+            Values = SplitExpression(mathExpression);
+            foundVars = Values.Length;
         }
 
 
         // scans expression given and find the operationEnum
         public string FindOperationSymbol(string mathExpression) {
-            
-            foreach(var op in mathExpression) {
+
+            foreach (var op in mathExpression) {
                 if (Enum.IsDefined(typeof(OperationsEnum), (int)op)) {
                     foundOps++;
-                    
+
                     return op.ToString();
                 }
                 if (op == 's') { isSqrt = true; }
@@ -47,10 +48,10 @@ namespace Session_09 {
             int operationsAmount = Enum.GetNames(typeof(OperationsEnum)).Length;
             char[] delimiters = new char[operationsAmount];
             int index = 0;
-            foreach (var op in Enum.GetValues(typeof(OperationsEnum))) {
+            foreach (int op in Enum.GetValues(typeof(OperationsEnum))) {
                 delimiters[index++] = (char)op;
             }
-         
+
             return mathExpression.Split(delimiters);
         }
 
@@ -58,10 +59,12 @@ namespace Session_09 {
         // validates string  that has 2 vars and one operator.
         public bool ValidateExpression() {
             bool valid = true;
-            if(foundOps > _operationLimit && foundOps>0) {
+            if (foundOps > _operationLimit && foundOps > 0) {
                 valid = false;
             }
-            if ((foundVars != 2) || (foundVars==1 && !isSqrt)) {
+
+            if ((foundVars != 2)) { valid = false; }
+            else if ((foundVars == 1 && !isSqrt)) {
                 valid = false;
             }
             return valid;
