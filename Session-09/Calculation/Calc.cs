@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace Calculation {
     public class Calc {
-
         public Calc() {
-
         }
-
         public string Calculate(string input) {
             Expression ex = new Expression(input);
             Operation operation;

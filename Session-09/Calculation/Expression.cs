@@ -14,10 +14,7 @@ namespace Session_09 {
         private int _operationLimit = 1;
         int foundOps = 0;
         int foundVars = 0;
-        bool isValid;
         bool isSqrt;
-
-
         public string[] Values { get; set; }
         public string Operators { get; set; }
 
@@ -26,7 +23,6 @@ namespace Session_09 {
             Values = SplitExpression(mathExpression);
             foundVars = Values.Length;
         }
-
 
         // scans expression given and find the operationEnum
         public string FindOperationSymbol(string mathExpression) {
@@ -54,7 +50,6 @@ namespace Session_09 {
 
             return mathExpression.Split(delimiters);
         }
-
 
         // validates string  that has 2 vars and one operator.
         public bool ValidateExpression() {
