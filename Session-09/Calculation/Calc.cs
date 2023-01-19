@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Calculation {
-    internal class Calc {
+    public class Calc {
 
         public Calc() {
 
@@ -17,7 +17,7 @@ namespace Calculation {
             Expression ex = new Expression(input);
             Operation operation;
             if (!ex.ValidateExpression()) {
-                return "Error";
+                return "Incorrect Syntax type";
             }
             var op = (OperationsEnum)Convert.ToChar(ex.Operators);
             switch (op) {
@@ -40,7 +40,7 @@ namespace Calculation {
                     operation = new SquareRoot();
                     break;
                 default:
-                    return "Error";
+                    return "Error: Operation Doesnt exist";
             }
             return operation.Calculate(ex);
         }
