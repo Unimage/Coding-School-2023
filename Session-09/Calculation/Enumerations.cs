@@ -23,7 +23,7 @@
         Multiplication = '*',
         Division = '/',
         Power = '^',
-        SquareRoot
+        SquareRoot = 's'
     }
     
 }

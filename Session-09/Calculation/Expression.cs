@@ -13,14 +13,19 @@ namespace Session_09 {
         private int _operationLimit = 1;
         int foundOps = 0;
         int foundVars = 0;
+        bool isValid;
+        
 
         public string[] Values { get; set; }
         public string Operators { get; set; }
 
-        public Expression() { }
+        public Expression(string mathExpression) {
+            Operators = FindOperationSymbol(mathExpression);
+            Values = SplitExpression(mathExpression);        
+        }
 
 
-      // scans expression given and find the operationEnum
+        // scans expression given and find the operationEnum
         public string FindOperationSymbol(string mathExpression) {
             
             foreach(var op in mathExpression) {
@@ -57,5 +62,7 @@ namespace Session_09 {
             }
             return valid;
         }
+
+
     }
 }
