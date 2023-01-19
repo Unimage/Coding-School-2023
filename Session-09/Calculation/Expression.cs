@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Calculation;
@@ -14,6 +15,7 @@ namespace Session_09 {
         int foundOps = 0;
         int foundVars = 0;
         bool isValid;
+        bool isSqrt;
         
 
         public string[] Values { get; set; }
@@ -31,8 +33,10 @@ namespace Session_09 {
             foreach(var op in mathExpression) {
                 if (Enum.IsDefined(typeof(OperationsEnum), (int)op)) {
                     foundOps++;
+                    
                     return op.ToString();
                 }
+                if (op == 's') { isSqrt = true; }
             }
             return string.Empty;
         }
@@ -57,7 +61,7 @@ namespace Session_09 {
             if(foundOps > _operationLimit && foundOps>0) {
                 valid = false;
             }
-            if (foundVars != 2) {
+            if ((foundVars != 2) || (foundVars==1 && !isSqrt)) {
                 valid = false;
             }
             return valid;

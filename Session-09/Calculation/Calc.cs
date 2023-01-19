@@ -42,6 +42,7 @@ namespace Calculation {
                 default:
                     return "Error";
             }
+            return operation.Calculate(ex);
         }
     }
 }
