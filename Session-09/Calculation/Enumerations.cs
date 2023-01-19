@@ -13,7 +13,7 @@
     }
     public enum SymbolsEnum {
 
-        Comma =',',
+        Comma ='.',
         Equals='='
     }
 
