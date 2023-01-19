@@ -1,16 +1,29 @@
 ﻿namespace Calculation {
     public enum NumbersEnum {
-        //numbers
-
+        Zero = 0,
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Sevenv = 7,
+        Eight = 8,
+        Nine = 9,
     }
     public enum SymbolsEnum {
 
-        // equals , comma 
-
+        Comma =',',
+        Equals='='
     }
 
     public enum OperationsEnum {
-        // + - etc.
+        Plus = '+',
+        Minus ='-',
+        Multiplication = '*',
+        Division = '/',
+        Power = '^',
+        SquareRoot
     }
     
 }
