@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Uni {
+    [Serializable]
     public class Grade {
-        public Guid ID { get; }
-        public Guid StudentID { get; }
-        public Guid CourseID { get; }
+        public Guid ID { get; set; }
+        public Guid StudentID { get; set; }
+        public Guid CourseID { get; set; }
         public int Mark { get; set; }
         public Grade( Guid courseId, Guid studentId, int mark) {
             ID = Guid.NewGuid();

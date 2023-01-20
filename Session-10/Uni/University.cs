@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Uni {
+    [Serializable]
     public class University  : Institute {
-        public List<Student> Students;
-        public List<Professor> Professors;
-        public List<Course> Courses;
-        public List<Grade> Grades;
-        public List<Schedule> ScheduledCourses;
+        public List<Student> Students { get; set; }
+        public List<Professor> Professors { get; set; }
+        public List<Course> Courses { get; set; }
+        public List<Grade> Grades { get; set; }
+        public List<Schedule> ScheduledCourses { get; set; }
 
 
         public University() {

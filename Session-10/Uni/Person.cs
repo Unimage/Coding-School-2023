@@ -1,6 +1,7 @@
 ﻿namespace Uni {
+    [Serializable]
     public class Person {
-        public Guid ID { get; }
+        public Guid ID { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
 

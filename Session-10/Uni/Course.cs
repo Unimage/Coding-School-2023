@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Uni {
+    [Serializable]
     public class Course {
-        public Guid ID { get; }
+        public Guid ID { get; set; }
         public string Code { get; set; }
         public string Subject { get; set; }
 

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
-
+using System.Text.Json;
 namespace Uni {
+    [Serializable]
     public class Handler {
+
         public University University { get; set; }
         private int _amountOfSchedules = 0;
 
@@ -39,27 +40,30 @@ namespace Uni {
         }
 
         //Serialization Methods imported from Serializer.cs 
-        public void Serialize(object obj) {
-            string jsonString = JsonSerializer.Serialize(obj);
-        }
-
-        public void SerializeToFile(object obj, string fileName) {
+        
+        public void SerializeToFile(Object obj, string fileName) {
 
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(obj, options);
 
             File.WriteAllText(fileName, jsonString);
         }
-        public T Deserialize<T>(string fileName) {
 
-            string jsonString = File.ReadAllText(fileName);
-            T? obj = JsonSerializer.Deserialize<T>(jsonString);
+        public University Deserialize(string fileName) {
+            try {
+                string jsonString = File.ReadAllText(fileName);
+                University obj=(University)JsonSerializer.Deserialize(jsonString,typeof(University));
 
-            return obj;
+                return obj;
+            }catch(Exception ex) {
+                Console.WriteLine("Error importing data");
+            }
+            return null;
         }
 
         // method for populating uni with 2 data of each in each least As default data
         public void PopulateData() {
+          
             Random rnd = new Random();
             University.Courses.Add(new Course("101","Intro to Desktop C#"));
             University.Courses.Add(new Course("102", "Intro to Blazor"));
