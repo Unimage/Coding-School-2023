@@ -13,5 +13,9 @@ namespace Session_10 {
         public Form1() {
             InitializeComponent();
         }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
+
+        }
     }
 }
