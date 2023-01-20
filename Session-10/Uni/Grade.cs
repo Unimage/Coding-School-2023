@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace Uni {
     [Serializable]
     public class Grade {
+        public Grade() {
+
+        }
         public Guid ID { get; set; }
         public Guid StudentID { get; set; }
         public Guid CourseID { get; set; }

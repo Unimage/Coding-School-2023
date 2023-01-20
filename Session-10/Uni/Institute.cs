@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Uni {
     [Serializable]
     public class Institute {
+        
         public Guid ID { get; set; }
         public string Name { get; set; }
         public int YearsInService { get; set; }

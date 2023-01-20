@@ -13,7 +13,9 @@ namespace Uni {
         public Student(string name, int age, int registrationNumber,List<Course>courseList ) : base(name, age) {
             RegistrationNumber = registrationNumber;
             Courses = courseList;
+            Courses = new List<Course>();
         }
+        public Student():base() { }
     }
     
 }

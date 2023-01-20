@@ -12,6 +12,7 @@ namespace Uni {
         public Professor( string name,int age, string rank, List<Course> courseList) : base(name,age) {
             Rank = rank;
             Courses = courseList;
+    
         }
 
         public void Teach(Course course, DateTime datetime) {
@@ -23,7 +24,7 @@ namespace Uni {
         public void GetName() {
             //TODO: change type to string and return 
         }
-
+        public Professor() { }
 
     }
 }

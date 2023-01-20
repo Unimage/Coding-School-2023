@@ -18,5 +18,6 @@ namespace Uni {
             ID = Guid.NewGuid();
             Calendar = time;
         }
+        public Schedule() { }
     }
 }

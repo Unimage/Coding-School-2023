@@ -7,6 +7,7 @@ using System.Text.Json;
 namespace Uni {
     [Serializable]
     public class Handler {
+       
 
         public University University { get; set; }
         private int _amountOfSchedules = 0;
@@ -58,7 +59,7 @@ namespace Uni {
             }catch(Exception ex) {
                 Console.WriteLine("Error importing data");
             }
-            return null;
+            return new University();
         }
 
         // method for populating uni with 2 data of each in each least As default data

@@ -45,11 +45,14 @@ namespace Session_10 {
             handler.SerializeToFile(university,"university.json");
         }
         public void LoadFile() {
-            university = handler.Deserialize("university.json");
-            bsCourses.DataSource = university.Courses;
+            
+            university= handler.Deserialize("university.json");
+            
             bsStudents.DataSource = university.Students;
+            bsCourses.DataSource = university.Courses;
             bsScheduledCourses.DataSource = university.ScheduledCourses;
             bsGrades.DataSource = university.Grades;
+            
 
             dvgStudents.DataSource = bsStudents;
             dvgGrades.DataSource = bsGrades;
