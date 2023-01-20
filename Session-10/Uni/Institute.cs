@@ -20,6 +20,7 @@ namespace Uni {
             Name = name;
             YearsInService = yearsInService;
         }
+
         public void GetName() {
             //TODO:change to string type and implement and remove get;.
         }
