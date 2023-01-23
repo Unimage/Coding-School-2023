@@ -39,7 +39,19 @@ namespace Libs {
 
 
 
+        public double CalculateBalance(List<Double> income , List<Double> expenses) {
+        
+            double incomeTotal = income.Sum();
+            double expensesTotal = expenses.Sum();
 
+            
+            // this.Total = incomeTotal - expensesTotal; 
+
+            return (incomeTotal - expensesTotal);
+        
+
+        
+        }
 
 
 
