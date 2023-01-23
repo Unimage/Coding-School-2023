@@ -13,6 +13,7 @@ namespace Libs {
         public string? Surname { get; set; }
         public double Salary { get; set; }
 
+        
         public Employee() {
             ID = Guid.NewGuid();
         }
