@@ -31,9 +31,9 @@ namespace Libs
         }
 
         //Method that calculates the Price : Example : 3 x Fredo Espress (2euros) = 6euros
-        public double CalculatePriceLine() {
+        public void CalculatePriceLine() {
             TotalPrice = Quantity * Price;
-            return TotalPrice;
+            
         }
 
         //Helping ones may be used later 
