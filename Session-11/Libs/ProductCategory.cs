@@ -9,10 +9,10 @@ namespace Session_11
     public class ProductCategory
     {
         
-        public Guid ProductCategoryID { get; }
+        public Guid ProductCategoryID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
-        public ActionEnum Action { get; set; }
+        public  Action ProductType { get; set; }
 
 
         public ProductCategory()
