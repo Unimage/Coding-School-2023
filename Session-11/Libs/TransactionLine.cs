@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Session_11;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Libs
 {
@@ -17,19 +19,27 @@ namespace Libs
 
         public TransactionLine ()
         { 
+            ID= Guid.NewGuid ();
         }
-        public TransactionLine (Guid id)
-        {
-            ID = id;
-        }
-        public TransactionLine(Guid iD, Guid productID, int quantity, double price, double discount, double totalPrice)
+        
+        public TransactionLine(Guid productID, int quantity, double price, double discount)
         {
             ProductID = productID;
             Quantity = quantity;
             Price = price;
             Discount = discount;
-            TotalPrice = totalPrice;
         }
+
+        //Method that calculates the Price : Example : 3 x Fredo Espress (2euros) = 6euros
+        public double CalculatePriceLine() {
+            TotalPrice = Quantity * Price;
+            return TotalPrice;
+        }
+
+        //Helping ones may be used later 
+        public Transaction Transaction { get; set; }
+        public Product Product { get; set; }
+
     }
 }
 
