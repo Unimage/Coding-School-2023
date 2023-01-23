@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Libs {
+
+    //TODO:Discuss and implement ledger 
     public class MonthlyLedger {
+
+        
     }
 }
