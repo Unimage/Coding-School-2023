@@ -13,16 +13,20 @@ namespace Libs
         public Guid CustomerID { get; set; }
         public Guid EmployeeID { get; set; }
         public Enum PaymentMethod { get; set; }
+        public List<TransactionLine> TransactionLines { get; set; }
     
         public Transaction()
         {
             ID= Guid.NewGuid();
+            TransactionLines= new List<TransactionLine>();
+
         }
         public Transaction( DateTime date, Guid customerID, Guid employeeID)
         {
             Date = date;
             CustomerID = customerID;
             EmployeeID = employeeID;
+            TransactionLines = new List<TransactionLine>();
         }   
     }
 }
