@@ -23,6 +23,22 @@ namespace Libs {
 
 
 
+        MonthlyLedger(System.DateTime dateTime ) {
+        
+            Year = dateTime.Year; // get the Year out of System Date 
+            Month = dateTime.Month; 
+
+        
+        } 
+
+
+
+
+
+
+
+
+
 
 
     }
