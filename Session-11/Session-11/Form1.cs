@@ -6,5 +6,3 @@ namespace Session_11 {
         }
     }
 }
-
-hello
