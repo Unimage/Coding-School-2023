@@ -1,20 +1,25 @@
 ﻿namespace Libs {
+
     public class Enumerations {
+
         public enum ProductType {
             Coffee,
             Beverages,
             Food
         }
+
         public enum EmployeeType {
             Manager,
             Cashier,
             Barista,
             Waiter
         }
+
         public enum PaymentMethod {
             Cash,
             CreditCard
         }
+
         public enum Months {
             January = 1,
             February = 2,
@@ -31,4 +36,5 @@
         }
 
     }
+
 }
