@@ -28,15 +28,14 @@ namespace Libs {
 
         }
 
-        //calculates total cost
+        //calculates total cost and adds it to Transaction.TotalPrice
        public void CalculateTotalCost() {
             double totalCost= 0;
             foreach(var tr in Trans.TransactionLines) {
                  tr.CalculatePriceLine();
                 totalCost += tr.TotalPrice;
             }
-            Trans.TotalPrice = CalculateDiscountPrice(totalCost);
-            
+            Trans.TotalPrice = CalculateDiscountPrice(totalCost);    
         }
 
         //checks and calculates discount if possbile
