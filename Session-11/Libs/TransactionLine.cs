@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Session_11;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Libs
 {
@@ -33,6 +35,11 @@ namespace Libs
             TotalPrice = Quantity * Price;
             return TotalPrice;
         }
+
+        //Helping ones may be used later 
+        public Transaction Transaction { get; set; }
+        public Product Product { get; set; }
+
     }
 }
 
