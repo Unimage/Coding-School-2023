@@ -13,9 +13,9 @@ namespace Libs {
         public int Month { get; set; }
 
         public List<Double> Income { get; set; } 
-        public List<Double> Expense { get; set; }
+        public List<Double> Expenses { get; set; }
 
-        public Double Total { get; set; }    // Income - Expense 
+        public Double Total { get; set; }    // Income - Expenses
 
 
         
