@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Customer\" />
-    <Folder Include="Transaction\" />
+    <Compile Remove="Customer\**" />
+    <Compile Remove="Transaction\**" />
+    <EmbeddedResource Remove="Customer\**" />
+    <EmbeddedResource Remove="Transaction\**" />
+    <None Remove="Customer\**" />
+    <None Remove="Transaction\**" />
   </ItemGroup>
 
 </Project>
