@@ -16,6 +16,8 @@ namespace Libs
         public double Price { get; set; }
         public double Discount { get; set; }
         public double TotalPrice { get; set; }
+        public Transaction Transaction { get; set; }
+        public Product Product { get; set; }
 
         public TransactionLine ()
         { 
@@ -37,8 +39,7 @@ namespace Libs
         }
 
         //Helping ones may be used later 
-        public Transaction Transaction { get; set; }
-        public Product Product { get; set; }
+        
 
     }
 }
