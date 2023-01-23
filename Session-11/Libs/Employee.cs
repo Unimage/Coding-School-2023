@@ -12,6 +12,7 @@ namespace Libs {
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public double Salary { get; set; }
+        
         public EmployeeType EmployeeType { get; set; }
 
         
