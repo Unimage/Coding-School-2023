@@ -38,14 +38,15 @@ namespace Libs {
 
 
 
-
+        // Not in final form 
+        // TODO decide the final implementation of Calculating the balance 
         public double CalculateBalance(List<Double> income , List<Double> expenses) {
         
             double incomeTotal = income.Sum();
             double expensesTotal = expenses.Sum();
 
             
-            // this.Total = incomeTotal - expensesTotal; 
+            // this.Total = incomeTotal - expensesTotal;  
 
             return (incomeTotal - expensesTotal);
         
