@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Libs {
 
-    public class Customer {
+    public class Employee {
 
         public Guid ID { get; set; }
-        public string? Code { get; set; }
-        public string? Description { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public decimal? Price { get; set; }
 
-        public Customer() {
+        public Employee() {
             ID = Guid.NewGuid();
         }
 
