@@ -28,6 +28,9 @@ namespace Libs {
             Year = dateTime.Year; // get the Year out of System Date 
             Month = dateTime.Month; 
 
+            // maybe initialize the Lists here
+
+
         
         } 
 
