@@ -20,10 +20,7 @@ namespace Session_11
         {
             ProductID = Guid.NewGuid();
         }
-        public Product()
-        {
-            ProductCategoryID = Guid.NewGuid();
-        }
+        
 
     }
 }
