@@ -174,6 +174,29 @@ namespace Libs {
             SerializeProductCategory();
             SerializeProduct();
         }
+
+        //Apo edw kai katw exei mono arrwstia kai paranoia min kotate
+        public ProductCategory GetCategoryById(Guid categoryId) {
+            foreach (Product product in Products) {
+                if (product.ProductCategoryID == categoryId) {
+                    return ProductCategories.Find(x => x.ProductCategoryID == categoryId);
+                }
+            }
+            return null;
+        }
+        public List<ProductType> GetProductTypes() {
+            var productTypes = new List<ProductType>();
+            foreach (var product in Products) {
+                productTypes.Add(GetProductCategoryById(product.ProductCategoryID).ProductType);
+            }
+            return productTypes;
+        }
+        public ProductCategory GetProductCategoryById(Guid id) {
+            return ProductCategories.FirstOrDefault(x => x.ProductCategoryID == id);
+        }
+
+
+
     }
 }
 
