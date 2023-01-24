@@ -88,9 +88,9 @@ namespace Libs {
             {
                 try
                 {
-                    string json = File.ReadAllText(ledgerFile);
-
-
+                      string json = File.ReadAllText( ledgerFile );
+                    
+                    
                     var ledger = JsonConvert.DeserializeObject<List<Transaction>>(json);
 
                     if ( ledger != null) {
