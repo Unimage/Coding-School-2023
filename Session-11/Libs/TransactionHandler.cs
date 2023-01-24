@@ -79,7 +79,7 @@ namespace Libs {
             {
                 return "nothing to checkout";
             }
-            if (_transaction.PaymentMean == PaymentMethod.CreditCard&&_transaction.TotalPrice >= 50)
+            if (_transaction.PaymentMethod == PaymentMethod.CreditCard&&_transaction.TotalPrice >= 50)
             {
                 return "can only pay with cash";
             }
