@@ -45,6 +45,44 @@ namespace Libs {
             ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Food", ProductType = ProductType.Food });
         }
 
+        // Serializer Methods
+
+        public void SerializeEmployee() {
+            Serializer serializer = new Serializer();
+            serializer.SerializeToFile(Employee, "employee.json");
+            MessageBox.Show($"Employee list JSON export ready");
+        }
+
+        public void DeserializeEmployee() {
+            Serializer serializer = new Serializer();
+            Employee = serializer.DeserializeFromFile<Employee>("employee.json");
+            MessageBox.Show($"Employee list JSON loaded");
+        }
+
+        public void SerializeProduct() {
+            Serializer serializer = new Serializer();
+            serializer.SerializeToFile(Product, "product.json");
+            MessageBox.Show($"Product list JSON export ready");
+        }
+
+        public void DeserializeProduct() {
+            Serializer serializer = new Serializer();
+            Product = serializer.DeserializeFromFile<Product>("product.json");
+            MessageBox.Show($"Product list JSON loaded");
+        }
+
+        public void SerializeProductCategory() {
+            Serializer serializer = new Serializer();
+            serializer.SerializeToFile(ProductCategory, "product-category.json");
+            MessageBox.Show($"Product category list JSON export ready");
+        }
+
+        public void DeserializeProduct() {
+            Serializer serializer = new Serializer();
+            ProductCategory = serializer.DeserializeFromFile<ProductCategory>("product-category.json");
+            MessageBox.Show($"Product category list JSON loaded");
+        }
+
 
 
     }
