@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Libs {
 
@@ -35,10 +36,14 @@ namespace Libs {
         }
 
 
+        MonthlyLedger
+
+
         // -- Initialize the ledger 
 
         public void InitLedger (DateTime dateTime , List<Employee> employees)
         {
+            ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
 
             string ledgerFile = ($"monthly_ledger_{dateTime.Year}_{dateTime.Month}.json");
             if (!File.Exists( ledgerFile )) 
@@ -55,7 +60,7 @@ namespace Libs {
                 {
 
                     // record the exception to the ExceptionLogger
-                    ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
+                    
                     exceptionLogger.Log(e.ToString());
 
 
@@ -66,8 +71,22 @@ namespace Libs {
                 try
                 {
                     string json = File.ReadAllText( ledgerFile );
-                    //var ledger = JsonConvert.DeserializeObject<MonthlyLedger>( json );
+                    // using NewtonSoft package for Json
+                    var ledger = Newtonsoft.Json.JsonConvert.DeserializeObject<MonthlyLedger>(json);
+
+                    if ( ledger != null) {
+                        MonthlyLedger monthlyLedger = ledger;
+                        return;
+                    }
+                  } catch (Exception e)
+                {
+                    exceptionLogger.Log(e.ToString());
                 }
+
+                   
+
+
+                
             }
         }
 
