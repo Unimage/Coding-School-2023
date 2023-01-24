@@ -20,10 +20,9 @@ namespace Libs {
         ///
 
 
-
-        public List<Employee> Employees { get; set; } = new List<Employee>;
+        public List<Employee> Employees { get; set; }
         public List<Product> Products { get; set; } 
-        public List<ProductCategory> ProductCategory {get; set;}
+        public List<ProductCategory> ProductCategories {get; set;}
 
 
         public void SetDefaultEmployees() {
@@ -38,7 +37,11 @@ namespace Libs {
            
         }
 
-     
+        public void SetDefaultProductCategories() {
+            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Product category 1 description", ProductType = ProductType.Coffee });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Product category 1 description", ProductType = ProductType.Beverages });
+
+        }
 
 
 
