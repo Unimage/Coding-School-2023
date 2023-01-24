@@ -22,7 +22,7 @@ namespace Libs {
         ///
 
 
-D
+
 
         public List<Employee> Employees { get; set; } = new List<Employee>();
         public List<Product> Products { get; set; } = new List<Product>();
@@ -30,7 +30,7 @@ D
 
         public void CheckAndPopulateEmployees()
         {
-            if (CurrentWorkingEmployees.Count == 0)
+            if (Employees.Count == 0)
             {
                 if (File.Exists("employee.json"))
                 {
@@ -47,14 +47,14 @@ D
         {
             {
                 string json = File.ReadAllText("employee.json");
-                CurrentWorkingEmployees = JsonConvert.DeserializeObject<List<Employee>>(json);
+                Employees = JsonConvert.DeserializeObject<List<Employee>>(json);
 
                 int managers = 0;
                 int cashiers = 0;
                 int baristas = 0;
                 int waiters = 0;
 
-                foreach (var employee in CurrentWorkingEmployees)
+                foreach (var employee in Employees)
                 {
                     switch (employee.EmployeeType)
                     {
@@ -116,7 +116,7 @@ D
                 {
                     string json = File.ReadAllText(fileName);
                     Products = JsonConvert.DeserializeObject<List<Product>>(json);
-                    ConnectProductCategoryIDs();
+                   //ConnectProductCategoryIDs();
                 }
                 catch (Exception ex)
                 {
