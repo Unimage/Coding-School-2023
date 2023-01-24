@@ -177,7 +177,8 @@ namespace Libs {
             return totalProductCost;
         }
 
-        //TODO calculate the balance 
+        //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
+        // Total = Balance 
 
     }
 }
