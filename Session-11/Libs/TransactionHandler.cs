@@ -15,13 +15,12 @@ using System.Threading.Tasks;
 namespace Libs {
     public class TransactionHandler 
     {
-        public Transaction _transaction;
-        public TransactionLine _transactionLine;
+        public Transaction _transaction { get; set; } = new Transaction();
+        public TransactionLine _transactionLine { get; set; } = new TransactionLine();
 
         private decimal _discountPercent = 0.15m;
         private decimal _discountThreshold = 10m;
-        public Transaction Trans { get; set; } = new(); 
-        public TransactionLine  TransLine { get; set; } = new();
+
 
         public void AddTransactionLines(TransactionLine line) 
         {

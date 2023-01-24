@@ -31,7 +31,7 @@ namespace Session_11 {
             bsEmployees.DataSource = CoffeeShop.Employees;
             bsProductCategory.DataSource = CoffeeShop.ProductCategories;
             bsProducts.DataSource = CoffeeShop.Products;
-            bsTransaction.DataSource = Transaction.Trans;
+            bsTransaction.DataSource = Transaction._transaction;
             dgvEmployees.DataSource = bsEmployees;
             dgvProductCategory.DataSource = bsProductCategory;
             dgvProducts.DataSource = bsProducts;
@@ -41,6 +41,11 @@ namespace Session_11 {
 
         private void button1_Click(object sender, EventArgs e) {
             load();
+            MessageBox.Show("To teliko poso einai " +  Transaction._transaction.TotalPrice);
+        }
+
+        private void dgvProductCategory_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
         }
     }
 }

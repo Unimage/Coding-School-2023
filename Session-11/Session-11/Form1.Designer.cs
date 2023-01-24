@@ -46,42 +46,43 @@
             // dgvEmployees
             // 
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployees.Location = new System.Drawing.Point(609, 12);
+            this.dgvEmployees.Location = new System.Drawing.Point(24, 348);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.Height = 25;
-            this.dgvEmployees.Size = new System.Drawing.Size(473, 150);
+            this.dgvEmployees.Size = new System.Drawing.Size(681, 150);
             this.dgvEmployees.TabIndex = 0;
             // 
             // dgvProducts
             // 
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(593, 168);
+            this.dgvProducts.Location = new System.Drawing.Point(748, 100);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(489, 150);
+            this.dgvProducts.Size = new System.Drawing.Size(838, 150);
             this.dgvProducts.TabIndex = 1;
             // 
             // dgvTransaction
             // 
             this.dgvTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransaction.Location = new System.Drawing.Point(441, 324);
+            this.dgvTransaction.Location = new System.Drawing.Point(748, 348);
             this.dgvTransaction.Name = "dgvTransaction";
             this.dgvTransaction.RowTemplate.Height = 25;
-            this.dgvTransaction.Size = new System.Drawing.Size(641, 150);
+            this.dgvTransaction.Size = new System.Drawing.Size(802, 150);
             this.dgvTransaction.TabIndex = 2;
             // 
             // dgvProductCategory
             // 
             this.dgvProductCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductCategory.Location = new System.Drawing.Point(58, 41);
+            this.dgvProductCategory.Location = new System.Drawing.Point(12, 100);
             this.dgvProductCategory.Name = "dgvProductCategory";
             this.dgvProductCategory.RowTemplate.Height = 25;
-            this.dgvProductCategory.Size = new System.Drawing.Size(457, 162);
+            this.dgvProductCategory.Size = new System.Drawing.Size(659, 124);
             this.dgvProductCategory.TabIndex = 3;
+            this.dgvProductCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductCategory_CellContentClick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(132, 358);
+            this.button1.Location = new System.Drawing.Point(1034, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 728);
+            this.ClientSize = new System.Drawing.Size(1598, 728);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvProductCategory);
             this.Controls.Add(this.dgvTransaction);
