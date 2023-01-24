@@ -122,8 +122,7 @@ namespace Libs {
         }
         public void SerializeEmployee() {
             Serializer serializer = new Serializer();
-            // paizei na 8elei foreach
-                serializer.SerializeToFile(Employees, "employee.json");
+            serializer.SerializeToFile(Employees, "employee.json");
         }
 
         public void DeserializeEmployee() {
@@ -133,11 +132,7 @@ namespace Libs {
 
         public void SerializeProduct() {
             Serializer serializer = new Serializer();
-
-            foreach (var product in Products) {
-                serializer.SerializeToFile(product, "product.json");
-            }
-
+            serializer.SerializeToFile(Products, "product.json");
         }
 
         public void DeserializeProduct() {
@@ -148,11 +143,7 @@ namespace Libs {
 
         public void SerializeProductCategory() {
             Serializer serializer = new Serializer();
-
-            foreach (var productCategory in ProductCategories) {
-                serializer.SerializeToFile(productCategory, "product-category.json");
-            }
-
+            serializer.SerializeToFile(ProductCategories, "product-category.json");
         }
 
         public void DeserializeProductCategory() {
