@@ -55,7 +55,7 @@ namespace Libs {
         
 
 
-        // File Operations - Serializer 
+        // File Operations - DeSerializer 
 
         public void InitLedger (DateTime dateTime)
         {
@@ -110,6 +110,9 @@ namespace Libs {
                 
             }
         }
+
+
+
 
         // Not in final form 
         // TODO decide the final implementation of Calculating the balance 
