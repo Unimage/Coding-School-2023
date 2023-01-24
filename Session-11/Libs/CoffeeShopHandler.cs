@@ -38,9 +38,9 @@ namespace Libs {
         }
 
         public void SetDefaultProducts() {
-            Products.Add(new Product { Code = "Product 1 code", Description = "Product 1 description", Price = 0, Cost = 0 });
-            Products.Add(new Product { Code = "Product 2 code", Description = "Product 2 description", Price = 0, Cost = 0 });
-            Products.Add(new Product { Code = "Product 3 code", Description = "Product 3 description", Price = 0, Cost = 0 });
+            Products.Add(new Product { Code = "Product 1 code", Description = "Espresso", Price = 1.9m, Cost = 1.5m });
+            Products.Add(new Product { Code = "Product 2 code", Description = "Cola", Price = 1.5m, Cost = 0.5m });
+            Products.Add(new Product { Code = "Product 3 code", Description = "Toast", Price = 1.5m, Cost = 0.5m });
         }
 
         public void SetDefaultProductCategories() {
