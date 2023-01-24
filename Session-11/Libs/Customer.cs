@@ -12,8 +12,6 @@ namespace Libs {
         public string? Code { get; set; }
         public string? Description { get; set; }
 
-
-        //TODO:add customer info so it agrees with Buseiness Rules
         public Customer() {
             ID = Guid.NewGuid();
             Code = "001";
