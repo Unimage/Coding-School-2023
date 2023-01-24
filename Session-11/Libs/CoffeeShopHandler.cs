@@ -14,6 +14,7 @@ namespace Libs {
         public List<Product> Products { get; set; } = new List<Product>();
         public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();
 
+        //init employees
         public void CheckAndPopulateEmployees()
         {
             if (Employees.Count == 0)
@@ -27,6 +28,42 @@ namespace Libs {
                 {
                     SetDefaultEmployees(); // works
                 }
+            }
+        }
+
+        //init productCategories
+        public void CheckAndPopulateProductCategories() {
+            string fileName = "product-category.json";
+            if (File.Exists(fileName)) {
+                try {
+                    DeserializeProductCategory();
+                }
+                catch (Exception ex) {
+                    //log exception
+                    SetDefaultProductCategories();
+                }
+            }
+            else {
+                SetDefaultProductCategories();
+            }
+        }
+
+
+        //init products
+        public void CheckAndPopulateProducts() {
+            string fileName = "product.json";
+            if (File.Exists(fileName)) {
+                try {
+                    DeserializeProduct();
+                    //ConnectProductCategoryIDs();
+                }
+                catch (Exception ex) {
+                    //log exception
+                    SetDefaultProducts();
+                }
+            }
+            else {
+                SetDefaultProducts();
             }
         }
 
@@ -52,31 +89,19 @@ namespace Libs {
                         break;
                 }
             }
-
             if (managers < 1 || managers > 1) {
                 SetDefaultEmployees();
-                throw new Exception("The number of managers does not meet the requirements.");
                 
             }
-
             if (cashiers < 1 || cashiers > 2) {
-                SetDefaultEmployees();
-                throw new Exception("The number of cashiers does not meet the requirements.");
-                
+                SetDefaultEmployees();   
             }
-
             if (baristas < 1 || baristas > 2) {
-                SetDefaultEmployees();
-                throw new Exception("The number of baristas does not meet the requirements.");
-                
+                SetDefaultEmployees();    
             }
-
             if (waiters < 1 || waiters > 2) {
-                SetDefaultEmployees();
-                throw new Exception("The number of waiters does not meet the requirements.");
-                
+                SetDefaultEmployees();  
             }
-
         }
 
         public void SetDefaultEmployees() {
@@ -139,66 +164,16 @@ namespace Libs {
             
         }
 
-
-        public void InitializeProducts()
-        {
-            string fileName = "product.json";
-            if (File.Exists(fileName))
-            {
-                try
-                {
-                    string json = File.ReadAllText(fileName);
-                    Products = JsonConvert.DeserializeObject<List<Product>>(json);
-                   //ConnectProductCategoryIDs();
-                }
-                catch (Exception ex)
-                {
-                    //log exception
-                    SetDefaultProducts();
-                }
-            }
-            else
-            {
-                SetDefaultProducts();
-            }
+        public void Init() {
+            CheckAndPopulateEmployees();
+            CheckAndPopulateProductCategories();
+            CheckAndPopulateProducts();
         }
-
-
-        
-
-
-        //product category staff 
-        public void InitializeProductCategories()
-        {
-            string fileName = "product-category.json";
-            if (File.Exists(fileName))
-            {
-                try
-                {
-                    string json = File.ReadAllText(fileName);
-                    ProductCategories = JsonConvert.DeserializeObject<List<ProductCategory>>(json);
-                }
-                catch (Exception ex)
-                {
-                    //log exception
-                    SetDefaultProductCategories();
-                }
-            }
-            else
-            {
-                SetDefaultProductCategories();
-            }
+        public void Save() {
+            SerializeEmployee();
+            SerializeProductCategory();
+            SerializeProduct();
         }
-
-
-
-
-        
-
-        // Serializer Methods
-
-        
-
     }
 }
 
