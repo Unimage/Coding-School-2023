@@ -15,7 +15,7 @@ namespace Libs {
         public List<Double> Income { get; set; } 
         public List<Double> Expenses { get; set; }
 
-        public Double Total { get; set; }    // Income - Expenses
+        public Double Balance { get; set; }    // Income - Expenses
 
 
         
@@ -23,16 +23,38 @@ namespace Libs {
 
 
 
-        MonthlyLedger(System.DateTime dateTime ) {
+        MonthlyLedger(System.DateTime dateTime , double initialExpense ) {
+
+              
         
             Year = dateTime.Year; // get the Year out of System Date 
             Month = dateTime.Month; 
 
-            // maybe initialize the Lists here
+           
 
 
         
         } 
+
+
+        public void AddToIncome(double income)
+        {
+            Income.Add( income );
+        }
+
+
+        public void AddToExpenses(double expenses)
+        {
+            Expenses.Add( expenses );
+        }
+
+
+
+
+
+
+
+
 
 
 
