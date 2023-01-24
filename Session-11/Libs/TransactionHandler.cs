@@ -74,11 +74,11 @@ namespace Libs {
         }
         public string FinalizeTrasaction()
         {
-            if(_transaction==null)
+            if (_transaction == null || _transaction.TransactionLines.Count == 0)
             {
                 return "nothing to checkout";
             }
-            if (_transaction.PaymentMethod == PaymentMethod.CreditCard&&_transaction.TotalPrice >= 50)
+            if (_transaction.PaymentMethod == PaymentMethod.CreditCard && _transaction.TotalPrice >= 50)
             {
                 return "can only pay with cash";
             }
@@ -89,9 +89,3 @@ namespace Libs {
 
     }    
 }
-
-/*
- * Business : 
- * initially on the form we want the menu to display things to add to the cart. Each time u pick an option eg.(espresso) and quantiny x3.
- * After Accept the form creates and sends the coresponding 
-*/

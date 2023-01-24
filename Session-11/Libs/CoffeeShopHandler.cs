@@ -175,7 +175,7 @@ namespace Libs {
             SerializeProduct();
         }
 
-        //Apo edw kai katw exei mono arrwstia kai paranoia min kotate
+        //Apo edw kai katw exei mono arrwstia kai paranoia
         public ProductCategory GetCategoryById(Guid categoryId) {
             foreach (Product product in Products) {
                 if (product.ProductCategoryID == categoryId) {
