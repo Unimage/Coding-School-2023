@@ -139,7 +139,14 @@ namespace Libs {
         public decimal CalculateTransactionSum(List<Transaction> transactions)
         {
             // L
-           decimal sumOfTransactions = transactions.Sum(transaction => transaction.TotalPrice);
+            // decimal sumOfTransactions = transactions.Sum(transaction => transaction.TotalPrice);
+            decimal sumOfTransactions = 0;
+
+            foreach (Transaction transaction in transactions)
+            {
+
+                sumOfTransactions += transaction.TotalPrice;
+            }
 
             return sumOfTransactions;
 
