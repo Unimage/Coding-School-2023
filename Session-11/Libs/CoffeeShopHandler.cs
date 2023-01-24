@@ -51,7 +51,7 @@ namespace Libs {
             Serializer serializer = new Serializer();
             
             foreach (var employee in Employees) {
-                serializer.SerializeToFile(Employee, "employee.json");
+                serializer.SerializeToFile(employee, "employee.json");
             }
 
         }
@@ -64,8 +64,12 @@ namespace Libs {
 
         public void DeserializeEmployee() {
             Serializer serializer = new Serializer();
-            //Employees.add(new Employee() = serializer.DeserializeFromFile<Employee>("employee.json");
-            Employee = serializer.DeserializeFromFile<Employee>("employee.json");
+            Employees.add(new Employee() { 
+                serializer.DeserializeFromFile<Employee>("employee.json"); 
+        }
+
+
+          
            
         }
 
@@ -73,7 +77,7 @@ namespace Libs {
             Serializer serializer = new Serializer();
             
             foreach (var product in Products) {
-                serializer.SerializeToFile(Product, "product.json");
+                serializer.SerializeToFile(product, "product.json");
             }
 
         }
@@ -88,7 +92,7 @@ namespace Libs {
             Serializer serializer = new Serializer();
             
             foreach (var productCategory in ProductCategories) {
-                serializer.SerializeToFile(ProductCategory, "product-category.json");
+                serializer.SerializeToFile(productCategory, "product-category.json");
             }
 
         }
