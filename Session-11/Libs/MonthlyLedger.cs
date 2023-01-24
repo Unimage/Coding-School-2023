@@ -144,7 +144,7 @@ namespace Libs {
 
         }
 
-        public decimal CalculateEmployeeCost(List<Employee> employees , List<Transaction> transactions) 
+        public decimal CalculateEmployeeCost(List<Employee> employees) 
         
         {
         
