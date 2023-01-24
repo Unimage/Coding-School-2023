@@ -97,6 +97,9 @@ namespace Libs {
                         
                         
                        decimal total =   CalculateTransactionSum( ledger );
+
+                      //  decimal expenses = CalculateBalance();
+                       decimal balance = CalculateBalance(total, expenses);
                         
                         
                     }
