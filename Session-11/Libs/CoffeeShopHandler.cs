@@ -20,9 +20,14 @@ namespace Libs {
         ///
 
 
-        public List<Employee> Employees { get; set; }
-        public List<Product> Products { get; set; } 
-        public List<ProductCategory> ProductCategories {get; set;}
+<<<<<<< HEAD
+
+        public List<Employee> Employees { get; set; } = new List<Employee>;
+=======
+    
+>>>>>>> 0aaed7bc3bdce7409404e402d6de00ae5daa697d
+        public List<Product> Products { get; set; } = new List<Product>;
+        public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();   
 
 
         public void SetDefaultEmployees() {
