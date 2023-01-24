@@ -15,8 +15,7 @@ namespace Libs {
         private decimal globalExpenses = 0;
 
 
-        public int Year  { get; }
-        public int Month { get;}
+        public Double Balance { get; set; }    // Income - Expenses
 
         
 

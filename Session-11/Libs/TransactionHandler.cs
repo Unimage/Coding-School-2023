@@ -14,8 +14,8 @@ using System.Threading.Tasks;
 namespace Libs {
     internal class TransactionHandler {
 
-        private double _discountPercent = 0.15;
-        private double _discountThreshold = 10;
+        private decimal _discountPercent = 0.15;
+        private decimal _discountThreshold = 10;
         public Transaction Trans { get; set; } = new(); 
         public TransactionLine  TransLine { get; set; } = new();
 
