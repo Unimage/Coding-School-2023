@@ -17,7 +17,7 @@ namespace Libs {
         private double _discountPercent = 0.15;
         private double _discountThreshold = 10;
         public Transaction Trans { get; set; } = new(); 
-        public TransactionLine  transLine { get; set; } = new();
+        public TransactionLine  TransLine { get; set; } = new();
 
         public TransactionHandler() { } 
 
@@ -60,6 +60,6 @@ namespace Libs {
 
 /*
  * Business : 
- * initially on the farm we want the menu to display things to add to the cart. Each time u pick an option eg.(espresso) and quantiny x3.
+ * initially on the form we want the menu to display things to add to the cart. Each time u pick an option eg.(espresso) and quantiny x3.
  * After Accept the form creates and sends the coresponding 
 */
