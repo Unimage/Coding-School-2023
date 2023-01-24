@@ -64,13 +64,8 @@ namespace Libs {
 
         public void DeserializeEmployee() {
             Serializer serializer = new Serializer();
-            Employees.add(new Employee() { 
-                serializer.DeserializeFromFile<Employee>("employee.json"); 
-        }
-
-
-          
-           
+            Employee tmpEmployee = serializer.DeserializeFromFile<Employee>("employee.json");
+            Employees.Add(tmpEmployee); 
         }
 
         public void SerializeProduct() {
