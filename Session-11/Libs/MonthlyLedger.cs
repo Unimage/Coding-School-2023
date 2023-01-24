@@ -96,7 +96,8 @@ namespace Libs {
                     if ( ledger != null) {
                         
                         
-                        CalculateTransactionSum( ledger );
+                       decimal total =   CalculateTransactionSum( ledger );
+                        
                         
                     }
                   } catch (Exception e)
