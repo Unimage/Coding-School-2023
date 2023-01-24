@@ -144,6 +144,19 @@ namespace Libs {
 
         }
 
+        public decimal CalculateEmployeeCost(List<Employee> employees , List<Transaction> transactions) 
+        
+        {
+        
+           decimal totalEmpCost = 0;
+
+            foreach (Employee employee in employees) {
+                totalEmpCost +=  employee.Salary;    
+            }
+        
+            return totalEmpCost;
+        }
+
 
     }
 }
