@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 ///
 
 namespace Libs {
-    internal class TransactionHandler 
+    public class TransactionHandler 
     {
         public Transaction _transaction;
         public TransactionLine _transactionLine;

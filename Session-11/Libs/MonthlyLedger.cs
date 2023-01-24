@@ -9,7 +9,7 @@ using System.Transactions;
 namespace Libs {
 
     //TODO:Discuss and implement ledger 
-    internal class MonthlyLedger {
+    public class MonthlyLedger {
 
         private int _rentExpense = 3000;
         private decimal globalIncome = 0;
