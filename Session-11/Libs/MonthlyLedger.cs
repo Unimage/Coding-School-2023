@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Numerics;
+using Session_11;
 
 namespace Libs {
 
@@ -22,6 +26,11 @@ namespace Libs {
 
         public List<Transaction> Transactions { get; set; }
         public List<Employee> Employees { get; set; }
+
+
+
+
+
 
 
 
@@ -47,9 +56,9 @@ namespace Libs {
         
 
 
-        // File Operations - Serializer 
+        // File Operations - DeSerializer 
 
-        public void InitLedger (DateTime dateTime , List<Employee> employees)
+        public void InitLedger (DateTime dateTime)
         {
             ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
 
@@ -80,13 +89,20 @@ namespace Libs {
             {
                 try
                 {
-                    string json = File.ReadAllText( ledgerFile );
-                    // using NewtonSoft package for Json
-                    var ledger = Newtonsoft.Json.JsonConvert.DeserializeObject<MonthlyLedger>(json);
+                      string json = File.ReadAllText( ledgerFile );
+                    
+                    
+                    var ledger = JsonConvert.DeserializeObject<List<Transaction>>(json);
 
                     if ( ledger != null) {
-                        // 
-                        return;
+                        
+                        
+                       decimal total =   CalculateTransactionSum( ledger );
+
+                      //  decimal expenses = CalculateBalance();
+                      //  decimal balance = CalculateBalance(total, expenses);
+                        
+                        
                     }
                   } catch (Exception e)
                 {
@@ -103,27 +119,14 @@ namespace Libs {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Not in final form 
         // TODO decide the final implementation of Calculating the balance 
-        public decimal  CalculateBalanced(decimal income, decimal expenses) {
+        public decimal  CalculateBalance(decimal income, decimal expenses) {
         
             
 
             
-            // this.Total = incomeTotal - expensesTotal;  
+            
 
             return ((income-expenses) - _rentExpense);
         
@@ -133,6 +136,52 @@ namespace Libs {
 
 
 
+        // NET INCOME 
+        public decimal CalculateTransactionSum(List<Transaction> transactions)
+        {
+            // L
+            // decimal sumOfTransactions = transactions.Sum(transaction => transaction.TotalPrice);
+            decimal sumOfTransactions = 0;
+
+            foreach (Transaction transaction in transactions)
+            {
+
+                sumOfTransactions += transaction.TotalPrice;
+            }
+
+            return sumOfTransactions;
+
+        }
+
+        // EXPENSES
+        public decimal CalculateEmployeeCost(List<Employee> employees) 
+        
+        {
+        
+           decimal totalEmpCost = 0;
+
+            foreach (Employee employee in employees) {
+                totalEmpCost +=  employee.Salary;    
+            }
+        
+            return totalEmpCost;
+        }
+
+
+        //EXPENSES 
+        public decimal CalculateProductCost(List<Product> products)
+        {
+            decimal totalProductCost = 0;
+            foreach (Product product in products)
+            {
+                totalProductCost += product.Cost;
+            }
+
+            return totalProductCost;
+        }
+
+        //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
+       
 
     }
 }
