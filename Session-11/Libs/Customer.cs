@@ -14,6 +14,8 @@ namespace Libs {
 
         public Customer() {
             ID = Guid.NewGuid();
+            Code = "001";
+            Description = "Retail Customer";
         }
 
     }
