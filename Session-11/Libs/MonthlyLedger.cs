@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Libs {
@@ -9,19 +10,19 @@ namespace Libs {
     //TODO:Discuss and implement ledger 
     public class MonthlyLedger {
 
-        public int Year  { get; set; }
-        public int Month { get; set; }
+        private int _rentExpense = 3000;
+        private decimal globalIncome = 0;
+        private decimal globalExpenses = 0;
 
-        public List<decimal> Income { get; set; } 
-        public List<decimal> Expenses { get; set; }
 
-        public decimal Balance { get; set; }    // Income - Expenses
-
+        public Double Balance { get; set; }    // Income - Expenses
 
         
 
+        public Double Balance { get; set; }    // Income - Expenses
 
 
+        
 
         MonthlyLedger(System.DateTime dateTime , double initialExpense ) {
 
@@ -30,23 +31,49 @@ namespace Libs {
             Year = dateTime.Year; // get the Year out of System Date 
             Month = dateTime.Month; 
 
-           
-
-
         
-        } 
-
-
-        public void AddToIncome(double income)
-        {
-            Income.Add( income );
         }
 
 
-        public void AddToExpenses(double expenses)
+        // -- Initialize the ledger 
+
+        public void InitLedger (DateTime dateTime , List<Employee> employees)
         {
-            Expenses.Add( expenses );
+
+            string ledgerFile = ($"monthly_ledger_{dateTime.Year}_{dateTime.Month}.json");
+            if (!File.Exists( ledgerFile )) 
+               
+            {
+                try
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(ledgerFile))
+                    {
+
+                    }
+
+                } catch(Exception e)
+                {
+
+                    // record the exception to the ExceptionLogger
+                    ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
+                    exceptionLogger.Log(e.ToString());
+
+
+                }
+            }
+              else
+            {
+                try
+                {
+                    string json = File.ReadAllText( ledgerFile );
+                    //var ledger = JsonConvert.DeserializeObject<MonthlyLedger>( json );
+                }
+            }
         }
+
+
+
+
 
 
 
@@ -62,15 +89,14 @@ namespace Libs {
 
         // Not in final form 
         // TODO decide the final implementation of Calculating the balance 
-        public double CalculateBalance(List<Double> income , List<Double> expenses) {
+        public decimal  CalculateBalanced(decimal income, decimal expenses) {
         
-            double incomeTotal = income.Sum();
-            double expensesTotal = expenses.Sum();
+            
 
             
             // this.Total = incomeTotal - expensesTotal;  
 
-            return (incomeTotal - expensesTotal);
+            return ((income-expenses) - _rentExpense);
         
 
         
