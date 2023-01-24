@@ -113,12 +113,12 @@ namespace Libs {
 
         // Not in final form 
         // TODO decide the final implementation of Calculating the balance 
-        public decimal  CalculateBalanced(decimal income, decimal expenses) {
+        public decimal  CalculateBalance(decimal income, decimal expenses) {
         
             
 
             
-            // this.Total = incomeTotal - expensesTotal;  
+            
 
             return ((income-expenses) - _rentExpense);
         
@@ -130,7 +130,7 @@ namespace Libs {
 
         public decimal CalculateTransactionSum(List<Transaction> transactions)
         {
-
+            // L
            decimal sumOfTotals = transactions.Sum(transaction => transaction.TotalPrice);
 
             return sumOfTotals;
