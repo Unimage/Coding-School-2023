@@ -31,10 +31,10 @@ namespace Libs {
 
 
         public void SetDefaultEmployees() {
-            Employees.Add(new Employee { Name = "Employee 1 Name", Surname = "Employee 1 Surname", Salary = 4000, EmployeeType = EmployeeType.Manager });
-            Employees.Add(new Employee { Name = "Employee 2 Name", Surname = "Employee 2 Surname", Salary = 3000, EmployeeType = EmployeeType.Cashier });
-            Employees.Add(new Employee { Name = "Employee 3 Name", Surname = "Employee 3 Surname", Salary = 2000, EmployeeType = EmployeeType.Barista });
-            Employees.Add(new Employee { Name = "Employee 4 Name", Surname = "Employee 4 Surname", Salary = 1000, EmployeeType = EmployeeType.Waiter });
+            Employees.Add(new Employee { Name = "Stratos ", Surname = "Chalkopiadis", Salary = 4000, EmployeeType = EmployeeType.Manager });
+            Employees.Add(new Employee { Name = "Giorgos", Surname = " Zacharidis", Salary = 3000, EmployeeType = EmployeeType.Cashier });
+            Employees.Add(new Employee { Name = "Anestis", Surname = " Kountoyrgiannis", Salary = 2000, EmployeeType = EmployeeType.Barista });
+            Employees.Add(new Employee { Name = "Ioannis", Surname = " Koukotzilas", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
 
         public void SetDefaultProducts() {
@@ -44,9 +44,9 @@ namespace Libs {
         }
 
         public void SetDefaultProductCategories() {
-            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Product category 1 description", ProductType = ProductType.Coffee });
-            ProductCategories.Add(new ProductCategory { Code = "Product category 2 code", Description = "Product category 2 description", ProductType = ProductType.Beverages });
-            ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Product category 3 description", ProductType = ProductType.Food });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Coffee", ProductType = ProductType.Coffee });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 2 code", Description = "Beverage", ProductType = ProductType.Beverages });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Food", ProductType = ProductType.Food });
         }
 
 
