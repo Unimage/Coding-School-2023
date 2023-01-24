@@ -26,12 +26,15 @@ namespace Libs {
         public List<ProductCategory> ProductCategory {get; set;}
 
 
-      
-
         public void SetDefaultEmployees() {
-            Employees.Add(new Employee());
+            Employees.Add(new Employee { Name = "Employee 1 Name", Surname = "Employee 1 Surname", Salary = 4000, EmployeeType = EmployeeType.Manager });
+            Employees.Add(new Employee { Name = "Employee 2 Name", Surname = "Employee 2 Surname", Salary = 3000, EmployeeType = EmployeeType.Cashier });
+            Employees.Add(new Employee { Name = "Employee 3 Name", Surname = "Employee 3 Surname", Salary = 2000, EmployeeType = EmployeeType.Barista });
+            Employees.Add(new Employee { Name = "Employee 4 Name", Surname = "Employee 4 Surname", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
 
+      
+ 
 
 
     }
