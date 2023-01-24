@@ -8,5 +8,15 @@ namespace Libs
 {
     internal class CostCalculator
     {
+        public decimal  EmployeeCost { get; set; }
+        public decimal ProductCost { get; set; }
+
+        public decimal HousingCost { get; set; }
     }
+
+
+     
+
+
+
 }
