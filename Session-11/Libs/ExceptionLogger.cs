@@ -42,8 +42,8 @@ namespace Libs
                     streamWriter.WriteLine("Exception : " + message);
                     streamWriter.Close();
 
-                }
-                {
+                
+                
                     
                 }
             }
