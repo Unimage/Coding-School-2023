@@ -39,7 +39,7 @@ namespace Libs
                     streamWriter.WriteLine("##### ERROR #####");
                     streamWriter.WriteLine(System.DateTime.Today);
 
-                    streamWriter.WriteLine(message);
+                    streamWriter.WriteLine("Exception : " + message);
                     streamWriter.Close();
 
                 }
