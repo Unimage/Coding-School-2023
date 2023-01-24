@@ -9,9 +9,11 @@ namespace Libs
     // append error messages received through try-catch and log them with append to a file "exceptions.txt"
     internal class ExceptionLogger
     {
-        public string  ErrorMessage { get; set; }
+        public DateTime  MessageTime { get; set; }
 
-        public ExceptionLogger() { }
+        public ExceptionLogger(DateTime dateTime) {
+          MessageTime= dateTime; 
+        }
 
 
         public void Log(string message) {
@@ -33,7 +35,9 @@ namespace Libs
                 using (StreamWriter streamWriter = File.AppendText(logfile){
 
                     
+                    streamWriter.WriteLine("##### ERROR #####");
                     streamWriter.WriteLine(System.DateTime.Today);
+                    
                     streamWriter.WriteLine(message);
                     streamWriter.Close();
 
