@@ -138,7 +138,6 @@ namespace Libs {
         public void DeserializeProduct() {
             Serializer serializer = new Serializer();
             Products = serializer.DeserializeFromFile<List<Product>>("product.json");
-
         }
 
         public void SerializeProductCategory() {
@@ -149,7 +148,6 @@ namespace Libs {
         public void DeserializeProductCategory() {
             Serializer serializer = new Serializer();
             ProductCategories = serializer.DeserializeFromFile<List<ProductCategory>>("product-category.json");
-            
         }
 
         public void Init() {
@@ -183,9 +181,8 @@ namespace Libs {
             return ProductCategories.FirstOrDefault(x => x.ProductCategoryID == id);
         }
 
-
-
     }
+
 }
 
 
