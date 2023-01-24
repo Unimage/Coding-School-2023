@@ -52,9 +52,16 @@ namespace Libs {
             serializer.SerializeToFile(Employee, "employee.json");
             MessageBox.Show($"Employee list JSON export ready");
         }
+        //public void SerializeEmployee() {
+        //  Serializer serializer = new Serializer();
+        //  foreac(var sr in Employees ){
+        //       serializer.SerializeToFile(sr, "employee.json");}
+        //  
+
 
         public void DeserializeEmployee() {
             Serializer serializer = new Serializer();
+            //Employees.add(new Employee() = serializer.DeserializeFromFile<Employee>("employee.json");
             Employee = serializer.DeserializeFromFile<Employee>("employee.json");
             MessageBox.Show($"Employee list JSON loaded");
         }
