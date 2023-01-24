@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Session_11;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,23 @@ namespace Libs {
         ///2.2 an oxi kalei mia me8odos pou eisagei default times sto ka8ena
         ///3. Oles oi listes 8a prepei na mporoun na apo8ikeutoun sta antisoixa json arxeia tous.
         ///
+
+
+
+        public List<Employee> Employees { get; set; }
+        public List<Product> Products { get; set; } 
+        public List<ProductCategory> ProductCategory {get; set;}
+
+
+      
+
+        public void SetDefaultEmployees() {
+            Employees.Add(new Employee());
+        }
+
+
+
     }
 }
+
+
