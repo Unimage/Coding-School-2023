@@ -21,7 +21,7 @@ namespace Libs
 
             string logfile = @"exceptions.txt";
 
-            //the file does NOT exist 
+            //the file does NOT exist so we create iot
             if(!File.Exists(logfile)) 
             {
                 using (StreamWriter streamWriter = new StreamWriter(logfile))
@@ -32,12 +32,13 @@ namespace Libs
             }
             else
             {
-                using (StreamWriter streamWriter = File.AppendText(logfile){
+                using (StreamWriter streamWriter = File.AppendText(logfile))
+                {
 
-                    
+
                     streamWriter.WriteLine("##### ERROR #####");
                     streamWriter.WriteLine(System.DateTime.Today);
-                    
+
                     streamWriter.WriteLine(message);
                     streamWriter.Close();
 
