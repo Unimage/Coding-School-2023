@@ -33,14 +33,15 @@ namespace Libs {
         }
 
         public void SetDefaultProducts() {
-            Products.Add(new Product { Code = "Product code", Description = "Product description", Price = 0, Cost = 0 });
-           
+            Products.Add(new Product { Code = "Product 1 code", Description = "Product 1 description", Price = 0, Cost = 0 });
+            Products.Add(new Product { Code = "Product 2 code", Description = "Product 2 description", Price = 0, Cost = 0 });
+            Products.Add(new Product { Code = "Product 3 code", Description = "Product 3 description", Price = 0, Cost = 0 });
         }
 
         public void SetDefaultProductCategories() {
             ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Product category 1 description", ProductType = ProductType.Coffee });
-            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Product category 1 description", ProductType = ProductType.Beverages });
-
+            ProductCategories.Add(new ProductCategory { Code = "Product category 2 code", Description = "Product category 2 description", ProductType = ProductType.Beverages });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Product category 3 description", ProductType = ProductType.Food });
         }
 
 
