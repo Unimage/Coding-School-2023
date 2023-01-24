@@ -168,6 +168,7 @@ namespace Libs {
         }
 
 
+        //EXPENSES 
         public decimal CalculateProductCost(List<Product> products)
         {
             decimal totalProductCost = 0;
@@ -180,7 +181,7 @@ namespace Libs {
         }
 
         //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
-        // Total = Balance 
+       
 
     }
 }
