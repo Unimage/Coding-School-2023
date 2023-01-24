@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace Libs {
 
         public List<Transaction> Transactions { get; set; }
         public List<Employee> Employees { get; set; }
+
+
+
+
+
 
 
 
@@ -82,10 +88,13 @@ namespace Libs {
                 {
                     string json = File.ReadAllText( ledgerFile );
                     // using NewtonSoft package for Json
-                    var ledger = Newtonsoft.Json.JsonConvert.DeserializeObject<MonthlyLedger>(json);
+                    var ledger = 
+
 
                     if ( ledger != null) {
-                        // 
+                        
+                        
+
                         return;
                     }
                   } catch (Exception e)
@@ -99,22 +108,6 @@ namespace Libs {
                 
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Not in final form 
         // TODO decide the final implementation of Calculating the balance 
