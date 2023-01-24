@@ -36,7 +36,7 @@ namespace Libs {
         }
 
 
-        MonthlyLedger
+        
 
 
         // -- Initialize the ledger 
@@ -76,7 +76,7 @@ namespace Libs {
 
                     if ( ledger != null) {
                         MonthlyLedger monthlyLedger = ledger;
-                        return;
+                        return monthlyLedger;
                     }
                   } catch (Exception e)
                 {
@@ -84,7 +84,7 @@ namespace Libs {
                 }
 
                    
-
+                
 
                 
             }

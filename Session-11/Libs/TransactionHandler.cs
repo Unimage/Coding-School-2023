@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,47 +13,79 @@ using System.Threading.Tasks;
 ///
 
 namespace Libs {
-    internal class TransactionHandler {
+    internal class TransactionHandler 
+    {
+        public Transaction _transaction;
+        public TransactionLine _transactionLine;
 
-        private decimal _discountPercent = 0.15;
-        private decimal _discountThreshold = 10;
+        private decimal _discountPercent = 0.15m;
+        private decimal _discountThreshold = 10m;
         public Transaction Trans { get; set; } = new(); 
         public TransactionLine  TransLine { get; set; } = new();
 
-        public TransactionHandler() { } 
-
-
-        //add trans.lines to transaction
-        public void AddLineToTrans(TransactionLine trLine) {
-            Trans.TransactionLines.Add(trLine);
-
+        public void AddTransactionLines(TransactionLine line) 
+        {
+            _transaction.TransactionLines.Add(line) ;
         }
 
-        //calculates total cost and adds it to Transaction.TotalPrice
-       public void CalculateTotalCost() {
-            double totalCost= 0;
-            foreach(var tr in Trans.TransactionLines) {
-                 tr.CalculatePriceLine();
-                totalCost += tr.TotalPrice;
+       public void CalculateTransaction() 
+        {
+            decimal total= 0 ;
+            foreach(var line in _transaction.TransactionLines) 
+            {
+                line.TotalPrice = line.Price * line.Quantity;
+                total += line.TotalPrice;
             }
-            Trans.TotalPrice = CalculateDiscountPrice(totalCost);    
+            _transaction.TotalPrice = total;
+            ApplyDiscount();
         }
 
-        //checks and calculates discount if possbile
-        public double CalculateDiscountPrice(double cost) {
-            if (cost > _discountThreshold) {
-                cost = cost - (cost * _discountPercent);
+      
+        public void ApplyDiscount() 
+        {
+            if (_transaction.TotalPrice >= 50) 
+            {
+                _transaction.TotalPrice = _transaction.TotalPrice -(_transaction.TotalPrice *0.15m);
             }
-            return cost;
         }
-        //checks for payment method availability
-        public bool PaymentWithCard(double price) {
-            if (price >= 50) {
-                return false;
+        
+        public void ChangeLineQuantity(int id, int newQuantity)
+        {
+            var line= _transaction.TransactionLines.Find(x => x.Id == id);
+            if (line != null)
+            {
+                line.Quantity = newQuantity;
+                CalculateTransaction();
             }
-            else { return true; }
         }
-
+        public void RemoveTransactionLine (Guid id)
+        {
+            var line = _transaction.TransactionLines.Find(x => x.ID == id);
+            if (line!= null)
+            {
+                _transaction.TransactionLines.Remove(line);
+                CalculateTransaction();
+            }
+        }    
+        public void SaveTransactionToJson()
+        {
+            string json = JsonConvert.SerializeObject(_transaction);
+            string path = $"reciept{_transaction.ID}.json";
+            File.WriteAllText(path, json);
+        }
+        public string FinalizeTrasaction()
+        {
+            if(_transaction==null)
+            {
+                return "nothing to checkout";
+            }
+            if (_transaction.PaymentMean == PaymentMethod.CreditCard&&_transaction.TotalPrice >= 50)
+            {
+                return "can only pay with cash";
+            }
+            SaveTransactionToJson();
+            return $"The total amount is {_transaction.TotalPrice}";
+        }
 
 
     }    

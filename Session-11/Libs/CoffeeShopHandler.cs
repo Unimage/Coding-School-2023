@@ -22,31 +22,31 @@ namespace Libs {
 
 <<<<<<< HEAD
 
-        public List<Employee> Employees { get; set; } = new List<Employee>;
+        public List<Employee> Employees { get; set; } = new List<Employee>();
 =======
     
 >>>>>>> 0aaed7bc3bdce7409404e402d6de00ae5daa697d
-        public List<Product> Products { get; set; } = new List<Product>;
+        public List<Product> Products { get; set; } = new List<Product>();
         public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();   
 
 
         public void SetDefaultEmployees() {
-            Employees.Add(new Employee { Name = "Stratos", Surname = "Chalkopiadis", Salary = 4000, EmployeeType = EmployeeType.Manager });
+            Employees.Add(new Employee { Name = "Stratos ", Surname = "Chalkopiadis", Salary = 4000, EmployeeType = EmployeeType.Manager });
             Employees.Add(new Employee { Name = "Giorgos", Surname = " Zacharidis", Salary = 3000, EmployeeType = EmployeeType.Cashier });
             Employees.Add(new Employee { Name = "Anestis", Surname = " Kountoyrgiannis", Salary = 2000, EmployeeType = EmployeeType.Barista });
             Employees.Add(new Employee { Name = "Ioannis", Surname = " Koukotzilas", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
 
         public void SetDefaultProducts() {
-            Products.Add(new Product { Code = "Product 1 code", Description = "Product 1 description", Price = 0, Cost = 0 });
-            Products.Add(new Product { Code = "Product 2 code", Description = "Product 2 description", Price = 0, Cost = 0 });
-            Products.Add(new Product { Code = "Product 3 code", Description = "Product 3 description", Price = 0, Cost = 0 });
+            Products.Add(new Product { Code = "Product 1 code", Description = "Espresso", Price = 1.9m, Cost = 1.5m });
+            Products.Add(new Product { Code = "Product 2 code", Description = "Cola", Price = 1.5m, Cost = 0.5m });
+            Products.Add(new Product { Code = "Product 3 code", Description = "Toast", Price = 1.5m, Cost = 0.5m });
         }
 
         public void SetDefaultProductCategories() {
-            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Product category 1 description", ProductType = ProductType.Coffee });
-            ProductCategories.Add(new ProductCategory { Code = "Product category 2 code", Description = "Product category 2 description", ProductType = ProductType.Beverages });
-            ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Product category 3 description", ProductType = ProductType.Food });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Coffee", ProductType = ProductType.Coffee });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 2 code", Description = "Beverage", ProductType = ProductType.Beverages });
+            ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Food", ProductType = ProductType.Food });
         }
 
 
