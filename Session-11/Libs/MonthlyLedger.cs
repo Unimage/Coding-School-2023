@@ -100,7 +100,7 @@ namespace Libs {
                        decimal total =   CalculateTransactionSum( ledger );
 
                       //  decimal expenses = CalculateBalance();
-                       decimal balance = CalculateBalance(total, expenses);
+                      //  decimal balance = CalculateBalance(total, expenses);
                         
                         
                     }
@@ -176,6 +176,8 @@ namespace Libs {
 
             return totalProductCost;
         }
+
+        //TODO calculate the balance 
 
     }
 }
