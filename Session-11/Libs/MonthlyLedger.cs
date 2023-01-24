@@ -57,7 +57,7 @@ namespace Libs {
 
         // File Operations - Serializer 
 
-        public void InitLedger (DateTime dateTime , List<Employee> employees)
+        public void InitLedger (DateTime dateTime)
         {
             ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
 
@@ -96,7 +96,7 @@ namespace Libs {
                     if ( ledger != null) {
                         
                         
-
+                        CalculateTransactionSum( ledger );
                         
                     }
                   } catch (Exception e)
@@ -127,6 +127,15 @@ namespace Libs {
         }
 
 
+
+        public decimal CalculateTransactionSum(List<Transaction> transactions)
+        {
+
+           decimal sumOfTotals = transactions.Sum(transaction => transaction.TotalPrice);
+
+            return sumOfTotals;
+
+        }
 
 
     }
