@@ -49,9 +49,9 @@ namespace Libs {
             }
         }
         
-        public void ChangeLineQuantity(int id, int newQuantity)
+        public void ChangeLineQuantity(Guid id, int newQuantity)
         {
-            var line= _transaction.TransactionLines.Find(x => x.Id == id);
+            var line= _transaction.TransactionLines.Find(x => x.ID == id);
             if (line != null)
             {
                 line.Quantity = newQuantity;
