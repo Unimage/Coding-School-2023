@@ -136,6 +136,7 @@ namespace Libs {
 
 
 
+        // NET INCOME 
         public decimal CalculateTransactionSum(List<Transaction> transactions)
         {
             // L
@@ -152,6 +153,7 @@ namespace Libs {
 
         }
 
+        // EXPENSES
         public decimal CalculateEmployeeCost(List<Employee> employees) 
         
         {
