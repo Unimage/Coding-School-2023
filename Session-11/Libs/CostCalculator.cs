@@ -14,8 +14,8 @@ namespace Libs
         public decimal HousingCost { get; set; }
     }
 
-
-     
+    // calculate the total of all costs 
+    // public decimal CalculateTotalCost()
 
 
 
