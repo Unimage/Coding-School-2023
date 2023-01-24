@@ -26,10 +26,10 @@ namespace Libs {
 
 
         public void SetDefaultEmployees() {
-            Employees.Add(new Employee { Name = "Stratos Chalkopiadis", Surname = "Employee 1 Surname", Salary = 4000, EmployeeType = EmployeeType.Manager });
-            Employees.Add(new Employee { Name = "Giorgos Zacharidis", Surname = "Employee 2 Surname", Salary = 3000, EmployeeType = EmployeeType.Cashier });
-            Employees.Add(new Employee { Name = "Anestis Kountoyrgiannis", Surname = "Employee 3 Surname", Salary = 2000, EmployeeType = EmployeeType.Barista });
-            Employees.Add(new Employee { Name = "Ioannis Koukotzilas", Surname = "Employee 4 Surname", Salary = 1000, EmployeeType = EmployeeType.Waiter });
+            Employees.Add(new Employee { Name = "Stratos", Surname = "Chalkopiadis", Salary = 4000, EmployeeType = EmployeeType.Manager });
+            Employees.Add(new Employee { Name = "Giorgos", Surname = " Zacharidis", Salary = 3000, EmployeeType = EmployeeType.Cashier });
+            Employees.Add(new Employee { Name = "Anestis", Surname = " Kountoyrgiannis", Salary = 2000, EmployeeType = EmployeeType.Barista });
+            Employees.Add(new Employee { Name = "Ioannis", Surname = " Koukotzilas", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
 
         public void SetDefaultProducts() {
