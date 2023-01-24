@@ -24,7 +24,7 @@ namespace Libs
             ID= Guid.NewGuid ();
         }
         
-        public TransactionLine(Guid productID, int quantity, double price, double discount)
+        public TransactionLine(Guid productID, int quantity, decimal price, decimal discount)
         {
             ProductID = productID;
             Quantity = quantity;

@@ -32,7 +32,7 @@ D
         {
             if (CurrentWorkingEmployees.Count == 0)
             {
-                if (File.Exists("emplyeelist.json"))
+                if (File.Exists("employee.json"))
                 {
                     ReadStaffFromJSON();
                 }
@@ -46,7 +46,7 @@ D
         public void ReadStaffFromJSON()
         {
             {
-                string json = File.ReadAllText("emplyeelist.json");
+                string json = File.ReadAllText("employee.json");
                 CurrentWorkingEmployees = JsonConvert.DeserializeObject<List<Employee>>(json);
 
                 int managers = 0;
@@ -109,7 +109,7 @@ D
 
         public void InitializeProducts()
         {
-            string fileName = "products.json";
+            string fileName = "product.json";
             if (File.Exists(fileName))
             {
                 try
@@ -141,7 +141,7 @@ D
         //product category staff 
         public void InitializeProductCategories()
         {
-            string fileName = "productcategories.json";
+            string fileName = "product-category.json";
             if (File.Exists(fileName))
             {
                 try
@@ -170,7 +170,53 @@ D
             ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Food", ProductType = ProductType.Food });
         }
 
+        // Serializer Methods
 
+        public void SerializeEmployee() {
+            Serializer serializer = new Serializer();
+            
+            foreach (var employee in Employees) {
+                serializer.SerializeToFile(employee, "employee.json");
+            }
+
+        }
+
+        public void DeserializeEmployee() {
+            Serializer serializer = new Serializer();
+            Employee tmpEmployee = serializer.DeserializeFromFile<Employee>("employee.json");
+            Employees.Add(tmpEmployee); 
+        }
+
+        public void SerializeProduct() {
+            Serializer serializer = new Serializer();
+            
+            foreach (var product in Products) {
+                serializer.SerializeToFile(product, "product.json");
+            }
+
+        }
+
+        public void DeserializeProduct() {
+            Serializer serializer = new Serializer();
+            Product tmpProduct = serializer.DeserializeFromFile<Product>("product.json");
+            Products.Add(tmpProduct);
+
+        }
+
+        public void SerializeProductCategory() {
+            Serializer serializer = new Serializer();
+            
+            foreach (var productCategory in ProductCategories) {
+                serializer.SerializeToFile(productCategory, "product-category.json");
+            }
+
+        }
+
+        public void DeserializeProductCategory() {
+            Serializer serializer = new Serializer();
+            ProductCategory tmpProductCategory = serializer.DeserializeFromFile<ProductCategory>("product-category.json");
+            ProductCategories.Add(tmpProductCategory);
+        }
 
     }
 }

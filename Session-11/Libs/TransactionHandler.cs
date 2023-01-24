@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,8 @@ namespace Libs {
         public Transaction _transaction;
         public TransactionLine _transactionLine;
 
-        private decimal _discountPercent = 0.15;
-        private decimal _discountThreshold = 10;
+        private decimal _discountPercent = 0.15m;
+        private decimal _discountThreshold = 10m;
         public Transaction Trans { get; set; } = new(); 
         public TransactionLine  TransLine { get; set; } = new();
 
@@ -40,7 +41,7 @@ namespace Libs {
         }
 
       
-        public decimal ApplyDiscount() 
+        public void ApplyDiscount() 
         {
             if (_transaction.TotalPrice >= 50) 
             {
@@ -48,16 +49,16 @@ namespace Libs {
             }
         }
         
-        public void ChangeLineQuantity(int id, int newQuantity)
+        public void ChangeLineQuantity(Guid id, int newQuantity)
         {
-            var line= _transaction.TransactionLines.Find(x => x.Id == id);
+            var line= _transaction.TransactionLines.Find(x => x.ID == id);
             if (line != null)
             {
                 line.Quantity = newQuantity;
                 CalculateTransaction();
             }
         }
-        public void RemoveTransactionLine (int id)
+        public void RemoveTransactionLine (Guid id)
         {
             var line = _transaction.TransactionLines.Find(x => x.ID == id);
             if (line!= null)
@@ -70,7 +71,7 @@ namespace Libs {
         {
             string json = JsonConvert.SerializeObject(_transaction);
             string path = $"reciept{_transaction.ID}.json";
-            File.WriteALLText(path, json);
+            File.WriteAllText(path, json);
         }
         public string FinalizeTrasaction()
         {
@@ -78,7 +79,7 @@ namespace Libs {
             {
                 return "nothing to checkout";
             }
-            if (_transaction.PaymentMethod == PaymentMethod.CreditCard&&_transaction.TotalPrice >= 50)
+            if (_transaction.PaymentMean == PaymentMethod.CreditCard&&_transaction.TotalPrice >= 50)
             {
                 return "can only pay with cash";
             }

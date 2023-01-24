@@ -4,43 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Libs {
 
     //TODO:Discuss and implement ledger 
-    public class MonthlyLedger {
+    internal class MonthlyLedger {
 
         private int _rentExpense = 3000;
         private decimal globalIncome = 0;
         private decimal globalExpenses = 0;
 
 
-        public Double Balance { get; set; }    // Income - Expenses
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public decimal Balance { get; set; }    // Income - Expenses
+
+        public List<Transaction> Transactions { get; set; }
+        public List<Employee> Employees { get; set; }
+
+
 
         
 
-        public Double Balance { get; set; }    // Income - Expenses
+       
 
 
         
 
-        MonthlyLedger(System.DateTime dateTime , double initialExpense ) {
+        MonthlyLedger(System.DateTime dateTime , double initialExpense , List<Employee> employees , List<Transaction> transactions ) {
 
               
         
-            Year = dateTime.Year; // get the Year out of System Date 
-            Month = dateTime.Month; 
+           Year = dateTime.Year;
+           Month = dateTime.Month;
+
 
         
         }
 
 
-        // -- Initialize the ledger 
+        
+
+
+        // File Operations - Serializer 
 
         public void InitLedger (DateTime dateTime , List<Employee> employees)
         {
+            ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
 
             string ledgerFile = ($"monthly_ledger_{dateTime.Year}_{dateTime.Month}.json");
+
+            // if no json exists , create it 
             if (!File.Exists( ledgerFile )) 
                
             {
@@ -55,7 +70,7 @@ namespace Libs {
                 {
 
                     // record the exception to the ExceptionLogger
-                    ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
+                    
                     exceptionLogger.Log(e.ToString());
 
 
@@ -66,8 +81,22 @@ namespace Libs {
                 try
                 {
                     string json = File.ReadAllText( ledgerFile );
-                    //var ledger = JsonConvert.DeserializeObject<MonthlyLedger>( json );
+                    // using NewtonSoft package for Json
+                    var ledger = Newtonsoft.Json.JsonConvert.DeserializeObject<MonthlyLedger>(json);
+
+                    if ( ledger != null) {
+                        // 
+                        return;
+                    }
+                  } catch (Exception e)
+                {
+                    exceptionLogger.Log(e.ToString());
                 }
+
+                   
+                
+
+                
             }
         }
 
