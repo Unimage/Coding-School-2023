@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Libs {
     public class CoffeeShopHandler {
@@ -20,15 +22,82 @@ namespace Libs {
         ///
 
 
-<<<<<<< HEAD
+D
 
         public List<Employee> Employees { get; set; } = new List<Employee>();
-=======
-    
->>>>>>> 0aaed7bc3bdce7409404e402d6de00ae5daa697d
         public List<Product> Products { get; set; } = new List<Product>();
-        public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();   
+        public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();
 
+        public void CheckAndPopulateEmployees()
+        {
+            if (CurrentWorkingEmployees.Count == 0)
+            {
+                if (File.Exists("emplyeelist.json"))
+                {
+                    ReadStaffFromJSON();
+                }
+                else
+                {
+                    SetDefaultEmployees();
+                }
+            }
+        }
+
+        public void ReadStaffFromJSON()
+        {
+            {
+                string json = File.ReadAllText("emplyeelist.json");
+                CurrentWorkingEmployees = JsonConvert.DeserializeObject<List<Employee>>(json);
+
+                int managers = 0;
+                int cashiers = 0;
+                int baristas = 0;
+                int waiters = 0;
+
+                foreach (var employee in CurrentWorkingEmployees)
+                {
+                    switch (employee.EmployeeType)
+                    {
+                        case EmployeeType.Manager:
+                            managers++;
+                            break;
+                        case EmployeeType.Cashier:
+                            cashiers++;
+                            break;
+                        case EmployeeType.Barista:
+                            baristas++;
+                            break;
+                        case EmployeeType.Waiter:
+                            waiters++;
+                            break;
+                    }
+                }
+
+                if (managers < 1 || managers > 1)
+                {
+                    throw new Exception("The number of managers does not meet the requirements.");
+                    SetDefaultEmployees();
+                }
+
+                if (cashiers < 1 || cashiers > 2)
+                {
+                    throw new Exception("The number of cashiers does not meet the requirements.");
+                    SetDefaultEmployees();
+                }
+
+                if (baristas < 1 || baristas > 2)
+                {
+                    throw new Exception("The number of baristas does not meet the requirements.");
+                    SetDefaultEmployees();
+                }
+
+                if (waiters < 1 || waiters > 2)
+                {
+                    throw new Exception("The number of waiters does not meet the requirements.");
+                    SetDefaultEmployees();
+                }
+            }
+        }
 
         public void SetDefaultEmployees() {
             Employees.Add(new Employee { Name = "Stratos ", Surname = "Chalkopiadis", Salary = 4000, EmployeeType = EmployeeType.Manager });
@@ -37,11 +106,63 @@ namespace Libs {
             Employees.Add(new Employee { Name = "Ioannis", Surname = " Koukotzilas", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
 
+
+        public void InitializeProducts()
+        {
+            string fileName = "products.json";
+            if (File.Exists(fileName))
+            {
+                try
+                {
+                    string json = File.ReadAllText(fileName);
+                    Products = JsonConvert.DeserializeObject<List<Product>>(json);
+                    ConnectProductCategoryIDs();
+                }
+                catch (Exception ex)
+                {
+                    //log exception
+                    SetDefaultProducts();
+                }
+            }
+            else
+            {
+                SetDefaultProducts();
+            }
+        }
+
+
         public void SetDefaultProducts() {
             Products.Add(new Product { Code = "Product 1 code", Description = "Espresso", Price = 1.9m, Cost = 1.5m });
             Products.Add(new Product { Code = "Product 2 code", Description = "Cola", Price = 1.5m, Cost = 0.5m });
             Products.Add(new Product { Code = "Product 3 code", Description = "Toast", Price = 1.5m, Cost = 0.5m });
         }
+
+
+        //product category staff 
+        public void InitializeProductCategories()
+        {
+            string fileName = "productcategories.json";
+            if (File.Exists(fileName))
+            {
+                try
+                {
+                    string json = File.ReadAllText(fileName);
+                    ProductCategories = JsonConvert.DeserializeObject<List<ProductCategory>>(json);
+                }
+                catch (Exception ex)
+                {
+                    //log exception
+                    SetDefaultProductCategories();
+                }
+            }
+            else
+            {
+                SetDefaultProductCategories();
+            }
+        }
+
+
+
 
         public void SetDefaultProductCategories() {
             ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Coffee", ProductType = ProductType.Coffee });
