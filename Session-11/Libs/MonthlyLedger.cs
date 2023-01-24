@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Numerics;
 
 namespace Libs {
 
@@ -87,16 +88,16 @@ namespace Libs {
             {
                 try
                 {
-                    string json = File.ReadAllText( ledgerFile );
-                    // using NewtonSoft package for Json
-                    var ledger = 
+                    string json = File.ReadAllText(ledgerFile);
 
+
+                    var ledger = JsonConvert.DeserializeObject<List<Transaction>>(json);
 
                     if ( ledger != null) {
                         
                         
 
-                        return;
+                        
                     }
                   } catch (Exception e)
                 {
