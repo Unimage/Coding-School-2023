@@ -33,8 +33,12 @@ namespace Libs {
             Employees.Add(new Employee { Name = "Employee 4 Name", Surname = "Employee 4 Surname", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
 
-      
- 
+        public void SetDefaultProducts() {
+            Products.Add(new Product { Code = "Product code", Description = "Product description", Price = 0, Cost = 0 });
+           
+        }
+
+     
 
 
     }
