@@ -13,7 +13,7 @@ namespace Libs {
         public string? Description { get; set; }
 
 
-        //TODO:add customer info so it agrees with Buseiness Rules
+        //TODO:add customer info so it agrees with Business Rules
         public Customer() {
             ID = Guid.NewGuid();
         }
