@@ -64,13 +64,8 @@ namespace Libs {
 
         public void DeserializeEmployee() {
             Serializer serializer = new Serializer();
-            Employees.add(new Employee() { 
-                serializer.DeserializeFromFile<Employee>("employee.json"); 
-        }
-
-
-          
-           
+            Employee tmpEmployee = serializer.DeserializeFromFile<Employee>("employee.json");
+            Employees.Add(tmpEmployee); 
         }
 
         public void SerializeProduct() {
@@ -84,7 +79,7 @@ namespace Libs {
 
         public void DeserializeProduct() {
             Serializer serializer = new Serializer();
-            Product = serializer.DeserializeFromFile<Product>("product.json");
+            product = serializer.DeserializeFromFile<Product>("product.json");
             
         }
 
@@ -99,7 +94,7 @@ namespace Libs {
 
         public void DeserializeProduct() {
             Serializer serializer = new Serializer();
-            ProductCategory = serializer.DeserializeFromFile<ProductCategory>("product-category.json");
+            productCategory = serializer.DeserializeFromFile<ProductCategory>("product-category.json");
            
         }
 
