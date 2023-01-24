@@ -12,10 +12,10 @@ namespace Libs {
         public int Year  { get; set; }
         public int Month { get; set; }
 
-        public List<Double> Income { get; set; } 
-        public List<Double> Expenses { get; set; }
+        public List<decimal> Income { get; set; } 
+        public List<decimal> Expenses { get; set; }
 
-        public Double Balance { get; set; }    // Income - Expenses
+        public decimal Balance { get; set; }    // Income - Expenses
 
 
         

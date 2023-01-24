@@ -17,11 +17,10 @@ namespace Libs {
         public Transaction _transaction;
         public TransactionLine _transactionLine;
 
-        public TransactionHandler() 
-        {
-            _transaction = new Transaction();
-            _transactionLine = new TransactionLine();
-        } 
+        private decimal _discountPercent = 0.15;
+        private decimal _discountThreshold = 10;
+        public Transaction Trans { get; set; } = new(); 
+        public TransactionLine  TransLine { get; set; } = new();
 
         public void AddTransactionLines(TransactionLine line) 
         {

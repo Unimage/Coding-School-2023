@@ -12,8 +12,8 @@ namespace Session_11
         public string Code { get; set; }
         public string Description { get; set; }
         public Guid ProductCategoryID { get; set; }
-        public double Price { get; set; }
-        public double Cost { get; set; }
+        public decimal Price { get; set; }
+        public decimal Cost { get; set; }
 
 
         public Product()
