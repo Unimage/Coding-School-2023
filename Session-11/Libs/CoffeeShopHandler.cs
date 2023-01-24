@@ -123,10 +123,7 @@ namespace Libs {
         public void SerializeEmployee() {
             Serializer serializer = new Serializer();
             // paizei na 8elei foreach
-            foreach (var employee in Employees) {
-                serializer.SerializeToFile(employee, "employee.json");
-            }
-
+                serializer.SerializeToFile(Employees, "employee.json");
         }
 
         public void DeserializeEmployee() {

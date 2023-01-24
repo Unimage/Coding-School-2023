@@ -19,7 +19,7 @@ namespace Session_11 {
             MonthlyLedger ledger;
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();   
-            // CoffeeShop.Save();
+            
             InitializeComponent();   
         }
 
@@ -36,6 +36,7 @@ namespace Session_11 {
             dgvProductCategory.DataSource = bsProductCategory;
             dgvProducts.DataSource = bsProducts;
             dgvTransaction.DataSource = bsTransaction;
+            CoffeeShop.Save();
 
         }
 
