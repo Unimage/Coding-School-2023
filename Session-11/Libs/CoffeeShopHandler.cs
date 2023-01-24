@@ -19,13 +19,8 @@ namespace Libs {
         ///3. Oles oi listes 8a prepei na mporoun na apo8ikeutoun sta antisoixa json arxeia tous.
         ///
 
-
-<<<<<<< HEAD
-
         public List<Employee> Employees { get; set; } = new List<Employee>;
-=======
-    
->>>>>>> 0aaed7bc3bdce7409404e402d6de00ae5daa697d
+
         public List<Product> Products { get; set; } = new List<Product>;
         public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();   
 
