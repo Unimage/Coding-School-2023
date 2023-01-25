@@ -71,5 +71,15 @@ namespace Session_11
         {
 
         }
+
+        private void EmployeeF_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gcEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

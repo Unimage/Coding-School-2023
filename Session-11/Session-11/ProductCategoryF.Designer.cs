@@ -93,6 +93,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ProductCategoryF";
             this.Text = "ProductCategoryF";
+            this.Load += new System.EventHandler(this.ProductCategoryF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProductCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProductCategory)).EndInit();
             this.ResumeLayout(false);
