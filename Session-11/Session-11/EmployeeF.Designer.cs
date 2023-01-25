@@ -48,6 +48,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnLoadJson = new System.Windows.Forms.Button();
             this.btnSaveEmp = new System.Windows.Forms.Button();
+            this.btnForceLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -107,7 +108,7 @@
             // 
             // btnRefreshList
             // 
-            this.btnRefreshList.Location = new System.Drawing.Point(120, 295);
+            this.btnRefreshList.Location = new System.Drawing.Point(97, 295);
             this.btnRefreshList.Name = "btnRefreshList";
             this.btnRefreshList.Size = new System.Drawing.Size(136, 45);
             this.btnRefreshList.TabIndex = 1;
@@ -216,7 +217,7 @@
             // 
             // btnLoadJson
             // 
-            this.btnLoadJson.Location = new System.Drawing.Point(304, 295);
+            this.btnLoadJson.Location = new System.Drawing.Point(239, 295);
             this.btnLoadJson.Name = "btnLoadJson";
             this.btnLoadJson.Size = new System.Drawing.Size(120, 45);
             this.btnLoadJson.TabIndex = 13;
@@ -225,18 +226,29 @@
             // 
             // btnSaveEmp
             // 
-            this.btnSaveEmp.Location = new System.Drawing.Point(476, 295);
+            this.btnSaveEmp.Location = new System.Drawing.Point(365, 295);
             this.btnSaveEmp.Name = "btnSaveEmp";
             this.btnSaveEmp.Size = new System.Drawing.Size(120, 45);
             this.btnSaveEmp.TabIndex = 14;
             this.btnSaveEmp.Text = "Export To Json";
             this.btnSaveEmp.UseVisualStyleBackColor = true;
             // 
+            // btnForceLoad
+            // 
+            this.btnForceLoad.Location = new System.Drawing.Point(491, 295);
+            this.btnForceLoad.Name = "btnForceLoad";
+            this.btnForceLoad.Size = new System.Drawing.Size(125, 45);
+            this.btnForceLoad.TabIndex = 15;
+            this.btnForceLoad.Text = "Force Load Default";
+            this.btnForceLoad.UseVisualStyleBackColor = true;
+            this.btnForceLoad.Click += new System.EventHandler(this.btnForceLoad_Click);
+            // 
             // EmployeeF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 486);
+            this.Controls.Add(this.btnForceLoad);
             this.Controls.Add(this.btnSaveEmp);
             this.Controls.Add(this.btnLoadJson);
             this.Controls.Add(this.btnAdd);
@@ -284,5 +296,6 @@
         private Button btnLoadJson;
         private Button btnSaveEmp;
         private Button btnLoadDefault;
+        private Button btnForceLoad;
     }
 }

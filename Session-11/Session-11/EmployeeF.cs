@@ -48,10 +48,7 @@ namespace Session_11
 
         private void EmployeeF_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnRefreshList_Click_1(object sender, EventArgs e) {
+            ResetGVs();
 
         }
 
@@ -81,13 +78,15 @@ namespace Session_11
             ResetGVs();
         }
 
-        private void EmployeeF_Load_1(object sender, EventArgs e)
-        {
+        
 
-        }
+        
 
-        private void gcEmployee_Click(object sender, EventArgs e)
-        {
+        private void btnForceLoad_Click(object sender, EventArgs e) {
+            ShopData.Employees.Clear();
+            ShopData.SetDefaultEmployees();
+            MessageBox.Show("Wiped all Entries\nForced Default Values.");
+            ResetGVs();
 
         }
     }
