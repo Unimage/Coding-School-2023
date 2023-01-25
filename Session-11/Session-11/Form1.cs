@@ -30,5 +30,10 @@ namespace Session_11 {
         private void load() {
             CoffeeShop.Init();
         }
+
+        private void btnEmployeeRedirect_Click(object sender, EventArgs e) {
+            EmployeeF formEmp = new EmployeeF(CoffeeShop);
+            formEmp.ShowDialog();
+        }
     }        
 }

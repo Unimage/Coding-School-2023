@@ -23,13 +23,25 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.btnEmployeeRedirect = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnEmployeeRedirect
+            // 
+            this.btnEmployeeRedirect.Location = new System.Drawing.Point(211, 61);
+            this.btnEmployeeRedirect.Name = "btnEmployeeRedirect";
+            this.btnEmployeeRedirect.Size = new System.Drawing.Size(163, 79);
+            this.btnEmployeeRedirect.TabIndex = 0;
+            this.btnEmployeeRedirect.Text = "Employee Management";
+            this.btnEmployeeRedirect.UseVisualStyleBackColor = true;
+            this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1598, 728);
+            this.Controls.Add(this.btnEmployeeRedirect);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -37,5 +49,7 @@
         }
 
         #endregion
+
+        private Button btnEmployeeRedirect;
     }
 }
