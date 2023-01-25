@@ -28,15 +28,40 @@ namespace Libs
             try
             {
 
+                // if the file doesnt exist it will create it , if it exists it will append the json
+
                 string fileName = ($"{monthlyLedger.Year}-{monthlyLedger.Month}.json");
 
                 string jsonString = JsonSerializer.Serialize(monthlyLedger);
 
-                File.WriteAllText(fileName, jsonString);
+                if (!File.Exists(fileName))
+                {
+                   
 
-             
+                    File.WriteAllText(fileName, jsonString);
 
-             
+                } else
+                {
+                    using (StreamWriter streamWriter = File.AppendText(jsonString))
+                    {
+                        streamWriter.Write(monthlyLedger);
+                        streamWriter.Close();
+                    }
+                    
+
+                }
+               
+                
+                
+
+                
+
+                
+
+
+
+
+
 
             } catch (Exception e) 
             { 
