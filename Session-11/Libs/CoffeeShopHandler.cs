@@ -122,11 +122,7 @@ namespace Libs {
         }
         public void SerializeEmployee() {
             Serializer serializer = new Serializer();
-            // paizei na 8elei foreach
-            foreach (var employee in Employees) {
-                serializer.SerializeToFile(employee, "employee.json");
-            }
-
+            serializer.SerializeToFile(Employees, "employee.json");
         }
 
         public void DeserializeEmployee() {
@@ -136,32 +132,22 @@ namespace Libs {
 
         public void SerializeProduct() {
             Serializer serializer = new Serializer();
-
-            foreach (var product in Products) {
-                serializer.SerializeToFile(product, "product.json");
-            }
-
+            serializer.SerializeToFile(Products, "product.json");
         }
 
         public void DeserializeProduct() {
             Serializer serializer = new Serializer();
             Products = serializer.DeserializeFromFile<List<Product>>("product.json");
-
         }
 
         public void SerializeProductCategory() {
             Serializer serializer = new Serializer();
-
-            foreach (var productCategory in ProductCategories) {
-                serializer.SerializeToFile(productCategory, "product-category.json");
-            }
-
+            serializer.SerializeToFile(ProductCategories, "product-category.json");
         }
 
         public void DeserializeProductCategory() {
             Serializer serializer = new Serializer();
             ProductCategories = serializer.DeserializeFromFile<List<ProductCategory>>("product-category.json");
-            
         }
 
         public void Init() {
@@ -195,9 +181,8 @@ namespace Libs {
             return ProductCategories.FirstOrDefault(x => x.ProductCategoryID == id);
         }
 
-
-
     }
+
 }
 
 
