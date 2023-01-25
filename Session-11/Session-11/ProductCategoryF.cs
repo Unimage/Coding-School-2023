@@ -23,7 +23,7 @@ namespace Session_11 {
             ShopCategory = transfer;
             InitializeComponent();
 
-            grdProductCategory.DataSource = ShopCategory.SetDefaultProductCategories;
+            grdProductCategory.DataSource = ShopCategory.ProductCategories;
         }
 
         private void ProductCategoryF_Load(object sender, EventArgs e)
@@ -31,23 +31,40 @@ namespace Session_11 {
 
         }
 
-        private void ProductCategoryF_Load(object sender, EventArgs e) {
+        /*private void ProductCategoryF_Load(object sender, EventArgs e) {
 
             PopulateData();
 
-        }
+        }*/
 
         private void PopulateData() {
 
             ProductCategory productCategory = new ProductCategory();
 
-           
-
-
-           
-
         }
 
-       
+        private void btnReloadCategories_Click(object sender, EventArgs e)
+        {
+            grdProductCategory.DataSource = null;
+            grdProductCategory.DataSource = ShopCategory.ProductCategories;
+        }
+
+        private void btnReloadFromJson_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
+            ShopCategory.CheckAndPopulateProductCategories();
+        }
+
+        /* private void btnReloadProductCategories_EditValueChanged(object sender, EventArgs e)
+         {
+             grdProductCategory.DataSource = null;
+             grdProductCategory.DataSource = ShopCategory.ProductCategories;
+         }
+
+         private void btnLoadCategoriesJson_EditValueChanged(object sender, EventArgs e)
+         {
+             MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
+             ShopCategory.CheckAndPopulateProductCategories();
+         }*/
     }
 }

@@ -28,6 +28,8 @@
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProductType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnReloadCategories = new System.Windows.Forms.Button();
+            this.btnReloadFromJson = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProductCategory)).BeginInit();
             this.SuspendLayout();
@@ -35,7 +37,7 @@
             // grdProductCategory
             // 
             this.grdProductCategory.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grdProductCategory.Location = new System.Drawing.Point(50, 51);
+            this.grdProductCategory.Location = new System.Drawing.Point(68, 1);
             this.grdProductCategory.MainView = this.grvProductCategory;
             this.grdProductCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdProductCategory.Name = "grdProductCategory";
@@ -84,11 +86,33 @@
             this.colProductType.VisibleIndex = 2;
             this.colProductType.Width = 86;
             // 
+            // btnReloadCategories
+            // 
+            this.btnReloadCategories.Location = new System.Drawing.Point(68, 436);
+            this.btnReloadCategories.Name = "btnReloadCategories";
+            this.btnReloadCategories.Size = new System.Drawing.Size(94, 29);
+            this.btnReloadCategories.TabIndex = 1;
+            this.btnReloadCategories.Text = "Reload Categories";
+            this.btnReloadCategories.UseVisualStyleBackColor = true;
+            this.btnReloadCategories.Click += new System.EventHandler(this.btnReloadCategories_Click);
+            // 
+            // btnReloadFromJson
+            // 
+            this.btnReloadFromJson.Location = new System.Drawing.Point(300, 436);
+            this.btnReloadFromJson.Name = "btnReloadFromJson";
+            this.btnReloadFromJson.Size = new System.Drawing.Size(123, 29);
+            this.btnReloadFromJson.TabIndex = 2;
+            this.btnReloadFromJson.Text = "Reload from JSon";
+            this.btnReloadFromJson.UseVisualStyleBackColor = true;
+            this.btnReloadFromJson.Click += new System.EventHandler(this.btnReloadFromJson_Click);
+            // 
             // ProductCategoryF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.btnReloadFromJson);
+            this.Controls.Add(this.btnReloadCategories);
             this.Controls.Add(this.grdProductCategory);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ProductCategoryF";
@@ -107,5 +131,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCode;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
         private DevExpress.XtraGrid.Columns.GridColumn colProductType;
+        private Button btnReloadCategories;
+        private Button btnReloadFromJson;
     }
 }

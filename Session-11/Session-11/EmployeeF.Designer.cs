@@ -126,6 +126,7 @@
             this.btnRefreshList.TabIndex = 1;
             this.btnRefreshList.Text = "Reload";
             this.btnRefreshList.UseVisualStyleBackColor = true;
+            this.btnRefreshList.Click += new System.EventHandler(this.btnRefreshList_Click_1);
             // 
             // label1
             // 
