@@ -23,7 +23,7 @@ namespace Libs
         }
 
 
-        public void  AppendToLedger( )
+        public void  AppendToLedger(MonthlyLedger monthlyLedger )
         {
             try
             {
@@ -46,6 +46,13 @@ namespace Libs
         }
 
 
+        public List<MonthlyLedger> DeserializeLedger(string fileName) {
+        
+        
+
+
+            
+        }
 
 
     }
