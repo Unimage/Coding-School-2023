@@ -90,20 +90,7 @@ namespace Libs {
         }
 
 
-        //EXPENSES 
-        public decimal CalculateProductCost(List<Product> products)
-        {
-            decimal totalProductCost = 0;
-            foreach (Product product in products)
-            {
-                totalProductCost += product.Cost;
-            }
-
-            return totalProductCost;
-        }
-
-        //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
-       
+        
 
     }
 }

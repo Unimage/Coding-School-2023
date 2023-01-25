@@ -46,10 +46,10 @@
             // dgvEmployees
             // 
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployees.Location = new System.Drawing.Point(24, 348);
+            this.dgvEmployees.Location = new System.Drawing.Point(12, 262);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.Height = 25;
-            this.dgvEmployees.Size = new System.Drawing.Size(681, 150);
+            this.dgvEmployees.Size = new System.Drawing.Size(659, 236);
             this.dgvEmployees.TabIndex = 0;
             // 
             // dgvProducts
@@ -67,7 +67,7 @@
             this.dgvTransaction.Location = new System.Drawing.Point(748, 348);
             this.dgvTransaction.Name = "dgvTransaction";
             this.dgvTransaction.RowTemplate.Height = 25;
-            this.dgvTransaction.Size = new System.Drawing.Size(802, 150);
+            this.dgvTransaction.Size = new System.Drawing.Size(838, 150);
             this.dgvTransaction.TabIndex = 2;
             // 
             // dgvProductCategory
@@ -82,7 +82,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1034, 12);
+            this.button1.Location = new System.Drawing.Point(12, 61);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
