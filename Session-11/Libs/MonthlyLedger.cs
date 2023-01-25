@@ -26,6 +26,8 @@ namespace Libs {
 
         public decimal Expenses { get; set; }
 
+        public decimal Total { get; set; }
+
 
 
 
@@ -41,6 +43,9 @@ namespace Libs {
 
         MonthlyLedger()
         {
+            this.Year= DateTime.Now.Year;
+            this.Month= DateTime.Now.Month;
+           
 
         }
 
@@ -50,63 +55,63 @@ namespace Libs {
 
         // File Operations - DeSerializer 
 
-        public void InitLedger (DateTime dateTime)
-        {
-            ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
+        //public void InitLedger (DateTime dateTime)
+        //{
+        //    ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
 
-            string ledgerFile = ($"monthly_ledger_{dateTime.Year}_{dateTime.Month}.json");
+        //    string ledgerFile = ($"monthly_ledger_{dateTime.Year}_{dateTime.Month}.json");
 
-            // if no json exists , create it 
-            if (!File.Exists( ledgerFile )) 
+        //    // if no json exists , create it 
+        //    if (!File.Exists( ledgerFile )) 
                
-            {
-                try
-                {
-                    using (StreamWriter streamWriter = new StreamWriter(ledgerFile))
-                    {
+        //    {
+        //        try
+        //        {
+        //            using (StreamWriter streamWriter = new StreamWriter(ledgerFile))
+        //            {
 
-                    }
+        //            }
 
-                } catch(Exception e)
-                {
+        //        } catch(Exception e)
+        //        {
 
-                    // record the exception to the ExceptionLogger
+        //            // record the exception to the ExceptionLogger
                     
-                    exceptionLogger.Log(e.ToString());
+        //            exceptionLogger.Log(e.ToString());
 
 
-                }
-            }
-              else
-            {
-                try
-                {
-                      string json = File.ReadAllText( ledgerFile );
+        //        }
+        //    }
+        //      else
+        //    {
+        //        try
+        //        {
+        //              string json = File.ReadAllText( ledgerFile );
                     
                     
-                    var ledger = JsonConvert.DeserializeObject<List<Transaction>>(json);
+        //            var ledger = JsonConvert.DeserializeObject<List<Transaction>>(json);
 
-                    if ( ledger != null) {
+        //            if ( ledger != null) {
                         
                         
-                       decimal total =   CalculateTransactionSum( ledger );
+        //               decimal total =   CalculateTransactionSum( ledger );
 
-                      //  decimal expenses = CalculateBalance();
-                      //  decimal balance = CalculateBalance(total, expenses);
+        //              //  decimal expenses = CalculateBalance();
+        //              //  decimal balance = CalculateBalance(total, expenses);
                         
                         
-                    }
-                  } catch (Exception e)
-                {
-                    exceptionLogger.Log(e.ToString());
-                }
+        //            }
+        //          } catch (Exception e)
+        //        {
+        //            exceptionLogger.Log(e.ToString());
+        //        }
 
                    
                 
 
                 
-            }
-        }
+        //    }
+        //}
 
 
 
@@ -120,7 +125,7 @@ namespace Libs {
             
             
 
-            return ((income-expenses) - _rentExpense);
+            return ((income-expenses));
         
 
         
