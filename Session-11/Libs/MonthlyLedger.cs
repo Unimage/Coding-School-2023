@@ -91,14 +91,13 @@ namespace Libs {
 
 
         //EXPENSES 
-        public decimal CalculateProductCost(List<Product> products)
+        public decimal CalculateProductCost(Transaction trans)
         {
             decimal totalProductCost = 0;
-            foreach (Product product in products)
-            {
-                totalProductCost += product.Cost;
-            }
+            foreach (var tr in trans.TransactionLines) {
+                totalProductCost += tr.Quantity * tr.Product.Cost;   // auto ennousa san allagi
 
+            }
             return totalProductCost;
         }
 
