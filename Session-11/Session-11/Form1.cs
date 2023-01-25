@@ -15,7 +15,8 @@ namespace Session_11 {
     public partial class Form1 : Form {
         TransactionHandler Transaction;
         CoffeeShopHandler CoffeeShop;
-        TestStratosHandler Ledger;
+        MonthlyLedger LedgerOfTheMonth;
+        
 
 
 
@@ -23,8 +24,7 @@ namespace Session_11 {
             
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
-            Ledger = new TestStratosHandler();
-
+            LedgerOfTheMonth = new MonthlyLedger();
             InitializeComponent();   
         }
 
@@ -41,11 +41,8 @@ namespace Session_11 {
             dgvProductCategory.DataSource = bsProductCategory;
             dgvProducts.DataSource = bsProducts;
             dgvTransaction.DataSource = bsTransaction;
-            // CoffeeShop.Save();
-            Ledger.CheckAndInitializeLedger(DateTime.Now,CoffeeShop.Employees );
-            Ledger.SerializeLedger();
+            // CoffeeShop.Save();;
             // ola einai edw etoima na ta doume aurio
-
         }
 
         private void button1_Click(object sender, EventArgs e) {
