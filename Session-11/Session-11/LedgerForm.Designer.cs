@@ -64,6 +64,7 @@
             btnLoadLedger.TabIndex = 3;
             btnLoadLedger.Text = "Load Current Ledger";
             btnLoadLedger.UseVisualStyleBackColor = true;
+            btnLoadLedger.Click += btnLoadLedger_Click;
             // 
             // btnSaveLedger
             // 
@@ -73,6 +74,7 @@
             btnSaveLedger.TabIndex = 4;
             btnSaveLedger.Text = "Save Ledger to File";
             btnSaveLedger.UseVisualStyleBackColor = true;
+            btnSaveLedger.Click += btnSaveLedger_Click;
             // 
             // LedgerForm
             // 
@@ -88,6 +90,7 @@
             MinimizeBox = false;
             Name = "LedgerForm";
             Text = "LedgerForm";
+            Load += LedgerForm_Load;
             grbLedger.ResumeLayout(false);
             ResumeLayout(false);
         }
