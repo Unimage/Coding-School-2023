@@ -45,6 +45,7 @@ namespace Libs
                     using (StreamWriter streamWriter = File.AppendText(jsonString))
                     {
                         streamWriter.Write(monthlyLedger);
+
                         streamWriter.Close();
                     }
                     
