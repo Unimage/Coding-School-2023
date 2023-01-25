@@ -25,10 +25,11 @@ namespace Session_11 {
             Transaction = new TransactionHandler();
             LedgerOfTheMonth = new MonthlyLedger();
             InitializeComponent();
+            CoffeeShop.Init();
         }
 
         private void load() {
-            CoffeeShop.Init();
+            
         }
 
         private void btnEmployeeRedirect_Click(object sender, EventArgs e) {

@@ -22,7 +22,7 @@ namespace Libs {
                 if (File.Exists("employee.json"))
                 {
                     DeserializeEmployee();
-                    CheckLimits(); 
+                    CheckLimits();  // changed to bool from void cause i need it inside forms to check if adds are good. Still works like a charm
                 }
                 else
                 {
@@ -67,7 +67,45 @@ namespace Libs {
             }
         }
 
-        public void CheckLimits() {
+        public bool CheckLimitsForm() {
+            bool ok = true;
+            int managers = 0;
+            int cashiers = 0;
+            int baristas = 0;
+            int waiters = 0;
+
+            foreach (var employee in Employees) {
+                switch (employee.EmployeeType) {
+                    case EmployeeType.Manager:
+                        managers++;
+                        break;
+                    case EmployeeType.Cashier:
+                        cashiers++;
+                        break;
+                    case EmployeeType.Barista:
+                        baristas++;
+                        break;
+                    case EmployeeType.Waiter:
+                        waiters++;
+                        break;
+                }
+            }
+            if (managers != 1) {
+                ok = false;
+            }
+            if (cashiers < 1 || cashiers > 2) {
+                ok = false;
+            }
+            if (baristas < 1 || baristas > 2) {
+                ok = false;    
+            }
+            if (waiters < 1 || waiters > 2) {
+                ok = false;  
+            }
+            return ok;
+        }
+        public void  CheckLimits() {
+
             int managers = 0;
             int cashiers = 0;
             int baristas = 0;
@@ -90,18 +128,23 @@ namespace Libs {
                 }
             }
             if (managers < 1 || managers > 1) {
-                SetDefaultEmployees();
                 
+                SetDefaultEmployees();
+
             }
             if (cashiers < 1 || cashiers > 2) {
-                SetDefaultEmployees();   
+                
+                SetDefaultEmployees();
             }
             if (baristas < 1 || baristas > 2) {
-                SetDefaultEmployees();    
+                
+                SetDefaultEmployees();
             }
             if (waiters < 1 || waiters > 2) {
-                SetDefaultEmployees();  
+                
+                SetDefaultEmployees();
             }
+            
         }
 
         public void SetDefaultEmployees() {
