@@ -52,10 +52,11 @@ namespace Session_11 {
         private void grvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e) {
             if (e.RowIndex >= 0 && e.ColumnIndex == grvProducts.Columns["colbtnadd"].Index) {
                 DataGridViewRow row = grvProducts.Rows[e.RowIndex];
+
                 translinetobeadded = new();
                 translinetobeadded.Quantity = Int32.Parse(row.Cells["colQuantity"].Value.ToString()) ;
                 translinetobeadded.Price = Decimal.Parse(row.Cells["colPrice"].Value.ToString());
-                grvProducts.Refresh();
+                Transaction.AddTransactionLines(translinetobeadded);
 
             }
 
@@ -66,8 +67,6 @@ namespace Session_11 {
         private void btnNewOrder_Click(object sender, EventArgs e) {
             tmp = true;
             
-            Transaction = new();
-            Transaction.AddTransactionLines(translinetobeadded);
             grvTransaction.DataSource = Transaction._transaction.TransactionLines;
 
 
