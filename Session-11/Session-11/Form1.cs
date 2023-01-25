@@ -16,41 +16,60 @@ namespace Session_11 {
         TransactionHandler Transaction;
         CoffeeShopHandler CoffeeShop;
         MonthlyLedger LedgerOfTheMonth;
-        
-
-
+        TransactionLine translinetobeadded;
+        bool tmp = false;
 
         public Form1() {
             
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
             LedgerOfTheMonth = new MonthlyLedger();
-            InitializeComponent();   
+            InitializeComponent();
         }
 
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
-
-        }
         private void load() {
             CoffeeShop.Init();
-            bsEmployees.DataSource = CoffeeShop.Employees;
-            bsProductCategory.DataSource = CoffeeShop.ProductCategories;
-            bsProducts.DataSource = CoffeeShop.Products;
-            bsTransaction.DataSource = Transaction._transaction;
-            dgvEmployees.DataSource = bsEmployees;
-            dgvProductCategory.DataSource = bsProductCategory;
-            dgvProducts.DataSource = bsProducts;
-            dgvTransaction.DataSource = bsTransaction;
-            // CoffeeShop.Save();;
-            // ola einai edw etoima na ta doume aurio
+            bsProducts.DataSource = CoffeeShop.Products; 
+
+        }
+
+        public void SetControlProperties(){
+            grvProducts.AutoGenerateColumns = false;
+            grvProducts.DataSource = bsProducts;
+            grvProducts.Columns[0].DataPropertyName = "Description";
+            grvProducts.Columns[1].DataPropertyName = "Code";
+            grvProducts.Columns[3].DataPropertyName = "Price";
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e) {
             load();
-            MessageBox.Show("To teliko poso einai " +  Transaction._transaction.TotalPrice);
+            SetControlProperties();
         }
 
-        private void dgvProductCategory_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+        private void grvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex >= 0 && e.ColumnIndex == grvProducts.Columns["colbtnadd"].Index) {
+                DataGridViewRow row = grvProducts.Rows[e.RowIndex];
+                translinetobeadded = new();
+                translinetobeadded.Quantity = Int32.Parse(row.Cells["colQuantity"].Value.ToString()) ;
+                translinetobeadded.Price = Decimal.Parse(row.Cells["colPrice"].Value.ToString());
+                grvProducts.Refresh();
+
+            }
+
+
+
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e) {
+            tmp = true;
+            
+            Transaction = new();
+            Transaction.AddTransactionLines(translinetobeadded);
+            grvTransaction.DataSource = Transaction._transaction.TransactionLines;
+
 
         }
     }

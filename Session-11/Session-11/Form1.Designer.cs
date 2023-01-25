@@ -24,106 +24,146 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            this.label1 = new System.Windows.Forms.Label();
             this.bsProducts = new System.Windows.Forms.BindingSource(this.components);
-            this.bsTransaction = new System.Windows.Forms.BindingSource(this.components);
-            this.bsEmployees = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvEmployees = new System.Windows.Forms.DataGridView();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.dgvTransaction = new System.Windows.Forms.DataGridView();
-            this.dgvProductCategory = new System.Windows.Forms.DataGridView();
-            this.bsProductCategory = new System.Windows.Forms.BindingSource(this.components);
+            this.grvProducts = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colbtnadd = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnNewOrder = new System.Windows.Forms.Button();
+            this.grvTransaction = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.bsProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsProductCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvTransaction)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvEmployees
+            // label1
             // 
-            this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployees.Location = new System.Drawing.Point(12, 262);
-            this.dgvEmployees.Name = "dgvEmployees";
-            this.dgvEmployees.RowTemplate.Height = 25;
-            this.dgvEmployees.Size = new System.Drawing.Size(659, 236);
-            this.dgvEmployees.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(174, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Product List";
             // 
-            // dgvProducts
+            // grvProducts
             // 
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(748, 100);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(838, 150);
-            this.dgvProducts.TabIndex = 1;
-            // 
-            // dgvTransaction
-            // 
-            this.dgvTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransaction.Location = new System.Drawing.Point(748, 348);
-            this.dgvTransaction.Name = "dgvTransaction";
-            this.dgvTransaction.RowTemplate.Height = 25;
-            this.dgvTransaction.Size = new System.Drawing.Size(838, 150);
-            this.dgvTransaction.TabIndex = 2;
-            // 
-            // dgvProductCategory
-            // 
-            this.dgvProductCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductCategory.Location = new System.Drawing.Point(12, 100);
-            this.dgvProductCategory.Name = "dgvProductCategory";
-            this.dgvProductCategory.RowTemplate.Height = 25;
-            this.dgvProductCategory.Size = new System.Drawing.Size(659, 124);
-            this.dgvProductCategory.TabIndex = 3;
-            this.dgvProductCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductCategory_CellContentClick);
+            this.grvProducts.AllowUserToDeleteRows = false;
+            this.grvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colName,
+            this.colCode,
+            this.colQuantity,
+            this.colPrice,
+            this.colbtnadd});
+            this.grvProducts.Location = new System.Drawing.Point(12, 37);
+            this.grvProducts.Name = "grvProducts";
+            this.grvProducts.RowTemplate.Height = 25;
+            this.grvProducts.Size = new System.Drawing.Size(395, 454);
+            this.grvProducts.TabIndex = 2;
+            this.grvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvProducts_CellContentClick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 61);
+            this.button1.Location = new System.Drawing.Point(427, 50);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 3;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            this.colName.Width = 90;
+            // 
+            // colCode
+            // 
+            this.colCode.HeaderText = "Code";
+            this.colCode.Name = "colCode";
+            this.colCode.ReadOnly = true;
+            this.colCode.Width = 50;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.FillWeight = 60F;
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Width = 60;
+            // 
+            // colPrice
+            // 
+            this.colPrice.HeaderText = "Price";
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            this.colPrice.Width = 50;
+            // 
+            // colbtnadd
+            // 
+            this.colbtnadd.HeaderText = "Add";
+            this.colbtnadd.Name = "colbtnadd";
+            this.colbtnadd.ReadOnly = true;
+            this.colbtnadd.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colbtnadd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colbtnadd.Text = "Add Cart";
+            this.colbtnadd.UseColumnTextForButtonValue = true;
+            // 
+            // btnNewOrder
+            // 
+            this.btnNewOrder.Location = new System.Drawing.Point(673, 50);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnNewOrder.TabIndex = 4;
+            this.btnNewOrder.Text = "New Order";
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
+            // 
+            // grvTransaction
+            // 
+            this.grvTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvTransaction.Location = new System.Drawing.Point(808, 37);
+            this.grvTransaction.Name = "grvTransaction";
+            this.grvTransaction.RowTemplate.Height = 25;
+            this.grvTransaction.Size = new System.Drawing.Size(354, 215);
+            this.grvTransaction.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1598, 728);
+            this.Controls.Add(this.grvTransaction);
+            this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dgvProductCategory);
-            this.Controls.Add(this.dgvTransaction);
-            this.Controls.Add(this.dgvProducts);
-            this.Controls.Add(this.dgvEmployees);
+            this.Controls.Add(this.grvProducts);
+            this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.bsProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsProductCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvTransaction)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
+        private Label label1;
         private BindingSource bsProducts;
-        private BindingSource bsTransaction;
-        private BindingSource bsEmployees;
-        private DataGridView dgvEmployees;
-        private DataGridView dgvProducts;
-        private DataGridView dgvTransaction;
-        private DataGridView dgvProductCategory;
-        private BindingSource bsProductCategory;
+        private DataGridView grvProducts;
         private Button button1;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colCode;
+        private DataGridViewTextBoxColumn colQuantity;
+        private DataGridViewTextBoxColumn colPrice;
+        private DataGridViewButtonColumn colbtnadd;
+        private Button btnNewOrder;
+        private DataGridView grvTransaction;
     }
 }

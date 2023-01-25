@@ -111,14 +111,15 @@ namespace Libs {
             Employees.Add(new Employee { Name = "Ioannis", Surname = " Koukotzilas", Salary = 1000, EmployeeType = EmployeeType.Waiter });
         }
         public void SetDefaultProducts() {
-            Products.Add(new Product { Code = "Product 1 code", Description = "Espresso", Price = 1.9m, Cost = 1.5m });
-            Products.Add(new Product { Code = "Product 2 code", Description = "Cola", Price = 1.5m, Cost = 0.5m });
-            Products.Add(new Product { Code = "Product 3 code", Description = "Toast", Price = 1.5m, Cost = 0.5m });
+            Products.Add(new Product { Code = "123", Description = "Espresso", Price = 1.9m, Cost = 1.5m });
+            Products.Add(new Product { Code = "456", Description = "Cola", Price = 1.5m, Cost = 0.5m });
+            Products.Add(new Product { Code = "789", Description = "Toast", Price = 1.1m, Cost = 0.5m });
         }
         public void SetDefaultProductCategories() {
             ProductCategories.Add(new ProductCategory { Code = "Product category 1 code", Description = "Coffee", ProductType = ProductType.Coffee });
             ProductCategories.Add(new ProductCategory { Code = "Product category 2 code", Description = "Beverage", ProductType = ProductType.Beverages });
             ProductCategories.Add(new ProductCategory { Code = "Product category 3 code", Description = "Food", ProductType = ProductType.Food });
+            
         }
         public void SerializeEmployee() {
             Serializer serializer = new Serializer();
