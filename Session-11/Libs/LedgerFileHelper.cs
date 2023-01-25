@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Libs
 {
-    internal class CostCalculator
+    internal class LedgerFileHelper
     {
         public decimal  EmployeeCost { get; set; }
         public decimal ProductCost { get; set; }
