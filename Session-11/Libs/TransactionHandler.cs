@@ -16,6 +16,7 @@ namespace Libs {
     public class TransactionHandler 
     {
         public Transaction _transaction { get; set; } = new Transaction();
+        public List<Transaction> _transactions = new List<Transaction>();
         public TransactionLine _transactionLine { get; set; } = new TransactionLine();
 
         private decimal _discountPercent = 0.15m;
@@ -84,6 +85,14 @@ namespace Libs {
             }
             SaveTransactionToJson();
             return $"The total amount is {_transaction.TotalPrice}";
+        }
+        public string FinalizeTransaction() {
+            if (_transaction.TransactionLines.Count == 0)
+                return "No items added!";
+            if (_transaction.TotalPrice > 50 && _transaction.PaymentMethod == PaymentMethod.CreditCard)
+                return "Cannot pay with credit card if price is more than 50 Euros";
+
+            return string.Empty;
         }
 
 

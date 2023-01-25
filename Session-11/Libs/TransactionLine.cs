@@ -18,6 +18,7 @@ namespace Libs
         public decimal TotalPrice { get; set; }
         public Transaction Transaction { get; set; }
         public Product Product { get; set; }
+        public string Description { get; set; }
 
         public TransactionLine ()
         { 
