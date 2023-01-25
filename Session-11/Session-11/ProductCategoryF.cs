@@ -10,9 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Session_11 {
+
+
+    
+
     public partial class ProductCategoryF : Form {
 
-       
+        CoffeeShopHandler CoffeeShop;
 
         public ProductCategoryF() {
             InitializeComponent();
@@ -27,9 +31,11 @@ namespace Session_11 {
         private void PopulateData() {
 
             ProductCategory productCategory = new ProductCategory();
-            
 
-            grvProductCategory.DataSource = productCategory;
+           
+
+
+           
 
         }
 
