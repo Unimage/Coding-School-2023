@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Libs
@@ -20,16 +22,48 @@ namespace Libs
         public LedgerFileHelper() {
         }
 
-        public void  AppendToLedger(MonthlyLedger monthlyLedger )
+        public void  AppendToLedger(MonthlyLedger monthlyLedger)
         {
+
             try
             {
+
+                // if the file doesnt exist it will create it , if it exists it will append the json
+
                 string fileName = ($"{monthlyLedger.Year}-{monthlyLedger.Month}.json");
-                using (var fileStream = new FileStream(fileName, FileMode.Append))
+
+                string jsonString = JsonSerializer.Serialize(monthlyLedger);
+
+                if (!File.Exists(fileName))
                 {
-                    var binaryFormatter = new BinaryFormatter();
-                    binaryFormatter.Serialize(fileStream, monthlyLedger);
+                   
+
+                    File.WriteAllText(fileName, jsonString);
+
+                } else
+                {
+                    using (StreamWriter streamWriter = File.AppendText(fileName))
+                    {
+                        streamWriter.Write(jsonString);
+
+                        streamWriter.Close();
+                    }
+                    
+                    
                 }
+               
+                
+                
+
+                
+
+                
+
+
+
+
+
+
             } catch (Exception e) 
             { 
                     ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
