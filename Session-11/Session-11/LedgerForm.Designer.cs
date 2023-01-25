@@ -78,6 +78,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(648, 553);
             Controls.Add(btnSaveLedger);
             Controls.Add(btnLoadLedger);

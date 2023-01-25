@@ -48,7 +48,7 @@
             btnLoadLedger.Name = "btnLoadLedger";
             btnLoadLedger.Size = new Size(163, 75);
             btnLoadLedger.TabIndex = 1;
-            btnLoadLedger.Text = "button1";
+            btnLoadLedger.Text = "Ledger";
             btnLoadLedger.UseVisualStyleBackColor = true;
             btnLoadLedger.Click += btnLoadLedger_Click;
             // 
