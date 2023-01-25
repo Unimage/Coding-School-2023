@@ -26,7 +26,7 @@ namespace Libs
         {
             try
             {
-                string fileName = ($"{this.Year}-{this.Month}.dat");
+                string fileName = ($"{this.Year}-{this.Month}.json");
                 using (var fileStream = new FileStream(fileName, FileMode.Append))
                 {
                     var binaryFormatter = new BinaryFormatter();

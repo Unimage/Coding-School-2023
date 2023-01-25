@@ -22,11 +22,9 @@ namespace Libs {
 
         public int Year { get; set; }
         public int Month { get; set; }
-        public decimal Balance { get; set; }    // Income - Expenses
+        public decimal Income { get; set; }    // Income - Expenses
 
-        public List<Transaction> Transactions { get; set; }
-        public List<Employee> Employees { get; set; }
-
+        public decimal Expenses { get; set; }
 
 
 
@@ -34,22 +32,16 @@ namespace Libs {
 
         // 
 
-        
-
-       
 
 
-        
-
-        MonthlyLedger(System.DateTime dateTime , double initialExpense , List<Employee> employees , List<Transaction> transactions ) {
-
-              
-        
-           Year = dateTime.Year;
-           Month = dateTime.Month;
 
 
-        
+
+
+
+        MonthlyLedger()
+        {
+
         }
 
 
