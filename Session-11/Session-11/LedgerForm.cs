@@ -18,14 +18,14 @@ namespace Session_11
     {
 
         MonthlyLedger MonthlyLedger { get; set; } = new();
-        public LedgerForm()
+        public LedgerForm(MonthlyLedger data)
         {
+            MonthlyLedger = data;
             InitializeComponent();
         }
 
         private void LedgerForm_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnLoadLedger_Click(object sender, EventArgs e)
