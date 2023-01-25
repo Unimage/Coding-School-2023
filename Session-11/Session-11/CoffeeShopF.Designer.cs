@@ -41,6 +41,7 @@
             this.btnEmployeeRedirect.TabIndex = 0;
             this.btnEmployeeRedirect.Text = "Employee Management";
             this.btnEmployeeRedirect.UseVisualStyleBackColor = true;
+            this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
             // 
             // btnLoadLedger
             // 
