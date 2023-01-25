@@ -52,16 +52,28 @@ namespace Libs
 
             var LedgerList = new List<MonthlyLedger>();
 
+
+            try {
+                using (var fileStream = new FileStream(fileName, FileMode.Open))
+                {
+                    var bFormatter = new BinaryFormatter();
+                    while (fileStream.Position != fileStream.Length)
+                    {
+                        LedgerList.Add((MonthlyLedger)bFormatter.Deserialize(fileStream));
+                    }
+                }
+            } catch (Exception e) {
+
+                ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
+                exceptionLogger.Log(e.ToString());
+
+
+            }
            
 
-            using (var fileStream = new FileStream(fileName, FileMode.Open))
-            {
-                var bFormatter = new BinaryFormatter();
-                while (fileStream.Position != fileStream.Length)
-                {
-                    LedgerList.Add((MonthlyLedger)bFormatter.Deserialize(fileStream));
-                }
-            }
+            
+
+          
 
             return LedgerList;
 
