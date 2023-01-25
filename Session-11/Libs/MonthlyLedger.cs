@@ -15,7 +15,7 @@ namespace Libs {
     //TODO:Discuss and implement ledger 
     public class MonthlyLedger {
 
-        private int _rentExpense = 3000;
+        private int _rentExpense = 0;
         private decimal globalIncome = 0;
         private decimal globalExpenses = 0;
 
