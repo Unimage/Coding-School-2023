@@ -94,7 +94,7 @@
             this.btnReloadCategories.TabIndex = 1;
             this.btnReloadCategories.Text = "Reload Categories";
             this.btnReloadCategories.UseVisualStyleBackColor = true;
-            this.btnReloadCategories.Click += new System.EventHandler(this.btnReloadCategories_Click);
+           // this.btnReloadCategories.Click += new System.EventHandler(this.btnReloadCategories_Click);
             // 
             // btnReloadFromJson
             // 
@@ -104,7 +104,7 @@
             this.btnReloadFromJson.TabIndex = 2;
             this.btnReloadFromJson.Text = "Reload from JSon";
             this.btnReloadFromJson.UseVisualStyleBackColor = true;
-            this.btnReloadFromJson.Click += new System.EventHandler(this.btnReloadFromJson_Click);
+           // this.btnReloadFromJson.Click += new System.EventHandler(this.btnReloadFromJson_Click);
             // 
             // ProductCategoryF
             // 
