@@ -14,9 +14,10 @@ using System.Windows.Forms;
 namespace Session_11 {
     public partial class Form1 : Form {
         TransactionHandler Transaction;
-            CoffeeShopHandler CoffeeShop;
+        CoffeeShopHandler CoffeeShop;
+        
         public Form1() {
-            MonthlyLedger ledger;
+            
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();   
             
@@ -36,7 +37,7 @@ namespace Session_11 {
             dgvProductCategory.DataSource = bsProductCategory;
             dgvProducts.DataSource = bsProducts;
             dgvTransaction.DataSource = bsTransaction;
-            CoffeeShop.Save();
+           // CoffeeShop.Save();
 
         }
 
