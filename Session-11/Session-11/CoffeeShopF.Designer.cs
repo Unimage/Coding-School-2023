@@ -1,5 +1,5 @@
 ﻿namespace Session_11 {
-    partial class Form1 {
+    partial class CoffeeShopF {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -36,14 +36,14 @@
             this.btnEmployeeRedirect.UseVisualStyleBackColor = true;
             this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
             // 
-            // Form1
+            // CoffeeShopF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1598, 728);
             this.Controls.Add(this.btnEmployeeRedirect);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "CoffeeShopF";
+            this.Text = "CoffeeShop";
             this.ResumeLayout(false);
 
         }

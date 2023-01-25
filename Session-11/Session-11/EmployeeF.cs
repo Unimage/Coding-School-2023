@@ -50,5 +50,11 @@ namespace Session_11 {
             MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
             ShopData.CheckAndPopulateEmployees();
         }
+
+        private void btnSaveEmp_Click(object sender, EventArgs e) {
+            ShopData.SerializeEmployee();
+            MessageBox.Show("Exported Successfully!");
+
+        }
     }
 }

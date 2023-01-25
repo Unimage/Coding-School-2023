@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Session_11 {
-    public partial class Form1 : Form {
+    public partial class CoffeeShopF : Form {
         TransactionHandler Transaction;
         CoffeeShopHandler CoffeeShop;
         MonthlyLedger LedgerOfTheMonth;
         TransactionLine translinetobeadded;
         bool tmp = false;
 
-        public Form1() {
+        public CoffeeShopF() {
             
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
