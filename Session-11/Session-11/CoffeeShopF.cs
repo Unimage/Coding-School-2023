@@ -48,5 +48,10 @@ namespace Session_11
             LedgerForm ledgerForm = new LedgerForm(LedgerOfTheMonth);
             ledgerForm.ShowDialog();
         }
+
+        private void btnTransactions_Click(object sender, EventArgs e) {
+            TransactionF f1 = new TransactionF(CoffeeShop,Transaction);
+            f1.ShowDialog();
+        }
     }
 }

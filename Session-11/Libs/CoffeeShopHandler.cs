@@ -14,6 +14,7 @@ namespace Libs {
         public List<Employee> Employees { get; set; } = new List<Employee>();
         public List<Product> Products { get; set; } = new List<Product>();
         public List<ProductCategory> ProductCategories {get; set;} = new List<ProductCategory>();
+        public List<Transaction> Transactions { get; set; }=new List<Transaction>();
 
         //init employees
         public void CheckAndPopulateEmployees()

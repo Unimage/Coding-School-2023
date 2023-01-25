@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Session_11 {
+
+
+    
+
     public partial class ProductCategoryF : Form {
 
         CoffeeShopHandler ShopCategory { get; set; } = new();
@@ -26,5 +30,24 @@ namespace Session_11 {
         {
 
         }
+
+        private void ProductCategoryF_Load(object sender, EventArgs e) {
+
+            PopulateData();
+
+        }
+
+        private void PopulateData() {
+
+            ProductCategory productCategory = new ProductCategory();
+
+           
+
+
+           
+
+        }
+
+       
     }
 }
