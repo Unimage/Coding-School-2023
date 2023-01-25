@@ -8,15 +8,31 @@ namespace Libs
 {
     internal class LedgerFileHelper
     {
-        public decimal  EmployeeCost { get; set; }
-        public decimal ProductCost { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
 
-        public decimal HousingCost { get; set; }
+
+
+        public LedgerFileHelper(int year , int month )
+        {
+            this.Year= year;
+            this.Month= month;
+
+        }
+
+
+        public void  AppendToLedger()
+        {
+
+        }
+
+
+
+
     }
 
-    // calculate the total of all costs 
-    // public decimal CalculateTotalCost()
 
+   
 
 
 }
