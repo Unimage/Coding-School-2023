@@ -11,16 +11,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Session_11 {
-    public partial class CoffeeShopF : Form {
+namespace Session_11
+{
+    public partial class CoffeeShopF : Form
+    {
         TransactionHandler Transaction;
         CoffeeShopHandler CoffeeShop;
         MonthlyLedger LedgerOfTheMonth;
         TransactionLine translinetobeadded;
         bool tmp = false;
 
-        public CoffeeShopF() {
-            
+        public CoffeeShopF()
+        {
+
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
             LedgerOfTheMonth = new MonthlyLedger();
@@ -28,13 +31,21 @@ namespace Session_11 {
             CoffeeShop.Init();
         }
 
-        private void load() {
-            
+        private void load()
+        {
+
         }
 
-        private void btnEmployeeRedirect_Click(object sender, EventArgs e) {
+        private void btnEmployeeRedirect_Click(object sender, EventArgs e)
+        {
             EmployeeF formEmp = new EmployeeF(CoffeeShop);
             formEmp.ShowDialog();
         }
-    }        
+
+        private void btnLoadLedger_Click(object sender, EventArgs e)
+        {
+            LedgerForm ledgerForm = new LedgerForm();
+            ledgerForm.ShowDialog();
+        }
+    }
 }

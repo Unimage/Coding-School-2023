@@ -1,5 +1,7 @@
-﻿namespace Session_11 {
-    partial class CoffeeShopF {
+﻿namespace Session_11
+{
+    partial class CoffeeShopF
+    {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -9,8 +11,10 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -22,34 +26,47 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-            this.btnEmployeeRedirect = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+        private void InitializeComponent()
+        {
+            btnEmployeeRedirect = new Button();
+            btnLoadLedger = new Button();
+            SuspendLayout();
             // 
             // btnEmployeeRedirect
             // 
-            this.btnEmployeeRedirect.Location = new System.Drawing.Point(211, 61);
-            this.btnEmployeeRedirect.Name = "btnEmployeeRedirect";
-            this.btnEmployeeRedirect.Size = new System.Drawing.Size(163, 79);
-            this.btnEmployeeRedirect.TabIndex = 0;
-            this.btnEmployeeRedirect.Text = "Employee Management";
-            this.btnEmployeeRedirect.UseVisualStyleBackColor = true;
-            this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
+            btnEmployeeRedirect.Location = new Point(211, 61);
+            btnEmployeeRedirect.Name = "btnEmployeeRedirect";
+            btnEmployeeRedirect.Size = new Size(163, 79);
+            btnEmployeeRedirect.TabIndex = 0;
+            btnEmployeeRedirect.Text = "Employee Management";
+            btnEmployeeRedirect.UseVisualStyleBackColor = true;
+            btnEmployeeRedirect.Click += btnEmployeeRedirect_Click;
+            // 
+            // btnLoadLedger
+            // 
+            btnLoadLedger.Location = new Point(211, 474);
+            btnLoadLedger.Name = "btnLoadLedger";
+            btnLoadLedger.Size = new Size(163, 75);
+            btnLoadLedger.TabIndex = 1;
+            btnLoadLedger.Text = "button1";
+            btnLoadLedger.UseVisualStyleBackColor = true;
+            btnLoadLedger.Click += btnLoadLedger_Click;
             // 
             // CoffeeShopF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1598, 728);
-            this.Controls.Add(this.btnEmployeeRedirect);
-            this.Name = "CoffeeShopF";
-            this.Text = "CoffeeShop";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1598, 728);
+            Controls.Add(btnLoadLedger);
+            Controls.Add(btnEmployeeRedirect);
+            Name = "CoffeeShopF";
+            Text = "CoffeeShop";
+            ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnEmployeeRedirect;
+        private Button btnLoadLedger;
     }
 }
