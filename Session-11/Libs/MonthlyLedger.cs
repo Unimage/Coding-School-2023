@@ -34,18 +34,6 @@ namespace Libs {
 
         public List<Product> Products { get; set; }
 
-
-
-
-        // 
-
-
-
-
-
-
-
-
         MonthlyLedger()
         {
             this.Year= DateTime.Now.Year;
@@ -53,8 +41,6 @@ namespace Libs {
             this.Income = CalculateTransactionSum(Transactions);
             this.Expenses = CalculateEmployeeCost(Employees) + CalculateProductCost(Products);
             this.Total = (Income - Expenses);
-
-           
 
         }
 
@@ -74,7 +60,6 @@ namespace Libs {
             return sumOfTransactions;
 
         }
-
         // EXPENSES
         public decimal CalculateEmployeeCost(List<Employee> employees) 
         
@@ -85,7 +70,6 @@ namespace Libs {
             foreach (Employee employee in employees) {
                 totalEmpCost +=  employee.Salary;    
             }
-        
             return totalEmpCost;
         }
 
@@ -95,12 +79,11 @@ namespace Libs {
         {
             decimal totalProductCost = 0;
             foreach (var tr in trans.TransactionLines) {
-                totalProductCost += tr.Quantity * tr.Product.Cost;   // auto ennousa san allagi
+                totalProductCost += tr.Quantity * tr.Product.Cost;   // auto ennousa
 
             }
             return totalProductCost;
         }
-
         //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
        
 
