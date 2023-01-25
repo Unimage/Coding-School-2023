@@ -28,6 +28,11 @@ namespace Libs {
 
         public decimal Total { get; set; }
 
+        public List<Transaction> Transactions { get; set; }
+
+        public List<Employee> Employees { get; set; }
+
+        public List<Product> Products { get; set; }
 
 
 
@@ -45,6 +50,10 @@ namespace Libs {
         {
             this.Year= DateTime.Now.Year;
             this.Month= DateTime.Now.Month;
+            this.Income = CalculateTransactionSum(Transactions);
+            this.Expenses = CalculateEmployeeCost(Employees) + CalculateProductCost(Products);
+            this.Total = (Income - Expenses);
+
            
 
         }
@@ -118,18 +127,8 @@ namespace Libs {
 
         // Not in final form 
         // TODO decide the final implementation of Calculating the balance 
-        public decimal  CalculateBalance(decimal income, decimal expenses) {
-        
-            
-
-            
-            
-
-            return ((income-expenses));
-        
-
-        
-        }
+      
+       
 
 
 
