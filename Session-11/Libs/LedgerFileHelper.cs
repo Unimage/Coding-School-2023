@@ -29,8 +29,8 @@ namespace Libs
                 string fileName = ($"{this.Year}-{this.Month}.dat");
                 using (var fileStream = new FileStream(fileName, FileMode.Append))
                 {
-                    var bFormatter = new BinaryFormatter();
-                    bFormatter.Serialize(fileStream, objectToSerialize);
+                    var binaryFormatter = new BinaryFormatter();
+                    binaryFormatter.Serialize(fileStream, objectToSerialize);
                 }
             } catch (Exception e) 
             { 
