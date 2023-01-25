@@ -26,8 +26,6 @@ namespace Session_11
 
         private void LedgerForm_Load(object sender, EventArgs e)
         {
-
-
         }
 
         private void btnLoadLedger_Click(object sender, EventArgs e)
