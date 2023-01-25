@@ -25,7 +25,6 @@
         private void InitializeComponent() {
             this.gcEmployee = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSurname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcEmployeeType = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,6 +41,7 @@
             this.tboxSalary = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnLoadJson = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +60,6 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcID,
             this.gcName,
             this.gcSurname,
             this.gcEmployeeType,
@@ -68,21 +67,13 @@
             this.gridView1.GridControl = this.gcEmployee;
             this.gridView1.Name = "gridView1";
             // 
-            // gcID
-            // 
-            this.gcID.Caption = "ID";
-            this.gcID.FieldName = "ID";
-            this.gcID.Name = "gcID";
-            this.gcID.Visible = true;
-            this.gcID.VisibleIndex = 0;
-            // 
             // gcName
             // 
             this.gcName.Caption = "Name";
             this.gcName.FieldName = "Name";
             this.gcName.Name = "gcName";
             this.gcName.Visible = true;
-            this.gcName.VisibleIndex = 1;
+            this.gcName.VisibleIndex = 0;
             // 
             // gcSurname
             // 
@@ -90,7 +81,7 @@
             this.gcSurname.FieldName = "Surname";
             this.gcSurname.Name = "gcSurname";
             this.gcSurname.Visible = true;
-            this.gcSurname.VisibleIndex = 2;
+            this.gcSurname.VisibleIndex = 1;
             // 
             // gcEmployeeType
             // 
@@ -98,7 +89,7 @@
             this.gcEmployeeType.FieldName = "EmployeeType";
             this.gcEmployeeType.Name = "gcEmployeeType";
             this.gcEmployeeType.Visible = true;
-            this.gcEmployeeType.VisibleIndex = 3;
+            this.gcEmployeeType.VisibleIndex = 2;
             // 
             // gcSalary
             // 
@@ -106,11 +97,11 @@
             this.gcSalary.FieldName = "Salary";
             this.gcSalary.Name = "gcSalary";
             this.gcSalary.Visible = true;
-            this.gcSalary.VisibleIndex = 4;
+            this.gcSalary.VisibleIndex = 3;
             // 
             // btnRefreshList
             // 
-            this.btnRefreshList.Location = new System.Drawing.Point(275, 295);
+            this.btnRefreshList.Location = new System.Drawing.Point(97, 295);
             this.btnRefreshList.Name = "btnRefreshList";
             this.btnRefreshList.Size = new System.Drawing.Size(136, 45);
             this.btnRefreshList.TabIndex = 1;
@@ -218,11 +209,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnLoadJson
+            // 
+            this.btnLoadJson.Location = new System.Drawing.Point(249, 295);
+            this.btnLoadJson.Name = "btnLoadJson";
+            this.btnLoadJson.Size = new System.Drawing.Size(120, 45);
+            this.btnLoadJson.TabIndex = 13;
+            this.btnLoadJson.Text = "Load From Json";
+            this.btnLoadJson.UseVisualStyleBackColor = true;
+            this.btnLoadJson.Click += new System.EventHandler(this.btnLoadJson_Click);
+            // 
             // EmployeeF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 486);
+            this.Controls.Add(this.btnLoadJson);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tboxSalary);
@@ -249,7 +251,6 @@
 
         private DevExpress.XtraGrid.GridControl gcEmployee;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gcID;
         private DevExpress.XtraGrid.Columns.GridColumn gcName;
         private DevExpress.XtraGrid.Columns.GridColumn gcSurname;
         private DevExpress.XtraGrid.Columns.GridColumn gcEmployeeType;
@@ -266,5 +267,6 @@
         private TextBox tboxSalary;
         private Label label5;
         private Button btnAdd;
+        private Button btnLoadJson;
     }
 }

@@ -45,5 +45,10 @@ namespace Session_11 {
             
 
         }
+
+        private void btnLoadJson_Click(object sender, EventArgs e) {
+            MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
+            ShopData.CheckAndPopulateEmployees();
+        }
     }
 }

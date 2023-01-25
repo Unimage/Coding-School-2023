@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace Libs {
     public class CoffeeShopHandler {
+        public bool errorAtLoad = false;
 
         public List<Employee> Employees { get; set; } = new List<Employee>();
         public List<Product> Products { get; set; } = new List<Product>();
@@ -51,19 +52,24 @@ namespace Libs {
 
         //init products
         public void CheckAndPopulateProducts() {
+            errorAtLoad = false;
             string fileName = "product.json";
             if (File.Exists(fileName)) {
                 try {
                     DeserializeProduct();
                     //ConnectProductCategoryIDs();
+                    
                 }
                 catch (Exception ex) {
                     //log exception
                     SetDefaultProducts();
+                    errorAtLoad = true;
+
                 }
             }
             else {
                 SetDefaultProducts();
+                errorAtLoad = true;
             }
         }
 
@@ -91,16 +97,16 @@ namespace Libs {
                 }
             }
             if (managers != 1) {
-                ok = false;
+                ok = false; 
             }
             if (cashiers < 1 || cashiers > 2) {
                 ok = false;
             }
             if (baristas < 1 || baristas > 2) {
-                ok = false;    
+                ok = false;
             }
             if (waiters < 1 || waiters > 2) {
-                ok = false;  
+                ok = false;
             }
             return ok;
         }
@@ -130,19 +136,23 @@ namespace Libs {
             if (managers < 1 || managers > 1) {
                 
                 SetDefaultEmployees();
+                errorAtLoad = true;
 
             }
             if (cashiers < 1 || cashiers > 2) {
                 
                 SetDefaultEmployees();
+                errorAtLoad = true;
             }
             if (baristas < 1 || baristas > 2) {
                 
                 SetDefaultEmployees();
+                errorAtLoad = true;
             }
             if (waiters < 1 || waiters > 2) {
                 
                 SetDefaultEmployees();
+                errorAtLoad = true;
             }
             
         }
@@ -171,7 +181,9 @@ namespace Libs {
 
         public void DeserializeEmployee() {
             Serializer serializer = new Serializer();
+            if (File.Exists("employee.json")) { 
             Employees = serializer.DeserializeFromFile<List<Employee>>("employee.json");
+        }
         }
 
         public void SerializeProduct() {
@@ -180,8 +192,10 @@ namespace Libs {
         }
 
         public void DeserializeProduct() {
-            Serializer serializer = new Serializer();
-            Products = serializer.DeserializeFromFile<List<Product>>("product.json");
+            if (File.Exists("product.json")) {
+                Serializer serializer = new Serializer();
+                Products = serializer.DeserializeFromFile<List<Product>>("product.json");
+            }
         }
 
         public void SerializeProductCategory() {
@@ -190,8 +204,10 @@ namespace Libs {
         }
 
         public void DeserializeProductCategory() {
-            Serializer serializer = new Serializer();
-            ProductCategories = serializer.DeserializeFromFile<List<ProductCategory>>("product-category.json");
+            if (File.Exists("product-category.json")) {
+                Serializer serializer = new Serializer();
+                ProductCategories = serializer.DeserializeFromFile<List<ProductCategory>>("product-category.json");
+            }
         }
 
         public void Init() {
