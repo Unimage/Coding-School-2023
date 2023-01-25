@@ -15,7 +15,7 @@ namespace Session_11 {
         public EmployeeF(CoffeeShopHandler transfer) {
             
             ShopData = transfer;
-            
+             
             InitializeComponent();
             gcEmployee.DataSource = ShopData.Employees;
         }
