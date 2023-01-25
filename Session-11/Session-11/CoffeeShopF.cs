@@ -26,9 +26,10 @@ namespace Session_11
 
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
-            LedgerOfTheMonth = new MonthlyLedger();
+            
             InitializeComponent();
             CoffeeShop.Init();
+            LedgerOfTheMonth = new MonthlyLedger(CoffeeShop.Employees);
         }
 
         private void load()
@@ -44,7 +45,7 @@ namespace Session_11
 
         private void btnLoadLedger_Click(object sender, EventArgs e)
         {
-            LedgerForm ledgerForm = new LedgerForm();
+            LedgerForm ledgerForm = new LedgerForm(LedgerOfTheMonth);
             ledgerForm.ShowDialog();
         }
     }

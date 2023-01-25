@@ -28,19 +28,19 @@ namespace Libs {
             Month = DateTime.Now.Month;
             Income = 0;
             Expenses = 3000;
-            Total = 0;
+            Total = +Income - Expenses;
 
         }
 
 
-        public MonthlyLedger(int rent)
+        public MonthlyLedger(List<Employee> employees)
         {
-            Year= DateTime.Now.Year;
-            Month= DateTime.Now.Month;
             Income = 0;
-            Expenses += rent;
-            Total = 0;
-
+            Expenses += 3000;
+            CalculateEmployeeCost(employees);
+            Year = DateTime.Now.Year;
+            Month= DateTime.Now.Month;
+            Total +=Income - Expenses;
         }
 
         public void UpdateIncome(Transaction trans)
@@ -61,10 +61,12 @@ namespace Libs {
                 Expenses += tr.Quantity * tr.Product.Cost;
             }
         } 
-        public void UpdateLedger(Transaction trans) {
+        public void UpdateLedgerAfterTransaction(Transaction trans) {
             UpdateExpensesFromTransaction(trans);
             UpdateIncome(trans);
             Total = Total + Income - Expenses;
         }
+
+        
     }
 }
