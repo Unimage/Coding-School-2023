@@ -41,6 +41,7 @@
             this.btnEmployeeRedirect.TabIndex = 0;
             this.btnEmployeeRedirect.Text = "Employee Management";
             this.btnEmployeeRedirect.UseVisualStyleBackColor = true;
+            this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
             // 
             // btnLoadLedger
             // 
@@ -50,6 +51,7 @@
             this.btnLoadLedger.TabIndex = 1;
             this.btnLoadLedger.Text = "Ledger";
             this.btnLoadLedger.UseVisualStyleBackColor = true;
+            this.btnLoadLedger.Click += new System.EventHandler(this.btnLoadLedger_Click);
             // 
             // btnTransactions
             // 
