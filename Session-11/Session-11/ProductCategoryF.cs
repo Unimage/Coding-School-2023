@@ -31,7 +31,7 @@ namespace Session_11 {
 
         }
 
-        private void ProductCategoryF_Load(object sender, EventArgs e) {
+        private void ProductCategoryF_Load1(object sender, EventArgs e) {
 
             PopulateData();
 
