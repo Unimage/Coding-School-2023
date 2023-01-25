@@ -47,11 +47,24 @@ namespace Libs
 
 
         public List<MonthlyLedger> DeserializeLedger(string fileName) {
-        
-        
 
 
-            
+
+            var LedgerList = new List<MonthlyLedger>();
+
+           
+
+            using (var fileStream = new FileStream(fileName, FileMode.Open))
+            {
+                var bFormatter = new BinaryFormatter();
+                while (fileStream.Position != fileStream.Length)
+                {
+                    LedgerList.Add((MonthlyLedger)bFormatter.Deserialize(fileStream));
+                }
+            }
+
+            return LedgerList;
+
         }
 
 
