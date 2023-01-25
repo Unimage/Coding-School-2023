@@ -16,10 +16,19 @@ namespace Session_11 {
 
     public partial class ProductCategoryF : Form {
 
-        CoffeeShopHandler CoffeeShop;
+        CoffeeShopHandler ShopCategory { get; set; } = new();
 
-        public ProductCategoryF() {
+        public ProductCategoryF(CoffeeShopHandler transfer) {
+
+            ShopCategory = transfer;
             InitializeComponent();
+
+            grdProductCategory.DataSource = ShopCategory.SetDefaultProductCategories;
+        }
+
+        private void ProductCategoryF_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void ProductCategoryF_Load(object sender, EventArgs e) {

@@ -48,232 +48,211 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnLoadJson = new System.Windows.Forms.Button();
             this.btnSaveEmp = new System.Windows.Forms.Button();
-            this.btnLoadDefault = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcEmployee
             // 
-            this.gcEmployee.Location = new System.Drawing.Point(97, 73);
-            this.gcEmployee.MainView = this.gridView1;
-            this.gcEmployee.Name = "gcEmployee";
-            this.gcEmployee.Size = new System.Drawing.Size(519, 216);
-            this.gcEmployee.TabIndex = 0;
-            this.gcEmployee.UseEmbeddedNavigator = true;
-            this.gcEmployee.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            gcEmployee.Location = new Point(97, 73);
+            gcEmployee.MainView = gridView1;
+            gcEmployee.Name = "gcEmployee";
+            gcEmployee.Size = new Size(519, 216);
+            gcEmployee.TabIndex = 0;
+            gcEmployee.UseEmbeddedNavigator = true;
+            gcEmployee.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
             // gridView1
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcName,
-            this.gcSurname,
-            this.gcEmployeeType,
-            this.gcSalary});
-            this.gridView1.GridControl = this.gcEmployee;
-            this.gridView1.Name = "gridView1";
+            gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gcName, gcSurname, gcEmployeeType, gcSalary });
+            gridView1.GridControl = gcEmployee;
+            gridView1.Name = "gridView1";
             // 
             // gcName
             // 
-            this.gcName.Caption = "Name";
-            this.gcName.FieldName = "Name";
-            this.gcName.Name = "gcName";
-            this.gcName.Visible = true;
-            this.gcName.VisibleIndex = 0;
+            gcName.Caption = "Name";
+            gcName.FieldName = "Name";
+            gcName.Name = "gcName";
+            gcName.Visible = true;
+            gcName.VisibleIndex = 0;
             // 
             // gcSurname
             // 
-            this.gcSurname.Caption = "Surname";
-            this.gcSurname.FieldName = "Surname";
-            this.gcSurname.Name = "gcSurname";
-            this.gcSurname.Visible = true;
-            this.gcSurname.VisibleIndex = 1;
+            gcSurname.Caption = "Surname";
+            gcSurname.FieldName = "Surname";
+            gcSurname.Name = "gcSurname";
+            gcSurname.Visible = true;
+            gcSurname.VisibleIndex = 1;
             // 
             // gcEmployeeType
             // 
-            this.gcEmployeeType.Caption = "Role";
-            this.gcEmployeeType.FieldName = "EmployeeType";
-            this.gcEmployeeType.Name = "gcEmployeeType";
-            this.gcEmployeeType.Visible = true;
-            this.gcEmployeeType.VisibleIndex = 2;
+            gcEmployeeType.Caption = "Role";
+            gcEmployeeType.FieldName = "EmployeeType";
+            gcEmployeeType.Name = "gcEmployeeType";
+            gcEmployeeType.Visible = true;
+            gcEmployeeType.VisibleIndex = 2;
             // 
             // gcSalary
             // 
-            this.gcSalary.Caption = "Salary";
-            this.gcSalary.FieldName = "Salary";
-            this.gcSalary.Name = "gcSalary";
-            this.gcSalary.Visible = true;
-            this.gcSalary.VisibleIndex = 3;
+            gcSalary.Caption = "Salary";
+            gcSalary.FieldName = "Salary";
+            gcSalary.Name = "gcSalary";
+            gcSalary.Visible = true;
+            gcSalary.VisibleIndex = 3;
             // 
             // btnRefreshList
             // 
-            this.btnRefreshList.Location = new System.Drawing.Point(72, 295);
-            this.btnRefreshList.Name = "btnRefreshList";
-            this.btnRefreshList.Size = new System.Drawing.Size(136, 45);
-            this.btnRefreshList.TabIndex = 1;
-            this.btnRefreshList.Text = "Reload";
-            this.btnRefreshList.UseVisualStyleBackColor = true;
-            this.btnRefreshList.Click += new System.EventHandler(this.btnRefreshList_Click);
+            btnRefreshList.Location = new Point(120, 295);
+            btnRefreshList.Name = "btnRefreshList";
+            btnRefreshList.Size = new Size(136, 45);
+            btnRefreshList.TabIndex = 1;
+            btnRefreshList.Text = "Reload";
+            btnRefreshList.UseVisualStyleBackColor = true;
+            btnRefreshList.Click += btnRefreshList_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(228, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 30);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Current Employee Roster";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(228, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(256, 30);
+            label1.TabIndex = 2;
+            label1.Text = "Current Employee Roster";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(238, 355);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(222, 21);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "New Employee Registration";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(238, 355);
+            label2.Name = "label2";
+            label2.Size = new Size(222, 21);
+            label2.TabIndex = 3;
+            label2.Text = "New Employee Registration";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(72, 403);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Name";
+            label3.AutoSize = true;
+            label3.Location = new Point(72, 403);
+            label3.Name = "label3";
+            label3.Size = new Size(39, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Name";
             // 
             // tboxName
             // 
-            this.tboxName.Location = new System.Drawing.Point(45, 421);
-            this.tboxName.Name = "tboxName";
-            this.tboxName.Size = new System.Drawing.Size(100, 23);
-            this.tboxName.TabIndex = 5;
+            tboxName.Location = new Point(45, 421);
+            tboxName.Name = "tboxName";
+            tboxName.Size = new Size(100, 23);
+            tboxName.TabIndex = 5;
             // 
             // tboxSurname
             // 
-            this.tboxSurname.Location = new System.Drawing.Point(167, 421);
-            this.tboxSurname.Name = "tboxSurname";
-            this.tboxSurname.Size = new System.Drawing.Size(100, 23);
-            this.tboxSurname.TabIndex = 6;
+            tboxSurname.Location = new Point(167, 421);
+            tboxSurname.Name = "tboxSurname";
+            tboxSurname.Size = new Size(100, 23);
+            tboxSurname.TabIndex = 6;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(192, 403);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Surname";
+            label4.AutoSize = true;
+            label4.Location = new Point(192, 403);
+            label4.Name = "label4";
+            label4.Size = new Size(54, 15);
+            label4.TabIndex = 7;
+            label4.Text = "Surname";
             // 
             // comboRole
             // 
-            this.comboRole.FormattingEnabled = true;
-            this.comboRole.Items.AddRange(new object[] {
-            "Manager",
-            "Cashier",
-            "Barista",
-            "Waiter"});
-            this.comboRole.Location = new System.Drawing.Point(290, 421);
-            this.comboRole.Name = "comboRole";
-            this.comboRole.Size = new System.Drawing.Size(121, 23);
-            this.comboRole.TabIndex = 8;
+            comboRole.FormattingEnabled = true;
+            comboRole.Items.AddRange(new object[] { "Manager", "Cashier", "Barista", "Waiter" });
+            comboRole.Location = new Point(290, 421);
+            comboRole.Name = "comboRole";
+            comboRole.Size = new Size(121, 23);
+            comboRole.TabIndex = 8;
             // 
             // Role
             // 
-            this.Role.AutoSize = true;
-            this.Role.Location = new System.Drawing.Point(323, 403);
-            this.Role.Name = "Role";
-            this.Role.Size = new System.Drawing.Size(30, 15);
-            this.Role.TabIndex = 9;
-            this.Role.Text = "Role";
+            Role.AutoSize = true;
+            Role.Location = new Point(323, 403);
+            Role.Name = "Role";
+            Role.Size = new Size(30, 15);
+            Role.TabIndex = 9;
+            Role.Text = "Role";
             // 
             // tboxSalary
             // 
-            this.tboxSalary.Location = new System.Drawing.Point(442, 421);
-            this.tboxSalary.Name = "tboxSalary";
-            this.tboxSalary.Size = new System.Drawing.Size(100, 23);
-            this.tboxSalary.TabIndex = 10;
+            tboxSalary.Location = new Point(442, 421);
+            tboxSalary.Name = "tboxSalary";
+            tboxSalary.Size = new Size(100, 23);
+            tboxSalary.TabIndex = 10;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(467, 403);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 15);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Salary";
+            label5.AutoSize = true;
+            label5.Location = new Point(467, 403);
+            label5.Name = "label5";
+            label5.Size = new Size(38, 15);
+            label5.TabIndex = 11;
+            label5.Text = "Salary";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(579, 413);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(96, 36);
-            this.btnAdd.TabIndex = 12;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
+            btnAdd.Location = new Point(579, 413);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(96, 36);
+            btnAdd.TabIndex = 12;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnLoadJson
             // 
-            this.btnLoadJson.Location = new System.Drawing.Point(214, 295);
-            this.btnLoadJson.Name = "btnLoadJson";
-            this.btnLoadJson.Size = new System.Drawing.Size(120, 45);
-            this.btnLoadJson.TabIndex = 13;
-            this.btnLoadJson.Text = "Load From Json";
-            this.btnLoadJson.UseVisualStyleBackColor = true;
-            this.btnLoadJson.Click += new System.EventHandler(this.btnLoadJson_Click);
+            btnLoadJson.Location = new Point(304, 295);
+            btnLoadJson.Name = "btnLoadJson";
+            btnLoadJson.Size = new Size(120, 45);
+            btnLoadJson.TabIndex = 13;
+            btnLoadJson.Text = "Load From Json";
+            btnLoadJson.UseVisualStyleBackColor = true;
+            btnLoadJson.Click += btnLoadJson_Click;
             // 
             // btnSaveEmp
             // 
-            this.btnSaveEmp.Location = new System.Drawing.Point(340, 295);
-            this.btnSaveEmp.Name = "btnSaveEmp";
-            this.btnSaveEmp.Size = new System.Drawing.Size(120, 45);
-            this.btnSaveEmp.TabIndex = 14;
-            this.btnSaveEmp.Text = "Export To Json";
-            this.btnSaveEmp.UseVisualStyleBackColor = true;
-            this.btnSaveEmp.Click += new System.EventHandler(this.btnSaveEmp_Click);
-            // 
-            // btnLoadDefault
-            // 
-            this.btnLoadDefault.Location = new System.Drawing.Point(467, 295);
-            this.btnLoadDefault.Name = "btnLoadDefault";
-            this.btnLoadDefault.Size = new System.Drawing.Size(130, 45);
-            this.btnLoadDefault.TabIndex = 15;
-            this.btnLoadDefault.Text = "Force Load Default";
-            this.btnLoadDefault.UseVisualStyleBackColor = true;
-            this.btnLoadDefault.Click += new System.EventHandler(this.btnLoadDefault_Click);
+            btnSaveEmp.Location = new Point(476, 295);
+            btnSaveEmp.Name = "btnSaveEmp";
+            btnSaveEmp.Size = new Size(120, 45);
+            btnSaveEmp.TabIndex = 14;
+            btnSaveEmp.Text = "Export To Json";
+            btnSaveEmp.UseVisualStyleBackColor = true;
+            btnSaveEmp.Click += btnSaveEmp_Click;
             // 
             // EmployeeF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 486);
-            this.Controls.Add(this.btnLoadDefault);
-            this.Controls.Add(this.btnSaveEmp);
-            this.Controls.Add(this.btnLoadJson);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.tboxSalary);
-            this.Controls.Add(this.Role);
-            this.Controls.Add(this.comboRole);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.tboxSurname);
-            this.Controls.Add(this.tboxName);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnRefreshList);
-            this.Controls.Add(this.gcEmployee);
-            this.Name = "EmployeeF";
-            this.Text = "Employee";
-            ((System.ComponentModel.ISupportInitialize)(this.gcEmployee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(733, 486);
+            Controls.Add(btnSaveEmp);
+            Controls.Add(btnLoadJson);
+            Controls.Add(btnAdd);
+            Controls.Add(label5);
+            Controls.Add(tboxSalary);
+            Controls.Add(Role);
+            Controls.Add(comboRole);
+            Controls.Add(label4);
+            Controls.Add(tboxSurname);
+            Controls.Add(tboxName);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(btnRefreshList);
+            Controls.Add(gcEmployee);
+            Name = "EmployeeF";
+            Text = "Employee";
+            Load += EmployeeF_Load;
+            ((System.ComponentModel.ISupportInitialize)gcEmployee).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
