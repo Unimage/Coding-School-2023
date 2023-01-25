@@ -8,29 +8,30 @@ using System.Threading.Tasks;
 namespace Libs
 {
     internal class LedgerFileHelper
+
+
+        
     {
-        public int Year { get; set; }
-        public int Month { get; set; }
+         MonthlyLedger monthlyLedger { get; set; }
 
 
 
-        public LedgerFileHelper(int year , int month )
+        public LedgerFileHelper(MonthlyLedger monthlyLedger )
         {
-            this.Year= year;
-            this.Month= month;
+            
 
         }
 
 
-        public void  AppendToLedger(decimal income , decimal expenses , decimal total )
+        public void  AppendToLedger( )
         {
             try
             {
-                string fileName = ($"{this.Year}-{this.Month}.json");
+                string fileName = ($"{monthlyLedger.Year}-{monthlyLedger.Month}.json");
                 using (var fileStream = new FileStream(fileName, FileMode.Append))
                 {
                     var binaryFormatter = new BinaryFormatter();
-                    binaryFormatter.Serialize(fileStream, objectToSerialize);
+                    binaryFormatter.Serialize(fileStream, monthlyLedger);
                 }
             } catch (Exception e) 
             { 
