@@ -32,12 +32,11 @@ namespace Libs
             Discount = discount;
         }
 
-        //Method that calculates the Price : Example : 3 x Fredo Espress (2euros) = 6euros
         public void CalculatePriceLine() {
             TotalPrice = Quantity * Price;  
         }
 
-        //Helping ones may be used later 
+
         
 
     }

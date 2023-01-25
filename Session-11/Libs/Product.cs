@@ -14,14 +14,10 @@ namespace Session_11
         public Guid ProductCategoryID { get; set; }
         public decimal Price { get; set; }
         public decimal Cost { get; set; }
-
-
         public Product()
         {
             ProductID = Guid.NewGuid();
         }
-        
-
     }
 }
 

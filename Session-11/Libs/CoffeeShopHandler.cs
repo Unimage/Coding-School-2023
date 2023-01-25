@@ -21,12 +21,12 @@ namespace Libs {
             {
                 if (File.Exists("employee.json"))
                 {
-                    DeserializeEmployee(); // works 
-                    CheckLimits(); //works
+                    DeserializeEmployee();
+                    CheckLimits(); 
                 }
                 else
                 {
-                    SetDefaultEmployees(); // works
+                    SetDefaultEmployees(); 
                 }
             }
         }
