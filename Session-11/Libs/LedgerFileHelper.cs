@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Libs
 {
-    internal class LedgerFileHelper
+    public  class LedgerFileHelper
         {
         MonthlyLedger monthlyLedger { get; set; } = new MonthlyLedger();
 

@@ -74,6 +74,7 @@
             btnSaveLedger.TabIndex = 4;
             btnSaveLedger.Text = "Save Ledger to File";
             btnSaveLedger.UseVisualStyleBackColor = true;
+            btnSaveLedger.Click += btnSaveLedger_Click;
             // 
             // LedgerForm
             // 

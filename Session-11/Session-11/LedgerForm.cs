@@ -33,8 +33,14 @@ namespace Session_11
 
             lstbLedger.Items.Add($"Year:{MonthlyLedger.Year} Month:{MonthlyLedger.Month} [Income : {MonthlyLedger.Income}] ," +
                 $" [Expenses : {MonthlyLedger.Expenses}] , [Total : {MonthlyLedger.Total}]");
-               
 
+
+        }
+
+        private void btnSaveLedger_Click(object sender, EventArgs e)
+        {
+            LedgerFileHelper ledgerFileHelper = new LedgerFileHelper(MonthlyLedger);
+            ledgerFileHelper.AppendToLedger(MonthlyLedger);
         }
     }
 }
