@@ -90,7 +90,19 @@ namespace Libs {
         }
 
 
-        
+        //EXPENSES 
+        public decimal CalculateProductCost(Transaction trans)
+        {
+            decimal totalProductCost = 0;
+            foreach (var tr in trans.TransactionLines) {
+                totalProductCost += tr.Quantity * tr.Product.Cost;   // auto ennousa san allagi
+
+            }
+            return totalProductCost;
+        }
+
+        //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
+       
 
     }
 }
