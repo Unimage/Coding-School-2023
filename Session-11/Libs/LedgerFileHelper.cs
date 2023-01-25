@@ -8,20 +8,17 @@ using System.Threading.Tasks;
 namespace Libs
 {
     internal class LedgerFileHelper
-
-
-        
-    {
-         MonthlyLedger monthlyLedger { get; set; }
-
-
-
-        public LedgerFileHelper(MonthlyLedger monthlyLedger )
         {
-            
+        MonthlyLedger monthlyLedger { get; set; } = new MonthlyLedger();
 
+
+
+        public LedgerFileHelper(MonthlyLedger monthlyLedgerInput )
+        {
+            monthlyLedger = monthlyLedgerInput;
         }
-
+        public LedgerFileHelper() {
+        }
 
         public void  AppendToLedger(MonthlyLedger monthlyLedger )
         {
@@ -35,24 +32,14 @@ namespace Libs
                 }
             } catch (Exception e) 
             { 
-            
                     ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
-                    exceptionLogger.Log(e.ToString());
-
-
-                    
+                    exceptionLogger.Log(e.ToString());   
             }
-
         }
-
 
         public List<MonthlyLedger> DeserializeLedger(string fileName) {
 
-
-
             var LedgerList = new List<MonthlyLedger>();
-
-
             try {
                 using (var fileStream = new FileStream(fileName, FileMode.Open))
                 {
@@ -66,24 +53,8 @@ namespace Libs
 
                 ExceptionLogger exceptionLogger = new ExceptionLogger(System.DateTime.Now);
                 exceptionLogger.Log(e.ToString());
-
-
             }
-           
-
-            
-
-          
-
             return LedgerList;
-
         }
-
-
     }
-
-
-   
-
-
 }

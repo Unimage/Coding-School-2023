@@ -15,11 +15,6 @@ namespace Libs {
     //TODO:Discuss and implement ledger 
     public class MonthlyLedger {
 
-        private int _rentExpense = 0;
-        private decimal globalIncome = 0;
-        private decimal globalExpenses = 0;
-
-
         public int Year { get; set; }
         public int Month { get; set; }
         public decimal Income { get; set; }    
@@ -28,64 +23,48 @@ namespace Libs {
 
         public decimal Total { get; set; }
 
-        public List<Transaction> Transactions { get; set; }
-
-        public List<Employee> Employees { get; set; }
-
-        public List<Product> Products { get; set; }
-
-        MonthlyLedger()
-        {
-            this.Year= DateTime.Now.Year;
-            this.Month= DateTime.Now.Month;
-            this.Income = CalculateTransactionSum(Transactions);
-            this.Expenses = CalculateEmployeeCost(Employees) + CalculateProductCost(Products);
-            this.Total = (Income - Expenses);
+        public MonthlyLedger() {
+            Year = DateTime.Now.Year;
+            Month = DateTime.Now.Month;
+            Income = 0;
+            Expenses = 3000;
+            Total = 0;
 
         }
 
-        // NET INCOME 
-        public decimal CalculateTransactionSum(List<Transaction> transactions)
+
+        public MonthlyLedger(int rent)
         {
-            // L
-            // decimal sumOfTransactions = transactions.Sum(transaction => transaction.TotalPrice);
-            decimal sumOfTransactions = 0;
-
-            foreach (Transaction transaction in transactions)
-            {
-
-                sumOfTransactions += transaction.TotalPrice;
-            }
-
-            return sumOfTransactions;
+            Year= DateTime.Now.Year;
+            Month= DateTime.Now.Month;
+            Income = 0;
+            Expenses += rent;
+            Total = 0;
 
         }
-        // EXPENSES
-        public decimal CalculateEmployeeCost(List<Employee> employees) 
-        
-        {
-        
-           decimal totalEmpCost = 0;
 
+        public void UpdateIncome(Transaction trans)
+        {
+            Income += trans.TotalPrice;
+        }
+
+        public void CalculateEmployeeCost(List<Employee> employees)        
+        {
             foreach (Employee employee in employees) {
-                totalEmpCost +=  employee.Salary;    
+                Expenses +=  employee.Salary;    
             }
-            return totalEmpCost;
         }
-
-
-        //EXPENSES 
-        public decimal CalculateProductCost(Transaction trans)
+        public void UpdateExpensesFromTransaction(Transaction trans)
         {
             decimal totalProductCost = 0;
             foreach (var tr in trans.TransactionLines) {
-                totalProductCost += tr.Quantity * tr.Product.Cost;   // auto ennousa
-
+                Expenses += tr.Quantity * tr.Product.Cost;
             }
-            return totalProductCost;
+        } 
+        public void UpdateLedger(Transaction trans) {
+            UpdateExpensesFromTransaction(trans);
+            UpdateIncome(trans);
+            Total = Total + Income - Expenses;
         }
-        //TODO calculate the balance  out of INCOME / Expenses / TOTAL 
-       
-
     }
 }
