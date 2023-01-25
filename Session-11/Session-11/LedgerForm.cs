@@ -41,6 +41,7 @@ namespace Session_11
         {
             LedgerFileHelper ledgerFileHelper = new LedgerFileHelper(MonthlyLedger);
             ledgerFileHelper.AppendToLedger(MonthlyLedger);
+            MessageBox.Show("Ledger file updated !");
         }
     }
 }
