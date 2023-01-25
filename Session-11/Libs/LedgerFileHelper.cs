@@ -42,9 +42,9 @@ namespace Libs
 
                 } else
                 {
-                    using (StreamWriter streamWriter = File.AppendText(jsonString))
+                    using (StreamWriter streamWriter = File.AppendText(fileName))
                     {
-                        streamWriter.Write(monthlyLedger);
+                        streamWriter.Write(jsonString);
 
                         streamWriter.Close();
                     }
