@@ -1,3 +1,4 @@
+using DevExpress.XtraScheduler.Commands;
 using Libs;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,10 @@ namespace Session_11
         private void btnTransactions_Click(object sender, EventArgs e) {
             TransactionF f1 = new TransactionF(CoffeeShop,Transaction);
             f1.ShowDialog();
+        }
+
+        private void btnProduct_Click(object sender, EventArgs e) {
+            ProductF f2 = new ProductF(CoffeeShop);
         }
     }
 }

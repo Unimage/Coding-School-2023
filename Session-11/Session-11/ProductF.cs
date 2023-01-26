@@ -10,10 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Session_11 {
+    
     public partial class ProductF : Form {
+        CoffeeShopHandler data = new();
 
-        public ProductF() {
+        public ProductF(CoffeeShopHandler CoffeData) {
+            data = CoffeData;
             InitializeComponent();
+            grdProduct.DataSource = data.Products;
         }
 
     }
