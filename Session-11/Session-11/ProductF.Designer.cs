@@ -25,7 +25,10 @@
         private void InitializeComponent() {
             this.grdProduct = new DevExpress.XtraGrid.GridControl();
             this.grvProduct = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProduct)).BeginInit();
             this.SuspendLayout();
@@ -43,16 +46,44 @@
             // grvProduct
             // 
             this.grvProduct.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1});
+            this.colCode,
+            this.colDescription,
+            this.colPrice,
+            this.colCost});
             this.grvProduct.GridControl = this.grdProduct;
             this.grvProduct.Name = "grvProduct";
             // 
-            // gridColumn1
+            // colCode
             // 
-            this.gridColumn1.Caption = "gridColumn1";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.colCode.Caption = "Code";
+            this.colCode.FieldName = "Code";
+            this.colCode.Name = "colCode";
+            this.colCode.Visible = true;
+            this.colCode.VisibleIndex = 0;
+            // 
+            // colDescription
+            // 
+            this.colDescription.Caption = "Description";
+            this.colDescription.FieldName = "Description";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.Visible = true;
+            this.colDescription.VisibleIndex = 1;
+            // 
+            // colPrice
+            // 
+            this.colPrice.Caption = "Price";
+            this.colPrice.FieldName = "Price";
+            this.colPrice.Name = "colPrice";
+            this.colPrice.Visible = true;
+            this.colPrice.VisibleIndex = 2;
+            // 
+            // colCost
+            // 
+            this.colCost.Caption = "Cost";
+            this.colCost.FieldName = "Cost";
+            this.colCost.Name = "colCost";
+            this.colCost.Visible = true;
+            this.colCost.VisibleIndex = 3;
             // 
             // ProductF
             // 
@@ -72,6 +103,9 @@
 
         private DevExpress.XtraGrid.GridControl grdProduct;
         private DevExpress.XtraGrid.Views.Grid.GridView grvProduct;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colCost;
     }
 }
