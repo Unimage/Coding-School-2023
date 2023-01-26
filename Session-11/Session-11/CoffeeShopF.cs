@@ -51,8 +51,8 @@ namespace Session_11
         }
 
         private void btnTransactions_Click(object sender, EventArgs e) {
-           // TransactionF f1 = new TransactionF(CoffeeShop,Transaction); Strato des to xtypaei meta apo merge conflict
-           // f1.ShowDialog();
+           TransactionF f1 = new TransactionF(CoffeeShop,Transaction);
+           f1.ShowDialog();
         }
 
         private void btnProduct_Click(object sender, EventArgs e) {

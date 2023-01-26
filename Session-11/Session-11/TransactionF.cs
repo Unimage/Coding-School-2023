@@ -19,7 +19,6 @@ namespace Session_11 {
             CoffeeData = data;
             trans = tr;
             InitializeComponent();
-
         }
 
         private void TransactionF_Load(object sender, EventArgs e) {
@@ -27,10 +26,6 @@ namespace Session_11 {
             gridTransactions.DataSource = bsTransactions;
             bsEmployees.DataSource = CoffeeData.Employees;
             gridEmployees.DataSource = bsEmployees;
-
-
-
-
         }
 
         private void btnOrder_Click(object sender, EventArgs e) {
