@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,6 +94,10 @@ namespace Libs {
                 return "Cannot pay with credit card if price is more than 50 Euros";
 
             return string.Empty;
+        }
+
+        public void Addnew() {
+            _transactions.Add(_transaction);
         }
 
 

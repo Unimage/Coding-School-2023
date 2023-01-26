@@ -34,7 +34,6 @@
             this.btnLoadProduct = new System.Windows.Forms.Button();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.bsProducts = new System.Windows.Forms.BindingSource(this.components);
-            this.btnRemoveProduct = new System.Windows.Forms.Button();
             this.tBoxCode = new System.Windows.Forms.TextBox();
             this.tBoxDescription = new System.Windows.Forms.TextBox();
             this.tBoxPrice = new System.Windows.Forms.TextBox();
@@ -119,7 +118,7 @@
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(12, 310);
+            this.btnAddNew.Location = new System.Drawing.Point(475, 377);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(145, 47);
             this.btnAddNew.TabIndex = 3;
@@ -130,16 +129,6 @@
             // bsProducts
             // 
             this.bsProducts.DataSource = typeof(Libs.CoffeeShopHandler);
-            // 
-            // btnRemoveProduct
-            // 
-            this.btnRemoveProduct.Location = new System.Drawing.Point(163, 310);
-            this.btnRemoveProduct.Name = "btnRemoveProduct";
-            this.btnRemoveProduct.Size = new System.Drawing.Size(145, 47);
-            this.btnRemoveProduct.TabIndex = 4;
-            this.btnRemoveProduct.Text = "Remove Product";
-            this.btnRemoveProduct.UseVisualStyleBackColor = true;
-            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
             // 
             // tBoxCode
             // 
@@ -178,7 +167,6 @@
             this.Controls.Add(this.tBoxPrice);
             this.Controls.Add(this.tBoxDescription);
             this.Controls.Add(this.tBoxCode);
-            this.Controls.Add(this.btnRemoveProduct);
             this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.btnLoadProduct);
             this.Controls.Add(this.btnSaveProduct);
@@ -205,7 +193,6 @@
         private Button btnLoadProduct;
         private Button btnAddNew;
         private BindingSource bsProducts;
-        private Button btnRemoveProduct;
         private TextBox tBoxCode;
         private TextBox tBoxDescription;
         private TextBox tBoxPrice;
