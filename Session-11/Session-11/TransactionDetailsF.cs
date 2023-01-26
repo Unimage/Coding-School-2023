@@ -83,6 +83,7 @@ namespace Session_11 {
             }
             THandler.SaveTransactionToJson();
             THandler.Addnew();
+            MessageBox.Show("Reciept Printed!");
         }
         private void btnRemove_Click(object sender, EventArgs e) {
             var selectedLine = bsTransactionLines.Current as TransactionLine;
