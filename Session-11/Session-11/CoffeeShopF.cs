@@ -59,5 +59,11 @@ namespace Session_11
             ProductF f2 = new ProductF(CoffeeShop);
             f2.ShowDialog();
         }
+
+        private void btnProductCategoryManagement_Click(object sender, EventArgs e)
+        {
+            ProductCategoryF productCategoryF = new ProductCategoryF(CoffeeShop);
+            productCategoryF.ShowDialog();
+        }
     }
 }
