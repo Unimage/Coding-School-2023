@@ -31,6 +31,7 @@
             this.btnEmployeeRedirect = new System.Windows.Forms.Button();
             this.btnLoadLedger = new System.Windows.Forms.Button();
             this.btnTransactions = new System.Windows.Forms.Button();
+            this.btnProduct = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEmployeeRedirect
@@ -63,11 +64,22 @@
             this.btnTransactions.UseVisualStyleBackColor = true;
             this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
             // 
+            // btnProduct
+            // 
+            this.btnProduct.Location = new System.Drawing.Point(643, 95);
+            this.btnProduct.Name = "btnProduct";
+            this.btnProduct.Size = new System.Drawing.Size(171, 80);
+            this.btnProduct.TabIndex = 3;
+            this.btnProduct.Text = "Inventory Managment";
+            this.btnProduct.UseVisualStyleBackColor = true;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
+            // 
             // CoffeeShopF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1598, 728);
+            this.Controls.Add(this.btnProduct);
             this.Controls.Add(this.btnTransactions);
             this.Controls.Add(this.btnLoadLedger);
             this.Controls.Add(this.btnEmployeeRedirect);
@@ -82,5 +94,6 @@
         private Button btnEmployeeRedirect;
         private Button btnLoadLedger;
         private Button btnTransactions;
+        private Button btnProduct;
     }
 }
