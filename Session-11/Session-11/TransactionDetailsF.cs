@@ -83,10 +83,9 @@ namespace Session_11 {
             if (errorMessage != string.Empty) {
                 MessageBox.Show(errorMessage);
                 return;
-
             }
             THandler.SaveTransactionToJson();
-
+            THandler.Addnew();
         }
         private void btnRemove_Click(object sender, EventArgs e) {
             var selectedLine = bsTransactionLines.Current as TransactionLine;
@@ -99,7 +98,6 @@ namespace Session_11 {
                 grvTransactionLines.RefreshData();
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e) {
             THandler._transaction.TransactionLines.Clear();
             this.Close();
