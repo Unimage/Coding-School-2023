@@ -27,7 +27,7 @@ namespace Session_11
 
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
-            
+
             InitializeComponent();
             CoffeeShop.Init();
             LedgerOfTheMonth = new MonthlyLedger(CoffeeShop.Employees);
@@ -50,12 +50,14 @@ namespace Session_11
             ledgerForm.ShowDialog();
         }
 
-        private void btnTransactions_Click(object sender, EventArgs e) {
-           // TransactionF f1 = new TransactionF(CoffeeShop,Transaction); Strato des to xtypaei meta apo merge conflict
-           // f1.ShowDialog();
+        private void btnTransactions_Click(object sender, EventArgs e)
+        {
+            // TransactionF f1 = new TransactionF(CoffeeShop,Transaction); Strato des to xtypaei meta apo merge conflict
+            // f1.ShowDialog();
         }
 
-        private void btnProduct_Click(object sender, EventArgs e) {
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
             ProductF f2 = new ProductF(CoffeeShop);
             f2.ShowDialog();
         }
