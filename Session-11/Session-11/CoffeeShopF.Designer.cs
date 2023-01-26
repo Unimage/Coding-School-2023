@@ -33,15 +33,16 @@
             btnTransactions = new Button();
             btnProduct = new Button();
             btnProductCategoryManagement = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // btnEmployeeRedirect
             // 
-            btnEmployeeRedirect.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnEmployeeRedirect.BackColor = Color.Moccasin;
-            btnEmployeeRedirect.Location = new Point(182, 476);
+            btnEmployeeRedirect.Dock = DockStyle.Bottom;
+            btnEmployeeRedirect.Location = new Point(0, 460);
             btnEmployeeRedirect.Name = "btnEmployeeRedirect";
-            btnEmployeeRedirect.Size = new Size(163, 59);
+            btnEmployeeRedirect.Size = new Size(836, 86);
             btnEmployeeRedirect.TabIndex = 0;
             btnEmployeeRedirect.Text = "Employee Management";
             btnEmployeeRedirect.UseVisualStyleBackColor = false;
@@ -49,11 +50,11 @@
             // 
             // btnLoadLedger
             // 
-            btnLoadLedger.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnLoadLedger.BackColor = Color.SandyBrown;
-            btnLoadLedger.Location = new Point(584, 479);
+            btnLoadLedger.Dock = DockStyle.Right;
+            btnLoadLedger.Location = new Point(760, 0);
             btnLoadLedger.Name = "btnLoadLedger";
-            btnLoadLedger.Size = new Size(163, 55);
+            btnLoadLedger.Size = new Size(76, 460);
             btnLoadLedger.TabIndex = 1;
             btnLoadLedger.Text = "Ledger";
             btnLoadLedger.UseVisualStyleBackColor = false;
@@ -65,7 +66,7 @@
             btnTransactions.Dock = DockStyle.Top;
             btnTransactions.Location = new Point(0, 0);
             btnTransactions.Name = "btnTransactions";
-            btnTransactions.Size = new Size(774, 55);
+            btnTransactions.Size = new Size(760, 140);
             btnTransactions.TabIndex = 2;
             btnTransactions.Text = "Transactions";
             btnTransactions.UseVisualStyleBackColor = false;
@@ -73,12 +74,12 @@
             // 
             // btnProduct
             // 
-            btnProduct.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnProduct.BackColor = Color.Moccasin;
-            btnProduct.Location = new Point(26, 475);
+            btnProduct.Dock = DockStyle.Bottom;
+            btnProduct.Location = new Point(0, 374);
             btnProduct.Margin = new Padding(3, 2, 3, 2);
             btnProduct.Name = "btnProduct";
-            btnProduct.Size = new Size(150, 60);
+            btnProduct.Size = new Size(760, 86);
             btnProduct.TabIndex = 3;
             btnProduct.Text = "Inventory Managment";
             btnProduct.UseVisualStyleBackColor = false;
@@ -86,30 +87,44 @@
             // 
             // btnProductCategoryManagement
             // 
-            btnProductCategoryManagement.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnProductCategoryManagement.BackColor = Color.Moccasin;
-            btnProductCategoryManagement.Location = new Point(351, 478);
+            btnProductCategoryManagement.Dock = DockStyle.Bottom;
+            btnProductCategoryManagement.Location = new Point(0, 292);
             btnProductCategoryManagement.Margin = new Padding(3, 2, 3, 2);
             btnProductCategoryManagement.Name = "btnProductCategoryManagement";
-            btnProductCategoryManagement.Size = new Size(227, 55);
+            btnProductCategoryManagement.Size = new Size(760, 82);
             btnProductCategoryManagement.TabIndex = 4;
             btnProductCategoryManagement.Text = "Product Category Management";
             btnProductCategoryManagement.UseVisualStyleBackColor = false;
             btnProductCategoryManagement.Click += btnProductCategoryManagement_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(12, 201);
+            label1.Name = "label1";
+            label1.Size = new Size(653, 30);
+            label1.TabIndex = 5;
+            label1.Text = "CoffeeShop Management Suite 1.1 (Epsilon Coding School 2023)";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // CoffeeShopF
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(774, 546);
+            ClientSize = new Size(836, 546);
+            Controls.Add(label1);
             Controls.Add(btnProductCategoryManagement);
             Controls.Add(btnProduct);
             Controls.Add(btnTransactions);
             Controls.Add(btnLoadLedger);
             Controls.Add(btnEmployeeRedirect);
+            MaximizeBox = false;
             Name = "CoffeeShopF";
-            Text = "CoffeeShop";
+            Text = "CoffeeShop 1.1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -119,5 +134,6 @@
         private Button btnTransactions;
         private Button btnProduct;
         private Button btnProductCategoryManagement;
+        private Label label1;
     }
 }
