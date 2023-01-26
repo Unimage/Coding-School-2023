@@ -32,57 +32,78 @@
             this.btnLoadLedger = new System.Windows.Forms.Button();
             this.btnTransactions = new System.Windows.Forms.Button();
             this.btnProduct = new System.Windows.Forms.Button();
+            this.btnProductCategoryManagement = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEmployeeRedirect
             // 
-            this.btnEmployeeRedirect.Location = new System.Drawing.Point(211, 61);
+            this.btnEmployeeRedirect.BackColor = System.Drawing.Color.Moccasin;
+            this.btnEmployeeRedirect.Location = new System.Drawing.Point(168, 46);
+            this.btnEmployeeRedirect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEmployeeRedirect.Name = "btnEmployeeRedirect";
-            this.btnEmployeeRedirect.Size = new System.Drawing.Size(163, 79);
+            this.btnEmployeeRedirect.Size = new System.Drawing.Size(186, 105);
             this.btnEmployeeRedirect.TabIndex = 0;
             this.btnEmployeeRedirect.Text = "Employee Management";
-            this.btnEmployeeRedirect.UseVisualStyleBackColor = true;
+            this.btnEmployeeRedirect.UseVisualStyleBackColor = false;
             this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
             // 
             // btnLoadLedger
             // 
-            this.btnLoadLedger.Location = new System.Drawing.Point(211, 474);
+            this.btnLoadLedger.BackColor = System.Drawing.Color.SandyBrown;
+            this.btnLoadLedger.Location = new System.Drawing.Point(803, 408);
+            this.btnLoadLedger.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLoadLedger.Name = "btnLoadLedger";
-            this.btnLoadLedger.Size = new System.Drawing.Size(163, 75);
+            this.btnLoadLedger.Size = new System.Drawing.Size(186, 100);
             this.btnLoadLedger.TabIndex = 1;
             this.btnLoadLedger.Text = "Ledger";
-            this.btnLoadLedger.UseVisualStyleBackColor = true;
+            this.btnLoadLedger.UseVisualStyleBackColor = false;
             this.btnLoadLedger.Click += new System.EventHandler(this.btnLoadLedger_Click);
             // 
             // btnTransactions
             // 
-            this.btnTransactions.Location = new System.Drawing.Point(885, 275);
+            this.btnTransactions.BackColor = System.Drawing.Color.SandyBrown;
+            this.btnTransactions.Location = new System.Drawing.Point(766, 129);
+            this.btnTransactions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTransactions.Name = "btnTransactions";
-            this.btnTransactions.Size = new System.Drawing.Size(212, 88);
+            this.btnTransactions.Size = new System.Drawing.Size(242, 73);
             this.btnTransactions.TabIndex = 2;
             this.btnTransactions.Text = "Transactions";
-            this.btnTransactions.UseVisualStyleBackColor = true;
+            this.btnTransactions.UseVisualStyleBackColor = false;
             this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
             // 
             // btnProduct
             // 
-            this.btnProduct.Location = new System.Drawing.Point(643, 95);
+            this.btnProduct.BackColor = System.Drawing.Color.Moccasin;
+            this.btnProduct.Location = new System.Drawing.Point(168, 408);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Size = new System.Drawing.Size(171, 80);
             this.btnProduct.TabIndex = 3;
             this.btnProduct.Text = "Inventory Managment";
-            this.btnProduct.UseVisualStyleBackColor = true;
+            this.btnProduct.UseVisualStyleBackColor = false;
             this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
+            // 
+            // btnProductCategoryManagement
+            // 
+            this.btnProductCategoryManagement.BackColor = System.Drawing.Color.Moccasin;
+            this.btnProductCategoryManagement.Location = new System.Drawing.Point(168, 236);
+            this.btnProductCategoryManagement.Name = "btnProductCategoryManagement";
+            this.btnProductCategoryManagement.Size = new System.Drawing.Size(259, 73);
+            this.btnProductCategoryManagement.TabIndex = 4;
+            this.btnProductCategoryManagement.Text = "Product Category Management";
+            this.btnProductCategoryManagement.UseVisualStyleBackColor = false;
+            this.btnProductCategoryManagement.Click += new System.EventHandler(this.btnProductCategoryManagement_Click);
             // 
             // CoffeeShopF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1598, 728);
+            this.Controls.Add(this.btnProductCategoryManagement);
             this.Controls.Add(this.btnProduct);
             this.Controls.Add(this.btnTransactions);
             this.Controls.Add(this.btnLoadLedger);
             this.Controls.Add(this.btnEmployeeRedirect);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CoffeeShopF";
             this.Text = "CoffeeShop";
             this.ResumeLayout(false);
@@ -95,5 +116,6 @@
         private Button btnLoadLedger;
         private Button btnTransactions;
         private Button btnProduct;
+        private Button btnProductCategoryManagement;
     }
 }

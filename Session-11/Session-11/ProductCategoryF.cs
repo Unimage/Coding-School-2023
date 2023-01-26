@@ -23,7 +23,7 @@ namespace Session_11 {
             ShopCategory = transfer;
             InitializeComponent();
 
-            grdProductCategory.DataSource = ShopCategory.ProductCategories;
+            gcProductCategory.DataSource = ShopCategory.ProductCategories;
         }
 
         private void ProductCategoryF_Load(object sender, EventArgs e)
@@ -48,8 +48,8 @@ namespace Session_11 {
 
         private void btnReloadCategories_Click(object sender, EventArgs e)
         {
-            grdProductCategory.DataSource = null;
-            grdProductCategory.DataSource = ShopCategory.ProductCategories;
+            gcProductCategory.DataSource = null;
+            gcProductCategory.DataSource = ShopCategory.ProductCategories;
         }
 
         private void btnReloadFromJson_Click(object sender, EventArgs e)
@@ -57,6 +57,46 @@ namespace Session_11 {
             MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
             ShopCategory.CheckAndPopulateProductCategories();
         }
+
+        private void btnExportToJson_Click(object sender, EventArgs e)
+        {
+            ShopCategory.SerializeProductCategory();
+            MessageBox.Show("Exported Successfully!");
+        }
+
+        private void btnReloadFromJson_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        private void ResetProductCategoryGVs()
+        {
+            gcProductCategory.DataSource = null;
+            gcProductCategory.DataSource = ShopCategory.ProductCategories;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ShopCategory.ProductCategories.Clear();
+            ShopCategory.SetDefaultProductCategories();
+            ResetProductCategoryGVs();
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddCategory_Click_1(object sender, EventArgs e)
+        {
+            ProductCategory tmpCateg = new ProductCategory()
+            {
+                Code = tboxAddCategory.Text,
+                Description = tboxDescription.Text,
+                ProductType =  (ProductType)Enum.Parse(typeof(ProductType), comboProductType.SelectedItem.ToString())
+            };
+            ShopCategory.ProductCategories.Add(tmpCateg);
+            ResetProductCategoryGVs();
+        }
+
 
         /* private void btnReloadProductCategories_EditValueChanged(object sender, EventArgs e)
          {
