@@ -23,14 +23,21 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.grdProduct = new DevExpress.XtraGrid.GridControl();
             this.grvProduct = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnSaveProduct = new System.Windows.Forms.Button();
+            this.btnLoadProduct = new System.Windows.Forms.Button();
+            this.btnAddNew = new System.Windows.Forms.Button();
+            this.bsProducts = new System.Windows.Forms.BindingSource(this.components);
+            this.btnRemoveProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // grdProduct
@@ -86,16 +93,65 @@
             this.colCost.Visible = true;
             this.colCost.VisibleIndex = 3;
             // 
+            // btnSaveProduct
+            // 
+            this.btnSaveProduct.Location = new System.Drawing.Point(649, 310);
+            this.btnSaveProduct.Name = "btnSaveProduct";
+            this.btnSaveProduct.Size = new System.Drawing.Size(139, 47);
+            this.btnSaveProduct.TabIndex = 1;
+            this.btnSaveProduct.Text = "Export to JSON";
+            this.btnSaveProduct.UseVisualStyleBackColor = true;
+            this.btnSaveProduct.Click += new System.EventHandler(this.btnSaveProduct_Click);
+            // 
+            // btnLoadProduct
+            // 
+            this.btnLoadProduct.Location = new System.Drawing.Point(498, 310);
+            this.btnLoadProduct.Name = "btnLoadProduct";
+            this.btnLoadProduct.Size = new System.Drawing.Size(145, 47);
+            this.btnLoadProduct.TabIndex = 2;
+            this.btnLoadProduct.Text = "Load from JSON";
+            this.btnLoadProduct.UseVisualStyleBackColor = true;
+            this.btnLoadProduct.Click += new System.EventHandler(this.btnLoadProduct_Click);
+            // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Location = new System.Drawing.Point(12, 310);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(145, 47);
+            this.btnAddNew.TabIndex = 3;
+            this.btnAddNew.Text = "Add New Product";
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
+            // bsProducts
+            // 
+            this.bsProducts.DataSource = typeof(Libs.CoffeeShopHandler);
+            // 
+            // btnRemoveProduct
+            // 
+            this.btnRemoveProduct.Location = new System.Drawing.Point(163, 310);
+            this.btnRemoveProduct.Name = "btnRemoveProduct";
+            this.btnRemoveProduct.Size = new System.Drawing.Size(145, 47);
+            this.btnRemoveProduct.TabIndex = 4;
+            this.btnRemoveProduct.Text = "Remove Product";
+            this.btnRemoveProduct.UseVisualStyleBackColor = true;
+            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
+            // 
             // ProductF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnRemoveProduct);
+            this.Controls.Add(this.btnAddNew);
+            this.Controls.Add(this.btnLoadProduct);
+            this.Controls.Add(this.btnSaveProduct);
             this.Controls.Add(this.grdProduct);
             this.Name = "ProductF";
             this.Text = "ProductF";
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsProducts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,5 +164,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
         private DevExpress.XtraGrid.Columns.GridColumn colCost;
+        private Button btnSaveProduct;
+        private Button btnLoadProduct;
+        private Button btnAddNew;
+        private BindingSource bsProducts;
+        private Button btnRemoveProduct;
     }
 }
