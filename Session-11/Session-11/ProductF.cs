@@ -32,11 +32,24 @@ namespace Session_11 {
         }
 
         private void btnAddNew_Click(object sender, EventArgs e) {
-            // bsProducts.AddNew(); // Not working
+            // bsProducts.AddNew(); 
+           Product tmpEmp = new Product() {
+                Code = tBoxCode.Text,
+                Description = tBoxDescription.Text,
+                Price = Convert.ToDecimal(tBoxPrice.Text),
+                Cost = Convert.ToDecimal(tBoxCost.Text)
+            };
+            ProductData.Products.Add(tmpEmp);
+            MessageBox.Show("Added new product!");
+            ResetGVs();
         }
 
         private void btnRemoveProduct_Click(object sender, EventArgs e) {
-            bsProducts.RemoveCurrent(); // Not working
+            
+        }
+        private void ResetGVs() {
+            grdProduct.DataSource = null;
+            grdProduct.DataSource = ProductData.Products;
         }
 
 
