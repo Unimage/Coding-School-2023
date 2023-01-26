@@ -31,6 +31,11 @@ namespace Session_11
         private void btnLoadLedger_Click(object sender, EventArgs e)
         {
 
+            // Ledger has to be updated before listing the values on the lstbox. 
+            //  WIP , each time the ledger object has to be updated - within any form - 
+            // yes to be implemented
+
+
             lstbLedger.Items.Add($"Year:{MonthlyLedger.Year} Month:{MonthlyLedger.Month} [Income : {MonthlyLedger.Income}] ," +
                 $" [Expenses : {MonthlyLedger.Expenses}] , [Total : {MonthlyLedger.Total}]");
 
