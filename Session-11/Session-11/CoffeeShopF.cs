@@ -57,6 +57,7 @@ namespace Session_11
 
         private void btnProduct_Click(object sender, EventArgs e) {
             ProductF f2 = new ProductF(CoffeeShop);
+            f2.ShowDialog();
         }
     }
 }
