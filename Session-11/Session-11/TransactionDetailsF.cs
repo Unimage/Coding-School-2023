@@ -60,9 +60,6 @@ namespace Session_11 {
             };
             THandler.AddTransactionLines(newTransactionLine);
             THandler.CalculateTransaction();
-
-
-
         }
         private void ResetQuantity() {
             spinEditQuantity.Text = "1";

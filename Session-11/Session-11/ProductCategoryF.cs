@@ -63,11 +63,6 @@ namespace Session_11 {
             ShopCategory.SerializeProductCategory();
             MessageBox.Show("Exported Successfully!");
         }
-
-        private void btnReloadFromJson_Click_1(object sender, EventArgs e)
-        {
-
-        }
         private void ResetProductCategoryGVs()
         {
             gcProductCategory.DataSource = null;
