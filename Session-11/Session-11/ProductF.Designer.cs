@@ -35,6 +35,10 @@
             this.btnAddNew = new System.Windows.Forms.Button();
             this.bsProducts = new System.Windows.Forms.BindingSource(this.components);
             this.btnRemoveProduct = new System.Windows.Forms.Button();
+            this.tBoxCode = new System.Windows.Forms.TextBox();
+            this.tBoxDescription = new System.Windows.Forms.TextBox();
+            this.tBoxPrice = new System.Windows.Forms.TextBox();
+            this.tBoxCost = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsProducts)).BeginInit();
@@ -137,11 +141,43 @@
             this.btnRemoveProduct.UseVisualStyleBackColor = true;
             this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
             // 
+            // tBoxCode
+            // 
+            this.tBoxCode.Location = new System.Drawing.Point(12, 390);
+            this.tBoxCode.Name = "tBoxCode";
+            this.tBoxCode.Size = new System.Drawing.Size(100, 23);
+            this.tBoxCode.TabIndex = 5;
+            // 
+            // tBoxDescription
+            // 
+            this.tBoxDescription.Location = new System.Drawing.Point(118, 390);
+            this.tBoxDescription.Name = "tBoxDescription";
+            this.tBoxDescription.Size = new System.Drawing.Size(100, 23);
+            this.tBoxDescription.TabIndex = 6;
+            // 
+            // tBoxPrice
+            // 
+            this.tBoxPrice.Location = new System.Drawing.Point(224, 390);
+            this.tBoxPrice.Name = "tBoxPrice";
+            this.tBoxPrice.Size = new System.Drawing.Size(100, 23);
+            this.tBoxPrice.TabIndex = 7;
+            // 
+            // tBoxCost
+            // 
+            this.tBoxCost.Location = new System.Drawing.Point(330, 390);
+            this.tBoxCost.Name = "tBoxCost";
+            this.tBoxCost.Size = new System.Drawing.Size(100, 23);
+            this.tBoxCost.TabIndex = 8;
+            // 
             // ProductF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tBoxCost);
+            this.Controls.Add(this.tBoxPrice);
+            this.Controls.Add(this.tBoxDescription);
+            this.Controls.Add(this.tBoxCode);
             this.Controls.Add(this.btnRemoveProduct);
             this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.btnLoadProduct);
@@ -153,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsProducts)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -169,5 +206,9 @@
         private Button btnAddNew;
         private BindingSource bsProducts;
         private Button btnRemoveProduct;
+        private TextBox tBoxCode;
+        private TextBox tBoxDescription;
+        private TextBox tBoxPrice;
+        private TextBox tBoxCost;
     }
 }

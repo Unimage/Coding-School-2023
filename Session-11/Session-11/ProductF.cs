@@ -32,12 +32,14 @@ namespace Session_11 {
         }
 
         private void btnAddNew_Click(object sender, EventArgs e) {
-            bsProducts.AddNew(); // Not working
+            // bsProducts.AddNew(); // Not working
         }
 
         private void btnRemoveProduct_Click(object sender, EventArgs e) {
             bsProducts.RemoveCurrent(); // Not working
         }
+
+
     }
 
 }
