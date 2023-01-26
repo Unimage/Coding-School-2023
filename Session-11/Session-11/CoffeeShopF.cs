@@ -27,7 +27,7 @@ namespace Session_11
 
             CoffeeShop = new CoffeeShopHandler();
             Transaction = new TransactionHandler();
-            
+
             InitializeComponent();
             CoffeeShop.Init();
             LedgerOfTheMonth = new MonthlyLedger(CoffeeShop.Employees);
@@ -55,7 +55,8 @@ namespace Session_11
            f1.ShowDialog();
         }
 
-        private void btnProduct_Click(object sender, EventArgs e) {
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
             ProductF f2 = new ProductF(CoffeeShop);
             f2.ShowDialog();
         }
