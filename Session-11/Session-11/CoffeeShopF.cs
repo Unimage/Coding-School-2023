@@ -1,3 +1,4 @@
+using DevExpress.XtraScheduler.Commands;
 using Libs;
 using System;
 using System.Collections.Generic;
@@ -54,10 +55,9 @@ namespace Session_11
             f1.ShowDialog();
         }
 
-        private void btnProductCategories_Click(object sender, EventArgs e)
-        {
-            ProductCategoryF productCategoryF = new ProductCategoryF(CoffeeShop);
-            productCategoryF.ShowDialog();
+        private void btnProduct_Click(object sender, EventArgs e) {
+            ProductF f2 = new ProductF(CoffeeShop);
+            f2.ShowDialog();
         }
     }
 }
