@@ -12,8 +12,12 @@ using System.Windows.Forms;
 namespace Session_11 {
     public partial class ProductF : Form {
 
+        CoffeeShopHandler Product { get; set; } = new();
+
         public ProductF() {
             InitializeComponent();
+
+            
         }
 
     }
