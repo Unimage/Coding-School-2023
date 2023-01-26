@@ -36,11 +36,11 @@
             this.tboxAddCategory = new System.Windows.Forms.TextBox();
             this.txtAdd = new System.Windows.Forms.TextBox();
             this.tboxDescription = new System.Windows.Forms.TextBox();
-            this.tboxProductType = new System.Windows.Forms.TextBox();
             this.txtAddDescription = new System.Windows.Forms.TextBox();
             this.txtAddProductType = new System.Windows.Forms.TextBox();
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.txtProductCategories = new System.Windows.Forms.TextBox();
+            this.comboProductType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gcProductCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProductCategory)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +91,7 @@
             // colProductType
             // 
             this.colProductType.Caption = "Product Type";
-            this.colProductType.FieldName = "Product Type";
+            this.colProductType.FieldName = "ProductType";
             this.colProductType.MinWidth = 25;
             this.colProductType.Name = "colProductType";
             this.colProductType.Visible = true;
@@ -168,13 +168,6 @@
             this.tboxDescription.Size = new System.Drawing.Size(169, 27);
             this.tboxDescription.TabIndex = 8;
             // 
-            // tboxProductType
-            // 
-            this.tboxProductType.Location = new System.Drawing.Point(488, 526);
-            this.tboxProductType.Name = "tboxProductType";
-            this.tboxProductType.Size = new System.Drawing.Size(169, 27);
-            this.tboxProductType.TabIndex = 9;
-            // 
             // txtAddDescription
             // 
             this.txtAddDescription.Location = new System.Drawing.Point(317, 493);
@@ -210,16 +203,28 @@
             this.txtProductCategories.TabIndex = 13;
             this.txtProductCategories.Text = "Product Categories";
             // 
+            // comboProductType
+            // 
+            this.comboProductType.FormattingEnabled = true;
+            this.comboProductType.Items.AddRange(new object[] {
+            "Coffee",
+            "Beverages",
+            "Food"});
+            this.comboProductType.Location = new System.Drawing.Point(478, 526);
+            this.comboProductType.Name = "comboProductType";
+            this.comboProductType.Size = new System.Drawing.Size(179, 28);
+            this.comboProductType.TabIndex = 14;
+            // 
             // ProductCategoryF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.comboProductType);
             this.Controls.Add(this.txtProductCategories);
             this.Controls.Add(this.btnAddCategory);
             this.Controls.Add(this.txtAddProductType);
             this.Controls.Add(this.txtAddDescription);
-            this.Controls.Add(this.tboxProductType);
             this.Controls.Add(this.tboxDescription);
             this.Controls.Add(this.txtAdd);
             this.Controls.Add(this.tboxAddCategory);
@@ -255,10 +260,10 @@
         private TextBox tboxAddCategory;
         private TextBox txtAdd;
         private TextBox tboxDescription;
-        private TextBox tboxProductType;
         private TextBox txtAddDescription;
         private TextBox txtAddProductType;
         private Button btnAddCategory;
         private TextBox txtProductCategories;
+        private ComboBox comboProductType;
     }
 }

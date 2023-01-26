@@ -65,6 +65,7 @@
             this.gcEmployee.UseEmbeddedNavigator = true;
             this.gcEmployee.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcEmployee.Click += new System.EventHandler(this.gcEmployee_Click);
             // 
             // gridView1
             // 

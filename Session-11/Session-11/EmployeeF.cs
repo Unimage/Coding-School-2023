@@ -99,5 +99,10 @@ namespace Session_11
         {
 
         }
+
+        private void gcEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

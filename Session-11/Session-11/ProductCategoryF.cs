@@ -91,20 +91,9 @@ namespace Session_11 {
             {
                 Code = tboxAddCategory.Text,
                 Description = tboxDescription.Text,
-             //   ProductType = tboxProductType.Text,  DEN KSERW GIATI DEN TO PAIZEI
+                ProductType =  (ProductType)Enum.Parse(typeof(ProductType), comboProductType.SelectedItem.ToString())
             };
             ShopCategory.ProductCategories.Add(tmpCateg);
-            if (ShopCategory.CheckLimitsForm())
-            {
-
-
-                MessageBox.Show("New Employee Successfully added to Roster!\nPress Reload To See.");
-            }
-            else
-            {
-                ShopCategory.ProductCategories.Remove(tmpCateg);
-                MessageBox.Show("Error on the Roster Limits\nPress Reload To See.");
-            }
             ResetProductCategoryGVs();
         }
 
