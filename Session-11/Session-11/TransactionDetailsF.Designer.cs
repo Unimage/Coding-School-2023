@@ -197,9 +197,11 @@
             // 
             // labelCustomer
             // 
+            this.labelCustomer.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCustomer.Appearance.Options.UseFont = true;
             this.labelCustomer.Location = new System.Drawing.Point(21, 12);
             this.labelCustomer.Name = "labelCustomer";
-            this.labelCustomer.Size = new System.Drawing.Size(63, 13);
+            this.labelCustomer.Size = new System.Drawing.Size(75, 16);
             this.labelCustomer.TabIndex = 15;
             this.labelCustomer.Text = "labelControl1";
             // 
@@ -256,15 +258,17 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(309, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.Size = new System.Drawing.Size(74, 20);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Amount:";
+            this.label2.Text = "Quantity:";
             // 
             // labelTotalPrice
             // 
+            this.labelTotalPrice.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTotalPrice.Appearance.Options.UseFont = true;
             this.labelTotalPrice.Location = new System.Drawing.Point(672, 41);
             this.labelTotalPrice.Name = "labelTotalPrice";
-            this.labelTotalPrice.Size = new System.Drawing.Size(63, 13);
+            this.labelTotalPrice.Size = new System.Drawing.Size(75, 16);
             this.labelTotalPrice.TabIndex = 20;
             this.labelTotalPrice.Text = "labelControl1";
             // 
