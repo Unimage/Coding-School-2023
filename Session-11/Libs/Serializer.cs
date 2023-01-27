@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 
 namespace Libs {
+    [Serializable]
     public class Serializer {
 
         public void SerializeToFile(object obj, string fileName) {

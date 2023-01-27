@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Libs
 {
+    [Serializable]
     public class Transaction
     {
         public Guid ID { get; set; }

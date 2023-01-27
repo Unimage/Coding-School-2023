@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Libs {
+    [Serializable]
 
     public class Customer {
 

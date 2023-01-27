@@ -2,6 +2,7 @@
 using System.Linq;
 
 namespace Libs {
+    [Serializable]
 
     public class Employee {
 

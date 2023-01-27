@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 ///
 
 namespace Libs {
+    [Serializable]
     public class TransactionHandler 
     {
         public Transaction _transaction { get; set; } = new Transaction();

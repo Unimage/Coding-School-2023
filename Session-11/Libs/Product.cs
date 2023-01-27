@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_11
 {
+    [Serializable]
     public class Product
     {
         public Guid ProductID { get; set; }

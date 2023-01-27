@@ -1,3 +1,4 @@
+using DevExpress.XtraBars.Docking.Helpers;
 using DevExpress.XtraScheduler.Commands;
 using Libs;
 using System;
@@ -19,7 +20,7 @@ namespace Session_11
         TransactionHandler Transaction;
         CoffeeShopHandler CoffeeShop;
         MonthlyLedger LedgerOfTheMonth;
-        TransactionLine translinetobeadded;
+        CoffeeShopWrapper CoffeeShopWrapper;
         bool tmp = false;
 
         public CoffeeShopF()
@@ -31,11 +32,13 @@ namespace Session_11
             InitializeComponent();
             CoffeeShop.Init();
             LedgerOfTheMonth = new MonthlyLedger(CoffeeShop.Employees);
+            CoffeeShopWrapper = new CoffeeShopWrapper(CoffeeShop, Transaction, LedgerOfTheMonth);
         }
 
-        private void load()
+        private void ExportAll()
         {
-
+            Serializer serializer = new Serializer();
+            serializer.SerializeToFile(CoffeeShopWrapper, "GenericSaving.json");
         }
 
         private void btnEmployeeRedirect_Click(object sender, EventArgs e)
@@ -67,8 +70,9 @@ namespace Session_11
             productCategoryF.ShowDialog();
         }
 
-        private void btnTransactions_Click_1(object sender, EventArgs e) {
-
+        private void btnSaveAll_Click(object sender, EventArgs e) {
+            ExportAll();
+            MessageBox.Show("Exported Exerything!");
         }
     }
 }

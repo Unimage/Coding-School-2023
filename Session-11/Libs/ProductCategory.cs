@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Session_11
 {
+    [Serializable]
     public class ProductCategory
     {
         

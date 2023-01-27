@@ -8,6 +8,7 @@ using System.IO;
 using Newtonsoft.Json;
 
 namespace Libs {
+    [Serializable]
     public class CoffeeShopHandler {
         public bool errorAtLoad = false;
 

@@ -12,7 +12,8 @@ using Session_11;
 
 namespace Libs {
 
-    //TODO:Discuss and implement ledger 
+    //TODO:Discuss and implement ledger
+    [Serializable]
     public class MonthlyLedger {
 
         public int Year { get; set; }

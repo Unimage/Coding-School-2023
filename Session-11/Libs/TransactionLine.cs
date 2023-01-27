@@ -8,6 +8,7 @@ using System.Transactions;
 
 namespace Libs
 {
+    [Serializable]
     public class TransactionLine
     {
         public Guid ID { get; set; }
