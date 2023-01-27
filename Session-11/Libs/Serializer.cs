@@ -25,6 +25,9 @@ namespace Libs {
             return obj;
 
         }
+        public void SaveToJson(object obj) {
+
+        }
 
 
     }

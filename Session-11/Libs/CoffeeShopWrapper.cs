@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,11 @@ using System.Threading.Tasks;
 
 namespace Libs {
     [Serializable]
+    [JsonObject(MemberSerialization.OptOut)]
     public  class CoffeeShopWrapper {
-        CoffeeShopHandler CoffeeData { get; set; }
-        TransactionHandler Transaction { get; set; }
-        MonthlyLedger Ledger { get; set; }
+        public CoffeeShopHandler CoffeeData { get; set; }
+        public TransactionHandler Transaction { get; set; }
+        public MonthlyLedger Ledger { get; set; }
 
         public CoffeeShopWrapper() { }
         public CoffeeShopWrapper(CoffeeShopHandler coffeeData, TransactionHandler transaction , MonthlyLedger ledger){

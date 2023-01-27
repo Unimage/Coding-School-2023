@@ -1,11 +1,13 @@
 using DevExpress.XtraBars.Docking.Helpers;
 using DevExpress.XtraScheduler.Commands;
 using Libs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
@@ -71,7 +73,8 @@ namespace Session_11
         }
 
         private void btnSaveAll_Click(object sender, EventArgs e) {
-            ExportAll();
+            string json = JsonConvert.SerializeObject(CoffeeShopWrapper, Formatting.Indented);
+            File.WriteAllText("GenericSaving.json", json);
             MessageBox.Show("Exported Exerything!");
         }
     }
