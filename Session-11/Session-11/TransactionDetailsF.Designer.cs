@@ -161,27 +161,27 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(402, 424);
+            this.btnRemove.Location = new System.Drawing.Point(449, 405);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(106, 22);
+            this.btnRemove.Size = new System.Drawing.Size(106, 41);
             this.btnRemove.TabIndex = 11;
             this.btnRemove.Text = "Remove";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(546, 424);
+            this.btnSave.Location = new System.Drawing.Point(561, 405);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(105, 22);
+            this.btnSave.Size = new System.Drawing.Size(105, 41);
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(672, 424);
+            this.btnCancel.Location = new System.Drawing.Point(672, 405);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 22);
+            this.btnCancel.Size = new System.Drawing.Size(118, 41);
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

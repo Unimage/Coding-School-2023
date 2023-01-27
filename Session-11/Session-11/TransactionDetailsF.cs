@@ -29,6 +29,8 @@ namespace Session_11 {
             InitializeComponent();
             bsProducts.DataSource = CoffeeData.Products;
             gridProducts.DataSource = bsProducts;
+            
+            
 
             bsTransactionLines.DataSource = THandler._transaction.TransactionLines;
             gridTransactionLines.DataSource = bsTransactionLines;
@@ -36,6 +38,7 @@ namespace Session_11 {
 
         private void TransactionDetailsF_Load(object sender, EventArgs e) {
             UpdateLabelTotalPrice();
+            lookUpPaymentMethod.DataBindings.Add(new Binding("EditValue", bsTransactions, "PaymentMethod", true));
 
         }
         private void RefreshGv() {

@@ -46,6 +46,7 @@
             this.btnEmployeeRedirect.TabIndex = 0;
             this.btnEmployeeRedirect.Text = "Employee Management";
             this.btnEmployeeRedirect.UseVisualStyleBackColor = false;
+            this.btnEmployeeRedirect.Click += new System.EventHandler(this.btnEmployeeRedirect_Click);
             // 
             // btnLoadLedger
             // 
@@ -57,6 +58,7 @@
             this.btnLoadLedger.TabIndex = 1;
             this.btnLoadLedger.Text = "Ledger";
             this.btnLoadLedger.UseVisualStyleBackColor = false;
+            this.btnLoadLedger.Click += new System.EventHandler(this.btnLoadLedger_Click);
             // 
             // btnTransactions
             // 
@@ -68,6 +70,7 @@
             this.btnTransactions.TabIndex = 2;
             this.btnTransactions.Text = "Transactions";
             this.btnTransactions.UseVisualStyleBackColor = false;
+            this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
             // 
             // btnProduct
             // 
@@ -80,6 +83,7 @@
             this.btnProduct.TabIndex = 3;
             this.btnProduct.Text = "Inventory Managment";
             this.btnProduct.UseVisualStyleBackColor = false;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // btnProductCategoryManagement
             // 
@@ -92,6 +96,7 @@
             this.btnProductCategoryManagement.TabIndex = 4;
             this.btnProductCategoryManagement.Text = "Product Category Management";
             this.btnProductCategoryManagement.UseVisualStyleBackColor = false;
+            this.btnProductCategoryManagement.Click += new System.EventHandler(this.btnProductCategoryManagement_Click);
             // 
             // label1
             // 
