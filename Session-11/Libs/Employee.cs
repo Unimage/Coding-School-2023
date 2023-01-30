@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Libs {
+namespace CoffeeShop.Model {
     [Serializable]
 
     public class Employee {

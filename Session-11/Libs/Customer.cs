@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libs {
+namespace CoffeeShop.Model {
     [Serializable]
 
     public class Customer {

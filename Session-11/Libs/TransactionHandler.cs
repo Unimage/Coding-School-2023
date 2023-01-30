@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 ///Later in the implementation it will have a role of housekeeping ledger 
 ///
 
-namespace Libs {
+namespace CoffeeShop.Model {
     [Serializable]
     public class TransactionHandler 
     {

@@ -1,5 +1,5 @@
-﻿using DevExpress.CodeParser;
-using Libs;
+﻿using CoffeeShop.Model;
+using DevExpress.CodeParser;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

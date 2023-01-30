@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 
-namespace Libs {
+namespace CoffeeShop.Model { 
     [Serializable]
     public class Serializer {
 

@@ -1,6 +1,6 @@
+using CoffeeShop.Model;
 using DevExpress.XtraBars.Docking.Helpers;
 using DevExpress.XtraScheduler.Commands;
-using Libs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

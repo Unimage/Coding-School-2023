@@ -131,7 +131,7 @@
             // 
             // bsProducts
             // 
-            this.bsProducts.DataSource = typeof(Libs.CoffeeShopHandler);
+            this.bsProducts.DataSource = typeof(CoffeeShop.Model.CoffeeShopHandler);
             // 
             // tBoxCode
             // 

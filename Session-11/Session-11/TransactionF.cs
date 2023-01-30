@@ -1,4 +1,4 @@
-﻿using Libs;
+﻿using CoffeeShop.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

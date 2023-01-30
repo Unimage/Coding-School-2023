@@ -1,7 +1,7 @@
-﻿using DevExpress.Utils.Extensions;
+﻿using CoffeeShop.Model;
+using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
-using Libs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

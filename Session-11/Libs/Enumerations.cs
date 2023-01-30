@@ -1,4 +1,4 @@
-﻿namespace Libs {
+﻿namespace CoffeeShop.Model {
     [Serializable]
 
 

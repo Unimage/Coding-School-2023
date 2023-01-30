@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 ///Since we cant chage the whole architecture wrappes is gonna be used on main
 /// </summary>
 
-namespace Libs {
+namespace CoffeeShop.Model {
     [Serializable]
     [JsonObject(MemberSerialization.OptOut)]
     public  class CoffeeShopWrapper {

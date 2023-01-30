@@ -7,8 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Libs
-{
+namespace CoffeeShop.Model {
     public  class LedgerFileHelper
         {
         MonthlyLedger monthlyLedger { get; set; } = new MonthlyLedger();

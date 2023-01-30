@@ -1,13 +1,11 @@
-﻿using Session_11;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Libs
-{
+namespace CoffeeShop.Model {
     [Serializable]
     public class TransactionLine
     {
