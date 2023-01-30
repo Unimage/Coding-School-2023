@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Session_11
-{
+namespace Libs {
     [Serializable]
     public class Product
     {
