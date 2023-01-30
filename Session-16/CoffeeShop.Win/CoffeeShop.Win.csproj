@@ -12,4 +12,8 @@
   <ItemGroup>
     <PackageReference Include="DevExpress.Win.Design" Version="22.2.3" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeShop.Model\CoffeeShop.Model.csproj" />
+  </ItemGroup>
 </Project>
