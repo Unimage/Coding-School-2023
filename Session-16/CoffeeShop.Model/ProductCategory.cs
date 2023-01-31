@@ -15,6 +15,7 @@ namespace CoffeeShop.Model {
         public string Description { get; set; }
 
         public ProductType ProductType { get; set; }
+        public Product Product { get; set; }
 
 
         public ProductCategory()
