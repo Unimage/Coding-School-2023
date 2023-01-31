@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeShop.Model {
     [Serializable]
-    public class ProductCategory
+    public class ProductCategory:BaseEntity
     {
         
         public Guid ProductCategoryID { get; set; }

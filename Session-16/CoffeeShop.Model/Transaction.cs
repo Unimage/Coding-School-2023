@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeShop.Model {
     [Serializable]
-    public class Transaction
+    public class Transaction:BaseEntity
     {
         public Guid ID { get; set; }
         public Customer Customer { get; set; }

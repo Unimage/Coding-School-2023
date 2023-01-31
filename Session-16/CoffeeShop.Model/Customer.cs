@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CoffeeShop.Model {
     [Serializable]
 
-    public class Customer {
+    public class Customer:BaseEntity {
 
         public Guid ID { get; set; }
         public string? Code { get; set; }
@@ -19,7 +19,5 @@ namespace CoffeeShop.Model {
             Code = "001";
             Description = "Retail Customer";
         }
-
-    } //nikos
-
+    }
 }

@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace CoffeeShop.Model {
     [Serializable]
-    public class TransactionLine
+    public class TransactionLine:BaseEntity
     {
         public Guid ID { get; set; }
         public Guid ProductID { get; set; }

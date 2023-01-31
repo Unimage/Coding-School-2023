@@ -4,7 +4,7 @@ using System.Linq;
 namespace CoffeeShop.Model {
     [Serializable]
 
-    public class Employee {
+    public class Employee:BaseEntity {
 
         public Guid ID { get; set; }
         public string? Name { get; set; }
