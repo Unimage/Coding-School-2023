@@ -13,7 +13,7 @@ namespace CoffeeShop.Orm.Configuration
     {
         public void Configure(EntityTypeBuilder<TransactionLine> builder)
         {
-            builder.ToTable("Products");
+            builder.ToTable("TransactionLine");
 
             builder.HasKey(transLine => transLine.ID);
 
@@ -25,9 +25,7 @@ namespace CoffeeShop.Orm.Configuration
             builder.Property(transLine => transLine.TotalPrice).HasColumnType("decimal(6,2)").HasPrecision(6, 2);
 
             //TODO:EVALUATE BELOW
-            builder.HasOne(transLine => transLine.Product).WithOne(product => product.TransactionLine).HasForeignKey<TransactionLine>(transactionLine => transactionLine.ID);
-            builder.HasOne(transactionLine => transactionLine.Transaction).WithMany(transaction => transaction.TransactionLines).HasForeignKey(transactionLine => transactionLine.ID);
-
+            builder.HasOne(transactionLine => transactionLine.Product).WithMany(item => item.TransactionLines).HasForeignKey(transactionLine => transactionLine.ProductID);
         }
     }
 }

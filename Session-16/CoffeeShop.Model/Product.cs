@@ -8,17 +8,18 @@ namespace CoffeeShop.Model {
     [Serializable]
     public class Product:BaseEntity
     {
-        public Guid ProductID { get; set; }
+        public Guid ID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public Guid ProductCategoryID { get; set; }
+        public ProductCategory ProductCategory { get; set; }
         public decimal Price { get; set; }
         public decimal Cost { get; set; }
-        public ProductCategory ProductCategory { get; set; }
-        public TransactionLine TransactionLine { get; set; }
+        
+        public List<TransactionLine> TransactionLines { get; set; } = new();
         public Product()
         {
-            ProductID = Guid.NewGuid();
+            ID = Guid.NewGuid();
         }
     }
 }

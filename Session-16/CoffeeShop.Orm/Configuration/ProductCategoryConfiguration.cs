@@ -17,6 +17,7 @@ namespace CoffeeShop.Orm.Configuration {
             builder.Property(productCat => productCat.Code).HasMaxLength(10);
             builder.Property(productCat => productCat.Description).HasMaxLength(30);
             builder.Property(productCat => productCat.ProductType).HasMaxLength(20);
+
             builder.HasMany(prodCat => prodCat.Products).WithOne(prod => prod.ProductCategory).HasForeignKey(prod => prod.ProductCategoryID);
             //TODO:BE REEEVALUATED.
         }

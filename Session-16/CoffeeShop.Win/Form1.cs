@@ -17,9 +17,11 @@ namespace Session_11 {
         public Form1(IEntityRepo<ProductCategory> productRepo) {
             InitializeComponent();
             _productCatsRepo = productRepo;
+            RefreshList();
         }
         private void Form1_Load(object sender, EventArgs e) {
             this.Text = "Product Categories";
+
             RefreshList();
         }
         private void RefreshList() {

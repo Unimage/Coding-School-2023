@@ -9,15 +9,16 @@ namespace CoffeeShop.Model {
     public class Transaction:BaseEntity
     {
         public Guid ID { get; set; }
-        public Customer Customer { get; set; }
         public DateTime Date { get; set; }
+        public Customer Customer { get; set; }
         public Guid CustomerID { get; set; }
+        public Employee Employee { get; set; }
         public Guid EmployeeID { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal TotalCost { get; set; }
-        public Employee Employee { get; set; }
+        
 
 
 

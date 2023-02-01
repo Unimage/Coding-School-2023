@@ -58,7 +58,7 @@ namespace Session_11 {
 
         private void AddNewLine(Product selectedProduct) {
             var newTransactionLine = new TransactionLine() {
-                ProductID = selectedProduct.ProductID,
+                ProductID = selectedProduct.ID,
                 Description = selectedProduct.Description,
                 Quantity = Convert.ToInt32(spinEditQuantity.Text),
                 Price = selectedProduct.Price,
