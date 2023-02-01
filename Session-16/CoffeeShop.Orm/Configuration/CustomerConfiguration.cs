@@ -19,7 +19,7 @@ namespace CoffeeShop.Orm.Configuration {
             builder.Property(customer => customer.Description).HasMaxLength(30);
 
 
-            builder.HasOne(customer => customer.Transaction).WithOne(transaction => transaction.Customer).HasForeignKey<Transaction>(transaction => transaction.ID);
+            //builder.HasOne(customer => customer.Transaction).WithOne(transaction => transaction.Customer).HasForeignKey<Transaction>(transaction => transaction.ID);
 
         }
     }

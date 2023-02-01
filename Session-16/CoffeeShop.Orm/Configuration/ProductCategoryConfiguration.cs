@@ -13,12 +13,11 @@ namespace CoffeeShop.Orm.Configuration {
             builder.ToTable("ProductCategories");
 
 
-            builder.HasKey(productCat => productCat.ProductCategoryID);
+            builder.HasKey(productCat => productCat.ID);
             builder.Property(productCat => productCat.Code).HasMaxLength(10);
             builder.Property(productCat => productCat.Description).HasMaxLength(30);
-            builder.Property(productCat => productCat.ProductType);
-            builder.HasOne(prodCat => prodCat.Product).WithOne(prod => prod.ProductCategory).HasForeignKey<Product>(prod => prod.ProductCategoryID);
-            builder.HasOne(prodCat => prodCat.Product).WithOne(prod => prod.ProductCategory).HasForeignKey<Product>(prod => prod.ProductCategoryID);
+            builder.Property(productCat => productCat.ProductType).HasMaxLength(20);
+            builder.HasMany(prodCat => prodCat.Products).WithOne(prod => prod.ProductCategory).HasForeignKey(prod => prod.ProductCategoryID);
             //TODO:BE REEEVALUATED.
         }
     }

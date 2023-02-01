@@ -26,7 +26,6 @@ namespace Session_11 {
             _productsCats = _productCatsRepo.GetAll();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = _productsCats;
-
             dataGridView1.Refresh();
             dataGridView1.Update();
 

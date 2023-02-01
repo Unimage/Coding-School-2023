@@ -41,14 +41,14 @@ namespace CoffeeShop.Orm.Migrations
                 name: "ProductCategories",
                 columns: table => new
                 {
-                    ProductCategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    ProductType = table.Column<int>(type: "int", nullable: false)
+                    ProductType = table.Column<int>(type: "int", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductCategories", x => x.ProductCategoryID);
+                    table.PrimaryKey("PK_ProductCategories", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,14 +67,14 @@ namespace CoffeeShop.Orm.Migrations
                 {
                     table.PrimaryKey("PK_Transactions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Transactions_Customers_ID",
-                        column: x => x.ID,
+                        name: "FK_Transactions_Customers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transactions_Employees_ID",
-                        column: x => x.ID,
+                        name: "FK_Transactions_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
                         principalTable: "Employees",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -95,7 +95,8 @@ namespace CoffeeShop.Orm.Migrations
                     TransactionLine_Price = table.Column<decimal>(type: "decimal(6,2)", precision: 6, scale: 2, nullable: false),
                     Discount = table.Column<decimal>(type: "decimal(6,2)", precision: 6, scale: 2, nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(6,2)", precision: 6, scale: 2, nullable: false),
-                    TransactionLine_Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TransactionLine_Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,7 +105,7 @@ namespace CoffeeShop.Orm.Migrations
                         name: "FK_Products_ProductCategories_ProductCategoryID",
                         column: x => x.ProductCategoryID,
                         principalTable: "ProductCategories",
-                        principalColumn: "ProductCategoryID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Transactions_ProductID",
@@ -117,8 +118,17 @@ namespace CoffeeShop.Orm.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductCategoryID",
                 table: "Products",
-                column: "ProductCategoryID",
-                unique: true);
+                column: "ProductCategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CustomerID",
+                table: "Transactions",
+                column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_EmployeeID",
+                table: "Transactions",
+                column: "EmployeeID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

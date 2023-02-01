@@ -227,7 +227,7 @@ namespace CoffeeShop.Model {
         public ProductCategory GetCategoryById(Guid categoryId) {
             foreach (Product product in Products) {
                 if (product.ProductCategoryID == categoryId) {
-                    return ProductCategories.Find(x => x.ProductCategoryID == categoryId);
+                    return ProductCategories.Find(x => x.ID == categoryId);
                 }
             }
             return null;
@@ -240,7 +240,7 @@ namespace CoffeeShop.Model {
             return productTypes;
         }
         public ProductCategory GetProductCategoryById(Guid id) {
-            return ProductCategories.FirstOrDefault(x => x.ProductCategoryID == id);
+            return ProductCategories.FirstOrDefault(x => x.ID == id);
         }
 
     }

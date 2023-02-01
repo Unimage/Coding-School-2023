@@ -43,7 +43,7 @@ namespace CoffeeShop.EF.Repositories {
 
             foundCustomer.Code = entity.Code;
             foundCustomer.Description = entity.Description;
-            foundCustomer.Transaction = entity.Transaction;
+            foundCustomer.TransactionList = entity.TransactionList;
 
             context.SaveChanges();
         }

@@ -13,19 +13,16 @@ namespace CoffeeShop.Orm.Configuration {
             builder.ToTable("Transactions");
 
             builder.HasKey(transaction => transaction.ID);
-
             builder.Property(transaction => transaction.Date);
-
-            builder.Property(transaction => transaction.TotalPrice).HasColumnType("decimal(6,2)").HasPrecision(6, 2);
-            builder.Property(transaction => transaction.TotalCost).HasColumnType("decimal(6,2)").HasPrecision(6, 2);
-
+            builder.Property(transaction => transaction.TotalPrice).HasPrecision(6, 2);
+            builder.Property(transaction => transaction.TotalCost).HasPrecision(6, 2);
             builder.Property(transaction => transaction.PaymentMethod).IsRequired();
 
-            //Constraints
-            builder.HasOne(transaction => transaction.Employee).WithOne(employee => employee.Transaction).HasForeignKey<Transaction>(transaction => transaction.ID);
-            builder.HasOne(transaction => transaction.Customer).WithOne(customer => customer.Transaction).HasForeignKey<Transaction>(transaction => transaction.ID);
+            
+            builder.HasOne(transaction => transaction.Employee).WithMany(employee => employee.TransactionList).HasForeignKey(transaction => transaction.EmployeeID);
+            builder.HasOne(transaction => transaction.Customer).WithMany(customer => customer.TransactionList).HasForeignKey(transaction => transaction.CustomerID);
             builder.HasMany(transaction => transaction.TransactionLines).WithOne(transactionLine => transactionLine.Transaction).HasForeignKey(transactionLine => transactionLine.ID);
-            //TODO:EVAL ABOVE 3 
+            //builder.HasMany(transaction => transaction.TransactionLines);
 
 
         }

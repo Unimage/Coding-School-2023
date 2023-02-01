@@ -10,17 +10,17 @@ namespace CoffeeShop.Model {
     public class ProductCategory:BaseEntity
     {
         
-        public Guid ProductCategoryID { get; set; }
+        public Guid ID { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
 
         public ProductType ProductType { get; set; }
-        public Product Product { get; set; }
+        public List<Product> Products { get; set; }
 
 
         public ProductCategory()
         {
-            ProductCategoryID = Guid.NewGuid();
+            ID = Guid.NewGuid();
         }
 
     }

@@ -16,11 +16,11 @@ namespace CoffeeShop.Orm.Configuration {
 
                 builder.Property(emp => emp.Name).HasMaxLength(20);
                 builder.Property(emp => emp.Surname).HasMaxLength(20);
-                builder.Property(emp => emp.EmployeeType).HasMaxLength(20);
-                builder.Property(emp => emp.Salary).HasColumnType("decimal(6,2)").HasPrecision(6, 2);
+                builder.Property(emp => emp.EmployeeType).HasMaxLength(20);// Todo: Refactor
+                builder.Property(emp => emp.Salary).HasPrecision(6, 2);
 
                 //TODO:TO BE EVALUATED.
-                builder.HasOne(employee => employee.Transaction).WithOne(transaction => transaction.Employee).HasForeignKey<Transaction>(transaction => transaction.ID);
+                //builder.HasOne(employee => employee.Transaction).WithOne(transaction => transaction.Employee).HasForeignKey<Transaction>(transaction => transaction.ID);
 
             }
         }

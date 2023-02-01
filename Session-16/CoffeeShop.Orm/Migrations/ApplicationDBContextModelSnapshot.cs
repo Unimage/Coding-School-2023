@@ -88,6 +88,9 @@ namespace CoffeeShop.Orm.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<Guid>("ID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Price")
                         .HasPrecision(6, 2)
                         .HasColumnType("decimal(6,2)");
@@ -97,15 +100,14 @@ namespace CoffeeShop.Orm.Migrations
 
                     b.HasKey("ProductID");
 
-                    b.HasIndex("ProductCategoryID")
-                        .IsUnique();
+                    b.HasIndex("ProductCategoryID");
 
                     b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("CoffeeShop.Model.ProductCategory", b =>
                 {
-                    b.Property<Guid>("ProductCategoryID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -120,9 +122,10 @@ namespace CoffeeShop.Orm.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("ProductType")
+                        .HasMaxLength(20)
                         .HasColumnType("int");
 
-                    b.HasKey("ProductCategoryID");
+                    b.HasKey("ID");
 
                     b.ToTable("ProductCategories", (string)null);
                 });
@@ -130,6 +133,7 @@ namespace CoffeeShop.Orm.Migrations
             modelBuilder.Entity("CoffeeShop.Model.Transaction", b =>
                 {
                     b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CustomerID")
@@ -153,6 +157,10 @@ namespace CoffeeShop.Orm.Migrations
                         .HasColumnType("decimal(6,2)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("EmployeeID");
 
                     b.ToTable("Transactions", (string)null);
                 });
@@ -195,8 +203,8 @@ namespace CoffeeShop.Orm.Migrations
             modelBuilder.Entity("CoffeeShop.Model.Product", b =>
                 {
                     b.HasOne("CoffeeShop.Model.ProductCategory", "ProductCategory")
-                        .WithOne("Product")
-                        .HasForeignKey("CoffeeShop.Model.Product", "ProductCategoryID")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -206,14 +214,14 @@ namespace CoffeeShop.Orm.Migrations
             modelBuilder.Entity("CoffeeShop.Model.Transaction", b =>
                 {
                     b.HasOne("CoffeeShop.Model.Customer", "Customer")
-                        .WithOne("Transaction")
-                        .HasForeignKey("CoffeeShop.Model.Transaction", "ID")
+                        .WithMany("TransactionList")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CoffeeShop.Model.Employee", "Employee")
-                        .WithOne("Transaction")
-                        .HasForeignKey("CoffeeShop.Model.Transaction", "ID")
+                        .WithMany("TransactionList")
+                        .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -243,14 +251,12 @@ namespace CoffeeShop.Orm.Migrations
 
             modelBuilder.Entity("CoffeeShop.Model.Customer", b =>
                 {
-                    b.Navigation("Transaction")
-                        .IsRequired();
+                    b.Navigation("TransactionList");
                 });
 
             modelBuilder.Entity("CoffeeShop.Model.Employee", b =>
                 {
-                    b.Navigation("Transaction")
-                        .IsRequired();
+                    b.Navigation("TransactionList");
                 });
 
             modelBuilder.Entity("CoffeeShop.Model.Product", b =>
@@ -261,8 +267,7 @@ namespace CoffeeShop.Orm.Migrations
 
             modelBuilder.Entity("CoffeeShop.Model.ProductCategory", b =>
                 {
-                    b.Navigation("Product")
-                        .IsRequired();
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("CoffeeShop.Model.Transaction", b =>

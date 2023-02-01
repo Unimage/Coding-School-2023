@@ -41,7 +41,7 @@ namespace Session_11 {
         private void TransactionDetailsF_Load(object sender, EventArgs e) {
             UpdateLabelTotalPrice();
             PopulatePaymentMethod(lookUpPaymentMethod.Properties);
-            
+
 
         }
         private void RefreshGv() {
