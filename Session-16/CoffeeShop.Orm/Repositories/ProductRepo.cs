@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CoffeeShop.Orm.Repositories {
-    internal class ProductRepo : IEntityRepo<Product> {
+    public class ProductRepo : IEntityRepo<Product> {
         public void Create(Product entity) {
             using var context = new ApplicationDBContext();
             context.Products.Add(entity);

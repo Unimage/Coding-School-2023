@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
 
 namespace CoffeeShop.Model {
     [Serializable]
@@ -189,8 +190,7 @@ namespace CoffeeShop.Model {
         }
 
         public void SerializeProduct() {
-            Serializer serializer = new Serializer();
-            serializer.SerializeToFile(Products, "product.json");
+           // ProductRepo proRep = new ProductRepo();    
         }
 
         public void DeserializeProduct() {

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace Session_11 {
     public partial class EmployeeF : Form {
+        
         CoffeeShopHandler ShopData { get; set; } = new();
         public EmployeeF(CoffeeShopHandler transfer) {
 

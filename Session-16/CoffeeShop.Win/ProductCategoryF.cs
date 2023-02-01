@@ -1,4 +1,5 @@
 ﻿using CoffeeShop.Model;
+using CoffeeShop.Orm.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace Session_11 {
 
 
     public partial class ProductCategoryF : Form {
+        public ProductCategoryRepo prodCatRepo = new ProductCategoryRepo();
 
         CoffeeShopHandler ShopCategory { get; set; } = new();
 
