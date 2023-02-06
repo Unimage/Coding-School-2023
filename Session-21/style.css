@@ -6,6 +6,7 @@ body{
     font-family: 'Open Sans', sans-serif;
     font-size:  18px;
     box-sizing: border-box;
+    margin:auto;
 }
 header{
     display: flex;
@@ -38,7 +39,7 @@ a:link {
 }
 .content {
     padding: 20px;
-    margin: 0 auto;
+    margin:auto;
   }
 
 .article {
