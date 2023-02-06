@@ -244,7 +244,6 @@
             this.Controls.Add(this.gcProductCategory);
             this.Name = "ProductCategoryF";
             this.Text = "ProductCategoryF";
-            this.Load += new System.EventHandler(this.ProductCategoryF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcProductCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProductCategory)).EndInit();
             this.ResumeLayout(false);

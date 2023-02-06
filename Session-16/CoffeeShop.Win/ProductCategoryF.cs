@@ -21,59 +21,37 @@ namespace Session_11 {
         CoffeeShopHandler ShopCategory { get; set; } = new();
 
         public ProductCategoryF(CoffeeShopHandler transfer) {
-
+            //loads from db
             ShopCategory = transfer;
             InitializeComponent();
-
-            gcProductCategory.DataSource = ShopCategory.ProductCategories;
+            gcProductCategory.DataSource = prodCatRepo.GetAll();
         }
-
-        private void ProductCategoryF_Load(object sender, EventArgs e) {
-
-        }
-
-        private void ProductCategoryF_Load1(object sender, EventArgs e) {
-            /*private void ProductCategoryF_Load(object sender, EventArgs e) {
-
-                PopulateData();
-
-            }*/
-        }
-
         public void PopulateData() {
-
             ProductCategory productCategory = new ProductCategory();
-
         }
-
         private void btnReloadCategories_Click(object sender, EventArgs e) {
             gcProductCategory.DataSource = null;
-            gcProductCategory.DataSource = ShopCategory.ProductCategories;
+            gcProductCategory.DataSource = prodCatRepo.GetAll();
         }
-
+        //todo:refactor bellow
         private void btnReloadFromJson_Click(object sender, EventArgs e) {
-            MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
-            ShopCategory.CheckAndPopulateProductCategories();
+            //MessageBox.Show("Loading Employee File from Json\nIn case of fail it will roll Back To Default Values");
+            //ShopCategory.CheckAndPopulateProductCategories();
         }
-
         private void btnExportToJson_Click(object sender, EventArgs e) {
-            ShopCategory.SerializeProductCategory();
-            MessageBox.Show("Exported Successfully!");
+            //prodCatRepo.
+            //ShopCategory.SerializeProductCategory();
+            //MessageBox.Show("Exported Successfully!");
         }
         private void ResetProductCategoryGVs() {
             gcProductCategory.DataSource = null;
-            gcProductCategory.DataSource = ShopCategory.ProductCategories;
+            gcProductCategory.DataSource = prodCatRepo.GetAll();
         }
         private void button1_Click(object sender, EventArgs e) {
-            ShopCategory.ProductCategories.Clear();
-            ShopCategory.SetDefaultProductCategories();
-            ResetProductCategoryGVs();
+            //ShopCategory.ProductCategories.Clear();
+            //ShopCategory.SetDefaultProductCategories();
+            //ResetProductCategoryGVs();
         }
-
-        private void btnAddCategory_Click(object sender, EventArgs e) {
-
-        }
-
         private void btnAddCategory_Click_1(object sender, EventArgs e) {
             if (tboxAddCategory.Text != null && tboxDescription.Text != null && comboProductType.SelectedItem != null) {
                 ProductCategory tmpCateg = new ProductCategory() {
@@ -81,7 +59,7 @@ namespace Session_11 {
                     Description = tboxDescription.Text,
                     ProductType = (ProductType)Enum.Parse(typeof(ProductType), comboProductType.SelectedItem.ToString())
                 };
-                ShopCategory.ProductCategories.Add(tmpCateg);
+                prodCatRepo.Create(tmpCateg);
                 ResetProductCategoryGVs();
             }else { MessageBox.Show("Cant add with Empty Data information"); }
         }

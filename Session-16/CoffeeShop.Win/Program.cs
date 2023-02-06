@@ -23,7 +23,7 @@ namespace Session_11 {
             services.AddSingleton<Form1>();
             ServiceProvider = services.BuildServiceProvider();
             var mainForm = ServiceProvider.GetRequiredService<Form1>();
-            Application.Run(mainForm);
+            Application.Run(new CoffeeShopF());
         
             /// this is a commeent
         }
