@@ -20,8 +20,6 @@ namespace CoffeeShop.Orm.Configuration {
             builder.Property(transaction => transaction.PaymentMethod).IsRequired();
 
             builder.HasMany(transaction => transaction.TransactionLines);
-
-
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CoffeeShop.Orm.Repositories {
-    internal class TransactionLineRepo : IEntityRepo<TransactionLine> {
+    public class TransactionLineRepo : IEntityRepo<TransactionLine> {
         public void Create(TransactionLine entity) {
             using var context = new ApplicationDBContext();
             context.TransactionLines.Add(entity);
