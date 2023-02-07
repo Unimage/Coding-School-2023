@@ -14,7 +14,6 @@ using System.Windows.Forms;
 namespace Session_11 {
     public partial class ProductCategoryF : XtraForm {
         public ProductCategoryRepo prodCatRepo = new ProductCategoryRepo();
-
         CoffeeShopHandler ShopCategory { get; set; } = new();
 
         public ProductCategoryF(CoffeeShopHandler transfer) {

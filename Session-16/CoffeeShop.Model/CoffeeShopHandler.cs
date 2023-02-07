@@ -159,6 +159,43 @@ namespace CoffeeShop.Model {
             }
             
         }
+        public bool CheckStaffLimits() {
+            errorAtLoad = false;
+            int managers = 0;
+            int cashiers = 0;
+            int baristas = 0;
+            int waiters = 0;
+            foreach (var employee in Employees) {
+                switch (employee.EmployeeType) {
+                    case EmployeeType.Manager:
+                        managers++;
+                        break;
+                    case EmployeeType.Cashier:
+                        cashiers++;
+                        break;
+                    case EmployeeType.Barista:
+                        baristas++;
+                        break;
+                    case EmployeeType.Waiter:
+                        waiters++;
+                        break;
+                }
+            }
+            if (managers < 1 || managers > 1) {
+                errorAtLoad = true;
+            }
+            if (cashiers < 1 || cashiers > 2) {
+                errorAtLoad = true;
+            }
+            if (baristas < 1 || baristas > 2) {
+                errorAtLoad = true;
+            }
+            if (waiters < 1 || waiters > 2) {
+
+                errorAtLoad = true;
+            }
+            return errorAtLoad;
+        }
 
         public void SetDefaultEmployees() {
             Employees.Add(new Employee { Name = "Stratos ", Surname = "Chalkopiadis", Salary = 4000, EmployeeType = EmployeeType.Manager });
@@ -222,27 +259,6 @@ namespace CoffeeShop.Model {
             SerializeProductCategory();
             SerializeProduct();
         }
-
-        //Apo edw kai katw exei mono arrwstia kai paranoia
-        public ProductCategory GetCategoryById(Guid categoryId) {
-            foreach (Product product in Products) {
-                if (product.ProductCategoryID == categoryId) {
-                    return ProductCategories.Find(x => x.ID == categoryId);
-                }
-            }
-            return null;
-        }
-        public List<ProductType> GetProductTypes() {
-            var productTypes = new List<ProductType>();
-            foreach (var product in Products) {
-                productTypes.Add(GetProductCategoryById(product.ProductCategoryID).ProductType);
-            }
-            return productTypes;
-        }
-        public ProductCategory GetProductCategoryById(Guid id) {
-            return ProductCategories.FirstOrDefault(x => x.ID == id);
-        }
-
     }
 
 }
