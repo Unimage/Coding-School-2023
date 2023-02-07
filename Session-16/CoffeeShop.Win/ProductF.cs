@@ -1,4 +1,6 @@
 ﻿using CoffeeShop.Model;
+using CoffeeShop.Orm.Repositories;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +13,16 @@ using System.Windows.Forms;
 
 namespace Session_11 {
 
-    public partial class ProductF : Form {
+    public partial class ProductF : XtraForm {
+        public ProductRepo productRepo= new ProductRepo();
 
         CoffeeShopHandler ProductData = new();
 
         public ProductF(CoffeeShopHandler data) {
             ProductData = data;
             InitializeComponent();
-            grdProduct.DataSource = ProductData.Products;
+            bsProducts.DataSource = productRepo.GetAll();
+            grdProduct.DataSource = bsProducts;
         }
 
         private void btnSaveProduct_Click(object sender, EventArgs e) {
@@ -55,8 +59,8 @@ namespace Session_11 {
             
         }
         private void ResetGVs() {
-            grdProduct.DataSource = null;
-            grdProduct.DataSource = ProductData.Products;
+            bsProducts.DataSource = null;
+            bsProducts.DataSource = productRepo.GetAll();
         }
 
 
