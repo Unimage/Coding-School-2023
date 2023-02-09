@@ -24,7 +24,7 @@ namespace CoffeeShop.EF.Repositories {
             context.SaveChanges();
         }
 
-        public List<Customer> GetAll() {
+        public IList<Customer> GetAll() {
             using var context = new CoffeeShopDbContext();
             return context.Customers.ToList();
         }

@@ -25,7 +25,7 @@ namespace CoffeeShop.Orm.Repositories {
             context.SaveChanges();
         }
 
-        public List<Employee> GetAll() {
+        public IList<Employee> GetAll() {
             using var context = new CoffeeShopDbContext();
             return context.Employees.ToList();
         }
