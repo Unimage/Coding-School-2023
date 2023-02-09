@@ -35,7 +35,6 @@ namespace CoffeeShop.MVC.Controllers {
     };
             return View(model: viewProductCategory);
         } 
-        //end fo it 
 
         // GET: ProductCategoryCustomer/Create
         public ActionResult Create() {
@@ -73,19 +72,25 @@ namespace CoffeeShop.MVC.Controllers {
 
         // GET: ProductCategoryCustomer/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+            var dbProductCategory = _prodCatRepo.GetById(id);
+            if(dbProductCategory == null) {
+                return NotFound();
+            }
+            var viewProductCategory = new ProductCategoryDeleteDto {
+                Id = dbProductCategory.Id,
+                Description = dbProductCategory.Description,
+                Code = dbProductCategory.Code
+            };
+            return View(model:viewProductCategory);
         }
 
         // POST: ProductCategoryCustomer/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            }
-            catch {
-                return View();
-            }
+            _prodCatRepo.Delete(id);
+            return RedirectToAction(nameof(Index));
+            
         }
     }
 }
