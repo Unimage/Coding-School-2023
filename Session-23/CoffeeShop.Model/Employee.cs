@@ -2,7 +2,7 @@
 
 namespace CoffeeShop.Model
 {
-    public class Employee
+    public class Employee:BaseEntity
     {
         public Employee(string name, string surname, int salaryPerMonth, EmployeeType employeeType)
         {

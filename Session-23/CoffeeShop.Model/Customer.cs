@@ -1,6 +1,6 @@
 ﻿namespace CoffeeShop.Model
 {
-    public class Customer
+    public class Customer:BaseEntity
     {
         public Customer(string code, string description)
         {

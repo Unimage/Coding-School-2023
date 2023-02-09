@@ -2,8 +2,7 @@
 
 namespace CoffeeShop.Model
 {
-    public class Transaction
-    {
+    public class Transaction: BaseEntity {
         public Transaction(decimal totalPrice, PaymentMethod paymentMethod)
         {
             Date = DateTime.Now;
