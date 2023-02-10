@@ -44,6 +44,7 @@ namespace CoffeeShop.Orm.Repositories {
             foundProduct.Price = entity.Price;
             foundProduct.Description = entity.Description;
             foundProduct.ProductCategory = entity.ProductCategory;
+            foundProduct.ProductCategoryId = entity.ProductCategoryId;
             context.SaveChanges();
         }
     }
