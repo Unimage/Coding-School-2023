@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Employee\EmployeeIndexDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoffeeShop.EF\CoffeeShop.EF.csproj" />
     <ProjectReference Include="..\CoffeeShop.Model\CoffeeShop.Model.csproj" />
   </ItemGroup>
@@ -19,6 +23,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Models\Employee\EmployeeIndexDto.cs" />
   </ItemGroup>
 
 </Project>

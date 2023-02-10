@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShop.MVC.Controllers {
+    
 
     public class ProductController : Controller {
         private IEntityRepo<Product> _prodRepo;

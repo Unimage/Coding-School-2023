@@ -1,6 +1,7 @@
 ﻿using CoffeeShop.EF.Context;
 using CoffeeShop.EF.Repositories;
 using CoffeeShop.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace CoffeeShop.Orm.Repositories {
 
         public Product? GetById(int id) {
             using var context = new CoffeeShopDbContext();
-            return context.Products.Where(prod => prod.Id == id).SingleOrDefault();
+            return context.Products.Include(prod=>prod.ProductCategory).Where(prod => prod.Id == id).SingleOrDefault();
         }
 
         public void Update(int id, Product entity) {
