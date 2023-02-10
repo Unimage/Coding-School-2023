@@ -72,19 +72,31 @@ namespace CoffeeShop.MVC.Controllers {
         #region Edit
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+            var dbProduct = _prodRepo.GetById(id);
+            if(dbProduct == null) {
+                return NotFound();
+            }
+            var prodCats = _categoryRepo.GetAll();
+            var editProduct = new ProductEditDto {
+                Id = dbProduct.Id    
+            };
+            foreach (var cat in prodCats) {
+                editProduct.ProductCategories.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(cat.Code, cat.Id.ToString()));
+            }
+            return View(model:editProduct);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            }
-            catch {
+        public ActionResult Edit(int id, ProductEditDto product) {
+            if (!ModelState.IsValid) {
                 return View();
             }
+            var dbProduct = new Product(product.Code, product.Description, product.Price, product.Cost);
+            dbProduct.ProductCategoryId = product.ProductCategoryId;
+            _prodRepo.Update(product.Id,dbProduct);
+            return RedirectToAction("Index");
         }
         #endregion
         #region Delete
