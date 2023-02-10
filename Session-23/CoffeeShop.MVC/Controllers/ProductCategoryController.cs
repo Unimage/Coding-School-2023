@@ -30,7 +30,8 @@ namespace CoffeeShop.MVC.Controllers {
             var viewProductCategory = new ProductCategoryDetailsDto {
                 Id = prodCat.Id,
                 Description = prodCat.Description,
-                Code = prodCat.Code
+                Code = prodCat.Code,
+                ProductType = prodCat.ProductType 
             };
             return View(model: viewProductCategory);
         }
