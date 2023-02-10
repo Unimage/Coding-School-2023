@@ -63,6 +63,7 @@ namespace CoffeeShop.MVC.Controllers {
                 }
             }
         #endregion
+        #region Edit
         // GET: ProductCategoryCustomer/Edit/5
         public ActionResult Edit(int id) {
             if (id == null) {
@@ -94,6 +95,7 @@ namespace CoffeeShop.MVC.Controllers {
             _prodCatRepo.Update(id,dbProductCategory);
             return RedirectToAction(nameof(Index));
     }
+        #endregion
         #region Delete
         // GET: ProductCategoryCustomer/Delete/5
         public ActionResult Delete(int id) {
@@ -119,6 +121,5 @@ namespace CoffeeShop.MVC.Controllers {
             }
         #endregion
     }
-
 } 
 
