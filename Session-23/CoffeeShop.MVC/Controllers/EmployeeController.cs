@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoffeeShop.MVC.Controllers {
     public class EmployeeController : Controller {
         private IEntityRepo<Employee> _employeeRepo;
-        public EmployeeController(IEntityRepo<Employee> employeeRepo) {
+        private IEntityRepo<Transaction> _transactionRepo;
+        public EmployeeController(IEntityRepo<Employee> employeeRepo, IEntityRepo<Transaction> transactionRepo) {
             _employeeRepo = employeeRepo;
+            _transactionRepo = transactionRepo;
 
         }
         // GET: EmployeeController
@@ -33,7 +35,14 @@ namespace CoffeeShop.MVC.Controllers {
                 Name= employee.Name,
                 Surname= employee.Surname,
                 SalaryPerMonth= employee.SalaryPerMonth
+            
             };
+            var transList = _transactionRepo.GetAll().ToList();
+            foreach(var tr in transList) {
+                if(tr.EmployeeId == viewEmployee.Id) {
+                    viewEmployee.Transactions.Add(tr);
+                }
+            }
             return View(model: viewEmployee);
         }
 

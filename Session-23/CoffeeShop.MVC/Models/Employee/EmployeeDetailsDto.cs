@@ -1,4 +1,5 @@
-﻿using CoffeeShop.Model.Enums;
+﻿using CoffeeShop.Model;
+using CoffeeShop.Model.Enums;
 
 namespace CoffeeShop.MVC.Models.Employee {
     public class EmployeeDetailsDto {
@@ -7,5 +8,6 @@ namespace CoffeeShop.MVC.Models.Employee {
         public string? Surname { get; set; }
         public int SalaryPerMonth { get; set; }
         public EmployeeType EmployeeType { get; set; }
+        public List<Transaction> Transactions { get; set; } =new List<Transaction>();
     }
 }

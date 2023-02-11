@@ -36,6 +36,45 @@
         </dd>
     </dl>
 </div>
+<h2>List of Transactions registered to Employee</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Transaction ID
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Payment Method
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Transactions) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
