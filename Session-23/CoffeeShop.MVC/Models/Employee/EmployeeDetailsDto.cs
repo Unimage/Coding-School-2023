@@ -8,6 +8,6 @@ namespace CoffeeShop.MVC.Models.Employee {
         public string? Surname { get; set; }
         public int SalaryPerMonth { get; set; }
         public EmployeeType EmployeeType { get; set; }
-        public List<Transaction> Transactions { get; set; } =new List<Transaction>();
+        public List<CoffeeShop.Model.Transaction> Transactions { get; set; } =new List<CoffeeShop.Model.Transaction>();
     }
 }

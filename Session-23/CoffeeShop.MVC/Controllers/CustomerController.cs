@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShop.MVC.Controllers {
     public class CustomerController : Controller {
-        private IEntityRepo<Customer> _customerRepo;
-        private IEntityRepo<Transaction> _transactionRepo;
+        private readonly IEntityRepo<Customer> _customerRepo;
+        private readonly IEntityRepo<Transaction> _transactionRepo;
         public CustomerController(IEntityRepo<Customer> customerRepo, IEntityRepo<Transaction> transactionRepo) {
             _customerRepo = customerRepo;
             _transactionRepo = transactionRepo;

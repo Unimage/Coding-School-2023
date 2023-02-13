@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShop.MVC.Controllers {
     public class EmployeeController : Controller {
-        private IEntityRepo<Employee> _employeeRepo;
-        private IEntityRepo<Transaction> _transactionRepo;
+        private readonly IEntityRepo<Employee> _employeeRepo;
+        private readonly IEntityRepo<Transaction> _transactionRepo;
         public EmployeeController(IEntityRepo<Employee> employeeRepo, IEntityRepo<Transaction> transactionRepo) {
             _employeeRepo = employeeRepo;
             _transactionRepo = transactionRepo;
@@ -49,7 +49,6 @@ namespace CoffeeShop.MVC.Controllers {
         // GET: EmployeeController/Create
         public ActionResult Create() {
             var newEmployee = new EmployeeCreateDto();
-            var prodCats = _employeeRepo.GetAll();
             return View(model: newEmployee);
         }
 

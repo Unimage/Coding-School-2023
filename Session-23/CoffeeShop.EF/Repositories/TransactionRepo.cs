@@ -1,5 +1,6 @@
 ﻿using CoffeeShop.EF.Context;
 using CoffeeShop.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,16 @@ namespace CoffeeShop.EF.Repositories {
 
         public IList<Transaction> GetAll() {
             using var context = new CoffeeShopDbContext();
-            return context.Transactions.ToList();
+            return context.Transactions.Include(trans => trans.Customer)
+                .Include(trans => trans.Employee)
+                .Include(trans => trans.TransactionLines).ToList();
         }
         public Transaction? GetById(int id) {
             using var context = new CoffeeShopDbContext();
-            return context.Transactions.Where(trans => trans.Id == id).SingleOrDefault(); ;
+            return context.Transactions.Where(trans => trans.Id == id)
+                .Include(trans => trans.Customer)
+                .Include(trans => trans.Employee)
+                .Include(trans => trans.TransactionLines).SingleOrDefault();
         }
 
         public void Update(int id, Transaction entity) {

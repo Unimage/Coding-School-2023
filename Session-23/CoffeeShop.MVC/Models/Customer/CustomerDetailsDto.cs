@@ -5,6 +5,6 @@ namespace CoffeeShop.MVC.Models.Customer {
         public int Id { get; set; }
         public string? Code { get; set; }
         public string? Description { get; set; }
-        public List<Transaction> Transactions { get; set; }=new List<Transaction>();
+        public List<CoffeeShop.Model.Transaction> Transactions { get; set; }=new List<CoffeeShop.Model.Transaction>();
     }
 }
