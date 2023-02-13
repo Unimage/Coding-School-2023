@@ -1,6 +1,7 @@
 ﻿using CoffeeShop.EF.Context;
 using CoffeeShop.EF.Repositories;
 using CoffeeShop.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +28,12 @@ namespace CoffeeShop.Orm.Repositories {
 
         public IList<TransactionLine> GetAll() {
             using var context = new CoffeeShopDbContext();
-            return context.TransactionLines.ToList();
+            return context.TransactionLines.Include(trl => trl.Product).Include(trl => trl.Transaction).ToList();
         }
 
         public TransactionLine? GetById(int id) {
             using var context = new CoffeeShopDbContext();
-            return context.TransactionLines.Where(TransactionLine => TransactionLine.Id == id).SingleOrDefault();
+            return context.TransactionLines.Where(TransactionLine => TransactionLine.Id == id).Include(trl => trl.Product).Include(trl => trl.Transaction).SingleOrDefault();
         }
 
         public void Update(int id, TransactionLine entity) {

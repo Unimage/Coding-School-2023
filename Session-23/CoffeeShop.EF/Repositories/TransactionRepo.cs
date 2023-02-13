@@ -27,16 +27,19 @@ namespace CoffeeShop.EF.Repositories {
 
         public IList<Transaction> GetAll() {
             using var context = new CoffeeShopDbContext();
-            return context.Transactions.Include(trans => trans.Customer)
+            return context.Transactions
+                .Include(trans => trans.Customer)
                 .Include(trans => trans.Employee)
-                .Include(trans => trans.TransactionLines).ToList();
+                .Include(trans => trans.TransactionLines)
+                .ThenInclude(tl => tl.Product).ToList(); //1 hour of looking into documentation for this line only to be answered by an Indian :)
         }
         public Transaction? GetById(int id) {
             using var context = new CoffeeShopDbContext();
             return context.Transactions.Where(trans => trans.Id == id)
                 .Include(trans => trans.Customer)
                 .Include(trans => trans.Employee)
-                .Include(trans => trans.TransactionLines).SingleOrDefault();
+                .Include(trans => trans.TransactionLines)
+                .ThenInclude(tl => tl.Product).SingleOrDefault();
         }
 
         public void Update(int id, Transaction entity) {

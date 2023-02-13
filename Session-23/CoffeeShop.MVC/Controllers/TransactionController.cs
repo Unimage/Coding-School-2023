@@ -83,6 +83,7 @@ namespace CoffeeShop.MVC.Controllers {
             return RedirectToAction("Index");
         }
         #endregion
+        #region Edit
         // GET: TransactionController/Edit/5
         public ActionResult Edit(int id) {
             var transaction = _transRepo.GetById(id);
@@ -95,14 +96,12 @@ namespace CoffeeShop.MVC.Controllers {
                 return NotFound();
             }
             var viewTransactionDto = new TransactionEditDto {
-                Id= transaction.Id,
-                CustomerId= transaction.CustomerId,
-                EmployeeId= transaction.EmployeeId,
+                Id = transaction.Id,
+                CustomerId = transaction.CustomerId,
+                EmployeeId = transaction.EmployeeId,
                 Date = transaction.Date,
-                TotalPrice= transaction.TotalPrice,
-                PaymentMethod= transaction.PaymentMethod,
-                TransactionLines = transaction.TransactionLines
-
+                TotalPrice = transaction.TotalPrice,
+                PaymentMethod = transaction.PaymentMethod
             };
             foreach (var emp in employees) {
                 viewTransactionDto.Employees.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(emp.Surname + " " + emp.Name, emp.Id.ToString()));
@@ -132,6 +131,7 @@ namespace CoffeeShop.MVC.Controllers {
             _transRepo.Update(id,dbTransaction);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
         #region Delete
         // GET: TransactionController/Delete/5
         public ActionResult Delete(int id) {

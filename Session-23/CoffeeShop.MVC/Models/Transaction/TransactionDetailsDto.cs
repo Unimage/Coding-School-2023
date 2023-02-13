@@ -1,5 +1,6 @@
 ﻿using CoffeeShop.Model.Enums;
 using CoffeeShop.Model;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CoffeeShop.MVC.Models.Transaction {
     public class TransactionDetailsDto {
@@ -15,6 +16,6 @@ namespace CoffeeShop.MVC.Models.Transaction {
         public int EmployeeId { get; set; }
         public CoffeeShop.Model.Employee Employee { get; set; } = null!;
 
-        public List<TransactionLine> TransactionLines { get; set; } = new List<TransactionLine>();
+        public List<CoffeeShop.Model.TransactionLine> TransactionLines { get; set; } = new List<CoffeeShop.Model.TransactionLine>();
     }
 }

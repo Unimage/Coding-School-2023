@@ -15,6 +15,5 @@ namespace CoffeeShop.MVC.Models.Transaction {
 
         public int EmployeeId { get; set; }
         public List<SelectListItem> Employees { get; set; } = new List<SelectListItem>();
-        public List<TransactionLine> TransactionLines { get; set; } = new List<TransactionLine>();
     }
 }
