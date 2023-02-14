@@ -19,6 +19,7 @@ namespace Session_27.Server.Controllers {
         public async Task<IEnumerable<EngineerListDto>> Get() {
             var engineer = _engineerRepo.GetAll();
             return engineer.Select(engineer => new EngineerListDto {
+                Id = engineer.Id,
                 Name = engineer.Name,
                 Surname = engineer.Surname,
                 SalaryPerMonth = engineer.SalaryPerMonth,
@@ -30,7 +31,7 @@ namespace Session_27.Server.Controllers {
         public async Task<EngineerEditDto> GetById(int id) {
             var engineer = _engineerRepo.GetById(id);
             return new EngineerEditDto {
-                Id = id,
+                Id = engineer.Id,
                 Name = engineer.Name,
                 Surname = engineer.Surname,
                 SalaryPerMonth = engineer.SalaryPerMonth,

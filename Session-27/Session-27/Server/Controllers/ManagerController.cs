@@ -19,6 +19,7 @@ namespace Session_27.Server.Controllers
         public async Task<IEnumerable<ManagerListDto>> Get() {
             var manager = _managerRepo.GetAll();
             return manager.Select(manager => new ManagerListDto {
+                Id = manager.Id,
                 Name = manager.Name,
                 Surname = manager.Surname,
                 SalaryPerMonth = manager.SalaryPerMonth
@@ -29,7 +30,7 @@ namespace Session_27.Server.Controllers
         public async Task<ManagerEditDto> GetById(int id) {
             var manager = _managerRepo.GetById(id);
             return new ManagerEditDto {
-                Id = id,
+                Id = manager.Id,
                 Name = manager.Name,
                 Surname = manager.Surname,
                 SalaryPerMonth = manager.SalaryPerMonth
