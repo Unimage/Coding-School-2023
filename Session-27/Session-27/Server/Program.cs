@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Session_27.EF.Repositories;
+using Session_27.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IEntityRepo<Engineer>, EngineerRepo>();
+builder.Services.AddScoped<IEntityRepo<Manager>, ManagerRepo>();
+
 
 var app = builder.Build();
 

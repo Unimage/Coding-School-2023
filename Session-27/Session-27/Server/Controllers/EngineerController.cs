@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Session_27.EF.Repositories;
+using Session_27.Model;
+using Session_27.Shared;
 
 namespace Session_27.Server.Controllers {
     [Route("[controller]")]
@@ -11,23 +14,23 @@ namespace Session_27.Server.Controllers {
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EngineerDto>> Get() {
+        public async Task<IEnumerable<EngineerListDto>> Get() {
             var result = _engineerRepo.GetAll();
-            return result.Select(engineer => new EngineerDto {
+            return result.Select(engineer => new EngineerListDto {
                 Name = engineer.Name,
                 Surname = engineer.Surname,
-                SalaryPerMonth = engineer.SalaryPetMonth
+                SalaryPerMonth = engineer.SalaryPerMonth
             });
         }
 
         [HttpGet("{id}")]
-        public async Task<EngineerDto> GetById(int id) {
+        public async Task<EngineerListDto> GetById(int id) {
             var result = _engineerRepo.GetById(id);
             return new EngineerEditDto {
                 Id = id,
                 Name = engineer.Name,
                 Surname = engineer.Surname,
-                SalaryPerMonth = engineer.SalaryPetMonth
+                SalaryPerMonth = engineer.SalaryPerMonth
             };
         }
 
@@ -35,7 +38,7 @@ namespace Session_27.Server.Controllers {
         public async Task Post(EngineerEditDto engineer) {
             var newEngineer = new Engineer(engineer.Name);
             newEngineer.Surname = engineer.Surname;
-            newEngineer.SalaryPetMonth = engineer.SalaryPetMonth;
+            newEngineer.SalaryPerMonth = engineer.SalaryPetMonth;
             _engineerRepo.Add(newEngineer);
         }
 
@@ -44,7 +47,7 @@ namespace Session_27.Server.Controllers {
             var itemToUpdate = _engineerRepo.GetById(engineer.Id);
             itemToUpdate.Name = engineer.Name;
             itemToUpdate.Surname = engineer.Surname;
-            itemToUpdate.SalaryPetMonth = engineer.SalaryPetMonth;
+            itemToUpdate.SalaryPerMonth = engineer.SalaryPerMonth;
             _engineerRepo.Update(engineer.Id, itemToUpdate);
         }
 

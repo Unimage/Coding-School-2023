@@ -1,23 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Session_27.EF.Repositories;
+using Session_27.Model;
+using Session_27.Shared;
 
 namespace Session_27.Server.Controllers
 {
     [Route("[controller]")]
     [Controller]
     public class ManagerController : ControllerBase {
-        private readonly IEntityRepo<Engineer> _managerRepo;
+        private readonly IEntityRepo<Manager> _managerRepo;
 
         public ManagerController(IEntityRepo<Manager> managerRepo) {
             _managerRepo = managerRepo;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ManagerDto>> Get() {
+        public async Task<IEnumerable<ManagerListDto>> Get() {
             var result = _managerRepo.GetAll();
-            return result.Select(manager => new ManagerDto {
+            return result.Select(manager => new ManagerListDto {
                 Name = manager.Name,
                 Surname = manager.Surname,
-                SalaryPerMonth = manager.SalaryPetMonth
+                SalaryPerMonth = manager.SalaryPerMonth
             });
         }
 

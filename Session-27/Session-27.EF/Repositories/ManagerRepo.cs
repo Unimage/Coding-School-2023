@@ -1,14 +1,15 @@
+using Session_27.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
-using CarServiceCenter.EF.Context;
-using CarServiceCenter.Model;
+using Session_27.Model;
+using Session_27.Model.EF.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarServiceCenter.EF.Repositories {
-    public class ManagerRepo : IEntityRepo<Employee> {
+namespace Session_27.EF.Repositories {
+    public class ManagerRepo : IEntityRepo<Manager> {
         public void Add(Manager entity) {
             using var context = new CarServiceCenterDbContext();
             context.Add(entity);
