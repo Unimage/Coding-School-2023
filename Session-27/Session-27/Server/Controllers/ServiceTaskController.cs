@@ -57,45 +57,21 @@ namespace Session_27.Server.Controllers
             _serviceTaskRepo.Add(newTask);
         }
 
+        [HttpPut]
+        public async Task Put(ServiceTaskEditDto serviceTask)
+        {
+            var taskUpdate = _serviceTaskRepo.GetById(serviceTask.Id);
+            taskUpdate.Code = serviceTask.Code;
+            taskUpdate.Description = serviceTask.Description;
+            taskUpdate.Hours = serviceTask.Hours;
+            _serviceTaskRepo.Update(serviceTask.Id, taskUpdate);
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            _serviceTaskRepo.Delete(id);
+        }
 
 
 
