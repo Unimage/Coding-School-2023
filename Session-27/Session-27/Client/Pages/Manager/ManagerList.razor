@@ -1,10 +1,10 @@
-﻿@page "/engineerlist"
+﻿@page "/managerlist"
 @using Session_27.Shared;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
 
-<h3>EngineerList</h3>
+<h3>Manager List</h3>
 
 @if (isLoading)
 {
@@ -20,20 +20,17 @@ else
                 <th>Name</th>
                 <th>Surname</th>
                 <th>SalaryPerMonth</th>
-                <th>Manager</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var engineer in engineerList) {
+            @foreach (var manager in managerList) {
                 <tr>
-                    <td>@engineer.Name</td>
-                    <td>@engineer.Surname</td>
-                    <td>@engineer.SalaryPerMonth</td>
-                    <td>@engineer.ManagerId</td>
-
+                    <td>@manager.Name</td>
+                    <td>@manager.Surname</td>
+                    <td>@manager.SalaryPerMonth</td>
                     <td>
-                        <button class="btn btn-primary" @onclick="()=> EditItem(engineer)">Edit</button>
-                        <button class="btn btn-danger" @onclick="()=> DeleteItem(engineer)">Delete</button>
+                        <button class="btn btn-primary" @onclick="()=> EditItem(manager)">Edit</button>
+                        <button class="btn btn-danger" @onclick="()=> DeleteItem(manager)">Delete</button>
                     </td>
                 </tr>
             }
@@ -42,7 +39,7 @@ else
 }
 
 @code {
-    private List<EngineerListDto> engineerList = new();
+    private List<ManagerListDto> managerList = new ();
     bool isLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
@@ -53,23 +50,23 @@ else
 
     private async Task LoadItemsFromServer()
     {
-        engineerList = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
+        managerList = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
     }
 
     private void CreateItem()
     {
-        navigationManager.NavigateTo("engineerlist/edit");
+        navigationManager.NavigateTo("managerlist/edit");
     }
 
-    private void EditItem(EngineerListDto engineer) {
-        navigationManager.NavigateTo($"engineerlist/edit/{engineer.Id}");
+    private void EditItem(ManagerListDto manager) {
+        navigationManager.NavigateTo($"managerlist/edit/{manager.Id}");
     }
 
-    private async Task DeleteItem(EngineerListDto engineer) {
+    private async Task DeleteItem(ManagerListDto manager) {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm)
         {
-            var response = await httpClient.DeleteAsync($"engineer/{engineer.Id}");
+            var response = await httpClient.DeleteAsync($"manager/{manager.Id}");
             response.EnsureSuccessStatusCode();
             await LoadItemsFromServer();
         }

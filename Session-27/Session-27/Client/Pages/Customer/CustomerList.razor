@@ -1,0 +1,86 @@
+﻿@page "/customerlist"
+@using Session_27.Shared;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
+
+<h3>Customer Managment</h3>
+
+
+
+
+
+@if (isLoading)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    <button class="btn btn-primary" >Create</button>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Phone</th>
+                <th>Tin</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in customerList)
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Surname</td>
+                    <td>@customer.Phone</td>
+                    <td>@customer.Tin</td>
+
+                    <td>
+                        <button class="btn btn-primary" @onclick="()=> EditItem(customer)">Edit</button>
+                        <button class="btn btn-danger" @onclick="()=> DeleteItem(customer)">Delete</button>
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+}
+
+
+@code {
+     private List<CustomerListDto> customerList = new();
+    bool isLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+
+    private async Task LoadItemsFromServer()
+    {
+        customerList = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
+    }
+
+    private void CreateItem()
+    {
+        navigationManager.NavigateTo("customerlist/edit");
+    }
+
+    private void EditItem(CustomerListDto customer)
+    {
+        navigationManager.NavigateTo($"customerlist/edit/{customer.Id}");
+    }
+
+    private async Task DeleteItem(CustomerListDto customer)
+    {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+        if (confirm)
+        {
+            var response = await httpClient.DeleteAsync($"customer/{customer.Id}");
+            response.EnsureSuccessStatusCode();
+            await LoadItemsFromServer();
+        }
+}
+}

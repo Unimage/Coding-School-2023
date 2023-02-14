@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Engineer\EngineerEdit.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
@@ -18,6 +22,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Session-27.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Engineer\EngineerEdit.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Engineer\EngineerEdit.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Engineer\EngineerEdit.razor" />
   </ItemGroup>
 
 </Project>
