@@ -12,7 +12,7 @@ using Session_27.Model.EF.Context;
 namespace Session_27.EF.Migrations
 {
     [DbContext(typeof(CarServiceCenterDbContext))]
-    [Migration("20230207160448_Initial")]
+    [Migration("20230214141319_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,12 +20,12 @@ namespace Session_27.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CarServiceCenter.Model.Car", b =>
+            modelBuilder.Entity("Session_27.Model.Car", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace Session_27.EF.Migrations
                     b.ToTable("Cars", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Customer", b =>
+            modelBuilder.Entity("Session_27.Model.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace Session_27.EF.Migrations
                     b.ToTable("Customers", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Engineer", b =>
+            modelBuilder.Entity("Session_27.Model.Engineer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace Session_27.EF.Migrations
                     b.ToTable("Engineers", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Manager", b =>
+            modelBuilder.Entity("Session_27.Model.Manager", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,7 +141,7 @@ namespace Session_27.EF.Migrations
                     b.ToTable("Managers", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.ServiceTask", b =>
+            modelBuilder.Entity("Session_27.Model.ServiceTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,15 +160,15 @@ namespace Session_27.EF.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Hours")
-                        .HasPrecision(3, 2)
-                        .HasColumnType("decimal(3,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
 
                     b.ToTable("ServiceTasks", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Transaction", b =>
+            modelBuilder.Entity("Session_27.Model.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +203,7 @@ namespace Session_27.EF.Migrations
                     b.ToTable("Transactions", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.TransactionLine", b =>
+            modelBuilder.Entity("Session_27.Model.TransactionLine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -215,16 +215,16 @@ namespace Session_27.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Hours")
-                        .HasPrecision(3, 2)
-                        .HasColumnType("decimal(3,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<decimal>("Price")
                         .HasPrecision(9, 2)
                         .HasColumnType("decimal(9,2)");
 
                     b.Property<decimal>("PricePerHour")
-                        .HasPrecision(3, 2)
-                        .HasColumnType("decimal(3,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("ServiceTaskId")
                         .HasColumnType("int");
@@ -243,9 +243,9 @@ namespace Session_27.EF.Migrations
                     b.ToTable("TransactionLines", (string)null);
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Engineer", b =>
+            modelBuilder.Entity("Session_27.Model.Engineer", b =>
                 {
-                    b.HasOne("CarServiceCenter.Model.Manager", "Manager")
+                    b.HasOne("Session_27.Model.Manager", "Manager")
                         .WithMany("Engineers")
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -254,21 +254,21 @@ namespace Session_27.EF.Migrations
                     b.Navigation("Manager");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Transaction", b =>
+            modelBuilder.Entity("Session_27.Model.Transaction", b =>
                 {
-                    b.HasOne("CarServiceCenter.Model.Car", "Car")
+                    b.HasOne("Session_27.Model.Car", "Car")
                         .WithMany("Transactions")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarServiceCenter.Model.Customer", "Customer")
+                    b.HasOne("Session_27.Model.Customer", "Customer")
                         .WithMany("Transactions")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarServiceCenter.Model.Manager", "Manager")
+                    b.HasOne("Session_27.Model.Manager", "Manager")
                         .WithMany("Transactions")
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -281,21 +281,21 @@ namespace Session_27.EF.Migrations
                     b.Navigation("Manager");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.TransactionLine", b =>
+            modelBuilder.Entity("Session_27.Model.TransactionLine", b =>
                 {
-                    b.HasOne("CarServiceCenter.Model.Engineer", "Engineer")
+                    b.HasOne("Session_27.Model.Engineer", "Engineer")
                         .WithMany("TransactionLines")
                         .HasForeignKey("EngineerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarServiceCenter.Model.ServiceTask", "ServiceTask")
+                    b.HasOne("Session_27.Model.ServiceTask", "ServiceTask")
                         .WithMany("TransactionLines")
                         .HasForeignKey("ServiceTaskId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CarServiceCenter.Model.Transaction", "Transaction")
+                    b.HasOne("Session_27.Model.Transaction", "Transaction")
                         .WithMany("TransactionLines")
                         .HasForeignKey("TransactionId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -308,34 +308,34 @@ namespace Session_27.EF.Migrations
                     b.Navigation("Transaction");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Car", b =>
+            modelBuilder.Entity("Session_27.Model.Car", b =>
                 {
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Customer", b =>
+            modelBuilder.Entity("Session_27.Model.Customer", b =>
                 {
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Engineer", b =>
+            modelBuilder.Entity("Session_27.Model.Engineer", b =>
                 {
                     b.Navigation("TransactionLines");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Manager", b =>
+            modelBuilder.Entity("Session_27.Model.Manager", b =>
                 {
                     b.Navigation("Engineers");
 
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.ServiceTask", b =>
+            modelBuilder.Entity("Session_27.Model.ServiceTask", b =>
                 {
                     b.Navigation("TransactionLines");
                 });
 
-            modelBuilder.Entity("CarServiceCenter.Model.Transaction", b =>
+            modelBuilder.Entity("Session_27.Model.Transaction", b =>
                 {
                     b.Navigation("TransactionLines");
                 });

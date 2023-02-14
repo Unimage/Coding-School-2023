@@ -19,7 +19,7 @@ namespace Session_27.Model.EF.Configurations
             // Properties
             builder.Property(t => t.Code).HasMaxLength(50).IsRequired();
             builder.Property(t => t.Description).HasMaxLength(100).IsRequired();
-            builder.Property(t => t.Hours).HasPrecision(3, 2).IsRequired();
+            builder.Property(t => t.Hours).HasPrecision(7, 2).IsRequired();
 
             // Relations
         }
