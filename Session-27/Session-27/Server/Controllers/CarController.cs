@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Session_27.Server.Controllers
-{
+namespace Session_27.Server.Controllers {
     [Route("[controller]")]
-[ApiController]
-public class CarController : ControllerBase {
-}
+    [ApiController]
+    public class CarController : ControllerBase {
+    }
 }
