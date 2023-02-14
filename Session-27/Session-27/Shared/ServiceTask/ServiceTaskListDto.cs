@@ -14,12 +14,12 @@ namespace Session_27.Shared.ServiceTask
         public string? Description { get; set; }
         public decimal Hours { get; set; }
 
-       // public List<TransactionLine> TransactionLines { get; set; }
+        public List<TransactionLine> TransactionLines { get; set; } = new();
 
 
 
 
-   }
+    }
 
 
 
