@@ -26,6 +26,51 @@ namespace Session_27.Server.Controllers {
             });
         }
 
+        //Create - Post
+        [HttpPost]
+        public async Task Post(CustomerCreateDto customer)
+        {
+            var newCustomer = new Customer(customer.Name, customer.Surname, customer.Phone, customer.Tin);
+            newCustomer.Transactions = new();
+            _customerRepo.Add(newCustomer);
+        }
+
+
+        //Delete
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            _customerRepo.Delete(id);
+        }
+
+        //Edit - GetbyID
+        [HttpGet("{id}")]
+        public async Task<CustomerEditDto> GetById(int id)
+        {
+            var result = _customerRepo.GetById(id);
+            return new CustomerEditDto
+            {
+            Id = result.Id,
+            Name = result.Name,
+            Surname = result.Surname,
+            Phone = result.Phone,
+            Tin = result.Tin
+
+        };
+        }
+
+
+        //Put
+        public async Task Put(CustomerEditDto customer)
+        {
+            var itemToUpdate = _customerRepo.GetById(customer.Id);
+            itemToUpdate.Name = customer.Name;
+            itemToUpdate.Surname = customer.Surname;
+            itemToUpdate.Phone = customer.Phone;
+            itemToUpdate.Tin = customer.Tin;
+            itemToUpdate.Transactions = customer.Transactions;
+            _customerRepo.Update(customer.Id, itemToUpdate);
+        }
 
 
 
