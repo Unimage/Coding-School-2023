@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Session-27.Client", "Sessio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Session-27.Shared", "Session-27\Shared\Session-27.Shared.csproj", "{4EBC95DF-0730-4C5A-B6BF-3AF601F57AFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Session-27.EF", "Session-27.EF\Session-27.EF.csproj", "{8167C1F1-6EF0-4A92-B514-DEFB19BF74B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Session-27.Model", "Session-27.Model\Session-27.Model.csproj", "{94295BC5-8695-4D75-AB78-DC35951CFB29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{4EBC95DF-0730-4C5A-B6BF-3AF601F57AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EBC95DF-0730-4C5A-B6BF-3AF601F57AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EBC95DF-0730-4C5A-B6BF-3AF601F57AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8167C1F1-6EF0-4A92-B514-DEFB19BF74B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8167C1F1-6EF0-4A92-B514-DEFB19BF74B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8167C1F1-6EF0-4A92-B514-DEFB19BF74B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8167C1F1-6EF0-4A92-B514-DEFB19BF74B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94295BC5-8695-4D75-AB78-DC35951CFB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94295BC5-8695-4D75-AB78-DC35951CFB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94295BC5-8695-4D75-AB78-DC35951CFB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94295BC5-8695-4D75-AB78-DC35951CFB29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

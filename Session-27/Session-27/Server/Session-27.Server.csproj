@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Session-27.Server</RootNamespace>
+    <RootNamespace>Session_27.Server</RootNamespace>
     <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
   </PropertyGroup>
 
@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Session-27.EF\Session-27.EF.csproj" />
+    <ProjectReference Include="..\..\Session-27.Model\Session-27.Model.csproj" />
     <ProjectReference Include="..\Client\Session-27.Client.csproj" />
     <ProjectReference Include="..\Shared\Session-27.Shared.csproj" />
   </ItemGroup>
