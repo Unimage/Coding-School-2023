@@ -1,12 +1,15 @@
-﻿@inject HttpClient httpClient
+﻿@page "/customerlist/edit/{Id:int?}"
+@inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @using Session_27.Shared;
 
-@page "/customerlist/edit/{Id:int?}"
-
-
 <h3>Edit Customer Info</h3>
+@if (isLoading) {
+    <div class="lds-hourglass"></div>
+}
 
+
+else{
 <div class="col-md-6">
     <input type="hidden" class="form-control" id="id" @bind="Customer.Id" />
 </div>
@@ -34,13 +37,21 @@
         <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
     </div>
 </div>
-
+}
 
 @code {
 
     [Parameter] public int? Id { get; set; }
     CustomerEditDto Customer { get; set; } 
     bool isLoading = true;
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        if (Id.HasValue)
+            Customer = await httpClient.GetFromJsonAsync<CustomerEditDto>($"customer/{Id}");
+    }
 
     private void OnCancel()
     {
@@ -54,17 +65,9 @@
         navigationManager.NavigateTo("customerlist");
     }
 
-    private async Task LoadItemsFromServer()
-    {
-        if (Id.HasValue)
-            Customer = await httpClient.GetFromJsonAsync<CustomerEditDto>($"customer/{Id}");
-    }
+    
 
-    protected override async Task OnInitializedAsync()
-    {
-        await LoadItemsFromServer();
-        isLoading = false;
-    }
+    
 
 
 }

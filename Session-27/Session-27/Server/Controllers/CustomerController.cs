@@ -50,7 +50,7 @@ namespace Session_27.Server.Controllers {
             var result = _customerRepo.GetById(id);
             return new CustomerEditDto
             {
-            Id = result.Id,
+            Id = id,
             Name = result.Name,
             Surname = result.Surname,
             Phone = result.Phone,
@@ -64,6 +64,7 @@ namespace Session_27.Server.Controllers {
         public async Task Put(CustomerEditDto customer)
         {
             var itemToUpdate = _customerRepo.GetById(customer.Id);
+            itemToUpdate.Id = customer.Id;
             itemToUpdate.Name = customer.Name;
             itemToUpdate.Surname = customer.Surname;
             itemToUpdate.Phone = customer.Phone;
