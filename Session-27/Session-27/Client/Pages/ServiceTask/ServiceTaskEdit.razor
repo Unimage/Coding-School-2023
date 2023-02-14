@@ -1,4 +1,11 @@
-﻿<h3>ServiceTask Create/Edit</h3>
+﻿@page "/servicetaskist/edit/{Id:int?}"
+@using Session_27.Model;
+@using Session_27.Shared.ServiceTask;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
+
+<h3>ServiceTask Create/Edit</h3>
 
 @code {
 
