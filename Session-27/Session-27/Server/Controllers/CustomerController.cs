@@ -4,29 +4,23 @@ using Session_27.EF.Repositories;
 using Session_27.Model;
 using Session_27.Shared;
 
-namespace Session_27.Server.Controllers
-{
-    [Route("[customer]")]
+namespace Session_27.Server.Controllers {
+    [Route("[controller]")]
     [ApiController]
-public class CustomerController : ControllerBase
-{
+    public class CustomerController : ControllerBase {
         private readonly IEntityRepo<Customer> _customerRepo;
-        public CustomerController(IEntityRepo<Customer> customerRepo)
-        {
+        public CustomerController(IEntityRepo<Customer> customerRepo) {
             _customerRepo = customerRepo;
-
         }
 
         //Index - GetAlL()
         [HttpGet]
-        public async Task<IEnumerable<CustomerListDto>> Get()
-        {
+        public async Task<IEnumerable<CustomerListDto>> Get() {
             var customerList = _customerRepo.GetAll();
-            return customerList.Select(customer => new CustomerListDto
-            {
+            return customerList.Select(customer => new CustomerListDto {
                 Id = customer.Id,
                 Name = customer.Name,
-                Surname= customer.Surname,
+                Surname = customer.Surname,
                 Phone = customer.Phone,
                 Tin = customer.Tin
             });
