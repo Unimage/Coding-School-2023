@@ -1,0 +1,43 @@
+﻿@page "/carlist/add"
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@using Session_27.Shared;
+<h3>Add New Car</h3>
+    <div class="col-md-6">
+        <input type="hidden" class="form-control" id="code" @bind="Car.Id" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Brand</label>
+        <input class="form-control" id="code" @bind="Car.Brand" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Model</label>
+        <input class="form-control" id="description" @bind="Car.Model" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Registration Code</label>
+        <input class="form-control" id="price" @bind="Car.CarRegistrationNumber" />
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnCreate">Add new Car</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+
+
+@code {
+    CarCreateDto Car { get; set; } = new();
+    bool isLoading = true;
+   
+    private void OnCancel() {
+        navigationManager.NavigateTo("carlist");
+    }
+    private async Task OnCreate() {
+        HttpResponseMessage? response;
+        response = await httpClient.PostAsJsonAsync("car", Car);
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("carlist");
+    }
+
+}
