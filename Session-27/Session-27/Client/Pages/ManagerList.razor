@@ -23,7 +23,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var manager in List) {
+            @foreach (var manager in manList) {
                 <tr>
                     <td>@manager.Name</td>
                     <td>@manager.Surname</td>
@@ -39,7 +39,7 @@ else
 }
 
 @code {
-    private List<ManagerListDto> List = new ();
+    private List<ManagerListDto> manList = new ();
     bool isLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
@@ -50,7 +50,7 @@ else
 
     private async Task LoadItemsFromServer()
     {
-        List = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("todo");
+        manList = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("todo");
     }
 
     private void CreateItem()

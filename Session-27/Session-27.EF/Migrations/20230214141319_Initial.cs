@@ -65,7 +65,7 @@ namespace Session_27.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Hours = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false)
+                    Hours = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -135,8 +135,8 @@ namespace Session_27.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Hours = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
-                    PricePerHour = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
+                    Hours = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
+                    PricePerHour = table.Column<decimal>(type: "decimal(7,2)", precision: 7, scale: 2, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(9,2)", precision: 9, scale: 2, nullable: false),
                     TransactionId = table.Column<int>(type: "int", nullable: false),
                     ServiceTaskId = table.Column<int>(type: "int", nullable: false),
