@@ -66,7 +66,7 @@ else
 
     private void EditItem(CustomerListDto customer)
     {
-        navigationManager.NavigateTo($"todolist/edit/{customer.Id}");
+        navigationManager.NavigateTo($"customerlist/edit/{customer.Id}");
     }
 
     private async Task DeleteItem(CustomerListDto customer)
@@ -74,8 +74,9 @@ else
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm)
         {
-            var response = await httpClient.DeleteAsync($"todo/{customer.Id}");
+            var response = await httpClient.DeleteAsync($"customer/{customer.Id}");
             response.EnsureSuccessStatusCode();
             await LoadItemsFromServer();
         }
+}
 }
