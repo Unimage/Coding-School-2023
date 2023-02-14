@@ -25,21 +25,21 @@ namespace Session_27.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ManagerDto> GetById(int id) {
+        public async Task<ManagerEditDto> GetById(int id) {
             var result = _managerRepo.GetById(id);
             return new ManagerEditDto {
                 Id = id,
-                Name = manager.Name,
-                Surname = manager.Surname,
-                SalaryPerMonth = manager.SalaryPetMonth
+                Name = result.Name,
+                Surname = result.Surname,
+                SalaryPerMonth = result.SalaryPerMonth
             };
         }
 
         [HttpPost]
         public async Task Post(ManagerEditDto manager) {
-            var newManager = new Manager(manager.Name);
+            var newManager = new Manager(manager.Name,manager.Surname,manager.SalaryPerMonth);
             newManager.Surname = manager.Surname;
-            newManager.SalaryPetMonth = manager.SalaryPetMonth;
+            newManager.SalaryPerMonth = manager.SalaryPerMonth;
             _managerRepo.Add(newManager);
         }
 
@@ -48,7 +48,7 @@ namespace Session_27.Server.Controllers
             var itemToUpdate = _managerRepo.GetById(manager.Id);
             itemToUpdate.Name = manager.Name;
             itemToUpdate.Surname = manager.Surname;
-            itemToUpdate.SalaryPetMonth = manager.SalaryPetMonth;
+            itemToUpdate.SalaryPerMonth = manager.SalaryPerMonth;
             _managerRepo.Update(manager.Id, itemToUpdate);
         }
 

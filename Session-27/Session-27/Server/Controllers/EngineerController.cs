@@ -15,8 +15,8 @@ namespace Session_27.Server.Controllers {
 
         [HttpGet]
         public async Task<IEnumerable<EngineerListDto>> Get() {
-            var result = _engineerRepo.GetAll();
-            return result.Select(engineer => new EngineerListDto {
+            var engineer = _engineerRepo.GetAll();
+            return engineer.Select(engineer => new EngineerListDto {
                 Name = engineer.Name,
                 Surname = engineer.Surname,
                 SalaryPerMonth = engineer.SalaryPerMonth
@@ -24,8 +24,8 @@ namespace Session_27.Server.Controllers {
         }
 
         [HttpGet("{id}")]
-        public async Task<EngineerListDto> GetById(int id) {
-            var result = _engineerRepo.GetById(id);
+        public async Task<EngineerEditDto> GetById(int id) {
+            var engineer = _engineerRepo.GetById(id);
             return new EngineerEditDto {
                 Id = id,
                 Name = engineer.Name,
@@ -36,9 +36,9 @@ namespace Session_27.Server.Controllers {
 
         [HttpPost]
         public async Task Post(EngineerEditDto engineer) {
-            var newEngineer = new Engineer(engineer.Name);
+            var newEngineer = new Engineer(engineer.Name,engineer.Surname,engineer.SalaryPerMonth);
             newEngineer.Surname = engineer.Surname;
-            newEngineer.SalaryPerMonth = engineer.SalaryPetMonth;
+            newEngineer.SalaryPerMonth = engineer.SalaryPerMonth;
             _engineerRepo.Add(newEngineer);
         }
 

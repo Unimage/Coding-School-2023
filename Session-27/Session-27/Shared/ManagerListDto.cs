@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Session_27.Shared {
     public class ManagerListDto {
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
         public int SalaryPerMonth { get; set; }
     }
 }

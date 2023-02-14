@@ -1,4 +1,5 @@
 ﻿@page "/engineerlist"
+@using Session_27.Shared;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
@@ -23,7 +24,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var engineer in EngineerList) {
+            @foreach (var engineer in List) {
                 <tr>
                     <td>@engineer.Name</td>
                     <td>@engineer.Surname</td>
@@ -41,7 +42,7 @@ else
 }
 
 @code {
-    private List<EngineerListDto> EngineerList = new ();
+    private List<EngineerListDto> List = new();
     bool isLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
@@ -52,7 +53,7 @@ else
 
     private async Task LoadItemsFromServer()
     {
-        ManagerList = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
+        List = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
     }
 
     private void CreateItem()
