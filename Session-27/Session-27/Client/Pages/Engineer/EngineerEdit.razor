@@ -33,13 +33,11 @@ else {
             <label class="form-label">Manager</label>
             <input class="form-control" @bind="@Engineer.ManagerId" />
 
-            @* @foreach (var manager in managers) {*@
-            @* <option value="@manager.Name">@manager.Name</option>*@
-            @*   }*@
+          
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col">
+        <div class="col-md-6">
             <button class="btn btn-success" @onclick="OnSave">Save Changes</button>
             <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
         </div>
