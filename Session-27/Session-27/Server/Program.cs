@@ -11,6 +11,10 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IEntityRepo<Engineer>, EngineerRepo>();
 builder.Services.AddScoped<IEntityRepo<Manager>, ManagerRepo>();
+builder.Services.AddScoped<IEntityRepo<Car>, CarRepo>();
+builder.Services.AddScoped<IEntityRepo<ServiceTask>, ServiceTaskRepo>();
+builder.Services.AddScoped<IEntityRepo<Transaction>, TransactionRepo>();
+builder.Services.AddScoped<IEntityRepo<TransactionLine>, TransactionLineRepo>();
 
 
 var app = builder.Build();
