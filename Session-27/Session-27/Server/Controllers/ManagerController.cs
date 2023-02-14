@@ -2,6 +2,7 @@
 using Session_27.EF.Repositories;
 using Session_27.Model;
 using Session_27.Shared;
+using Microsoft.AspNetCore.Http;
 
 namespace Session_27.Server.Controllers
 {
@@ -16,8 +17,9 @@ namespace Session_27.Server.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<ManagerListDto>> Get() {
-            var result = _managerRepo.GetAll();
-            return result.Select(manager => new ManagerListDto {
+            var manager = _managerRepo.GetAll();
+            return manager.Select(manager => new ManagerListDto {
+                Id = manager.Id,
                 Name = manager.Name,
                 Surname = manager.Surname,
                 SalaryPerMonth = manager.SalaryPerMonth
@@ -26,12 +28,12 @@ namespace Session_27.Server.Controllers
 
         [HttpGet("{id}")]
         public async Task<ManagerEditDto> GetById(int id) {
-            var result = _managerRepo.GetById(id);
+            var manager = _managerRepo.GetById(id);
             return new ManagerEditDto {
-                Id = id,
-                Name = result.Name,
-                Surname = result.Surname,
-                SalaryPerMonth = result.SalaryPerMonth
+                Id = manager.Id,
+                Name = manager.Name,
+                Surname = manager.Surname,
+                SalaryPerMonth = manager.SalaryPerMonth
             };
         }
 

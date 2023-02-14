@@ -1,0 +1,62 @@
+﻿@page "/carlist/edit/{Id:int?}"
+
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@using Session_27.Shared;
+<h3>Car Management </h3>
+@if (isLoading) {
+    <div class="lds-hourglass"></div>
+}
+else {
+    <div class="col-md-6">
+        <label class="form-label">Id</label>
+        <input type="hidden" class="form-control" id="code" @bind="Car.Id" />
+    </div>
+        <div class="col-md-6">
+            <label class="form-label">Brand</label>
+            <input class="form-control" id="code" @bind="Car.Brand" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Model</label>
+            <input class="form-control" id="description" @bind="Car.Model" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Registration Code</label>
+            <input class="form-control" id="price" @bind="Car.CarRegistrationNumber" />
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-success" @onclick = "OnSave">Save Changes</button>
+                <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+            </div>
+        </div>
+}
+
+
+
+
+
+
+@code {
+    [Parameter] public int? Id { get; set; }
+    CarEditDto Car { get; set; }
+    bool isLoading = true;
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        if (Id.HasValue)
+            Car = await httpClient.GetFromJsonAsync<CarEditDto>($"car/{Id}");
+    }
+    private void OnCancel() {
+        navigationManager.NavigateTo("carlist");
+    }
+    private async Task OnSave() {
+        HttpResponseMessage? response;
+        response = await httpClient.PutAsJsonAsync("car", Car);
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("carlist");
+    }
+
+}

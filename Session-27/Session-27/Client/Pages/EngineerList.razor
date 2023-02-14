@@ -24,12 +24,12 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var engineer in engList) {
+            @foreach (var engineer in engineerList) {
                 <tr>
                     <td>@engineer.Name</td>
                     <td>@engineer.Surname</td>
                     <td>@engineer.SalaryPerMonth</td>
-                    <td>@engineer.Manager</td>
+                    <td>@engineer.ManagerId</td>
 
                     <td>
                         <button class="btn btn-primary" @onclick="()=> EditItem(engineer)">Edit</button>
@@ -42,7 +42,7 @@ else
 }
 
 @code {
-    private List<EngineerListDto> engList = new();
+    private List<EngineerListDto> engineerList = new();
     bool isLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
@@ -53,7 +53,7 @@ else
 
     private async Task LoadItemsFromServer()
     {
-        engList = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
+        engineerList = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
     }
 
     private void CreateItem()
