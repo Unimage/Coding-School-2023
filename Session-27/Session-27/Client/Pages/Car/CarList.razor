@@ -3,10 +3,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
-
-
 <h3>List Of Cars</h3>
-
 @if (isLoading) {
     <p>Loading ... ta nevra mou</p>
 }
@@ -33,24 +30,19 @@ else {
                 </td>
             </tr>
         }
-
         </tbody>
 </table>
 }
-
 @code {
     private List<CarListDto> carList = new();
     bool isLoading { get; set; } = true;
-
     protected override async Task OnInitializedAsync() {
         await LoadItemsFromServer();
         isLoading = false;
     }
-
     private async Task LoadItemsFromServer() {
         carList = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
     }
-
     private async Task DeleteItem(CarListDto car) {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if(confirm) {

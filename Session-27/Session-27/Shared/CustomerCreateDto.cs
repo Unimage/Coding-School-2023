@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Session_27.Shared
 {
-    public class CustomerListDto
-    {
+    public class CustomerCreateDto
+{
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -16,7 +17,6 @@ namespace Session_27.Shared
         public string Tin { get; set; }
 
         // Relations
-        public List<Transaction> Transactions { get; set; } 
-
+        public List<Transaction> Transactions { get; set; } = new();
     }
 }
