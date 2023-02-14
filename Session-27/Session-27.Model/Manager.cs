@@ -1,4 +1,6 @@
-﻿namespace Session_27.Model { 
+﻿using System.Drawing;
+
+namespace Session_27.Model { 
 
 public class Manager
 {
@@ -11,6 +13,9 @@ public class Manager
         Engineers = new List<Engineer>();
         Transactions = new List<Transaction>();
     }
+        public Manager() {
+
+        }
 
     public int Id { get; set; }
     public string? Name { get; set; }
@@ -19,6 +24,6 @@ public class Manager
 
     public List<Engineer> Engineers { get; set; }
 
-    public List<Transaction> Transactions { get; set; }
+    public List<Transaction> Transactions { get; set; } =new List<Transaction>();
 }
 }

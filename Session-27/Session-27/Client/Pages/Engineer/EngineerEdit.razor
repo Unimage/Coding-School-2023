@@ -1,40 +1,32 @@
 ﻿@page "/engineerlist/edit/{Id:int?}"
-@using Session_27.Shared;
-@using Session_27.Model;
-@using System.Net.Http.Json;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
-<h3>Edit Engineer</h3>
+@using Session_27.Shared;
+@using Session_27.Model;
 
-@if (Engineer == null) {
-    <p>Loading ...</p>
+<h3>Edit Engineer</h3>
+@if (isLoading) {
+    <div class="lds-hourglass"></div>
 }
 else {
-    <div class="row mt-2">
-        <div class="col-md-6">
-            <label class="form-label">Name</label>
-            <input class="form-control" @bind="@Engineer.Name" />
-        </div>
+    <div class="col-md-6">
+        <input type="hidden" class="form-control" id="code" @bind="Engineer.Id" />
     </div>
-    <div class="row mt-2">
-        <div class="col-md-6">
-            <label class="form-label">Surname</label>
-            <input class="form-control" @bind="@Engineer.Surname" />
-        </div>
+    <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input class="form-control" id="code" @bind="Engineer.Name" />
     </div>
-    <div class="row mt-2">
-        <div class="col-md-6">
-            <label class="form-label">SalaryPerMonth</label>
-            <input class="form-control" @bind="@Engineer.SalaryPerMonth" />
-        </div>
+    <div class="col-md-6">
+        <label class="form-label">Surname</label>
+        <input class="form-control" id="description" @bind="Engineer.Surname" />
     </div>
-    <div class="row mt-2">
-        <div class="col-md-6">
-            <label class="form-label">Manager</label>
-            <input class="form-control" @bind="@Engineer.ManagerId" />
-
-          
-        </div>
+    <div class="col-md-6">
+        <label class="form-label">Salary Per Month</label>
+        <input class="form-control" id="price" @bind="Engineer.SalaryPerMonth" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Manager ID</label>
+        <input class="form-control" id="price" @bind="Engineer.ManagerId" />
     </div>
     <div class="row mt-2">
         <div class="col-md-6">
@@ -43,19 +35,15 @@ else {
         </div>
     </div>
 }
-
-
 @code {
     [Parameter] public int? Id { get; set; }
     EngineerEditDto Engineer { get; set; }
+    bool isLoading = true;
 
     protected override async Task OnInitializedAsync() {
-        if (Id == null) {
-            Engineer = new();
-        }
-        else {
-            Engineer = await httpClient.GetFromJsonAsync<EngineerEditDto>($"engineer/{Id}");
-        }
+        isLoading = false;
+        Engineer = await httpClient.GetFromJsonAsync<EngineerEditDto>($"engineer/{Id}");
+
     }
 
     private void OnCancel() {
@@ -64,13 +52,7 @@ else {
 
     private async Task OnSave() {
         HttpResponseMessage? response = null;
-        if (Id == null) {
-            response = await httpClient.PostAsJsonAsync("engineer", Engineer);
-        }
-        else {
-            response = await httpClient.PutAsJsonAsync("engineer", Engineer);
-        }
-
+        response = await httpClient.PutAsJsonAsync("engineer", Engineer);
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("engineerlist");
     }

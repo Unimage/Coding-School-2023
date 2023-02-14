@@ -1,0 +1,49 @@
+﻿@page "/engineerlist/add"
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@using Session_27.Shared;
+
+<h3>Add New Engineer</h3>
+<div class="col-md-6">
+    <input type="hidden" class="form-control" id="code" @bind="eng.Id" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Name</label>
+    <input class="form-control" id="code" @bind="eng.Name" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Surname</label>
+    <input class="form-control" id="description" @bind="eng.Surname" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Salary Per Month</label>
+    <input class="form-control" id="price" @bind="eng.SalaryPerMonth" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Assigned Manager</label>
+    <input class="form-control" id="price" @bind="eng.ManagerId" />
+</div>
+<div class="row mt-2">
+    <div class="col">
+        <button class="btn btn-success" @onclick="OnCreate">Add new Engineer</button>
+        <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+    </div>
+</div>
+
+
+@code {
+    EngineerCreateDto eng { get; set; } = new();
+
+    bool isLoading = true;
+
+    private void OnCancel() {
+        navigationManager.NavigateTo("engineerlist");
+    }
+    private async Task OnCreate() {
+        HttpResponseMessage? response;
+        response = await httpClient.PostAsJsonAsync("engineer", eng);
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("engineerlist");
+    }
+
+}
