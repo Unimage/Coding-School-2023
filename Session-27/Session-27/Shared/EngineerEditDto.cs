@@ -12,6 +12,7 @@ namespace Session_27.Shared {
         public string? Surname { get; set; }
         public int SalaryPerMonth { get; set; }
         public int ManagerId { get; set; }
-        public Manager Managers { get; set; } = null!;
+        public Manager Manager { get; set; } = null!;
+        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }
