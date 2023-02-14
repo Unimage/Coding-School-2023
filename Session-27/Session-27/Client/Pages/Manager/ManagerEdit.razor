@@ -1,0 +1,61 @@
+﻿@page "/managerlist/edit/{Id:int?}"
+@using Session-27.Model;
+@using Session_27.Shared;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+<h3>Edit Manager</h3>
+
+@if (Manager == null) {
+    <p>Loading ...</p>
+}
+else {
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input class="form-control" @bind="@Manager.Name" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Surname</label>
+            <input class="form-control" @bind="@Manager.Surname" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">SalaryPerMonth</label>
+            <input class="form-control" @bind="@Manager.SalaryPerMonth" />
+        </div>
+    </div>
+ }   
+
+@code {
+    [Parameter] public int? Id { get; set; }
+    ManagerEditDto Manager { get; set; }
+
+    protected override async Task OnInitializedAsync() {
+        if (Id == null) {
+            Manager = new();
+        }
+        else {
+            Manager = await httpClient.GetFromJsonAsync<ManagerEditDto>($"manager/{Id}");
+        }
+    }
+
+    private void OnCancel() {
+        navigationManager.NavigateTo("managerlist");
+    }
+
+    private async Task OnSave() {
+        HttpResponseMessage? response = null;
+        if (Id == null) {
+            response = await httpClient.PostAsJsonAsync("manager", Engineer);
+        }
+        else {
+            response = await httpClient.PutAsJsonAsync("manager", Engineer);
+        }
+
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("managerlist");
+    }
+}
