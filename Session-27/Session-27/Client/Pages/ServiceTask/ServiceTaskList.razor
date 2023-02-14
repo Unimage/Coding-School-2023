@@ -53,19 +53,19 @@ else
     //Load
     private async Task LoadItemsFromServer()
     {
-      taskList = await httpClient.GetFromJsonAsync<List<ServiceTaskListDto>>("servicetasklist");
+        taskList = await httpClient.GetFromJsonAsync<List<ServiceTaskListDto>>("servicetask");
     }
 
     //Create
     private void CreateItem()
     {
-        navigationManager.NavigateTo("servicetasklist/edit");
+        navigationManager.NavigateTo("servicetask/edit");
     }
 
     //Edit 
     private void EditTask(ServiceTaskListDto task)
     {
-        navigationManager.NavigateTo($"servicetasklist/edit/{task.Id}");
+        navigationManager.NavigateTo($"servicetask/edit/{task.Id}");
     }
     
     //Delete
@@ -74,7 +74,7 @@ else
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm)
         {
-            var response = await httpClient.DeleteAsync($"task/{task.Id}"); 
+            var response = await httpClient.DeleteAsync($"servicetask/{task.Id}"); 
             response.EnsureSuccessStatusCode();
             await LoadItemsFromServer();
         }
