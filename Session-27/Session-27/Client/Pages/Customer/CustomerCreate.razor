@@ -1,0 +1,56 @@
+﻿@page "/customerlist/add"
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@using Session_27.Shared;
+
+
+
+<h3>Add new Customer</h3>
+
+<div class="col-md-6">
+    <input type="hidden" class="form-control" id="code" @bind="Customer.Id" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Name</label>
+    <input class="form-control" id="description" @bind="Customer.Name" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Surname</label>
+    <input class="form-control" id="description" @bind="Customer.Surname" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Phone</label>
+    <input class="form-control" id="price" @bind="Customer.Phone" />
+</div>
+<div class="col-md-6">
+    <label class="form-label">Tin</label>
+    <input class="form-control" id="price" @bind="Customer.Tin" />
+</div>
+
+
+<div class="row mt-2">
+    <div class="col">
+        <button class="btn btn-success" @onclick="OnCreate">Add new Customer</button>
+        <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+    </div>
+</div>
+
+
+@code {
+    CustomerCreateDto Customer { get; set; } = new();
+    bool isLoading = true;
+
+    private void OnCancel()
+    {
+        navigationManager.NavigateTo("customerlist");
+    }
+    private async Task OnCreate()
+    {
+        HttpResponseMessage? response;
+        response = await httpClient.PostAsJsonAsync("customer", Customer);
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("customerlist");
+    }
+
+
+}
