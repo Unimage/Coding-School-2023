@@ -50,7 +50,7 @@ else
 
     private async Task LoadItemsFromServer()
     {
-        manList = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("todo");
+        manList = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
     }
 
     private void CreateItem()
