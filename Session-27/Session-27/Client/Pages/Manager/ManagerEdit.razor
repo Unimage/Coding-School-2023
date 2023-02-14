@@ -1,6 +1,7 @@
 ﻿@page "/managerlist/edit/{Id:int?}"
-@using Session-27.Model;
+@using Session_27.Model;
 @using Session_27.Shared;
+@using System.Net.Http.Json;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 <h3>Edit Manager</h3>
@@ -27,7 +28,13 @@ else {
             <input class="form-control" @bind="@Manager.SalaryPerMonth" />
         </div>
     </div>
- }   
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnSave">Save Changes</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+}
 
 @code {
     [Parameter] public int? Id { get; set; }
@@ -49,10 +56,10 @@ else {
     private async Task OnSave() {
         HttpResponseMessage? response = null;
         if (Id == null) {
-            response = await httpClient.PostAsJsonAsync("manager", Engineer);
+            response = await httpClient.PostAsJsonAsync("manager", Manager);
         }
         else {
-            response = await httpClient.PutAsJsonAsync("manager", Engineer);
+            response = await httpClient.PutAsJsonAsync("manager", Manager);
         }
 
         response.EnsureSuccessStatusCode();

@@ -1,6 +1,7 @@
 ﻿@page "/engineerlist/edit/{Id:int?}"
-@using Session-27.Model;
 @using Session_27.Shared;
+@using Session_27.Model;
+@using System.Net.Http.Json;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 <h3>Edit Engineer</h3>
@@ -32,9 +33,15 @@ else {
             <label class="form-label">Manager</label>
             <input class="form-control" @bind="@Engineer.ManagerId" />
 
-            @foreach (var manager in managers) {
-                <option value="@manager.Name">@manager.Name</option>
-            }          
+            @* @foreach (var manager in managers) {*@
+            @* <option value="@manager.Name">@manager.Name</option>*@
+            @*   }*@
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnSave">Save Changes</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
         </div>
     </div>
 }

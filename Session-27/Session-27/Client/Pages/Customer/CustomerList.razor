@@ -10,13 +10,11 @@
 
 
 
-@if (isLoading)
-{
+@if (isLoading) {
     <p>Loading ...</p>
 }
-else
-{
-    <button class="btn btn-primary" >Create</button>
+else {
+    <button class="btn btn-primary">Create</button>
 
     <table class="table table-striped table-hover">
         <thead>
@@ -28,8 +26,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in customerList)
-            {
+            @foreach (var customer in customerList) {
                 <tr>
                     <td>@customer.Name</td>
                     <td>@customer.Surname</td>
@@ -42,44 +39,39 @@ else
                     </td>
                 </tr>
             }
-            
+
         </tbody>
     </table>
 }
 
 
 @code {
-     private List<CustomerListDto> customerList = new();
+    private List<CustomerListDto> customerList = new();
     bool isLoading { get; set; } = true;
 
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() {
         await LoadItemsFromServer();
         isLoading = false;
     }
 
-    private async Task LoadItemsFromServer()
-    {
+    private async Task LoadItemsFromServer() {
         customerList = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
     }
 
-    private void CreateItem()
-    {
+    private void CreateItem() {
         navigationManager.NavigateTo("customerlist/edit");
     }
 
-    private void EditItem(CustomerListDto customer)
-    {
+    private void EditItem(CustomerListDto customer) {
         navigationManager.NavigateTo($"todolist/edit/{customer.Id}");
     }
 
-    private async Task DeleteItem(CustomerListDto customer)
-    {
+    private async Task DeleteItem(CustomerListDto customer) {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
-        if (confirm)
-        {
+        if (confirm) {
             var response = await httpClient.DeleteAsync($"todo/{customer.Id}");
             response.EnsureSuccessStatusCode();
             await LoadItemsFromServer();
         }
+    }
 }

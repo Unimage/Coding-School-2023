@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 namespace Session_27.Server.Controllers
 {
     [Route("[controller]")]
-    [Controller]
+    [ApiController]
     public class ManagerController : ControllerBase {
         private readonly IEntityRepo<Manager> _managerRepo;
 
@@ -48,6 +48,7 @@ namespace Session_27.Server.Controllers
         [HttpPut]
         public async Task Put(ManagerEditDto manager) {
             var itemToUpdate = _managerRepo.GetById(manager.Id);
+            itemToUpdate.Id = manager.Id;
             itemToUpdate.Name = manager.Name;
             itemToUpdate.Surname = manager.Surname;
             itemToUpdate.SalaryPerMonth = manager.SalaryPerMonth;

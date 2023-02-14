@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Session_27.Server.Controllers {
     [Route("[controller]")]
-    [Controller]
+    [ApiController]
     public class EngineerController : ControllerBase {
 
         private readonly IEntityRepo<Engineer> _engineerRepo;
@@ -42,6 +42,7 @@ namespace Session_27.Server.Controllers {
         [HttpPost]
         public async Task Post(EngineerEditDto engineer) {
             var newEngineer = new Engineer(engineer.Name,engineer.Surname,engineer.SalaryPerMonth);
+            newEngineer.Id = newEngineer.Id;
             newEngineer.Surname = engineer.Surname;
             newEngineer.SalaryPerMonth = engineer.SalaryPerMonth;
             newEngineer.ManagerId = engineer.ManagerId;
@@ -51,6 +52,7 @@ namespace Session_27.Server.Controllers {
         [HttpPut]
         public async Task Put(EngineerEditDto engineer) {
             var itemToUpdate = _engineerRepo.GetById(engineer.Id);
+            itemToUpdate.Id = engineer.Id;
             itemToUpdate.Name = engineer.Name;
             itemToUpdate.Surname = engineer.Surname;
             itemToUpdate.SalaryPerMonth = engineer.SalaryPerMonth;
