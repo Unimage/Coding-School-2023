@@ -12,7 +12,7 @@ namespace Session_27.Shared
         public string? Code { get; set; }
         public string? Description { get; set; }
         public decimal Hours { get; set; }
-
+        public List<CarListDto> Cars { get; set; } = new();
         public List<Session_27.Model.TransactionLine> TransactionLines { get; set; } = new();
 
     }

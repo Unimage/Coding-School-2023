@@ -1,4 +1,4 @@
-﻿@page "/engineerlist"
+﻿@page "/transactionlist"
 @using Session_27.Shared;
 @using Session_27.Model;
 @inject HttpClient httpClient
@@ -11,6 +11,9 @@
     <p>Loading ...</p>
 }
 else {
+    @if (errorMessage != null) {
+        <p class="text-danger">@errorMessage</p>
+    }
     <button class="btn btn-primary" @onclick="CreateItem">Create</button>
 
     <table class="table table-striped table-hover">
@@ -43,6 +46,7 @@ else {
 @code {
     private List<TransactionListDto> transactionList = new();
     bool isLoading { get; set; } = true;
+    string? errorMessage = null;
 
     protected override async Task OnInitializedAsync() {
         await LoadItemsFromServer();
@@ -50,7 +54,7 @@ else {
     }
 
     private async Task LoadItemsFromServer() {
-        engineerList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
+        transactionList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
     }
 
     private void CreateItem() {
@@ -63,12 +67,18 @@ else {
 
 
     //works
-    private async Task DeleteItem(EngineerListDto engineer) {
+    private async Task DeleteItem(TransactionListDto transaction) {
+        errorMessage = null;
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm) {
-            var response = await httpClient.DeleteAsync($"engineer/{engineer.Id}");
-            response.EnsureSuccessStatusCode();
-            await LoadItemsFromServer();
+            var response = await httpClient.DeleteAsync($"transaction/{transaction.Id}");
+            if (response.IsSuccessStatusCode) {
+                await LoadItemsFromServer();
+            }
+            else {
+                errorMessage = await response.Content.ReadAsStringAsync();
+                //await jsRuntime.InvokeVoidAsync("alert", error);
+            }
         }
     }
 }
