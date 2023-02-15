@@ -34,7 +34,7 @@ else {
             <label class="form-label">Assigned Manager</label>
             <select class="form-control" @bind="Engineer.ManagerId">
                 @foreach (var engineer in Engineer.Managers) {
-                    <option value="@engineer.Id">@engineer.Name</option>
+                    <option value="@engineer.Id">@engineer.FullName</option>
                 }
             </select>
         </div>
