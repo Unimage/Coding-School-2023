@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Tranaction\TransactionTest.razor" />
+    <Content Remove="Pages\Transaction\TransactionTest.razor" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,15 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Tranaction\TransactionTest.razor" />
+    <UpToDateCheckInput Remove="Pages\Transaction\TransactionTest.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Tranaction\TransactionTest.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Transaction\TransactionTest.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Pages\Tranaction\TransactionTest.razor" />
+    <None Include="Pages\Transaction\TransactionTest.razor" />
   </ItemGroup>
 
 </Project>
