@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Session_27.Shared.ServiceTask
+namespace Session_27.Shared
 {
    public class ServiceTaskListDto
    {

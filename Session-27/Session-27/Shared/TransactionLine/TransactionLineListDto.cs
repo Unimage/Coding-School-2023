@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TransactionLine
+namespace Session_27.Shared
 {
     public class TransactionLineListDto
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Session_27.Shared.Transaction
+namespace Session_27.Shared
 {
     internal class TransactionCreateDto
 {

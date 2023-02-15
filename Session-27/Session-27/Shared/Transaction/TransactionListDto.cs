@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Transaction
+namespace Session_27.Shared
 {
     public class TransactionListDto
     {
