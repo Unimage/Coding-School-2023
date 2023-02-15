@@ -11,6 +11,9 @@
     <p>Loading ...</p>
 }
 else {
+    @if (errorMessage != null) {
+        <p class="text-danger">@errorMessage</p>
+    }
     <button class="btn btn-primary" @onclick="CreateItem">Create</button>
 
     <table class="table table-striped table-hover">
@@ -47,6 +50,7 @@ else {
    // [Parameter] public int? Id { get; set; }
     private List<TransactionListDto> transactionList = new();
     bool isLoading { get; set; } = true;
+    string? errorMessage = null;
 
     protected override async Task OnInitializedAsync() {
         await LoadItemsFromServer();
@@ -68,11 +72,17 @@ else {
 
     //works
     private async Task DeleteItem(TransactionListDto transaction) {
+        errorMessage = null;
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm) {
             var response = await httpClient.DeleteAsync($"transaction/{transaction.Id}");
-            response.EnsureSuccessStatusCode();
-            await LoadItemsFromServer();
+            if (response.IsSuccessStatusCode) {
+                await LoadItemsFromServer();
+            }
+            else {
+                errorMessage = await response.Content.ReadAsStringAsync();
+                //await jsRuntime.InvokeVoidAsync("alert", error);
+            }
         }
     }
 }
