@@ -36,19 +36,18 @@ namespace Session_27.Server.Controllers
         {
             var trans = _transactionRepo.GetAll();
 
-            return trans.Select(trans => new TransactionListDto
+            return trans.Select(tr => new TransactionListDto
             {
-                Id = trans.Id,
-                Date = trans.Date,
-                TotalPrice = trans.TotalPrice,
-                CustomerId = trans.CustomerId,
-                ManagerId = trans.ManagerId,
-                CarId = trans.CarId,
-                TransactionLines = trans.TransactionLines,
-                Car = trans.Car,
-                Manager = trans.Manager,
-                Customer = trans.Customer
-
+                Id = tr.Id,
+                Date = tr.Date,
+                TotalPrice = tr.TotalPrice,
+                CustomerId = tr.CustomerId,
+                ManagerId = tr.ManagerId,
+                CarId = tr.CarId,
+                TransactionLines = tr.TransactionLines,
+                Car = tr.Car,
+                Manager = tr.Manager,
+                Customer = tr.Customer
             });
         }
 

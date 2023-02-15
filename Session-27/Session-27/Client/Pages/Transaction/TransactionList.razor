@@ -23,7 +23,6 @@ else {
                 <th>Customer</th>
                 <th>Car</th>
                 <th>Manager</th>
-                <th></th>
                 <th>Total Price</th>
             </tr>
         </thead>
@@ -31,9 +30,9 @@ else {
             @foreach (var transaction in transactionList) {
                 <tr>
                     <td>@transaction.Date</td>
-                    <td>@transaction.Customer</td>
-                    <td>@transaction.Car</td>
-                    <td>@transaction.Manager</td>
+                    <td>@transaction.Customer.FullName</td>
+                    <td>@transaction.Car.CarRegistrationNumber</td>
+                    <td>@transaction.Manager.FullName</td>
                     <td>@transaction.TotalPrice</td>
 
                     <td>

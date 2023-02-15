@@ -49,7 +49,7 @@ namespace Session_27.Server.Controllers
             };
         }
 
-        [HttpGet("{id}")]
+        [HttpPost]
         public async Task Post(ServiceTaskEditDto serviceTask)
         {
             var newTask = new ServiceTask(serviceTask.Code ,serviceTask.Description, serviceTask.Hours);                 
