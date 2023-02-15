@@ -26,7 +26,11 @@ else {
     </div>
     <div class="col-md-6">
         <label class="form-label">Manager ID</label>
-        <input class="form-control" id="price" @bind="Engineer.ManagerId" />
+        <select class="form-control" @bind="Engineer.ManagerId">
+            @foreach (var item in Engineer.Managers) {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
     </div>
     <div class="row mt-2">
         <div class="col-md-6">

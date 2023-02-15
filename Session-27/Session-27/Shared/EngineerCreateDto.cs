@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Session_27.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,13 @@ namespace Session_27.Shared
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public int SalaryPerMonth { get; set; }
-
+        public string FullName {
+            get {
+                return string.Format("{0} {1}", Name, Surname);
+            }
+        }
         // Relations
         public int ManagerId { get; set; }
-
+        public List<Manager> Managers { get; set; } = new List<Manager>();
     }
 }

@@ -21,7 +21,11 @@
 </div>
 <div class="col-md-6">
     <label class="form-label">Assigned Manager</label>
-    <input class="form-control" id="price" @bind="eng.ManagerId" />
+    <select class="form-control" @bind="eng.ManagerId">
+        @foreach (var item in eng.Managers) {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
 </div>
 <div class="row mt-2">
     <div class="col">

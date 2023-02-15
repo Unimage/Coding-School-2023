@@ -10,10 +10,14 @@ namespace Session_27.Shared {
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
+        public string FullName {
+            get {
+                return string.Format("{0} {1}", Name, Surname);
+            }
+        }
         public int SalaryPerMonth { get; set; }
         public int ManagerId { get; set; }
-        public Manager Manager { get; set; } = null!;
-        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }
+
 

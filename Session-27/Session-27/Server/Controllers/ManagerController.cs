@@ -3,6 +3,7 @@ using Session_27.EF.Repositories;
 using Session_27.Model;
 using Session_27.Shared;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Session_27.Server.Controllers
 {
@@ -56,8 +57,17 @@ namespace Session_27.Server.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id) {
-            _managerRepo.Delete(id);
+        public async Task<ActionResult> Delete(int id) {
+            try {
+                _managerRepo.Delete(id);
+                return Ok();
+            }
+            catch (DbUpdateException ex) {
+                return BadRequest("This todo cannot be deleted!");
+            }
+            catch (KeyNotFoundException ex) {
+                return BadRequest($"Todo with id {id} not found!");
+            }
         }
     }
 }
