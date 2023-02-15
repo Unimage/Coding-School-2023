@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Transaction\TransactionTest.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
@@ -24,18 +20,6 @@
     <ProjectReference Include="..\..\Session-27.EF\Session-27.EF.csproj" />
     <ProjectReference Include="..\..\Session-27.Model\Session-27.Model.csproj" />
     <ProjectReference Include="..\Shared\Session-27.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Transaction\TransactionTest.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Transaction\TransactionTest.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Transaction\TransactionTest.razor" />
   </ItemGroup>
 
 </Project>
