@@ -103,12 +103,12 @@ namespace Session_27.Server.Controllers
         {
             var transactionToUpdate = _transactionRepo.GetById(trans.Id);
 
-            //transactionToUpdate.CustomerId = trans.CustomerId;
-            //  transactionToUpdate.ManagerId = trans.ManagerId;
-            // transactionToUpdate.CarId = trans.CarId;
-            transactionToUpdate.TotalPrice = trans.TotalPrice;
-            transactionToUpdate.Date = trans.Date;
-            transactionToUpdate.TransactionLines = trans.TransactionLines.Select(transline => new TransactionLine(transline.Hours, transline.PricePerHour, transline.Price)
+             transactionToUpdate.CustomerId = trans.CustomerId;
+             transactionToUpdate.ManagerId = trans.ManagerId;
+             transactionToUpdate.CarId = trans.CarId;
+             transactionToUpdate.TotalPrice = trans.TotalPrice;
+             transactionToUpdate.Date = trans.Date;
+             transactionToUpdate.TransactionLines = trans.TransactionLines.Select(transline => new TransactionLine(transline.Hours, transline.PricePerHour, transline.Price)
             { 
        
             }
