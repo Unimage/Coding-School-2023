@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Session_27.Model;
-namespace Session_27.Shared.ServiceTask
+namespace Session_27.Shared
 {
     public class ServiceTaskCreateDto
     {
@@ -13,7 +13,7 @@ namespace Session_27.Shared.ServiceTask
         public string? Description { get; set; }
         public decimal Hours { get; set; }
 
-        public List<TransactionLine> TransactionLines { get; set; } = new();
+        public List<Session_27.Model.TransactionLine> TransactionLines { get; set; } = new();
 
     }
 

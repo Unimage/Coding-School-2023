@@ -39,6 +39,7 @@ else {
 @code {
     [Parameter] public int? Id { get; set; }
     ManagerEditDto Manager { get; set; }
+    bool isLoading = true;
 
     protected override async Task OnInitializedAsync() {
         if (Id == null) {
@@ -47,6 +48,7 @@ else {
         else {
             Manager = await httpClient.GetFromJsonAsync<ManagerEditDto>($"manager/{Id}");
         }
+        bool isLoading = false;
     }
 
     private void OnCancel() {

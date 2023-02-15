@@ -21,7 +21,7 @@ namespace Session_27.Shared
         public int ManagerId { get; set; }
         public List<ManagerListDto> Managers { get; set; } = new();
 
-        public List<TransactionLine> TransactionLines { get; set; } =new List<TransactionLine>();
+        public List<Session_27.Model.TransactionLine> TransactionLines { get; set; } =new List<Session_27.Model.TransactionLine>();
     }
 }
 

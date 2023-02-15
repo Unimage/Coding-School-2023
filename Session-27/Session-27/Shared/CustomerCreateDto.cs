@@ -17,6 +17,6 @@ namespace Session_27.Shared
         public string Tin { get; set; }
 
         // Relations
-        public List<Transaction> Transactions { get; set; } = new();
+        public List<Session_27.Model.Transaction> Transactions { get; set; } = new();
     }
 }

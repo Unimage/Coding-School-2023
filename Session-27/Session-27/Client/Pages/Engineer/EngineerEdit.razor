@@ -1,36 +1,43 @@
 ﻿@page "/engineerlist/edit/{Id:int?}"
+@using Session_27.Client.Pages.Manager;
+@using Session_27.Model;
+@using Session_27.Shared;
+@using System.Net.Http.Json;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
-@using Session_27.Shared;
-@using Session_27.Model;
-
 <h3>Edit Engineer</h3>
-@if (isLoading) {
-    <div class="lds-hourglass"></div>
+
+@if (Engineer == null) {
+    <p>Loading ...</p>
 }
 else {
-    <div class="col-md-6">
-        <input type="hidden" class="form-control" id="code" @bind="Engineer.Id" />
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input class="form-control" @bind="@Engineer.Name" />
+        </div>
     </div>
-    <div class="col-md-6">
-        <label class="form-label">Name</label>
-        <input class="form-control" id="code" @bind="Engineer.Name" />
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Surname</label>
+            <input class="form-control" @bind="@Engineer.Surname" />
+        </div>
     </div>
-    <div class="col-md-6">
-        <label class="form-label">Surname</label>
-        <input class="form-control" id="description" @bind="Engineer.Surname" />
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">SalaryPerMonth</label>
+            <input class="form-control" @bind="@Engineer.SalaryPerMonth" />
+        </div>
     </div>
-    <div class="col-md-6">
-        <label class="form-label">Salary Per Month</label>
-        <input class="form-control" id="price" @bind="Engineer.SalaryPerMonth" />
-    </div>
-    <div class="col-md-6">
-        <label class="form-label">Manager ID</label>
-        <select class="form-control" @bind="Engineer.ManagerId">
-            @foreach (var item in Engineer.Managers) {
-                <option value="@item.Id">@item.Name</option>
-            }
-        </select>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Assigned Manager</label>
+            <select class="form-control" @bind="Engineer.ManagerId">
+                @foreach (var engineer in Engineer.Managers) {
+                    <option value="@engineer.Id">@engineer.Name</option>
+                }
+            </select>
+        </div>
     </div>
     <div class="row mt-2">
         <div class="col-md-6">
@@ -39,16 +46,21 @@ else {
         </div>
     </div>
 }
+
 @code {
     [Parameter] public int? Id { get; set; }
     EngineerEditDto Engineer { get; set; }
     bool isLoading = true;
 
     protected override async Task OnInitializedAsync() {
-        Engineer = await httpClient.GetFromJsonAsync<EngineerEditDto>($"engineer/{Id}");
-        isLoading = false;
-        
-
+        if (Id == null) {
+            Engineer = new();
+            Engineer.Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
+        }
+        else {
+            Engineer = await httpClient.GetFromJsonAsync<EngineerEditDto>($"engineer/{Id}");
+        }
+        bool isLoading = false;
     }
 
     private void OnCancel() {
@@ -57,7 +69,13 @@ else {
 
     private async Task OnSave() {
         HttpResponseMessage? response = null;
-        response = await httpClient.PutAsJsonAsync("engineer", Engineer);
+        if (Id == null) {
+            response = await httpClient.PostAsJsonAsync("engineer", Engineer);
+        }
+        else {
+            response = await httpClient.PutAsJsonAsync("engineer", Engineer);
+        }
+
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("engineerlist");
     }

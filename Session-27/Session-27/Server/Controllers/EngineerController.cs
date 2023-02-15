@@ -51,7 +51,7 @@ namespace Session_27.Server.Controllers {
         }
 
         [HttpPost]
-        public async Task Post(EngineerCreateDto engineer) {
+        public async Task Post(EngineerEditDto engineer) {
             var newEngineer = new Engineer(engineer.Name,engineer.Surname,engineer.SalaryPerMonth);
             newEngineer.ManagerId = engineer.ManagerId;
             _engineerRepo.Add(newEngineer);

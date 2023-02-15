@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Session_27.Shared {
-    public class TransactionLineListDto {
+namespace Session_27.Shared
+{
+    public class TransactionLineListDto
+    {
         public int Id { get; set; }
         public decimal Hours { get; set; }
         public decimal PricePerHour { get; set; }
@@ -14,10 +16,10 @@ namespace Session_27.Shared {
 
         // Relations
         public int TransactionId { get; set; }
-        public Transaction Transaction { get; set; } = null!;
+        public Session_27.Model.Transaction Transaction { get; set; } = null!;
 
         public int ServiceTaskId { get; set; }
-        public Session_27.Model.ServiceTask ServiceTask { get; set; } = null!;
+        public ServiceTask ServiceTask { get; set; } = null!;
 
         public int EngineerId { get; set; }
         public Engineer Engineer { get; set; } = null!;

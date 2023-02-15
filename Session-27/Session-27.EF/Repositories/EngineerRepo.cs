@@ -46,6 +46,7 @@ namespace Session_27.EF.Repositories {
             dbEngineer.Name = entity.Name;
             dbEngineer.Surname = entity.Surname;
             dbEngineer.SalaryPerMonth = entity.SalaryPerMonth;
+            dbEngineer.ManagerId = entity.ManagerId;
             context.SaveChanges();
         }
     }
