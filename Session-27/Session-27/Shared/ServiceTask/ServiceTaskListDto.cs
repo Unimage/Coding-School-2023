@@ -16,9 +16,6 @@ namespace Session_27.Shared.ServiceTask
 
         public List<TransactionLine> TransactionLines { get; set; } = new();
 
-
-
-
     }
 
 
