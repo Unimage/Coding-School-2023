@@ -36,7 +36,8 @@ namespace Session_27.Server.Controllers {
                 Name = engineer.Name,
                 Surname = engineer.Surname,
                 SalaryPerMonth = engineer.SalaryPerMonth,
-                ManagerId = engineer.ManagerId
+                ManagerId = engineer.ManagerId,
+                TransactionLines = engineer.TransactionLines
             };
         }
 

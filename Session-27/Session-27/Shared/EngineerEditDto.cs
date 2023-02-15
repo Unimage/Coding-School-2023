@@ -15,7 +15,7 @@ namespace Session_27.Shared
 
         // Relations
         public int ManagerId { get; set; }
-        public Manager? Manager { get; set; }
+       // public Manager? Manager { get; set; }
 
         public List<TransactionLine> TransactionLines { get; set; } =new List<TransactionLine>();
     }

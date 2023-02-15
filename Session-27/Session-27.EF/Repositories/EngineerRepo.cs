@@ -27,14 +27,14 @@ namespace Session_27.EF.Repositories {
         public IList<Engineer> GetAll() {
             using var context = new CarServiceCenterDbContext();
             return context.Engineers
-                .Include(engineer => engineer.TransactionLines)
+                .Include(engineer => engineer.TransactionLines).Include(engineer => engineer.Manager)
                 .ToList();
         }
 
         public Engineer? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
             return context.Engineers.Where(engineer => engineer.Id == id)
-                .Include(engineer => engineer.TransactionLines)
+                .Include(engineer => engineer.TransactionLines).Include(engineer=> engineer.Manager)
                 .SingleOrDefault();
         }
 
