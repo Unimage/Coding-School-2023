@@ -45,8 +45,9 @@ else {
     bool isLoading = true;
 
     protected override async Task OnInitializedAsync() {
-        isLoading = false;
         Engineer = await httpClient.GetFromJsonAsync<EngineerEditDto>($"engineer/{Id}");
+        isLoading = false;
+        
 
     }
 
