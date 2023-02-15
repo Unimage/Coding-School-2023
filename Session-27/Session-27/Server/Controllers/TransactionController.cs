@@ -48,13 +48,33 @@ namespace Session_27.Server.Controllers
             });
         }
 
-
-
-
-
-
         //[HttpGet("{id}")]
-
+        [HttpGet("{id}")]
+        public async Task<TransactionListDto> GetById(int id)
+        {
+            var transaction = _transactionRepo.GetById(id);
+            var customers = _customerRepo.GetAll();
+            var managers = _managerRepo.GetAll();
+            var cars = _carRepo.GetAll();
+            return new TransactionListDto
+            {
+                Customer = customers.Select(customer => new Customer()
+                {
+                    Id = customer.Id,
+                    Name = customer.Name
+                }).ToList().SingleOrDefault(),
+                Car = cars.Select(car => new Car()
+                {
+                    Id = car.Id,
+                    Brand = car.Brand
+                }).ToList().FirstOrDefault(),
+                Manager = managers.Select(manager => new Manager
+                {
+                    Id = manager.Id,
+                    Name = manager.Name
+                }).ToList().FirstOrDefault()
+            };
+        }
 
 
 

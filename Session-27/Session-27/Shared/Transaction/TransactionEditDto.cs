@@ -1,5 +1,6 @@
 ﻿using Session_27.Model;
 using Session_27.Shared;
+using Session_27.Shared.TransactionLine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
