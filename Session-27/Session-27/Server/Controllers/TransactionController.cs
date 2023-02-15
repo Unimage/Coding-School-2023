@@ -16,7 +16,7 @@ namespace Session_27.Server.Controllers
         private readonly IEntityRepo<Car> _carRepo;
         private readonly IEntityRepo<ServiceTask> _serviceTaskRepo;
         private readonly IEntityRepo<Engineer> _engineerRepo;
-        //private readonly IEntityRepo<>
+        
 
         public TransactionController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Manager> managerRepo, IEntityRepo<Car> carRepo, IEntityRepo<ServiceTask> serviceTaskRepo, IEntityRepo<Engineer> engineerRepo)
         {

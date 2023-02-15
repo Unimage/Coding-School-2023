@@ -19,6 +19,8 @@ namespace Session_27.Shared
         public Manager Manager { get; set; } 
         public int CarId { get; set; }
         public Car Car  { get; set; } 
+
+        //Relations
         public List<Session_27.Model.TransactionLine> TransactionLines { get; set; } = new();
     }
 }
