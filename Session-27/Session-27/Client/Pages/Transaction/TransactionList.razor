@@ -1,4 +1,4 @@
-﻿@page "/engineerlist"
+﻿@page "/transactionlist"
 @using Session_27.Shared;
 @using Session_27.Model;
 @inject HttpClient httpClient
@@ -50,7 +50,7 @@ else {
     }
 
     private async Task LoadItemsFromServer() {
-        engineerList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
+        transactionList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
     }
 
     private void CreateItem() {
@@ -63,7 +63,7 @@ else {
 
 
     //works
-    private async Task DeleteItem(EngineerListDto engineer) {
+    private async Task DeleteItem(TransactionListDto engineer) {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm) {
             var response = await httpClient.DeleteAsync($"engineer/{engineer.Id}");

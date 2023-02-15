@@ -71,12 +71,12 @@ namespace Session_27.Server.Controllers
                 {
                     Id = car.Id,
                     Brand = car.Brand
-                }).ToList().SingleOrDefault(),
-                Manager = managers.Select(manager => new Manager
+                }).ToList(),
+                Managers = managers.Select(manager => new ManagerListDto
                 {
                     Id = manager.Id,
                     Name = manager.Name
-                }).ToList().SingleOrDefault()
+                }).ToList()
             };
         }
 
