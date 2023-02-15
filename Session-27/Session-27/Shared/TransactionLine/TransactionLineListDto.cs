@@ -16,7 +16,7 @@ namespace TransactionLine
 
         // Relations
         public int TransactionId { get; set; }
-        public Transaction Transaction { get; set; } = null!;
+        public Session_27.Model.Transaction Transaction { get; set; } = null!;
 
         public int ServiceTaskId { get; set; }
         public ServiceTask ServiceTask { get; set; } = null!;

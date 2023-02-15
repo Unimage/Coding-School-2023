@@ -12,6 +12,6 @@ namespace Session_27.Shared {
         public string? Surname { get; set; }
         public int SalaryPerMonth { get; set; }
         public List<Engineer> Engineers { get; set; } = new List<Engineer>();
-        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public List<Session_27.Model.Transaction> Transactions { get; set; } = new List<Session_27.Model.Transaction>();
     }
 }

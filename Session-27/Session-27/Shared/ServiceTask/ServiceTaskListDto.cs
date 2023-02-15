@@ -14,7 +14,7 @@ namespace Session_27.Shared.ServiceTask
         public string? Description { get; set; }
         public decimal Hours { get; set; }
 
-        public List<TransactionLine> TransactionLines { get; set; } = new();
+        public List<Session_27.Model.TransactionLine> TransactionLines { get; set; } = new();
 
     }
 
