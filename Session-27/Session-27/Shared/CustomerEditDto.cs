@@ -15,8 +15,7 @@ namespace Session_27.Shared
         public int Phone { get; set; }
         public string Tin { get; set; }
 
-        // Relations
-        public List<Session_27.Model.Transaction> Transactions { get; set; } = new List<Session_27.Model.Transaction>();
+        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
     }
 }

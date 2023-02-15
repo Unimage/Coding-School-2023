@@ -1,6 +1,40 @@
 ﻿@page "/transactionlist"
+@using Session_27.Shared;
 <h3>Transaction Management</h3>
 
+
+@if (isLoading) {
+    <p>Loading ... ta nevra mou</p>
+}
+else {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @code {
+    bool isLoading { get; set; } = true;
+    private List<TransactionListDto> transactionList = new();
+
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        transactionList = await httpClient.GetFromJsonAsync<List<CarListDto>>("transaction");
+    }
 
 }
