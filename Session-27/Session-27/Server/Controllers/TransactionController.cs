@@ -108,7 +108,7 @@ namespace Session_27.Server.Controllers
              transactionToUpdate.TotalPrice = trans.TotalPrice;
              transactionToUpdate.Date = trans.Date;
              transactionToUpdate.TransactionLines = trans.TransactionLines.Select(transline => new TransactionLine(transline.Hours, transline.PricePerHour, transline.Price)
-            { 
+            { //what are we able to update?
        
             }
             ).ToList();
@@ -129,11 +129,11 @@ namespace Session_27.Server.Controllers
             }
             catch (DbUpdateException ex)
             {
-                return BadRequest("This todo cannot be deleted!");
+                return BadRequest("This transaction cannot be deleted!");
             }
             catch (KeyNotFoundException ex)
             {
-                return BadRequest($"Todo with id {id} not found!");
+                return BadRequest($"Transaction with id {id} not found!");
             }
         }
 

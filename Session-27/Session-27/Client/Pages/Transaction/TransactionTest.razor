@@ -58,9 +58,9 @@ else {
     protected override async Task OnInitializedAsync() {
         if (Id == null) {
             Transaction = new();
-           // Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
-            //Transaction.Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
-            //Transaction.Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
+            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
+            Transaction.Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
+            Transaction.Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
         }
         else {
             Transaction = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
