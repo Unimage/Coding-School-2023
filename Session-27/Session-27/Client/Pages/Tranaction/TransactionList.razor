@@ -1,4 +1,4 @@
-﻿@page "/transactionlist"
+﻿@*@page "/transactionlist"
 @using Session_27.Shared;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
@@ -33,7 +33,7 @@ else {
                     </tr>
             }
             </tbody>
-    </table>
+    </table>*@
     
 }
 
@@ -52,7 +52,7 @@ else {
 
 
 
-@code {
+@*@code {
     bool isLoading { get; set; } = true;
     private List<TransactionListDto> transactionList = new();
 
@@ -66,3 +66,4 @@ else {
 
 
 }
+*@

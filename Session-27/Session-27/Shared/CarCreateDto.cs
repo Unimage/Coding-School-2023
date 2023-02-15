@@ -12,6 +12,11 @@ namespace Session_27.Shared
         public string Brand { get; set; }
         public string Model { get; set; }
         public string CarRegistrationNumber { get; set; }
+        public string BrandModelNum {
+            get {
+                return string.Format("{0} {1} {2}", Brand, Model, CarRegistrationNumber);
+            }
+        }
 
         // Relations
         public List<Session_27.Model.Transaction> Transactions { get; set; } = new List<Session_27.Model.Transaction>();

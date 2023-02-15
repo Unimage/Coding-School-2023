@@ -16,8 +16,8 @@ else {
         <div class="col-md-6">
             <label class="form-label">Customer</label>
             <select class="form-control" @bind="Transaction.CustomerId">
-                @foreach (var transaction in Transaction.Customers) {
-                    <option value="@transaction.Id">@transaction.FullName</option>
+                @foreach (var customer in Transaction.Customers) {
+                    <option value="@customer.Id">@customer.FullName</option>
                 }
             </select>
         </div>
@@ -25,13 +25,23 @@ else {
     <div class="row mt-2">
         <div class="col-md-6">
             <label class="form-label">Customer</label>
-            <select class="form-control" @bind="Transaction.CustomerId">
-                @foreach (var transaction in Transaction.Managers) {
-                    <option value="@transaction.Id">@transaction.FullName</option>
+            <select class="form-control" @bind="Transaction.ManagerId">
+                @foreach (var manager in Transaction.Managers) {
+                    <option value="@manager.Id">@manager.FullName</option>
                 }
             </select>
         </div>
     </div>
+        <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Car</label>
+            <select class="form-control" @bind="Transaction.CarId">
+                @foreach (var car in Transaction.Cars) {
+                    <option value="@car.Id">@car.BrandModelNum</option>
+                }
+                </select>
+            </div>
+        </div>
     <div class="row mt-2">
         <div class="col-md-6">
             <button class="btn btn-success" @onclick="OnSave">Save Changes</button>
@@ -42,13 +52,16 @@ else {
 
 @code {
     [Parameter] public int? Id { get; set; }
-    TransactionEditDto Transaction { get; set; }
     bool isLoading = true;
+    TransactionEditDto Transaction { get; set; }
+    
 
     protected override async Task OnInitializedAsync() {
         if (Id == null) {
             Transaction = new();
-            Transaction.Managers = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("manager");
+            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
+            Transaction.Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
+            Transaction.Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
         }
         else {
             Transaction = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
@@ -66,7 +79,7 @@ else {
             response = await httpClient.PostAsJsonAsync("transaction", Transaction);
         }
         else {
-            response = await httpClient.PutAsJsonAsync("engineer", Transaction);
+            response = await httpClient.PutAsJsonAsync("transaction", Transaction);
         }
 
         response.EnsureSuccessStatusCode();
