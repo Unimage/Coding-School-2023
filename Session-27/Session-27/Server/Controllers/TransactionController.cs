@@ -4,12 +4,10 @@ using Session_27.EF.Repositories;
 using Session_27.Model;
 using Session_27.Shared;
 
-namespace Session_27.Server.Controllers
-{
+namespace Session_27.Server.Controllers {
     [Route("[controller]")]
     [ApiController]
-    public class TransactionController : ControllerBase
-    {
+    public class TransactionController : ControllerBase {
         private readonly IEntityRepo<Transaction> _transactionRepo;
         private readonly IEntityRepo<Customer> _customerRepo;
         private readonly IEntityRepo<Manager> _managerRepo;
@@ -17,8 +15,8 @@ namespace Session_27.Server.Controllers
         private readonly IEntityRepo<ServiceTask> _serviceTaskRepo;
         private readonly IEntityRepo<Engineer> _engineerRepo;
 
-        public TransactionController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Manager> managerRepo, IEntityRepo<Car> carRepo, IEntityRepo<ServiceTask> serviceTaskRepo, IEntityRepo<Engineer> engineerRepo){ 
-       
+        public TransactionController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Manager> managerRepo, IEntityRepo<Car> carRepo, IEntityRepo<ServiceTask> serviceTaskRepo, IEntityRepo<Engineer> engineerRepo) {
+
             _transactionRepo = transactionRepo;
             _customerRepo = customerRepo;
             _managerRepo = managerRepo;
@@ -42,8 +40,8 @@ namespace Session_27.Server.Controllers
                 CarId = trans.CarId,
                 TransactionLines = trans.TransactionLines,
                 Car = trans.Car,
-                Manager= trans.Manager,
-                Customer= trans.Customer
+                Manager = trans.Manager,
+                Customer = trans.Customer
 
             });
         }
