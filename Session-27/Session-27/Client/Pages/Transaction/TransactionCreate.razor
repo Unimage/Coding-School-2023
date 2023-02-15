@@ -1,4 +1,11 @@
-﻿<h3>TransactionCreate</h3>
+﻿@page "/transactionlist/edit/"
+@using Session_27.Shared;
+@using Session_27.Model;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
+
+<h3>Transaction Create</h3>
 
 @code {
 
