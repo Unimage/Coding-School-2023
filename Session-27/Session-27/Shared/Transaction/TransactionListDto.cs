@@ -18,6 +18,6 @@ namespace Session_27.Shared
         public List<ManagerEditDto> Managers { get; set; } = new();
         public int CarId { get; set; }
         public List<CarEditDto> Cars { get; set; } = new();
-        public List<TransactionLineEditDto> TransactionLines { get; set; } = new();
+        public List<Session_27.Model.TransactionLine> TransactionLines { get; set; } = new();
     }
 }
