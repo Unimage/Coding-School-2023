@@ -30,17 +30,21 @@ namespace Session_27.Server.Controllers
 
 
         // [HttpGet]
-        public async Task<IEnumerable<TransactionListDto>> Get()
-        {
+        public async Task<IEnumerable<TransactionListDto>> Get() {
             var trans = _transactionRepo.GetAll();
-            //var transactionline 
-            
-            return trans.Select(trans => new TransactionListDto
-            {
-                 = trans.Id,
-                Code = trans.Code,
-                Description = trans.Description,
-                Hours = trans.Hours,
+
+            return trans.Select(trans => new TransactionListDto {
+                Id = trans.Id,
+                Date = trans.Date,
+                TotalPrice = trans.TotalPrice,
+                CustomerId = trans.CustomerId,
+                ManagerId = trans.ManagerId,
+                CarId = trans.CarId,
+                TransactionLines = trans.TransactionLines,
+                Car = trans.Car,
+                Manager= trans.Manager,
+                Customer= trans.Customer
+
             });
         }
 
