@@ -60,6 +60,7 @@ else {
     public List<ManagerListDto> Managers;
     public List<CustomerListDto> Customers;
     bool isLoading = true;
+    bool isNew = false;
 
     protected override async Task OnInitializedAsync() {
         Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
@@ -67,9 +68,11 @@ else {
         Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
         if (Id == null) {
             transactionEdit = new();
+            isNew = true;
         }
         else {
             transactionEdit = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
+            isNew = false;
         }
     }
     private void OnCancel() {
