@@ -61,20 +61,29 @@ namespace Session_27.Server.Controllers {
                "Either Engineer Or Task exists in another TransactionLine");
             }
         }
+        
         [HttpPost]
         public async Task<ActionResult> Post(TransactionLineEditDto transLine) {
             var trans = _transactionRepo.GetById(transLine.TransactionId);
             if (_transHandler.ValidateInsertTransactionLine(trans, transLine)) {
-                var newTransactionLine = new TransactionLine(0, 44.5m, 0);
-                newTransactionLine.EngineerId = transLine.EngineerId;
-                newTransactionLine.ServiceTaskId = transLine.ServiceTaskId;
-                newTransactionLine.TransactionId = transLine.TransactionId;
-                newTransactionLine.Hours = _serviceTaskRepo.GetById(transLine.ServiceTaskId).Hours;
-                _transactionLineRepo.Add(newTransactionLine);
-                var tmpTrans = _transactionRepo.GetById(newTransactionLine.TransactionId);
-                tmpTrans.TotalPrice = (_transHandler.CalculateTotalCost(tmpTrans));
-                _transactionRepo.Update(transLine.TransactionId, tmpTrans);
-                return Ok();
+                if (_transHandler.ValidateMaxWorkLoad(trans, transLine, _engineerRepo.GetAll().Count()))
+                {
+                    var newTransactionLine = new TransactionLine(0, 44.5m, 0);
+                    newTransactionLine.EngineerId = transLine.EngineerId;
+                    newTransactionLine.ServiceTaskId = transLine.ServiceTaskId;
+                    newTransactionLine.TransactionId = transLine.TransactionId;
+                    newTransactionLine.Hours = _serviceTaskRepo.GetById(transLine.ServiceTaskId).Hours;
+                    _transactionLineRepo.Add(newTransactionLine);
+                    var tmpTrans = _transactionRepo.GetById(newTransactionLine.TransactionId);
+                    tmpTrans.TotalPrice = (_transHandler.CalculateTotalCost(tmpTrans));
+                    _transactionRepo.Update(transLine.TransactionId, tmpTrans);
+                    return Ok();
+
+                }
+                else {
+                    return StatusCode(StatusCodes.Status409Conflict,
+                    "Max WorkLoad Reached");
+                }
             }
             else {
                 return StatusCode(StatusCodes.Status406NotAcceptable,

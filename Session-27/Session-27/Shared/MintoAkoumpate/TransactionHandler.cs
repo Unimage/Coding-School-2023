@@ -41,5 +41,22 @@ namespace Session_27.Shared.MintoAkoumpate {
             }
             return totalCost;
         }
+
+        public bool ValidateMaxWorkLoad(Transaction transaction, TransactionLineEditDto transLine, int engineerAmount)
+        {
+            int MaxWorkLoad = engineerAmount * 8;
+            decimal currentWorkLoad = 0;
+            decimal tmp = 0;
+            foreach (var trl in transaction.TransactionLines)
+            {
+                currentWorkLoad += trl.ServiceTask.Hours;
+            }
+            if (currentWorkLoad + transLine.Hours <MaxWorkLoad) {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }

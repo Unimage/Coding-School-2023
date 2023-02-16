@@ -161,6 +161,7 @@ else {
             if (transactionLine.Id != 0) {
                 response = await httpClient.PutAsJsonAsync("transactionline", transactionLine);
                 if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant add transactionLine\n Either Engineer or Task already exist in another"); }
+                else if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "Cant update transactionLine\n Max WorkLoad Reached"); }
                 else
                 {
                     await jsRuntime.InvokeVoidAsync("alert", "Updated transaction Line charge");
@@ -171,6 +172,7 @@ else {
 
                 response = await httpClient.PostAsJsonAsync("transactionline", transactionLine);
                 if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant update transactionLine\n Either Engineer or Task already exist in another"); }
+                else if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "Cant add transactionLine\n Max WorkLoad Reached"); }
                 else
                 {
                     await jsRuntime.InvokeVoidAsync("alert", "Added new transaction Line charge");
