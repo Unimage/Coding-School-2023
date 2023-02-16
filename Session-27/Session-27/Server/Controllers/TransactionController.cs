@@ -101,24 +101,24 @@ namespace Session_27.Server.Controllers {
                 ManagerId = result.ManagerId,
                 CarId = result.CarId,
 
-           /*     Managers = resultManager.Select(manager => new ManagerEditDto {
-                    Id = manager.Id,
-                    Name = manager.Name,
-                    SalaryPerMonth = manager.SalaryPerMonth,
-                    Surname = manager.Surname,
-                }).ToList(),
-                Cars = resultCar.Select(car => new CarEditDto {
-                    Brand = car.Brand,
-                    Model = car.Model,
-                    CarRegistrationNumber = car.CarRegistrationNumber,
-                }).ToList(),
-                Customers = resultCustomer.Select(customer => new CustomerEditDto {
-                    Id = customer.Id,
-                    Name = customer.Name,
-                    Surname = customer.Surname,
-                    Phone = customer.Phone,
-                    Tin = customer.Tin,
-                }).ToList(),
+                /*     Managers = resultManager.Select(manager => new ManagerEditDto {
+                         Id = manager.Id,
+                         Name = manager.Name,
+                         SalaryPerMonth = manager.SalaryPerMonth,
+                         Surname = manager.Surname,
+                     }).ToList(),
+                     Cars = resultCar.Select(car => new CarEditDto {
+                         Brand = car.Brand,
+                         Model = car.Model,
+                         CarRegistrationNumber = car.CarRegistrationNumber,
+                     }).ToList(),
+                     Customers = resultCustomer.Select(customer => new CustomerEditDto {
+                         Id = customer.Id,
+                         Name = customer.Name,
+                         Surname = customer.Surname,
+                         Phone = customer.Phone,
+                         Tin = customer.Tin,
+                     }).ToList(),*/
                 TransactionLines = result.TransactionLines.Select(transactionLine => new TransactionLineEditDto {
                     Id = transactionLine.Id,
                     Hours = transactionLine.Hours,
@@ -127,7 +127,7 @@ namespace Session_27.Server.Controllers {
                     TransactionId = transactionLine.TransactionId,
                     ServiceTaskId = transactionLine.ServiceTaskId,
                     EngineerId = transactionLine.EngineerId
-                }).ToList()*/
+                }).ToList()
             };
             return transaction;
         }
