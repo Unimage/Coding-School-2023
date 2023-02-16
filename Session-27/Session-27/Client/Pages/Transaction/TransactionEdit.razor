@@ -112,6 +112,7 @@ else {
         Engineers = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
         if (Id == null) {
             transactionEdit = new();
+            
         }
         else {
             transactionEdit = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
@@ -125,6 +126,7 @@ else {
     private async Task OnSave() {
         HttpResponseMessage? response = null;
         if (Id == null) {
+           
             response = await httpClient.PostAsJsonAsync("transaction", transactionEdit);
             if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant add transaction\n Either Car or Customer already exist elsewhere"); }
             else { await jsRuntime.InvokeVoidAsync("alert", "Created new Empty Transacrion. \nYou need to manually add charges from edit section"); }

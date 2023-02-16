@@ -42,7 +42,7 @@ namespace Session_27.Shared.MintoAkoumpate {
             return totalCost;
         }
 
-        public bool ValidateMaxWorkLoad(Transaction transaction, TransactionLineEditDto transLine, int engineerAmount)
+        public bool ValidateMaxWorkLoad(Transaction transaction, TransactionLine transLine, int engineerAmount)
         {
             int MaxWorkLoad = engineerAmount * 8;
             decimal currentWorkLoad = 0;
