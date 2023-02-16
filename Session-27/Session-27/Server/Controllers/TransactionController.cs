@@ -35,12 +35,14 @@ namespace Session_27.Server.Controllers {
                 CustomerId = transaction.CustomerId,
                 ManagerId = transaction.ManagerId,
                 CarId = transaction.CarId,
+
                 Manager = new ManagerEditDto() {
                     Id = transaction.Manager.Id,
                     Name = transaction.Manager.Name,
                     Surname = transaction.Manager.Surname,
                     SalaryPerMonth = transaction.Manager.SalaryPerMonth
                 },
+
                 Customer = new CustomerEditDto() {
                     Id = transaction.Customer.Id,
                     Name = transaction.Customer.Name,
@@ -48,6 +50,7 @@ namespace Session_27.Server.Controllers {
                     Phone = transaction.Customer.Phone,
                     Tin = transaction.Customer.Tin
                 },
+
                 Car = new CarEditDto() {
                     Id = transaction.Car.Id,
                     Model = transaction.Car.Model,
@@ -78,6 +81,7 @@ namespace Session_27.Server.Controllers {
         public async Task Put(TransactionEditDto transaction) {
             var transactionUpdate = _transactionRepo.GetById(transaction.Id);
             transactionUpdate.Date = transaction.Date;
+            transactionUpdate.TotalPrice= transaction.TotalPrice;
             transactionUpdate.CustomerId = transaction.CustomerId;
             transactionUpdate.ManagerId = transaction.ManagerId;
             transactionUpdate.CarId = transaction.CarId;
@@ -87,22 +91,43 @@ namespace Session_27.Server.Controllers {
         [HttpGet("{id}")]
         public async Task<TransactionEditDto> GetById(int id) {
             var result = _transactionRepo.GetById(id);
+            var resultManager = _managerRepo.GetAll();
+            var resultCar = _carRepo.GetAll();
+            var resultCustomer = _customerRepo.GetAll();
             var transaction = new TransactionEditDto {
-                Id= id,
-                Date=result.Date,
-                CustomerId= result.CustomerId,
-                ManagerId= result.ManagerId,
-                CarId= result.CarId,
-                TransactionLines= result.TransactionLines.Select(transactionLine => new TransactionLineEditDto {
-                    Id= transactionLine.Id,
-                    Hours =transactionLine.Hours,
-                    PricePerHour=transactionLine.PricePerHour,
-                    Price=transactionLine.Price,
-                    TransactionId= transactionLine.TransactionId,
-                    ServiceTaskId=transactionLine.ServiceTaskId,
-                    EngineerId=transactionLine.EngineerId
+                Id = id,
+                Date = result.Date,
+                CustomerId = result.CustomerId,
+                ManagerId = result.ManagerId,
+                CarId = result.CarId,
 
-                }).ToList()
+           /*     Managers = resultManager.Select(manager => new ManagerEditDto {
+                    Id = manager.Id,
+                    Name = manager.Name,
+                    SalaryPerMonth = manager.SalaryPerMonth,
+                    Surname = manager.Surname,
+                }).ToList(),
+                Cars = resultCar.Select(car => new CarEditDto {
+                    Brand = car.Brand,
+                    Model = car.Model,
+                    CarRegistrationNumber = car.CarRegistrationNumber,
+                }).ToList(),
+                Customers = resultCustomer.Select(customer => new CustomerEditDto {
+                    Id = customer.Id,
+                    Name = customer.Name,
+                    Surname = customer.Surname,
+                    Phone = customer.Phone,
+                    Tin = customer.Tin,
+                }).ToList(),
+                TransactionLines = result.TransactionLines.Select(transactionLine => new TransactionLineEditDto {
+                    Id = transactionLine.Id,
+                    Hours = transactionLine.Hours,
+                    PricePerHour = transactionLine.PricePerHour,
+                    Price = transactionLine.Price,
+                    TransactionId = transactionLine.TransactionId,
+                    ServiceTaskId = transactionLine.ServiceTaskId,
+                    EngineerId = transactionLine.EngineerId
+                }).ToList()*/
             };
             return transaction;
         }

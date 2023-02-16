@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Session_27.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,9 @@ namespace Session_27.Shared
         public int CustomerId { get; set; }
         public int ManagerId { get; set; }
         public int CarId { get; set; }
-        public List<TransactionLineEditDto> TransactionLines { get; set; } = null!;
+    //    public List<TransactionLineEditDto> TransactionLines { get; set; } = new();
+    //    public List<CustomerEditDto> Customers { get; set; } = new();
+    //    public List<ManagerEditDto> Managers { get; set; } = new();
+    //    public List<CarEditDto> Cars { get; set; } = new();
     }
 }

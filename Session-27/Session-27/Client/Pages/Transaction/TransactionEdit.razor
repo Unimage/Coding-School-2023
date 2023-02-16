@@ -1,23 +1,70 @@
-﻿@inject HttpClient httpClient
-@inject NavigationManager navigationManager
-@inject IJSRuntime jsRuntime
-@page "/transactionlist/edit/{Id:int?}"
+﻿@page "/transactionlist/edit/{Id:int?}"
+@using Session_27.Model;
 @using Session_27.Shared;
+@using System.Net.Http.Json;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
 <h3>Transaction Edit</h3>
 @if (transactionEdit == null) {
     <p>Loading ...</p>
 }
 else {
-    
-
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Customer</label>
+            <select class="form-control" @bind="transactionEdit.CustomerId">
+                @foreach (var customer in Customers) {
+                    <option value="@customer.Id">@customer.Surname</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Manager</label>
+            <select class="form-control" @bind="transactionEdit.ManagerId">
+                @foreach (var manager in Managers) {
+                    <option value="@manager.Id">@manager.Name</option>
+                }
+            </select>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Car</label>
+                <select class="form-control" @bind="transactionEdit.CarId">
+                    @foreach (var car in Cars) {
+                        <option value="@car.Id">@car.CarRegistrationNumber</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Total Price</label>
+                <input class="form-control" @bind="@transactionEdit.TotalPrice" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <button class="btn btn-success" @onclick="OnSave">Save Changes</button>
+                <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 }
 
 @code {
     [Parameter] public int? Id { get; set; }
     public TransactionEditDto transactionEdit { get; set; }
+    public List<CarListDto> Cars;
+    public List<ManagerListDto> Managers;
+    public List<CustomerListDto> Customers;
     bool isLoading = true;
 
     protected override async Task OnInitializedAsync() {
+        Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
+        Customers = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
+        Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
         if (Id == null) {
             transactionEdit = new();
         }
