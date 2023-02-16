@@ -43,5 +43,15 @@ namespace Session_27.Server.Controllers {
             itemToUpdate.ServiceTaskId = transLine.ServiceTaskId;
             _transactionLineRepo.Update(transLine.Id, itemToUpdate);
         }
-    } 
+
+        [HttpPost]
+        public async Task Post(TransactionLineEditDto transLine) {
+            var newTransactionLine = new TransactionLine(10,44,10);
+            newTransactionLine.EngineerId = transLine.EngineerId;
+            newTransactionLine.ServiceTaskId = transLine.ServiceTaskId;
+            newTransactionLine.TransactionId= transLine.TransactionId;
+            _transactionLineRepo.Add(newTransactionLine);
+        }
+    }
+    
 }

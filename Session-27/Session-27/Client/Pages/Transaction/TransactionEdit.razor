@@ -52,7 +52,7 @@ else {
             </div>
         </div>
         <h3>Transaction Lines</h3>
-        <button class="btn btn-success col-md-3">Add Line</button>
+        <button class="btn btn-success col-md-3"@onclick="AddLine">Add Line</button>
         <div id="transactionLinesContainer" class="container-fluid">
             @foreach (var transactionLine in transactionEdit.TransactionLines) {
                 <div class="row">
@@ -149,9 +149,18 @@ else {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Finalize Changes on Current Transaction Line?");
         if (confirm)
         {
-            response = await httpClient.PutAsJsonAsync("transactionline", transactionLine);
-            response.EnsureSuccessStatusCode();
+            if(transactionLine.Id != 0){
+                response = await httpClient.PutAsJsonAsync("transactionline", transactionLine);
+                response.EnsureSuccessStatusCode();
+            }
+            else {
+                response = await httpClient.PostAsJsonAsync("transactionline", transactionLine);
+                response.EnsureSuccessStatusCode(); 
+            }
         }
+    }
+    private void AddLine() {
+        transactionEdit.TransactionLines.Add(new TransactionLineEditDto());
     }
 
 }
