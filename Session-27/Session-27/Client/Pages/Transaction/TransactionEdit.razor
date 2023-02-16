@@ -2,6 +2,7 @@
 @using Session_27.Model;
 @using Session_27.Shared;
 @using System.Net.Http.Json;
+@inject IJSRuntime jsRuntime
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 <h3>Transaction Edit</h3>
@@ -80,7 +81,7 @@ else {
                     <div class="row">
                         <div class="col">
                             <button class="btn btn-success">Update</button>
-                            <button class="btn btn-danger" >Delete </button>
+                                <button class="btn btn-danger" @onclick="()=>RemoveLine(transactionLine)">Delete </button>
                         </div>
                     </div>
                     </div>
@@ -131,6 +132,17 @@ else {
         }
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("transactionlist");
+    }
+    private void RemoveLine(TransactionLineEditDto transactionLine) {
+        transactionEdit.TransactionLines.Remove(transactionLine);
+        DeleteTransaction(transactionLine);
+    }
+    private async Task DeleteTransaction(TransactionLineEditDto transactionLine) {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+        if (confirm) {
+            var response = await httpClient.DeleteAsync($"transactionline/{transactionLine.Id}");
+            response.EnsureSuccessStatusCode();
+        }
     }
 
 }

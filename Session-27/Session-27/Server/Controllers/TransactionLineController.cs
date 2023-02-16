@@ -9,13 +9,14 @@ namespace Session_27.Server.Controllers {
     public class TransactionLineController : ControllerBase {
 
         private readonly IEntityRepo<Transaction> _transactionRepo;
+        private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
         private readonly IEntityRepo<Customer> _customerRepo;
         private readonly IEntityRepo<Manager> _managerRepo;
         private readonly IEntityRepo<Car> _carRepo;
         private readonly IEntityRepo<ServiceTask> _serviceTaskRepo;
         private readonly IEntityRepo<Engineer> _engineerRepo;
 
-        public TransactionLineController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Manager> managerRepo, IEntityRepo<Car> carRepo, IEntityRepo<ServiceTask> serviceTaskRepo, IEntityRepo<Engineer> engineerRepo) {
+        public TransactionLineController(IEntityRepo<TransactionLine> transactionLineRepo,IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Manager> managerRepo, IEntityRepo<Car> carRepo, IEntityRepo<ServiceTask> serviceTaskRepo, IEntityRepo<Engineer> engineerRepo) {
 
             _transactionRepo = transactionRepo;
             _customerRepo = customerRepo;
@@ -23,6 +24,13 @@ namespace Session_27.Server.Controllers {
             _carRepo = carRepo;
             _serviceTaskRepo = serviceTaskRepo;
             _engineerRepo = engineerRepo;
+            _transactionLineRepo= transactionLineRepo;
+        }
+
+        //Delete
+        [HttpDelete("{id}")]
+        public async Task Delete(int id) {
+            _transactionLineRepo.Delete(id);
         }
     } 
 }
