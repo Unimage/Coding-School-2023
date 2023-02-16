@@ -15,8 +15,5 @@ namespace Session_27.Shared
         public int ManagerId { get; set; }
         public int CarId { get; set; }
 public List<TransactionLineEditDto> TransactionLines { get; set; } = new();
-    //    public List<CustomerEditDto> Customers { get; set; } = new();
-    //    public List<ManagerEditDto> Managers { get; set; } = new();
-    //    public List<CarEditDto> Cars { get; set; } = new();
     }
 }

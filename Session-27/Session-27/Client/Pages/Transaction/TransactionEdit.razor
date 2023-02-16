@@ -50,6 +50,43 @@ else {
                 <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
             </div>
         </div>
+        <h3>Transaction Lines</h3>
+        <button class="btn btn-success">Add Line</button>
+        <div id="transactionLinesContainer" class="container-fluid">
+            @foreach (var transactionLine in transactionEdit.TransactionLines) {
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">Service Task</label>
+                        <select class="form-control" @bind="@transactionLine.ServiceTaskId">
+                            @foreach (var task in ServiceTasks) {
+                                <option value="@task.Id">@task.Code - @task.Description</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Assigned Engineer</label>
+                        <select class="form-control" @bind="@transactionLine.EngineerId">
+                            @foreach (var engineer in Engineers) {
+                                <option value="@engineer.Id">@engineer.Name - @engineer.Surname</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Price</label>
+                        <input class="form-control" @bind="@transactionLine.Price" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Total Price</label>
+                        <input class="form-control" @bind="@transactionEdit.TotalPrice" />
+                    </div>
+                    <input class="form-control" @bind="@transactionLine.TransactionId" hidden />
+                    <div class="col-md-1">
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            }
+
+        </div>
     </div>
 }
 
@@ -59,20 +96,22 @@ else {
     public List<CarListDto> Cars;
     public List<ManagerListDto> Managers;
     public List<CustomerListDto> Customers;
+    public List<ServiceTaskListDto> ServiceTasks;
+    public List<EngineerListDto> Engineers;
     bool isLoading = true;
-    bool isNew = false;
+
 
     protected override async Task OnInitializedAsync() {
         Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
         Customers = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
         Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
+        ServiceTasks = await httpClient.GetFromJsonAsync<List<ServiceTaskListDto>>("servicetask");
+        Engineers = await httpClient.GetFromJsonAsync<List<EngineerListDto>>("engineer");
         if (Id == null) {
             transactionEdit = new();
-            isNew = true;
         }
         else {
             transactionEdit = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
-            isNew = false;
         }
     }
     private void OnCancel() {
