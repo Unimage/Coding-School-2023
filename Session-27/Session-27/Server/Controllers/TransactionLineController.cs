@@ -48,6 +48,7 @@ namespace Session_27.Server.Controllers {
                 itemToUpdate.Hours = transLine.Hours;
                 itemToUpdate.PricePerHour = 44.5m;
                 itemToUpdate.Price = 0;
+                itemToUpdate.Hours = _serviceTaskRepo.GetById(transLine.ServiceTaskId).Hours;
                 itemToUpdate.ServiceTaskId = transLine.ServiceTaskId;
                 _transactionLineRepo.Update(transLine.Id, itemToUpdate);
                 var tmpTrans = _transactionRepo.GetById(itemToUpdate.TransactionId);
@@ -68,6 +69,7 @@ namespace Session_27.Server.Controllers {
                 newTransactionLine.EngineerId = transLine.EngineerId;
                 newTransactionLine.ServiceTaskId = transLine.ServiceTaskId;
                 newTransactionLine.TransactionId = transLine.TransactionId;
+                newTransactionLine.Hours = _serviceTaskRepo.GetById(transLine.ServiceTaskId).Hours;
                 _transactionLineRepo.Add(newTransactionLine);
                 var tmpTrans = _transactionRepo.GetById(newTransactionLine.TransactionId);
                 tmpTrans.TotalPrice = (_transHandler.CalculateTotalCost(tmpTrans));
