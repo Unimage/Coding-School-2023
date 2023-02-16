@@ -14,7 +14,7 @@ else {
             <label class="form-label">Customer</label>
             <select class="form-control" @bind="transactionEdit.CustomerId">
                 @foreach (var customer in Customers) {
-                    <option value="@customer.Id">@customer.Surname</option>
+                    <option value="@customer.Id">@customer.FullName</option>
                 }
             </select>
         </div>
@@ -24,7 +24,7 @@ else {
             <label class="form-label">Manager</label>
             <select class="form-control" @bind="transactionEdit.ManagerId">
                 @foreach (var manager in Managers) {
-                    <option value="@manager.Id">@manager.Name</option>
+                    <option value="@manager.Id">@manager.FullName</option>
                 }
             </select>
         </div>
@@ -33,7 +33,7 @@ else {
                 <label class="form-label">Car</label>
                 <select class="form-control" @bind="transactionEdit.CarId">
                     @foreach (var car in Cars) {
-                        <option value="@car.Id">@car.CarRegistrationNumber</option>
+                        <option value="@car.Id">@car.BrandModelNum</option>
                     }
                 </select>
             </div>

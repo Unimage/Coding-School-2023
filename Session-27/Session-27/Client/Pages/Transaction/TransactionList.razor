@@ -23,9 +23,9 @@ else {
             @foreach (var transaction in transactionList) {
                 <tr>
                     <td>@transaction.Date</td>
-                    <td>@transaction.Customer.Name</td>
-                    <td>@transaction.Car.CarRegistrationNumber</td>
-                    <td>@transaction.Manager.Name</td>
+                    <td>@transaction.Customer.FullName</td>
+                    <td>@transaction.Car.BrandModelNum</td>
+                    <td>@transaction.Manager.FullName</td>
                     <td>@transaction.TotalPrice</td>
                     <td>
                         <button class="btn btn-primary"@onclick="()=> EditItem(transaction)">Edit</button>
