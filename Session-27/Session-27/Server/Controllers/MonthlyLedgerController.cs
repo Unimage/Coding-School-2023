@@ -20,20 +20,22 @@ namespace Session_27.Server.Controllers {
 
         [HttpGet]
         public async Task<List<MonthlyLedgerDto>> Get() {
-            List<MonthlyLedgerDto> monthlyLedgerList = new List<MonthlyLedgerDto>();
+            List<MonthlyLedgerDto> monthlyLedgerList = new();
             var engineers = _engineerRepo.GetAll();
             var managers = _managerRepo.GetAll();
             var trans = _transactionRepo.GetAll();
-            for (int i = 1; i <= 12; i++) {
+            for (int i = 1; i <= 12; i++) {                
                 monthlyLedgerList.Add(new MonthlyLedgerDto {
                     Year = 2023,
                     Month = i
                 });
             }
-            foreach (var obj in monthlyLedgerList) {
-                MonthlyLedgerIncome(obj, trans);
-                MonthlyLedgerExpenses(obj, engineers, managers);
-                obj.Total = obj.Income - obj.Expenses;
+            foreach (MonthlyLedgerDto obj in monthlyLedgerList) {
+                if (obj.Month <= DateTime.Now.Month) {
+                    MonthlyLedgerIncome(obj, trans);
+                    MonthlyLedgerExpenses(obj, engineers, managers);
+                    obj.Total = obj.Income - obj.Expenses;
+                }
             }
 
             return monthlyLedgerList;
@@ -41,9 +43,9 @@ namespace Session_27.Server.Controllers {
 
         private static void MonthlyLedgerIncome(MonthlyLedgerDto monthlyLedger, IList<Transaction> transactions) {
 
-            foreach (var tran in transactions) {
-                var year = tran.Date.Year;
-                var month = tran.Date.Month;
+            foreach (Transaction tran in transactions) {
+                int year = tran.Date.Year;
+                int month = tran.Date.Month;
                 if (monthlyLedger.Year == year && monthlyLedger.Month == month) {
                     monthlyLedger.Income += tran.TotalPrice;
                 }
@@ -52,9 +54,9 @@ namespace Session_27.Server.Controllers {
 
         private static void MonthlyLedgerExpenses(MonthlyLedgerDto monthlyLedger, IList<Engineer> engineers, IList<Manager> managers) {
 
-            foreach (var engineer in engineers)
+            foreach (Engineer engineer in engineers)
                 monthlyLedger.Expenses += engineer.SalaryPerMonth;
-            foreach (var manager in managers)
+            foreach (Manager manager in managers)
                 monthlyLedger.Expenses += manager.SalaryPerMonth;
 
         }
