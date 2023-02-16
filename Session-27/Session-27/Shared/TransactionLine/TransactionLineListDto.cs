@@ -16,12 +16,12 @@ namespace Session_27.Shared
 
         // Relations
         public int TransactionId { get; set; }
-        public Session_27.Model.Transaction Transaction { get; set; } = null!;
+        public int EngineerId { get; set; }
 
         public int ServiceTaskId { get; set; }
-        public ServiceTask ServiceTask { get; set; } = null!;
+        public ServiceTaskListDto ServiceTask { get; set; }
+        TransactionListDto Transaction { get; set; }
 
-        public int EngineerId { get; set; }
-        public Engineer Engineer { get; set; } = null!;
+        public EngineerListDto Engineer { get; set; }
     }
 }
