@@ -64,6 +64,8 @@ namespace Session_27.EF.Repositories {
             TransactionLineDb.PricePerHour = entity.PricePerHour;
             TransactionLineDb.Hours = entity.Hours;
             TransactionLineDb.ServiceTaskId = entity.ServiceTaskId;
+            TransactionLineDb.EngineerId = entity.EngineerId;
+
             context.SaveChanges();
         }
     }

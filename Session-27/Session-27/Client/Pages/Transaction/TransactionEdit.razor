@@ -51,8 +51,9 @@ else {
                 <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
             </div>
         </div>
+        <br><br>
         <h3>Transaction Lines</h3>
-        <button class="btn btn-success col-md-3"@onclick="AddLine">Add Line</button>
+        <button class="btn btn-success col-md-3" @onclick="AddLine">Add Line</button>
         <div id="transactionLinesContainer" class="container-fluid">
             @foreach (var transactionLine in transactionEdit.TransactionLines) {
                 <div class="row">
@@ -61,6 +62,7 @@ else {
                         <select class="form-control" @bind="@transactionLine.ServiceTaskId">
                             @foreach (var task in ServiceTasks) {
                                 <option value="@task.Id">@task.Code - @task.Description</option>
+
                             }
                         </select>
                     </div>
@@ -78,12 +80,12 @@ else {
                     </div>
                     <div class="col col-md-2">
                         <label class="form-label">Actions</label>
-                    <div class="row">
-                        <div class="col">
+                        <div class="row">
+                            <div class="col">
                                 <button class="btn btn-success" @onclick="()=>UpdateLine(transactionLine)">Update</button>
                                 <button class="btn btn-danger" @onclick="()=>RemoveLine(transactionLine)">Delete </button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="col-md-1">
                         <input class="form-control" @bind="@transactionLine.TransactionId" hidden />
@@ -105,6 +107,7 @@ else {
     bool isLoading = true;
 
 
+    #region load
     protected override async Task OnInitializedAsync() {
         Cars = await httpClient.GetFromJsonAsync<List<CarListDto>>("car");
         Customers = await httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
@@ -118,26 +121,34 @@ else {
             transactionEdit = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
         }
     }
+    #endregion
+    #region transaction button clicks
     private void OnCancel() {
         navigationManager.NavigateTo("transactionlist");
     }
-
     private async Task OnSave() {
         HttpResponseMessage? response = null;
         if (Id == null) {
             response = await httpClient.PostAsJsonAsync("transaction", transactionEdit);
+            response.EnsureSuccessStatusCode();
+            await jsRuntime.InvokeVoidAsync("alert", "Created new Empty Transacrion. \nYou need to manually add charges from edit section");
+            navigationManager.NavigateTo($"transactionlist");
         }
         else {
             response = await httpClient.PutAsJsonAsync("transaction", transactionEdit);
+            response.EnsureSuccessStatusCode();
+            await jsRuntime.InvokeVoidAsync("alert", "Update Success. Keep in mind you updated only Transaction Info not Lines");
+            navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
         }
-        response.EnsureSuccessStatusCode();
-        navigationManager.NavigateTo("transactionlist");
+
     }
+    #endregion
+    #region transaction button click
     private void RemoveLine(TransactionLineEditDto transactionLine) {
         transactionEdit.TransactionLines.Remove(transactionLine);
-        DeleteTransaction(transactionLine);
+        DeleteTransactionLine(transactionLine);
     }
-    private async Task DeleteTransaction(TransactionLineEditDto transactionLine) {
+    private async Task DeleteTransactionLine(TransactionLineEditDto transactionLine) {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm) {
             var response = await httpClient.DeleteAsync($"transactionline/{transactionLine.Id}");
@@ -146,21 +157,25 @@ else {
     }
     private async Task UpdateLine(TransactionLineEditDto transactionLine) {
         HttpResponseMessage? response;
+        transactionLine.TransactionId = transactionEdit.Id;
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Finalize Changes on Current Transaction Line?");
-        if (confirm)
-        {
-            if(transactionLine.Id != 0){
+        if (confirm) {
+            if (transactionLine.Id != 0) {
                 response = await httpClient.PutAsJsonAsync("transactionline", transactionLine);
                 response.EnsureSuccessStatusCode();
+                await jsRuntime.InvokeVoidAsync("alert", "Updated transaction Line charge");
+                navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
             }
             else {
                 response = await httpClient.PostAsJsonAsync("transactionline", transactionLine);
-                response.EnsureSuccessStatusCode(); 
+                response.EnsureSuccessStatusCode();
+                await jsRuntime.InvokeVoidAsync("alert", "Added new transaction Line charge");
+                navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
             }
         }
     }
     private void AddLine() {
         transactionEdit.TransactionLines.Add(new TransactionLineEditDto());
     }
-
+    #endregion
 }

@@ -38,15 +38,15 @@ namespace Session_27.Server.Controllers {
             itemToUpdate.Id = transLine.Id;
             itemToUpdate.EngineerId = transLine.EngineerId;
             itemToUpdate.Hours = transLine.Hours;
-            itemToUpdate.Price = transLine.Price;
             itemToUpdate.PricePerHour = 44;
+            itemToUpdate.Price = transLine.Hours * 44;
             itemToUpdate.ServiceTaskId = transLine.ServiceTaskId;
             _transactionLineRepo.Update(transLine.Id, itemToUpdate);
         }
 
         [HttpPost]
         public async Task Post(TransactionLineEditDto transLine) {
-            var newTransactionLine = new TransactionLine(10,44,10);
+            var newTransactionLine = new TransactionLine(transLine.Hours , 44,transLine.Hours*44);
             newTransactionLine.EngineerId = transLine.EngineerId;
             newTransactionLine.ServiceTaskId = transLine.ServiceTaskId;
             newTransactionLine.TransactionId= transLine.TransactionId;
