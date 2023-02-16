@@ -70,7 +70,6 @@ namespace Session_27.Server.Controllers {
         [HttpPost]
         public async Task Post(TransactionEditDto transaction) {
             var newTransaction = new Transaction(transaction.TotalPrice);
-            newTransaction.Date = transaction.Date;
             newTransaction.CustomerId = transaction.CustomerId;
             newTransaction.ManagerId = transaction.ManagerId;
             newTransaction.CarId = transaction.CarId;
