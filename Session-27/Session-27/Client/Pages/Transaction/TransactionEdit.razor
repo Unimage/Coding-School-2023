@@ -42,7 +42,7 @@ else {
         <div class="row mt-2">
             <div class="col-md-6">
                 <label class="form-label">Total Price</label>
-                <input class="form-control" @bind="@transactionEdit.TotalPrice" />
+                <input class="form-control" @bind="@transactionEdit.TotalPrice" readonly />
             </div>
         </div>
         <div class="row mt-2">
@@ -73,10 +73,6 @@ else {
                                 <option value="@engineer.Id">@engineer.Name - @engineer.Surname</option>
                             }
                         </select>
-                    </div>
-                    <div class="col-md-1">
-                        <label class="form-label">Total Price</label>
-                        <input class="form-control" @bind="@transactionEdit.TotalPrice" readonly />
                     </div>
                     <div class="col col-md-2">
                         <label class="form-label">Actions</label>
@@ -164,15 +160,22 @@ else {
         if (confirm) {
             if (transactionLine.Id != 0) {
                 response = await httpClient.PutAsJsonAsync("transactionline", transactionLine);
-                response.EnsureSuccessStatusCode();
-                await jsRuntime.InvokeVoidAsync("alert", "Updated transaction Line charge");
-                navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
+                if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant add transactionLine\n Either Engineer or Task already exist in another"); }
+                else
+                {
+                    await jsRuntime.InvokeVoidAsync("alert", "Updated transaction Line charge");
+                    navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
+                }
             }
             else {
+
                 response = await httpClient.PostAsJsonAsync("transactionline", transactionLine);
-                response.EnsureSuccessStatusCode();
-                await jsRuntime.InvokeVoidAsync("alert", "Added new transaction Line charge");
-                navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
+                if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant update transactionLine\n Either Engineer or Task already exist in another"); }
+                else
+                {
+                    await jsRuntime.InvokeVoidAsync("alert", "Added new transaction Line charge");
+                    navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
+                }
             }
         }
     }

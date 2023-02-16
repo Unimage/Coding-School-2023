@@ -2,11 +2,9 @@
 
 public class Transaction
 {
-    public Transaction(decimal totalPrice)
+    public Transaction()
     {
         Date = DateTime.Now;
-        TotalPrice = totalPrice;
-
         TransactionLines = new List<TransactionLine>();
     }
 
