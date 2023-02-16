@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using Session_27.EF.Repositories;
 using Session_27.Model;
+using Session_27.Shared.MintoAkoumpate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IEntityRepo<ServiceTask>, ServiceTaskRepo>();
 builder.Services.AddScoped<IEntityRepo<Transaction>, TransactionRepo>();
 builder.Services.AddScoped<IEntityRepo<TransactionLine>, TransactionLineRepo>();
 builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
+builder.Services.AddScoped<TransactionHandler>();
 
 
 var app = builder.Build();

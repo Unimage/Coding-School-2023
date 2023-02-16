@@ -130,17 +130,19 @@ else {
         HttpResponseMessage? response = null;
         if (Id == null) {
             response = await httpClient.PostAsJsonAsync("transaction", transactionEdit);
-            response.EnsureSuccessStatusCode();
-            await jsRuntime.InvokeVoidAsync("alert", "Created new Empty Transacrion. \nYou need to manually add charges from edit section");
+            if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant add transaction\n Either Car or Customer already exist elsewhere"); }
+            else { await jsRuntime.InvokeVoidAsync("alert", "Created new Empty Transacrion. \nYou need to manually add charges from edit section"); }
             navigationManager.NavigateTo($"transactionlist");
         }
         else {
             response = await httpClient.PutAsJsonAsync("transaction", transactionEdit);
-            response.EnsureSuccessStatusCode();
-            await jsRuntime.InvokeVoidAsync("alert", "Update Success. Keep in mind you updated only Transaction Info not Lines");
-            navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
-        }
+            if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Cant add transaction\n Either Car or Customer already exist elsewhere"); }
+            else {
+                await jsRuntime.InvokeVoidAsync("alert", "Update Success. Keep in mind you updated only Transaction Info not Lines");
+                navigationManager.NavigateTo($"transactionlist/edit/{transactionEdit.Id}");
+            }
 
+        }
     }
     #endregion
     #region transaction button click
