@@ -99,6 +99,7 @@ namespace Session_27.Server.Controllers {
                 CustomerId = result.CustomerId,
                 ManagerId = result.ManagerId,
                 CarId = result.CarId,
+                TotalPrice = result.TotalPrice,
 
                 /*     Managers = resultManager.Select(manager => new ManagerEditDto {
                          Id = manager.Id,
