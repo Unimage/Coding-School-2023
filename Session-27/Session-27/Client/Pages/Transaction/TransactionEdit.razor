@@ -51,11 +51,11 @@ else {
             </div>
         </div>
         <h3>Transaction Lines</h3>
-        <button class="btn btn-success">Add Line</button>
+        <button class="btn btn-success col-md-3">Add Line</button>
         <div id="transactionLinesContainer" class="container-fluid">
             @foreach (var transactionLine in transactionEdit.TransactionLines) {
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label">Service Task</label>
                         <select class="form-control" @bind="@transactionLine.ServiceTaskId">
                             @foreach (var task in ServiceTasks) {
@@ -63,7 +63,7 @@ else {
                             }
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label">Assigned Engineer</label>
                         <select class="form-control" @bind="@transactionLine.EngineerId">
                             @foreach (var engineer in Engineers) {
@@ -71,18 +71,23 @@ else {
                             }
                         </select>
                     </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Price</label>
-                        <input class="form-control" @bind="@transactionLine.Price" />
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Total Price</label>
-                        <input class="form-control" @bind="@transactionEdit.TotalPrice" />
-                    </div>
-                    <input class="form-control" @bind="@transactionLine.TransactionId" hidden />
                     <div class="col-md-1">
-                        <button class="btn btn-danger">Delete</button>
+                        <label class="form-label">Total Price</label>
+                        <input class="form-control" @bind="@transactionEdit.TotalPrice" readonly />
                     </div>
+                    <div class="col col-md-2">
+                        <label class="form-label">Actions</label>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-success">Update</button>
+                            <button class="btn btn-danger" >Delete </button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-1">
+                        <input class="form-control" @bind="@transactionLine.TransactionId" hidden />
+                    </div>
+
                 </div>
             }
 
