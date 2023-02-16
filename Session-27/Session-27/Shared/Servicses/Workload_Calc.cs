@@ -41,7 +41,7 @@ namespace Session_27.Shared
             {
                 foreach (var tl in transLine)
                 {   
-                    if (maxTasks > 0 && tl.Hours < maxWork)
+                    if (maxTasks > 0 && maxHoursCheck < maxWork)
                     { 
                         maxHoursCheck += tl.Hours;
                         maxTasks--;
@@ -64,8 +64,7 @@ namespace Session_27.Shared
             }
         }
 
-        
-
+       // public 
 
 
 
