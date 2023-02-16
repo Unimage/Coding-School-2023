@@ -19,5 +19,6 @@ namespace Session_27.Shared
         public CustomerEditDto Customer { get; set; } = null!;
         public ManagerEditDto Manager { get; set; } = null!;
 
+
     }
 }
