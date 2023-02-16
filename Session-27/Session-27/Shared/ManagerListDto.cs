@@ -16,8 +16,10 @@ namespace Session_27.Shared {
             }
         }
         public int SalaryPerMonth { get; set; }
-        public List<Engineer> Engineers { get; set; } = new List<Engineer>();
-        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public EngineerListDto Engineers { get; set; } = null!;
+        public EngineerListDto Managers { get; set; } = null!;
+        public TransactionListDto Transactions { get; set; } = null!;
+      
         
     }
 }

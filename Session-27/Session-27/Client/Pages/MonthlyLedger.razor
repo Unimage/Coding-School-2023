@@ -1,0 +1,58 @@
+﻿@page "/monthlyledger"
+@inject HttpClient httpClient
+@using Session_27.Model;
+@using Session_27.Shared;
+@using System.Net.Http.Json;
+<h3>MonthlyLedger</h3>
+
+@if (monthlyLedgerList == null) {
+        <p>Loading ...</p>
+}
+else {
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Income</th>
+                    <th>Expenses</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var mL in monthlyLedgerList) {
+                        <tr>
+                            <td>@mL.Year</td>
+                            <td>@mL.Month</td>
+                            <td>@mL.Income</td>
+                            <td>@mL.Expenses</td>
+                            <td>@mL.Total</td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
+
+@code {
+    private List<MonthlyLedgerDto> monthlyLedgerList = new();
+    private List<TransactionListDto> transactionList = new();
+    bool isLoading = true;
+
+
+
+
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+
+    private async Task LoadItemsFromServer() {
+        monthlyLedgerList = await httpClient.GetFromJsonAsync<List<MonthlyLedgerDto>>("monthlyledger");
+
+
+    }
+}
+
+
