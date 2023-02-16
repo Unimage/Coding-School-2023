@@ -27,8 +27,13 @@ namespace Session_27.Server.Controllers {
                 Name = engineer.Name,
                 Surname = engineer.Surname,
                 SalaryPerMonth = engineer.SalaryPerMonth,
-                ManagerId = engineer.ManagerId 
-            });
+                ManagerId = engineer.ManagerId,
+                Manager = new ManagerListDto{
+                    Id= engineer.ManagerId,
+                    Name= engineer.Manager.Name,
+                    Surname= engineer.Manager.Surname
+                }
+            }) ;
         }
 
         [HttpGet("{id}")]

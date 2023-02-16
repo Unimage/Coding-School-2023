@@ -32,9 +32,9 @@ else {
     <div class="row mt-2">
         <div class="col-md-6">
             <label class="form-label">Assigned Manager</label>
-            <select class="form-control" @bind="Engineer.ManagerId">
-                @foreach (var engineer in Engineer.Managers) {
-                    <option value="@engineer.Id">@engineer.FullName</option>
+            <select class="form-control" @bind="@Engineer.ManagerId">
+                @foreach (var manager in Engineer.Managers) {
+                    <option value="@manager.Id">@manager.FullName</option>
                 }
             </select>
         </div>
@@ -56,6 +56,7 @@ else {
         if (Id == null) {
             Engineer = new();
             Engineer.Managers = await httpClient.GetFromJsonAsync<List<ManagerListDto>>("manager");
+            
         }
         else {
             Engineer = await httpClient.GetFromJsonAsync<EngineerEditDto>($"engineer/{Id}");

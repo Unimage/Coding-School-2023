@@ -29,7 +29,7 @@ else
                     <td>@engineer.Name</td>
                     <td>@engineer.Surname</td>
                     <td>@engineer.SalaryPerMonth</td>
-                    <td>@engineer.ManagerId</td>
+                    <td>@engineer.Manager.Name - @engineer.Manager.Surname </td>
 
                     <td>
                         <button class="btn btn-primary" @onclick="()=> EditItem(engineer)">Edit</button>
