@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Session_27.EF.Repositories;
 using Session_27.Model;
+using Session_27.Shared;
 
 namespace Session_27.Server.Controllers {
     [Route("[controller]")]
@@ -31,6 +32,16 @@ namespace Session_27.Server.Controllers {
         [HttpDelete("{id}")]
         public async Task Delete(int id) {
             _transactionLineRepo.Delete(id);
+      }
+        public async Task Put(TransactionLineEditDto transLine) {
+            var itemToUpdate = _transactionLineRepo.GetById(transLine.Id);
+            itemToUpdate.Id = transLine.Id;
+            itemToUpdate.EngineerId = transLine.EngineerId;
+            itemToUpdate.Hours = transLine.Hours;
+            itemToUpdate.Price = transLine.Price;
+            itemToUpdate.PricePerHour = 44;
+            itemToUpdate.ServiceTaskId = transLine.ServiceTaskId;
+            _transactionLineRepo.Update(transLine.Id, itemToUpdate);
         }
     } 
 }

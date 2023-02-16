@@ -80,7 +80,7 @@ else {
                         <label class="form-label">Actions</label>
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-success">Update</button>
+                                <button class="btn btn-success" @onclick="()=>UpdateLine(transactionLine)">Update</button>
                                 <button class="btn btn-danger" @onclick="()=>RemoveLine(transactionLine)">Delete </button>
                         </div>
                     </div>
@@ -141,6 +141,15 @@ else {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
         if (confirm) {
             var response = await httpClient.DeleteAsync($"transactionline/{transactionLine.Id}");
+            response.EnsureSuccessStatusCode();
+        }
+    }
+    private async Task UpdateLine(TransactionLineEditDto transactionLine) {
+        HttpResponseMessage? response;
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Finalize Changes on Current Transaction Line?");
+        if (confirm)
+        {
+            response = await httpClient.PutAsJsonAsync("transactionline", transactionLine);
             response.EnsureSuccessStatusCode();
         }
     }
