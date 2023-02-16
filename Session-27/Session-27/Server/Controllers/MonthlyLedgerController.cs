@@ -23,7 +23,7 @@ namespace Session_27.Server.Controllers {
             List<MonthlyLedgerDto> monthlyLedgerList = new();
             var engineers = _engineerRepo.GetAll();
             var managers = _managerRepo.GetAll();
-            var trans = _transactionRepo.GetAll();
+            var trans = _transactionRepo.GetAll();            
             for (int i = 1; i <= 12; i++) {                
                 monthlyLedgerList.Add(new MonthlyLedgerDto {
                     Year = 2023,
@@ -42,7 +42,7 @@ namespace Session_27.Server.Controllers {
         }
 
         private static void MonthlyLedgerIncome(MonthlyLedgerDto monthlyLedger, IList<Transaction> transactions) {
-
+            monthlyLedger.Income = 0;
             foreach (Transaction tran in transactions) {
                 int year = tran.Date.Year;
                 int month = tran.Date.Month;
@@ -53,7 +53,7 @@ namespace Session_27.Server.Controllers {
         }
 
         private static void MonthlyLedgerExpenses(MonthlyLedgerDto monthlyLedger, IList<Engineer> engineers, IList<Manager> managers) {
-
+            monthlyLedger.Expenses = 0;
             foreach (Engineer engineer in engineers)
                 monthlyLedger.Expenses += engineer.SalaryPerMonth;
             foreach (Manager manager in managers)
