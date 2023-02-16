@@ -12,16 +12,10 @@ namespace Session_27.Shared
         public decimal Hours { get; set; }
         public decimal PricePerHour { get; set; }
         public decimal Price { get; set; }
-
-        // Relations
         public int TransactionId { get; set; }
-        public Transaction Transaction { get; set; } = null!;
-
         public int ServiceTaskId { get; set; }
-        public List<ServiceTaskEditDto> ServiceTasks { get; set; } = new();
-
         public int EngineerId { get; set; }
-        public List<EngineerEditDto> Engineers { get; set; } = new();
+
 
     }
 }

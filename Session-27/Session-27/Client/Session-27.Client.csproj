@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Shared\Session-27.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Transaction\" />
-  </ItemGroup>
-
 </Project>

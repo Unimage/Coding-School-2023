@@ -1,0 +1,67 @@
+﻿@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
+@page "/transactionlist"
+@using Session_27.Shared;
+<h3>Transaction List Management</h3>
+
+@if (isLoading) {
+    <p>Loading ...</p>
+}
+else {
+    <button class="btn btn-primary" @onclick="CreateItem">Create</button>
+    <table class="table table-striped table-hover">
+        <thead>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Car</th>
+        <th>Manager</th>
+        <th>Total Price</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+            @foreach (var transaction in transactionList) {
+                <tr>
+                    <td>@transaction.Date</td>
+                    <td>@transaction.Customer.Name</td>
+                    <td>@transaction.Car.CarRegistrationNumber</td>
+                    <td>@transaction.Manager.Name</td>
+                    <td>@transaction.TotalPrice</td>
+                    <td>
+                        <button class="btn btn-primary"@onclick="()=> EditItem(transaction)">Edit</button>
+                        <button class="btn btn-danger" @onclick="()=> DeleteItem(transaction)">Delete</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<TransactionListDto> transactionList = new();
+
+    public bool isLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        transactionList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
+    }
+    private async Task DeleteItem(TransactionListDto transaction) {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+        if (confirm) {
+            var response = await httpClient.DeleteAsync($"transaction/{transaction.Id}");
+            response.EnsureSuccessStatusCode();
+            await LoadItemsFromServer();
+        }
+    }
+    private void EditItem(TransactionListDto transaction) {
+        navigationManager.NavigateTo($"transactionlist/edit/{transaction.Id}");
+    }
+    private void CreateItem() {
+        navigationManager.NavigateTo("transactionlist/edit");
+    }
+}
