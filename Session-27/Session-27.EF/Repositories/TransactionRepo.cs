@@ -32,20 +32,28 @@ namespace Session_27.EF.Repositories {
         public IList<Transaction> GetAll() {
             using var context = new CarServiceCenterDbContext();
             return context.Transactions
-                .Include(transaction => transaction.TransactionLines)
+                
                 .Include(transaction => transaction.Customer)
                 .Include(transaction => transaction.Car)
                 .Include(transaction => transaction.Manager)
+                .Include(transaction => transaction.TransactionLines)
+                    .ThenInclude(transactionLine => transactionLine.Engineer)
+                .Include(transaction => transaction.TransactionLines)
+                    .ThenInclude(transactionLine => transactionLine.ServiceTask)
                 .ToList();
         }
         public Transaction? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
             return context.Transactions
                 .Where(transaction => transaction.Id == id)
-                .Include(transaction => transaction.TransactionLines)
+                
                 .Include(transaction => transaction.Customer)
                 .Include(transaction => transaction.Car)
                 .Include(transaction => transaction.Manager)
+                .Include(transaction => transaction.TransactionLines)
+                    .ThenInclude(transactionLine => transactionLine.Engineer)
+                .Include(transaction => transaction.TransactionLines)
+                    .ThenInclude(transactionLine => transactionLine.ServiceTask)
                 .SingleOrDefault();
         }
         public void Update(int id, Transaction entity) {

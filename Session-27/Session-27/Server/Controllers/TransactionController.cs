@@ -31,6 +31,7 @@ namespace Session_27.Server.Controllers {
         [HttpGet]
         public async Task<IEnumerable<TransactionListDto>> Get() {
             var result = _transactionRepo.GetAll();
+            foreach(var tr in result) { tr.TotalPrice = _transHandler.CalculateTotalCost(tr); }
             var transList = result.Select(transaction => new TransactionListDto {
                 Id = transaction.Id,
                 Date = transaction.Date,
@@ -61,6 +62,7 @@ namespace Session_27.Server.Controllers {
                     CarRegistrationNumber = transaction.Car.CarRegistrationNumber
                 },
             });
+
             return transList;
         }
 
@@ -75,10 +77,11 @@ namespace Session_27.Server.Controllers {
 
             var transactionList = _transactionRepo.GetAll().ToList();
             if (_transHandler.ValidateInsertTransaction(transactionList,transaction)){
-                var newTransaction = new Transaction(transaction.TotalPrice);
+                var newTransaction = new Transaction();
                 newTransaction.CustomerId = transaction.CustomerId;
                 newTransaction.ManagerId = transaction.ManagerId;
                 newTransaction.CarId = transaction.CarId;
+                newTransaction.TotalPrice = 0;
                 newTransaction.TransactionLines = new();
                 _transactionRepo.Add(newTransaction);
                 return Ok();
@@ -88,7 +91,7 @@ namespace Session_27.Server.Controllers {
         }
 
         [HttpPut]
-        public async Task Put(TransactionEditDto transaction) {
+        public async Task<ActionResult> Put(TransactionEditDto transaction) {
             var transactionList = _transactionRepo.GetAll().ToList();
            if(_transHandler.ValidateUpdateTransaction(transactionList, transaction)) {
                 var transactionUpdate = _transactionRepo.GetById(transaction.Id);
@@ -98,12 +101,17 @@ namespace Session_27.Server.Controllers {
                 transactionUpdate.ManagerId = transaction.ManagerId;
                 transactionUpdate.CarId = transaction.CarId;
                 _transactionRepo.Update(transaction.Id, transactionUpdate);
+                return Ok();
             }
+            return StatusCode(StatusCodes.Status406NotAcceptable,
+               "Either Customer or Car Exists in another Transaction");
         }
 
         [HttpGet("{id}")]
         public async Task<TransactionEditDto> GetById(int id) {
-            var result = _transactionRepo.GetById(id);
+
+            var result = _transactionRepo.GetById(id); 
+            result.TotalPrice = _transHandler.CalculateTotalCost(result);
             var resultManager = _managerRepo.GetAll();
             var resultCar = _carRepo.GetAll();
             var resultCustomer = _customerRepo.GetAll();
