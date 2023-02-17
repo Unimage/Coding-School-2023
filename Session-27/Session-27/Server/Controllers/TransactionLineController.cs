@@ -35,9 +35,11 @@ namespace Session_27.Server.Controllers {
         //Delete
         [HttpDelete("{id}")]
         public async Task Delete(int id) {
-            var tr = _transactionLineRepo.GetById(id).TransactionId;
-            _transactionLineRepo.Delete(id);
-            _transHandler.CalculateTotalCost(_transactionRepo.GetById(tr));
+            try {
+                var tr = _transactionLineRepo.GetById(id).TransactionId;
+                _transactionLineRepo.Delete(id);
+                _transHandler.CalculateTotalCost(_transactionRepo.GetById(tr));
+            }catch(Exception ex) { }
         }
         public async Task<ActionResult> Put(TransactionLineEditDto transLine) {
             var trans = _transactionRepo.GetById(transLine.TransactionId);
