@@ -12,17 +12,17 @@
     </div>
     <div class="col-md-6">
         <label class="form-label">Brand</label>
-        <input class="form-control" id="code" @bind="Car.Brand" />
+        <InputText class="form-control" id="code" @bind-Value="Car.Brand" />
         <ValidationMessage For="@(() => Car.Brand)" />
     </div>
     <div class="col-md-6">
         <label class="form-label">Model</label>
-        <input class="form-control" id="description" @bind="Car.Model" />
+        <InputText class="form-control" id="description" @bind-Value="Car.Model" />
         <ValidationMessage For="@(() => Car.Model)" />
     </div>
     <div class="col-md-6">
         <label class="form-label">Registration Code</label>
-        <input class="form-control" id="price" @bind="Car.CarRegistrationNumber" />
+        <InputText class="form-control" id="price" @bind-Value="Car.CarRegistrationNumber" />
         <ValidationMessage For="@(() => Car.CarRegistrationNumber)" />
     </div>
     <div class="row mt-2">

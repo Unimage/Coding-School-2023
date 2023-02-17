@@ -7,36 +7,42 @@
 @if (isLoading) {
     <div class="lds-hourglass"></div>
 }
-
-
 else{
+<EditForm Model="Customer" OnValidSubmit="OnUpdate">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 <div class="col-md-6">
     <input type="hidden" class="form-control" id="id" @bind="Customer.Id" />
 </div>
 <div class="col-md-6">
     <label class="form-label">Name</label>
-    <input class="form-control" id="name" @bind="Customer.Name" />
+    <InputText class="form-control" id="name" @bind-Value="Customer.Name" />
+            <ValidationMessage For="@(() => Customer.Name)" />
 </div>
 <div class="col-md-6">
     <label class="form-label">Surname</label>
-    <input class="form-control" id="surname" @bind="Customer.Surname" />
+    <InputText class="form-control" id="surname" @bind-Value="Customer.Surname" />
+            <ValidationMessage For="@(() => Customer.Surname)" />
 </div>
 <div class="col-md-6">
     <label class="form-label">Phone</label>
     <input class="form-control" id="phone" @bind="Customer.Phone" />
+            @*<ValidationMessage For="@(() => Customer.Phone)" />*@
 </div>
 <div class="col-md-6">
     <label class="form-label">Tin</label>
-    <input class="form-control" id="tin" @bind="Customer.Tin" />
+    <InputText class="form-control" id="tin" @bind-Value="Customer.Tin" />
+            <ValidationMessage For="@(() => Customer.Tin)" />
 </div>
 
 
 <div class="row mt-2">
     <div class="col">
-        <button class="btn btn-success" @onclick="OnUpdate">Edit Customer Info</button>
+        <button class="btn btn-success" type="submit">Edit Customer Info</button>
         <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
     </div>
 </div>
+    </EditForm>
 }
 
 @code {

@@ -6,35 +6,41 @@
 
 
 <h3>Add new Customer</h3>
-
+<EditForm Model="Customer" OnValidSubmit="OnCreate">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 <div class="col-md-6">
     <input type="hidden" class="form-control" id="code" @bind="Customer.Id" />
 </div>
 <div class="col-md-6">
     <label class="form-label">Name</label>
-    <input class="form-control" id="description" @bind="Customer.Name" />
+        <InputText class="form-control" id="name" @bind-Value="Customer.Name" />
+        <ValidationMessage For="@(() => Customer.Name)" />
 </div>
 <div class="col-md-6">
     <label class="form-label">Surname</label>
-    <input class="form-control" id="description" @bind="Customer.Surname" />
+    <InputText class="form-control" id="surname" @bind-Value="Customer.Surname" />
+            <ValidationMessage For="@(() => Customer.Surname)" />
 </div>
 <div class="col-md-6">
     <label class="form-label">Phone</label>
     <input class="form-control" id="price" @bind="Customer.Phone" />
+        @*<ValidationMessage For="@(() => Customer.Phone)" />*@
 </div>
 <div class="col-md-6">
     <label class="form-label">Tin</label>
-    <input class="form-control" id="price" @bind="Customer.Tin" />
+        <InputText class="form-control" id="tin" @bind-Value="Customer.Tin" />
+        <ValidationMessage For="@(() => Customer.Tin)" />
 </div>
 
 
 <div class="row mt-2">
     <div class="col">
-        <button class="btn btn-success" @onclick="OnCreate">Add new Customer</button>
+        <button class="btn btn-success" type="submit">Add new Customer</button>
         <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
     </div>
 </div>
-
+</EditForm>
 
 @code {
     CustomerCreateDto Customer { get; set; } = new();
