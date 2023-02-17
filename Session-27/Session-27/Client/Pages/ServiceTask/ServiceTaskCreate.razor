@@ -13,6 +13,9 @@
 }
 else
 {
+    <EditForm Model="ServiceTask" OnValidSubmit="OnCreate">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Code</label>
@@ -28,7 +31,8 @@ else
     <div class="row">
         <div class="col-md-3">
             <label class="form-label">Hours</label>
-            <input class="form-check" type="text" @bind="@ServiceTask.Hours" />
+            <InputNumber class="form-check" type="text" @bind-Value="@ServiceTask.Hours" />
+            <ValidationMessage For="@(() => ServiceTask.Hours)" />
         </div>
     </div>
     <div class="row mt-2">
@@ -37,6 +41,7 @@ else
             <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
         </div>
     </div>
+</EditForm>
 }
 
 

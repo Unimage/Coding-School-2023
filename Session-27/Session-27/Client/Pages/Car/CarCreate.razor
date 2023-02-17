@@ -3,28 +3,35 @@
 @inject NavigationManager navigationManager
 @using Session_27.Shared;
 <h3>Add New Car</h3>
+
+<EditForm Model="Car" OnValidSubmit="OnCreate">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <div class="col-md-6">
         <input type="hidden" class="form-control" id="code" @bind="Car.Id" />
     </div>
     <div class="col-md-6">
         <label class="form-label">Brand</label>
         <input class="form-control" id="code" @bind="Car.Brand" />
+        <ValidationMessage For="@(() => Car.Brand)" />
     </div>
     <div class="col-md-6">
         <label class="form-label">Model</label>
         <input class="form-control" id="description" @bind="Car.Model" />
+        <ValidationMessage For="@(() => Car.Model)" />
     </div>
     <div class="col-md-6">
         <label class="form-label">Registration Code</label>
         <input class="form-control" id="price" @bind="Car.CarRegistrationNumber" />
+        <ValidationMessage For="@(() => Car.CarRegistrationNumber)" />
     </div>
     <div class="row mt-2">
         <div class="col">
-            <button class="btn btn-success" @onclick="OnCreate">Add new Car</button>
+            <button class="btn btn-success" type="submit">Add new Car</button>
             <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
         </div>
     </div>
-
+</EditForm> 
 
 @code {
     CarCreateDto Car { get; set; } = new();
