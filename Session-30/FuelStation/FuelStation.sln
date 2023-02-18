@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.Blazor.Shared",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.Model", "FuelStation.Model\FuelStation.Model.csproj", "{ED0B958B-48A8-41CB-B6B7-52DD40F23D21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.EF", "FuelStation.EF\FuelStation.EF.csproj", "{499FB8C1-E755-45D6-B051-ADF824F22682}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{ED0B958B-48A8-41CB-B6B7-52DD40F23D21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED0B958B-48A8-41CB-B6B7-52DD40F23D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED0B958B-48A8-41CB-B6B7-52DD40F23D21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{499FB8C1-E755-45D6-B051-ADF824F22682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{499FB8C1-E755-45D6-B051-ADF824F22682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{499FB8C1-E755-45D6-B051-ADF824F22682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{499FB8C1-E755-45D6-B051-ADF824F22682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
