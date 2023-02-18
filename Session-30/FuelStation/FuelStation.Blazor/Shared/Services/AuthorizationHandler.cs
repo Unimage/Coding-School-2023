@@ -11,7 +11,6 @@ namespace FuelStation.Blazor.Shared.Services {
     //basic WIP for authorization handling based on given analysis.
     //TODO: Make it work 
     public class AuthorizationHandler {
-
         public bool HasAccessToItems(Employee employee) {
             if (employee.EmployeeType == EmployeeType.Staff ||
                employee.EmployeeType == EmployeeType.Manager) {
@@ -19,7 +18,6 @@ namespace FuelStation.Blazor.Shared.Services {
             }
             return false;
         }
-
         public bool HasAccessToCustomers(Employee employee) {
             if (employee.EmployeeType == EmployeeType.Manager ||
                 employee.EmployeeType == EmployeeType.Cashier) {
