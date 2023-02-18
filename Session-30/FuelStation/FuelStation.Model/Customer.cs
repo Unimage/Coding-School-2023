@@ -16,7 +16,7 @@ namespace FuelStation.Model {
         public Customer(){
             ID = Guid.NewGuid();
         }
-        
-        public List<Transaction> Transactions { get; set; }
+        //Relations Customer-Transaction  1-N
+        public List<Transaction> Transactions { get; set; }=new List<Transaction>();
     }
 }
