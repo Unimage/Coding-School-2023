@@ -24,7 +24,8 @@ namespace FuelStation.Model {
             ID= Guid.NewGuid();
         }
 
-        //TODO:Add relations
+        //Employee Relations : Transaction 1-N
+        public List<Transaction> TransactionList { get; set; }=new List<Transaction>();
 
        
     }
