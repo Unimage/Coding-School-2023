@@ -21,6 +21,7 @@ namespace FuelStation.Model {
         ID = Guid.NewGuid();
         }
         //Relations 
+        //1-1 for both cases
         public Transaction Transaction { get; set; }
         public Item Item { get; set; }
 
