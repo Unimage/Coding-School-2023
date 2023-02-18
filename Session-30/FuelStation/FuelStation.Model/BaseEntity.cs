@@ -10,6 +10,5 @@ namespace FuelStation.Model {
         public BaseEntity() { 
             ID = Guid.NewGuid();
         }
-
     }
 }
