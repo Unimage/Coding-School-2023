@@ -1,4 +1,5 @@
-﻿using FuelStation.Model;
+﻿using FuelStation.EF.Configuration;
+using FuelStation.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

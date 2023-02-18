@@ -25,7 +25,7 @@ namespace FuelStation.Model {
         }
 
         //Employee Relations : Transaction 1-N
-        public List<Transaction> TransactionList { get; set; }=new List<Transaction>();
+        public List<Transaction> Transactions { get; set; }=new List<Transaction>();
 
        
     }
