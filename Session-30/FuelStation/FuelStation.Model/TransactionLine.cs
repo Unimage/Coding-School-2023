@@ -20,8 +20,7 @@ namespace FuelStation.Model {
         public TransactionLine() {
         ID = Guid.NewGuid();
         }
-        //Relations 
-        //1-1 for both cases
+        //Relations 1-1 for both cases
         public Transaction Transaction { get; set; }
         public Item Item { get; set; }
 
