@@ -20,6 +20,8 @@ namespace FuelStation.Model {
             TransactionLines = new();
         }
 
-        //TODO:RELATIONS
+        //Relations:
+        public Employee Employee { get; set; }
+        public Customer Customer { get; set; }
     }
 }
