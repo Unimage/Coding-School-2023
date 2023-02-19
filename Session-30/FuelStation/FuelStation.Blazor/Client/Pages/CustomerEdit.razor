@@ -1,0 +1,77 @@
+﻿@page "/customers/edit/{id:guid?}"
+@using FuelStation.Blazor.Shared.ViewModels
+@using FuelStation.Model
+@inject NavigationManager navigationManager
+@inject HttpClient httpClient
+@inject IJSRuntime jsRuntime
+<h3>Customer Edit</h3>
+@if (isLoading) {
+    <div class="lds-hourglass"></div>
+}
+else {
+        <EditForm Model="@customer" OnValidSubmit="@OnSave">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <InputText class="form-control" id="code" @bind-Value="customer.Name" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Surname</label>
+                    <InputText class="form-control" id="description" @bind-Value="customer.Surname" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Card Number</label>
+                    <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button class="btn btn-success" type="submit">Save</button>
+                    <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+                </div>
+            </div>
+        </EditForm>
+   
+}
+
+@code {
+    [Parameter] public Guid? id { get; set; }
+    private bool isLoading = true;
+    private CustomerViewModel? customer = new();
+
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        if (id.HasValue)
+            customer = await httpClient.GetFromJsonAsync<CustomerViewModel>($"customer/{id}");
+    }
+    private void OnCancel() {
+        navigationManager.NavigateTo("customers");
+    }
+
+    private async Task OnSave() {
+        HttpResponseMessage response;
+        try {
+            if (id == Guid.Empty || id == null) {
+                response = await httpClient.PostAsJsonAsync("customer", customer);
+            }
+            else {
+                response = await httpClient.PutAsJsonAsync("customer", customer);
+            }
+
+            if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Erro At Validating Customer Data.\nPlease Ensure the format is correct."); }
+            else if ((int)response.StatusCode == 200) { await jsRuntime.InvokeVoidAsync("alert", "Success"); navigationManager.NavigateTo("customers"); }
+            else { await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again."); }
+        }
+        catch (Exception) {
+            await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again.");
+        }
+    }
+
+    
+
+}

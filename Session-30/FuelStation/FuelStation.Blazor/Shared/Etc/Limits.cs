@@ -9,21 +9,21 @@ namespace FuelStation.Blazor.Shared.Etc {
     public class Limits {
 
         #region Employee / Customer Shared Limits
-        private int _maxEmpNameSize = 20;
-        private int _maxSurnameSize = 20;
+        public int _maxEmpNameSize = 20;
+        public int _maxSurnameSize = 20;
         #endregion
         #region Customer Exclusive Limits
-        private int _maxCardSize = 20;
-        private char _firstCardChar = 'A';
+        public int _maxCardSize = 20;
+        public char _firstCardChar = 'A';
         #endregion
         #region Employee Exclusive Limits
-        private int _maxUsernameSize = 20;
-        private int _maxPasswordSize = 256;
-        private decimal _maxDecimal = 99999.99m;
+        public int _maxUsernameSize = 20;
+        public int _maxPasswordSize = 256;
+        public decimal _maxDecimal = 99999.99m;
         #endregion
         #region Item Limits
-        private int _maxCodeSize = 6;
-        private int _maxDesctiptionSize = 30;
+        public int _maxCodeSize = 6;
+        public int _maxDesctiptionSize = 30;
         #endregion
     }
 }

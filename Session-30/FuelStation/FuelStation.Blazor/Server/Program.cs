@@ -1,4 +1,9 @@
+using FuelStation.Model;
+using FuelStation.EF.Repositories;
 using Microsoft.AspNetCore.ResponseCompression;
+using FuelStation.EF.Context;
+using FuelStation.Blazor.Shared.Services;
+using FuelStation.Blazor.Shared.Etc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
+builder.Services.AddScoped<DataValidator>();
+builder.Services.AddScoped<Limits>();
+
 
 var app = builder.Build();
 

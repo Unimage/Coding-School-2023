@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FuelStation.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,14 +22,9 @@ namespace FuelStation.Blazor.Shared.ViewModels {
         [Required]
         [RegularExpression(@"^A[a-zA-Z-0-9]{1,19}$", ErrorMessage = "Card should Start with A . Max length is 20 characters")]
         public string CardNumber { get; set; }
+        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
     }
     //Dto used for listing
-    public  class CustomerListViewModel {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string CardNumber { get; set; }
 
-    } 
 }
