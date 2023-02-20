@@ -9,35 +9,37 @@
     <div class="lds-hourglass"></div>
 }
 else {
-        <EditForm Model="@customer" OnValidSubmit="@OnSave">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label">Name</label>
-                    <InputText class="form-control" id="code" @bind-Value="customer.Name" />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Surname</label>
-                    <InputText class="form-control" id="description" @bind-Value="customer.Surname" />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Card Number</label>
-                    <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
-                </div>
+    <EditForm Model="@customer" OnValidSubmit="@OnSave">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <InputText class="form-control" id="code" @bind-Value="customer.Name" />
             </div>
-            <div class="row mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Surname</label>
+                <InputText class="form-control" id="description" @bind-Value="customer.Surname" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Card Number</label>
+                <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
+            </div>
+
+            <div class="row mt-4">
                 <div class="col">
                     <button class="btn btn-success" type="submit">Save</button>
                     <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+                    @if (ID == null) { <button class="btn btn-warning" @onclick="CardGenerate">New Card Number</button> }
                 </div>
             </div>
-        </EditForm>
-   
+        </div>
+    </EditForm>
+
 }
 
 @code {
-    [Parameter] public Guid? id { get; set; }
+    [Parameter] public Guid? ID { get; set; }
     private bool isLoading = true;
     private CustomerViewModel? customer = new();
 
@@ -46,8 +48,8 @@ else {
         isLoading = false;
     }
     private async Task LoadItemsFromServer() {
-        if (id.HasValue)
-            customer = await httpClient.GetFromJsonAsync<CustomerViewModel>($"customer/{id}");
+        if (ID.HasValue)
+            customer = await httpClient.GetFromJsonAsync<CustomerViewModel>($"customer/{ID}");
     }
     private void OnCancel() {
         navigationManager.NavigateTo("customers");
@@ -56,14 +58,14 @@ else {
     private async Task OnSave() {
         HttpResponseMessage response;
         try {
-            if (id == Guid.Empty || id == null) {
+            if (ID == Guid.Empty || ID == null) {
                 response = await httpClient.PostAsJsonAsync("customer", customer);
             }
             else {
                 response = await httpClient.PutAsJsonAsync("customer", customer);
             }
 
-            if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Erro At Validating Customer Data.\nPlease Ensure the format is correct."); }
+            if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Error At Validating Customer Data.\nPlease Ensure the format is correct."); }
             else if ((int)response.StatusCode == 200) { await jsRuntime.InvokeVoidAsync("alert", "Success"); navigationManager.NavigateTo("customers"); }
             else { await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again."); }
         }
@@ -72,6 +74,17 @@ else {
         }
     }
 
-    
+    private void CardGenerate() {
 
+        if (ID == null) {
+            string guidString = Guid.NewGuid().ToString().Replace("-", "");
+            guidString = "A" + guidString;
+
+            if (guidString.Length > 20) {
+                guidString = guidString.Substring(0, 20);
+            }
+            customer.CardNumber = guidString;
+        }
+    }
 }
+

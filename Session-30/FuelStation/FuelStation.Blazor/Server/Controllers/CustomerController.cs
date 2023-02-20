@@ -30,7 +30,7 @@ namespace FuelStation.Blazor.Server.Controllers {
                 CardNumber = customer.CardNumber
             });
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id:Guid}")]
         public async Task<CustomerViewModel?> Get(Guid id) {
             CustomerViewModel customer = new();
             try {
@@ -96,7 +96,6 @@ namespace FuelStation.Blazor.Server.Controllers {
                 itemToUpdate.Surname = customer.Surname;
                 itemToUpdate.CardNumber = customer.CardNumber;
                 itemToUpdate.Transactions = customer.Transactions;
-                //TODO: add validation of data before updating
                 _customerRepo.Update(customer.ID, itemToUpdate);
                 return Ok();
             }
@@ -105,6 +104,28 @@ namespace FuelStation.Blazor.Server.Controllers {
               "Data weren't within Valid Limits");
             }
         }
+        [Route("/customers/details/{id}")]
+        [HttpGet]
+        public async Task<CustomerViewModel?> GetDetailsById(Guid id) {
+            var result = await Task.Run(() => { return _customerRepo.GetById(id); });
+            if (result is null) {
+                return null;
+            }
+            else {
+                return new CustomerViewModel {
+                    ID = id,
+                    Name = result.Name,
+                    Surname = result.Surname,
+                    CardNumber = result.CardNumber,
+                    Trans = result.Transactions.Select(t => new TransactionBasicViewModel {
+                        Date = t.Date,
+                        TotalValue = t.TotalValue,
+                        PaymentMethod = t.PaymentMethod,
+                    }).ToList()
+                };
+            }
+        }
+
 
     }
 }

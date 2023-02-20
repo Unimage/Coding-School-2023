@@ -29,7 +29,7 @@ else {
                     <td>@customer.CardNumber</td>
                     <td>
                         <button class="btn btn-primary" @onclick="() => EditCustomer(customer)">Edit</button>
-                        <button class="btn btn-warning">Details</button>
+                        <button class="btn btn-warning" @onclick="() => CustomerDetails(customer)">Details</button>
                         <button class="btn btn-danger" @onclick="() => DeleteCustomer(customer)">Delete</button>
                        
                     </td>
@@ -55,10 +55,10 @@ else {
         
     }
     private async Task DeleteCustomer(CustomerListViewModel customer) {
-        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Customer. Are you sure?");
         if (confirm) {
             var response = await httpClient.DeleteAsync($"customer/{customer.ID}");
-            response.EnsureSuccessStatusCode();
+            if ((int)response.StatusCode != 200){ await jsRuntime.InvokeVoidAsync("alert", "Error At Deleting Customer.\nCustomer is tied to a List of Transactions."); }
             await LoadItemsFromServer();
         }
     }
@@ -68,6 +68,10 @@ else {
 
     private async Task EditCustomer(CustomerListViewModel customer) {
         navigationManager.NavigateTo($"/customers/edit/{customer.ID}");
+
+    }
+    private async Task CustomerDetails(CustomerListViewModel customer) {
+        navigationManager.NavigateTo($"/customers/details/{customer.ID}");
 
     }
 
