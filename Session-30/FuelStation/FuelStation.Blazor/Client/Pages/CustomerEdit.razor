@@ -37,7 +37,6 @@ else {
     </EditForm>
 
 }
-
 @code {
     [Parameter] public Guid? ID { get; set; }
     private bool isLoading = true;
@@ -73,7 +72,6 @@ else {
             await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again.");
         }
     }
-
     private void CardGenerate() {
 
         if (ID == null) {
@@ -87,4 +85,3 @@ else {
         }
     }
 }
-
