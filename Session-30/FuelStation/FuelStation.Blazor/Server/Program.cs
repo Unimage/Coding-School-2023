@@ -14,6 +14,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
 builder.Services.AddScoped<DataValidator>();
 builder.Services.AddScoped<Limits>();
+builder.Services.AddScoped<IEntityRepo<Item>, ItemRepo>();
 
 
 var app = builder.Build();

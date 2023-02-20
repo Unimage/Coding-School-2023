@@ -1,0 +1,78 @@
+﻿@page "/items/edit/{id:guid?}"
+@using FuelStation.Blazor.Shared.ViewModels
+@using FuelStation.Model
+@inject IJSRuntime jsRuntime
+@using FuelStation.Model.Enumerations;
+@inject NavigationManager navigationManager
+@inject HttpClient httpClient
+<h3>Item Edit</h3>
+
+@if (isLoading) {
+    <div class="lds-hourglass"></div>
+}
+else {
+    <EditForm Model="@item" OnValidSubmit="@OnSave">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="col-md-6">
+            <label class="form-label">Code</label>
+            <InputText class="form-control" id="code" @bind-Value="item.Code" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Description</label>
+            <InputText class="form-control" id="description" @bind-Value="item.Description" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Price</label>
+            <InputNumber class="form-control" id="price" @bind-Value="item.Price" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Cost</label>
+            <InputNumber class="form-control" id="cost" @bind-Value="item.Cost" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label mt-2">Item Type</label>
+            <select class="form-select" @bind="@item.ItemType">
+            @foreach (var type in Enum.GetValues(typeof(ItemType))) {
+                    <option value="@type">@type</option>
+            }
+            </select>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+            </div>
+        </div>
+    </EditForm>
+}
+
+@code {
+    [Parameter] public Guid? id { get; set; }
+    private bool isLoading = true;
+    private ItemViewModel? item = new();
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        if (id.HasValue)
+            item = await httpClient.GetFromJsonAsync<ItemViewModel>($"item/{id}");
+    }
+    private void OnCancel() {
+        navigationManager.NavigateTo("Items");
+    }
+    private async Task OnSave() {
+        HttpResponseMessage response;
+
+        if (id == Guid.Empty || id == null) {
+            response = await httpClient.PostAsJsonAsync("item", item);
+        }
+        else {
+            response = await httpClient.PutAsJsonAsync("item", item);
+        }
+        if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Error At Validating Item Data.\nPlease Ensure the format is correct."); }
+        else if ((int)response.StatusCode == 200) { await jsRuntime.InvokeVoidAsync("alert", "Success"); navigationManager.NavigateTo("items"); }
+        else { await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again."); }
+    }
+}
