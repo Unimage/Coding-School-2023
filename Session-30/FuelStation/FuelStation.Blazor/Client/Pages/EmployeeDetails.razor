@@ -88,6 +88,6 @@ else {
         navigationManager.NavigateTo("employees");
     }
     private bool IsAuthorized() {
-        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
+        return AuthorizationHandler.HasAccessToEmployees(LoginStatus);
     }
 }

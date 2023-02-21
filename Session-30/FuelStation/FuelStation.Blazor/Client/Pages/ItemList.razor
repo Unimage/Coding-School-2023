@@ -83,6 +83,6 @@ else {
         await LoadItemsFromServer();
     }
     private bool IsAuthorized() {
-        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
+        return AuthorizationHandler.HasAccessToItems(LoginStatus);
     }
 }

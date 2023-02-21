@@ -81,6 +81,6 @@ else {
         else { await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again."); }
     }
     private bool IsAuthorized() {
-        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
+        return AuthorizationHandler.HasAccessToItems(LoginStatus);
     }
 }
