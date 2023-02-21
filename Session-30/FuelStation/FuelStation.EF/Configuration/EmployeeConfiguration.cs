@@ -23,8 +23,6 @@ namespace FuelStation.EF.Configuration {
             builder.Property(employee => employee.username).HasMaxLength(20);
             builder.Property(employee => employee.password).HasMaxLength(256);
             builder.Property(employee => employee.EmployeeType).HasMaxLength(20).IsRequired();
-            //TODO:Refactor and test so it displays name not just a value
-            //builder.Property(employee => employee.EmployeeType).HasConversion(employeeType => employeeType.ToString(), employeeType => (EmployeeType)Enum.Parse(typeof(EmployeeType), employeeType)).HasMaxLength(20);
             builder.Property(employee => employee.HireDateStart).IsRequired();
             builder.Property(employee => employee.HireDateEnd);
             builder.Property(employee => employee.SallaryPerMonth).HasPrecision(7,2).IsRequired();

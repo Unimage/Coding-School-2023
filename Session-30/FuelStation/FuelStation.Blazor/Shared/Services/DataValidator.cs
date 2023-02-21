@@ -1,5 +1,6 @@
 ﻿using FuelStation.Blazor.Shared.Etc;
 using FuelStation.Blazor.Shared.ViewModels;
+using FuelStation.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,38 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FuelStation.Blazor.Shared.Services {
-
-    //Generic all in one Validator class containing all validation methods needed
-    //for server side validation 
-    //possibly some used in client-side / winforms 
-    //TODO:WIP
     public class DataValidator {
         private readonly Limits limits = new Limits();
 
         #region Employee Validations
-
-
+        public bool ValidateEmployeeData(EmployeeViewModel employee) {
+            return ValidatePassword(employee.password) &&
+                ValidateSallary(employee.SallaryPerMonth) &&
+                ValidateUsername(employee.username) &&
+                CheckName(employee.Name) &&
+                    CheckSurname(employee.Surname) &&
+                    employee.HireDateStart != null;
+        }
+        public bool ValidateSallary(decimal sallary) {
+            return sallary > 0 && sallary < 99999.99m;
+        }
+        public bool ValidateUsername(string uname) {
+            if (uname != null) {
+                if (uname.Length > 0 && uname.Length <= 20) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool ValidatePassword(string pass) {
+            if (pass != null) {
+                if (pass.Length > 0 && pass.Length <= 20) {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
-
         #region Customer Validations
         public bool ValidadeCustomerData(CustomerViewModel customer) {
             return (CheckName(customer.Name) &&
@@ -60,8 +80,6 @@ namespace FuelStation.Blazor.Shared.Services {
 
 
         #endregion
-
-
         #region Item Validations
         public bool ValidateItemData(ItemViewModel item) {
             return (ValidateCode(item.Code)
@@ -102,5 +120,310 @@ namespace FuelStation.Blazor.Shared.Services {
             return false;
         }
         #endregion
+        #region Check for minus logic for roster
+        public bool CheckRosterMinus(List<Employee> employeeList, EmployeeViewModel incomingEmployee) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff--;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        public bool CheckRosterMinus(List<Employee> employeeList, EmployeeListViewModel incomingEmployee) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff--;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        public bool CheckRosterMinus(List<Employee> employeeList, Employee incomingEmployee) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff--;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        #endregion
+        #region Roster Check for plus logic for roster
+        public bool CheckRosterPlus(List<Employee> employeeList, EmployeeListViewModel incomingEmployee) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff++;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        public bool CheckRosterPlus(List<Employee> employeeList, Employee incomingEmployee) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff++;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        public bool CheckRosterPlus(List<Employee> employeeList, EmployeeViewModel incomingEmployee) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff++;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        public bool CheckRosterPut(List<Employee> employeeList, EmployeeViewModel incomingEmployee , Employee oldOne) {
+            int currentManagers = 0;
+            int currentCashiers = 0;
+            int currentStaff = 0;
+            foreach (var emp in employeeList) {
+                if (emp.HireDateEnd == null) {
+                    switch (emp.EmployeeType) {
+                        case Model.Enumerations.EmployeeType.Manager:
+                            currentManagers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Cashier:
+                            currentCashiers++;
+                            break;
+                        case Model.Enumerations.EmployeeType.Staff:
+                            currentStaff++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            switch (incomingEmployee.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers++;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff++;
+                    break;
+                default:
+                    break;
+            }
+            switch (oldOne.EmployeeType) {
+                case Model.Enumerations.EmployeeType.Manager:
+                    currentManagers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Cashier:
+                    currentCashiers--;
+                    break;
+                case Model.Enumerations.EmployeeType.Staff:
+                    currentStaff--;
+                    break;
+                default:
+                    break;
+            }
+            return currentManagers <= limits.MaxManagers &&
+                    currentCashiers <= limits.MaxCashiers &&
+                    currentStaff <= limits.MaxStaff &&
+                    currentStaff >= 1 &&
+                    currentManagers >= 1 &&
+                    currentCashiers >= 1;
+        }
+        #endregion
+
     }
 }

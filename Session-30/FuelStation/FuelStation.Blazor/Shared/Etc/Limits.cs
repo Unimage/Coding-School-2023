@@ -25,5 +25,10 @@ namespace FuelStation.Blazor.Shared.Etc {
         public int _maxCodeSize = 6;
         public int _maxDesctiptionSize = 30;
         #endregion
+        #region roster limits
+        public int MaxManagers = 3;
+        public int MaxStaff = 10;
+        public int MaxCashiers = 4;
+        #endregion
     }
 }

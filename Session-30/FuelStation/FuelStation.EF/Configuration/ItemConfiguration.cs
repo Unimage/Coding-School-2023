@@ -21,8 +21,6 @@ namespace FuelStation.EF.Configuration {
             builder.Property(item => item.Code).HasMaxLength(6);
             builder.Property(item => item.Description).HasMaxLength(30);
             builder.Property(item => item.ItemType).HasMaxLength(20).IsRequired();
-            //TODO:Refactor so it doesn't display enum numbers but actual string
-            //builder.Property(item => item.ItemType).HasConversion(itemType => itemType.ToString(), itemType => (ItemType)Enum.Parse(typeof(ItemType), itemType)).HasMaxLength(20);
             builder.Property(item => item.Price).HasPrecision(7, 2);
             builder.Property(item => item.Cost).HasPrecision(7, 2);
             builder.HasIndex(item => item.Code).IsUnique();

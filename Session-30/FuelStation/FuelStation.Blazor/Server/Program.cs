@@ -15,6 +15,7 @@ builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
 builder.Services.AddScoped<DataValidator>();
 builder.Services.AddScoped<Limits>();
 builder.Services.AddScoped<IEntityRepo<Item>, ItemRepo>();
+builder.Services.AddScoped<IEntityRepo<Employee>,EmployeeRepo>();
 
 
 var app = builder.Build();

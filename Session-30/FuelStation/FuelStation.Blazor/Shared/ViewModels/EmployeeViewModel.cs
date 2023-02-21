@@ -1,4 +1,5 @@
-﻿using FuelStation.Model.Enumerations;
+﻿using FuelStation.Model;
+using FuelStation.Model.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,16 +32,7 @@ namespace FuelStation.Blazor.Shared.ViewModels {
         [Required]
         [MaxLength(256, ErrorMessage = "Max length 256 characters.")]
         public string password { get; set; }
-    }
-
-    //basic info for employee -> list view
-    public class EmployeeListViewModel {
-        public Guid ID { get; set; }
-        public string FullName { get; set; }
-        public string Username { get; set; }
-        public EmployeeType EmployeeType { get; set; }
-        public DateTime HireDateStart { get; set; }
-        public DateTime? HireDateEnd { get; set; }
-        public decimal SallaryPerMonth { get; set; }
+        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public List<TransactionBasicViewModel> Trans { get; set; } = new List<TransactionBasicViewModel>();
     }
 }

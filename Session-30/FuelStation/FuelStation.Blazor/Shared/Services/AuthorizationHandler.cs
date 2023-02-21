@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace FuelStation.Blazor.Shared.Services {
 
-    //basic WIP for authorization handling based on given analysis.
-    //TODO: Make it work 
+
+    //TODO: Make it work //basic WIP for authorization handling based on given analysis.
     public class AuthorizationHandler {
         public bool HasAccessToItems(Employee employee) {
             if (employee.EmployeeType == EmployeeType.Staff ||

@@ -1,0 +1,97 @@
+﻿@page "/employees/edit/{id:guid?}"
+@using FuelStation.Blazor.Shared.ViewModels;
+@using FuelStation.Model.Enumerations;
+@inject NavigationManager navigationManager
+@inject HttpClient httpClient
+@inject IJSRuntime jsRuntime
+<h3>Employee Edit</h3>
+
+@if (isLoading) {
+            <div class="lds-hourglass"></div>
+}
+else {
+            <EditForm Model="@employee" OnValidSubmit="@OnSave">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <InputText class="form-control" id="name" @bind-Value="employee.Name" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="surname" class="form-label">Surname</label>
+                        <InputText class="form-control" id="surname" @bind-Value="employee.Surname" />
+                    </div>
+            <div class="col-md-6">
+                     <label class="form-label">Type</label>
+                <InputSelect class="form-control" @bind-Value="employee.EmployeeType">
+                    @foreach (var enumValue in Enum.GetValues<EmployeeType>()) {
+                        <option value="@enumValue">@enumValue</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => employee.EmployeeType)" />
+            </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="hireDate">Hire Date</label>
+                        <InputDate class="form-control" id="hireDate" @bind-Value="employee.HireDateStart" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="sallary" class="form-label">Sallary per month</label>
+                        <InputNumber class="form-control" id="sallary" @bind-Value="employee.SallaryPerMonth" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="username" class="form-label">Username</label>
+                        <InputText class="form-control" id="username" @bind-Value="employee.username" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <InputText type="password" class="form-control" id="password" @bind-Value="employee.password" />
+                    </div>
+
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Save</button>
+                        <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+                    </div>
+                </div>
+            </EditForm>
+}
+
+@code {
+    [Parameter] public Guid? id { get; set; }
+    private bool isLoading = true;
+    private EmployeeViewModel? employee = new();
+
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        if (id.HasValue)
+            employee = await httpClient.GetFromJsonAsync<EmployeeViewModel>($"employee/{id}");
+    }
+    private void OnCancel() {
+        navigationManager.NavigateTo("employees");
+    }
+    private async Task OnSave() {
+        HttpResponseMessage response;
+        try {
+            if (id == Guid.Empty || id == null) {
+                response = await httpClient.PostAsJsonAsync("employee", employee);
+            }
+            else {
+                response = await httpClient.PutAsJsonAsync("employee", employee);
+            }
+
+            if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Error At Validating Employee Data.\nPlease Ensure the format is correct."); }
+            else if ((int)response.StatusCode == 200) { await jsRuntime.InvokeVoidAsync("alert", "Success"); navigationManager.NavigateTo("employees"); }
+            else if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "A problem with roster limits has occured. \nPlease check roster limits"); }
+            else {await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again."); }
+        }
+        catch (Exception) {
+            await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again.");
+        }
+    }
+    }
+

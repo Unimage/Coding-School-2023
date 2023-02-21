@@ -10,7 +10,7 @@ namespace FuelStation.Model {
         //Atributes 
         public Guid ID { get; set; }
         public string Name { get; set; }
-        public string Surname { get; }
+        public string Surname { get; set; }
         public DateTime HireDateStart { get; set; }
         public DateTime? HireDateEnd { get; set; } 
         public decimal SallaryPerMonth { get; set; }
