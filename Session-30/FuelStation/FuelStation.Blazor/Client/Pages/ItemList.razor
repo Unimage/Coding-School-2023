@@ -1,8 +1,14 @@
 ﻿@page "/items"
+@using FuelStation.Blazor.Shared.Services;
 @using FuelStation.Blazor.Shared.ViewModels;
 @inject IJSRuntime jsRuntime
 @inject NavigationManager navigationManager
 @inject HttpClient httpClient
+@inject LoginStatus LoginStatus
+@inject AuthorizationHandler AuthorizationHandler
+
+@if (IsAuthorized())
+{
 <h3>Item List</h3>
 
 
@@ -40,6 +46,9 @@
             }
                 </tbody>
             </table>
+    }           }
+else {
+     <FuelStation.Blazor.Client.Components.Unauthorized />
 }
 
 @code {
@@ -72,5 +81,8 @@
         }
         
         await LoadItemsFromServer();
+    }
+    private bool IsAuthorized() {
+        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
     }
 }

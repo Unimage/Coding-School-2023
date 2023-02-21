@@ -1,85 +1,105 @@
 ﻿@page "/employees"
+@using FuelStation.Blazor.Shared.Services;
 @using FuelStation.Blazor.Shared.ViewModels;
 @inject NavigationManager navigationManager
 @inject HttpClient httpClient
 @inject IJSRuntime jsRuntime
+@inject LoginStatus LoginStatus
+@inject AuthorizationHandler AuthorizationHandler
 <h3>Employee List</h3>
-@if (isLoading) {
-    <div class="lds-hourglass"></div>
-}
-else {
-    <button class="btn btn-primary" @onclick="AddNewEmployee">New Employee</button>
-    <button class="btn btn-info" @onclick="ToggleTerminatedEmployees">
-        @if (showTerminatedEmployees) {
-            <span>Hide Terminated Employees</span>
-        }
-        else {
-            <span>Show Terminated Emplyoees</span>
-        }
-    </button>
-
-
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>SurName</th>
-                <th>Employee Type</th>
-                <th>Hire Date</th>
-                <th>Salary per month</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var employee in activeEmployeeList) {
-                <tr>
-                    <td>@employee.Name</td>
-                    <td>@employee.Surname</td>
-                    <td>@employee.EmployeeType</td>
-                    <td>@employee.HireDateStart</td>
-                    <td>@employee.SallaryPerMonth</td>
-                    <td>
-                        <button class="btn btn-primary" @onclick="() => EditEmployee(employee)">Edit</button>
-                        <button class="btn btn-secondary" @onclick="() => EmployeeDetails(employee)">Details</button>
-                        <button class="btn btn-warning" @onclick="() => TerminateEmployee(employee)">Terminate</button>
-                        <button class="btn btn-danger" @onclick="() => DeleteEmployee(employee)">Delete</button>
-                    </td>
-                </tr>
+@if (IsAuthorized())
+{
+    @if (isLoading)
+    {
+        <div class="lds-hourglass"></div>
+    }
+    else
+    {
+        <button class="btn btn-primary" @onclick="AddNewEmployee">New Employee</button>
+        <button class="btn btn-info" @onclick="ToggleTerminatedEmployees">
+            @if (showTerminatedEmployees)
+            {
+                <span>Hide Terminated Employees</span>
             }
-        </tbody>
-    </table>
-    @if (showTerminatedEmployees) {
-        <table class="table table-striped table-hover" style="margin-top 5px">
+            else
+
+            {
+                <span>Show Terminated Emplyoees</span>
+            }
+        </button>
+
+
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>SurName</th>
                     <th>Employee Type</th>
                     <th>Hire Date</th>
-                    <td>Termination Date</td>
                     <th>Salary per month</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var employee in terminatedEmployeeList) {
+                @foreach (var employee in activeEmployeeList)
+                {
                     <tr>
                         <td>@employee.Name</td>
                         <td>@employee.Surname</td>
                         <td>@employee.EmployeeType</td>
                         <td>@employee.HireDateStart</td>
-                        <td>@employee.HireDateEnd</td>
                         <td>@employee.SallaryPerMonth</td>
                         <td>
-                            <button class="btn btn-warning" @onclick="() => Rehire(employee)">Rehire</button>
+                            <button class="btn btn-primary" @onclick="() => EditEmployee(employee)">Edit</button>
                             <button class="btn btn-secondary" @onclick="() => EmployeeDetails(employee)">Details</button>
+                            <button class="btn btn-warning" @onclick="() => TerminateEmployee(employee)">Terminate</button>
                             <button class="btn btn-danger" @onclick="() => DeleteEmployee(employee)">Delete</button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+        @if (showTerminatedEmployees)
+        {
+            <table class="table table-striped table-hover" style="margin-top 5px">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>SurName</th>
+                        <th>Employee Type</th>
+                        <th>Hire Date</th>
+                        <td>Termination Date</td>
+                        <th>Salary per month</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in terminatedEmployeeList)
+                    {
+                        <tr>
+                            <td>@employee.Name</td>
+                            <td>@employee.Surname</td>
+                            <td>@employee.EmployeeType</td>
+                            <td>@employee.HireDateStart</td>
+                            <td>@employee.HireDateEnd</td>
+                            <td>@employee.SallaryPerMonth</td>
+                            <td>
+                                <button class="btn btn-warning" @onclick="() => Rehire(employee)">Rehire</button>
+                                <button class="btn btn-secondary" @onclick="() => EmployeeDetails(employee)">Details</button>
+                                <button class="btn btn-danger" @onclick="() => DeleteEmployee(employee)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
     }
+
+}
+else
+{
+    <FuelStation.Blazor.Client.Components.Unauthorized />
 }
 
 
@@ -142,6 +162,9 @@ else {
     private async Task EmployeeDetails(EmployeeListViewModel employee) {
         navigationManager.NavigateTo($"/employees/details/{employee.ID}");
 
+    }
+    private bool IsAuthorized() {
+        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
     }
 
 }

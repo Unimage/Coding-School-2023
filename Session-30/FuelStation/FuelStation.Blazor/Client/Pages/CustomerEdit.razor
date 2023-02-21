@@ -1,41 +1,56 @@
 ﻿@page "/customers/edit/{id:guid?}"
+@using FuelStation.Blazor.Shared.Services;
 @using FuelStation.Blazor.Shared.ViewModels
 @using FuelStation.Model
 @inject NavigationManager navigationManager
 @inject HttpClient httpClient
 @inject IJSRuntime jsRuntime
+@inject LoginStatus LoginStatus
+@inject AuthorizationHandler AuthorizationHandler
 <h3>Customer Edit</h3>
-@if (isLoading) {
-    <div class="lds-hourglass"></div>
-}
-else {
-    <EditForm Model="@customer" OnValidSubmit="@OnSave">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <div class="row">
-            <div class="col-md-6">
-                <label class="form-label">Name</label>
-                <InputText class="form-control" id="code" @bind-Value="customer.Name" />
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Surname</label>
-                <InputText class="form-control" id="description" @bind-Value="customer.Surname" />
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Card Number</label>
-                <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
-            </div>
+@if (IsAuthorized())
+{
+    @if (isLoading)
+    {
+        <div class="lds-hourglass"></div>
+    }
+    else
+    {
+        <EditForm Model="@customer" OnValidSubmit="@OnSave">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <InputText class="form-control" id="code" @bind-Value="customer.Name" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Surname</label>
+                    <InputText class="form-control" id="description" @bind-Value="customer.Surname" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Card Number</label>
+                    <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
+                </div>
 
-            <div class="row mt-4">
-                <div class="col">
-                    <button class="btn btn-success" type="submit">Save</button>
-                    <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
-                    @if (ID == null) { <button class="btn btn-warning" @onclick="CardGenerate">New Card Number</button> }
+                <div class="row mt-4">
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Save</button>
+                        <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+                        @if (ID == null)
+                        {
+                            <button class="btn btn-warning" @onclick="CardGenerate">New Card Number</button>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    </EditForm>
+        </EditForm>
+    }
 
+}
+else
+{
+    <FuelStation.Blazor.Client.Components.Unauthorized />
 }
 @code {
     [Parameter] public Guid? ID { get; set; }
@@ -83,5 +98,8 @@ else {
             }
             customer.CardNumber = guidString;
         }
+    }
+    private bool IsAuthorized() {
+        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
     }
 }

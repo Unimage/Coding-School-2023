@@ -11,35 +11,40 @@ namespace FuelStation.Blazor.Shared.Services {
 
     //TODO: Make it work //basic WIP for authorization handling based on given analysis.
     public class AuthorizationHandler {
-        public bool HasAccessToItems(Employee employee) {
-            if (employee.EmployeeType == EmployeeType.Staff ||
-               employee.EmployeeType == EmployeeType.Manager) {
+        public bool HasAccessToItems(LoginStatus loginStatus) {
+            if (loginStatus.LoggedIn) { 
+            if (loginStatus.EmployeeType == EmployeeType.Staff ||
+               loginStatus.EmployeeType == EmployeeType.Manager) {
+                return true;
+            }
+            }
+            return false;
+        }
+        public bool HasAccessToCustomers(LoginStatus loginStatus) {
+            if (loginStatus.LoggedIn) { 
+            if (loginStatus.EmployeeType == EmployeeType.Manager ||
+                loginStatus.EmployeeType == EmployeeType.Cashier) {
+                return true;
+            }
+            }
+            return false;
+        }
+        public bool HasAccessToEmployees(LoginStatus loginStatus) {
+            if (loginStatus.EmployeeType == EmployeeType.Manager && loginStatus.LoggedIn) {
                 return true;
             }
             return false;
         }
-        public bool HasAccessToCustomers(Employee employee) {
-            if (employee.EmployeeType == EmployeeType.Manager ||
-                employee.EmployeeType == EmployeeType.Cashier) {
+        public bool HasAccessToTransactions(LoginStatus loginStatus) {
+            if (loginStatus.LoggedIn) { 
+            if (loginStatus.EmployeeType == EmployeeType.Manager ||
+                loginStatus.EmployeeType == EmployeeType.Cashier) {
                 return true;
-            }
+            } }
             return false;
         }
-        public bool HasAccessToEmployees(Employee employee) {
-            if (employee.EmployeeType == EmployeeType.Manager) {
-                return true;
-            }
-            return false;
-        }
-        public bool HasAccessToTransactions(Employee employee) {
-            if (employee.EmployeeType == EmployeeType.Manager ||
-                employee.EmployeeType == EmployeeType.Cashier) {
-                return true;
-            }
-            return false;
-        }
-        public bool HasAccessToLedger(Employee employee) {
-            if (employee.EmployeeType == EmployeeType.Manager) {
+        public bool HasAccessToLedger(LoginStatus loginStatus) {
+            if (loginStatus.EmployeeType == EmployeeType.Manager && loginStatus.LoggedIn) {
                 return true;
             }
             return false;

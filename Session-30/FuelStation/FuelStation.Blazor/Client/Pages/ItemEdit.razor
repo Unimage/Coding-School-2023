@@ -1,12 +1,16 @@
 ﻿@page "/items/edit/{id:guid?}"
+@using FuelStation.Blazor.Shared.Services;
 @using FuelStation.Blazor.Shared.ViewModels
 @using FuelStation.Model
 @inject IJSRuntime jsRuntime
 @using FuelStation.Model.Enumerations;
 @inject NavigationManager navigationManager
 @inject HttpClient httpClient
+@inject LoginStatus LoginStatus
+@inject AuthorizationHandler AuthorizationHandler
 <h3>Item Edit</h3>
-
+@if (IsAuthorized())
+{
 @if (isLoading) {
     <div class="lds-hourglass"></div>
 }
@@ -45,7 +49,8 @@ else {
             </div>
         </div>
     </EditForm>
-}
+}}else{
+<FuelStation.Blazor.Client.Components.Unauthorized />}
 
 @code {
     [Parameter] public Guid? id { get; set; }
@@ -74,5 +79,8 @@ else {
         if ((int)response.StatusCode == 406) { await jsRuntime.InvokeVoidAsync("alert", "Error At Validating Item Data.\nPlease Ensure the format is correct."); }
         else if ((int)response.StatusCode == 200) { await jsRuntime.InvokeVoidAsync("alert", "Success"); navigationManager.NavigateTo("items"); }
         else { await jsRuntime.InvokeVoidAsync("alert", "Unexpected Error. Please try again."); }
+    }
+    private bool IsAuthorized() {
+        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
     }
 }

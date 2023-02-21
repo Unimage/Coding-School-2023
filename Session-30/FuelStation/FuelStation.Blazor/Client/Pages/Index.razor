@@ -1,5 +1,51 @@
 ﻿@page "/"
+@using FuelStation.Blazor.Shared.Services;
+@using FuelStation.Blazor.Shared.ViewModels;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject LoginStatus LoginStatus
+@inject IJSRuntime jsRuntime
 
-<PageTitle>Index</PageTitle>
 
+<h3>Login</h3>
+@if (showErrorMessage) {
+    <label style="color:red">Incorect Credentials.</label>
+}
 
+<EditForm Model="@login" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row">
+        <div class="col-md-2">
+            <InputText class="form-control" id="username" @bind-Value="login.Username" placeholder="Username" /> <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <InputText class="form-control" id="password" @bind-Value="login.Password" placeholder="Password" type="password" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</EditForm>
+@code {
+    private LoginViewModel login = new LoginViewModel();
+    private bool showErrorMessage = false;
+
+    private async void HandleValidSubmit() {
+        var verifiedEmployee = await httpClient.GetFromJsonAsync<VerifiedEmployeeViewModel>($"login/{(login.Username)}/{login.Password}");
+
+        if (verifiedEmployee is not null) {
+            if (verifiedEmployee.Username is not null) {
+                LoginStatus.LoggedIn = true;
+                LoginStatus.EmployeeType = verifiedEmployee.EmployeeType;
+                navigationManager.NavigateTo("home");
+            }
+        }else{await jsRuntime.InvokeVoidAsync("alert", "Wrong Credentials.");}
+
+        
+    }
+}

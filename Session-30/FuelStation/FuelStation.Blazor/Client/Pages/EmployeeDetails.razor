@@ -1,10 +1,13 @@
 ﻿@page "/employees/details/{ID:guid?}"
+@using FuelStation.Blazor.Shared.Services;
 @using FuelStation.Blazor.Shared.ViewModels;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
-
+@inject LoginStatus LoginStatus
+@inject AuthorizationHandler AuthorizationHandler
 <h3>Customer Details</h3>
-
+@if (IsAuthorized())
+{
 @if (isLoading) {
     <p>Loading ...</p>
 }
@@ -60,6 +63,9 @@ else {
         </table>
     </div>
 
+    }           }
+else {
+    <FuelStation.Blazor.Client.Components.Unauthorized />
 }
 
 
@@ -80,5 +86,8 @@ else {
     }
     private void OnCancel() {
         navigationManager.NavigateTo("employees");
+    }
+    private bool IsAuthorized() {
+        return AuthorizationHandler.HasAccessToCustomers(LoginStatus);
     }
 }
