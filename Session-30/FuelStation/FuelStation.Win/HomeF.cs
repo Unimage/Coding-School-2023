@@ -23,9 +23,9 @@ namespace FuelStation.Win {
         }
         
         private void HandleAccess() {
-            if (_authHandler.HasAccessToCustomers(_loginStatus)) btnCustomer.Visible = true;
-            if (_authHandler.HasAccessToItems(_loginStatus)) btnItem.Visible = true;
-            if (_authHandler.HasAccessToTransactions(_loginStatus)) btnTransactions.Visible = true;
+            if (_authHandler.HasAccessToCustomers(_loginStatus)) { btnCustomer.Visible = true; labelType.Text = "Logged In as : " + _loginStatus.EmployeeType;}
+            if (_authHandler.HasAccessToItems(_loginStatus)) {btnItem.Visible = true; labelType.Text = "Logged In as : " + _loginStatus.EmployeeType; }
+            if (_authHandler.HasAccessToTransactions(_loginStatus)) {btnTransactions.Visible = true; labelType.Text = "Logged In as : " + _loginStatus.EmployeeType;}
         }
 
         private void btnCustomer_Click(object sender, EventArgs e) {

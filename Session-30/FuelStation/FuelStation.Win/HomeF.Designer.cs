@@ -28,6 +28,7 @@
             this.btnTransactions = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.labelType = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCustomer
@@ -91,11 +92,22 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // labelType
+            // 
+            this.labelType.AutoSize = true;
+            this.labelType.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelType.Location = new System.Drawing.Point(33, 25);
+            this.labelType.Name = "labelType";
+            this.labelType.Size = new System.Drawing.Size(143, 30);
+            this.labelType.TabIndex = 5;
+            this.labelType.Text = "Logged In as :";
+            // 
             // HomeF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.labelType);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTransactions);
@@ -116,5 +128,6 @@
         private Button btnTransactions;
         private Label label1;
         private Button btnLogout;
+        private Label labelType;
     }
 }
