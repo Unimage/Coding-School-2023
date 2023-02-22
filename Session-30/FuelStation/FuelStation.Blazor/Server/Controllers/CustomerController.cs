@@ -42,7 +42,6 @@ namespace FuelStation.Blazor.Server.Controllers {
                     customer.Name = result.Name;
                     customer.Surname = result.Surname;
                     customer.CardNumber = result.CardNumber;
-                    customer.Transactions = result.Transactions;
                 }
                 return customer;
             }

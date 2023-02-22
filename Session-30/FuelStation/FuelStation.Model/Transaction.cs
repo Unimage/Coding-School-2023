@@ -13,7 +13,7 @@ namespace FuelStation.Model {
         public Guid CustomerID { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public decimal TotalValue { get; set; }
-        public List<TransactionLine> TransactionLines { get; set; }  // part of relations too
+        public List<TransactionLine> TransactionLines { get; set; } = new();// part of relations too
 
         public Transaction() {
             ID= Guid.NewGuid();
