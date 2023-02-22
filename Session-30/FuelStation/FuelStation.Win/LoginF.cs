@@ -21,6 +21,7 @@ namespace FuelStation.Win {
         public LoginF() {
             _loginStatus = new();
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void LoginF_Load(object sender, EventArgs e) {
             bsLogin.DataSource = login;

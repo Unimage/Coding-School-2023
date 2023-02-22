@@ -1,6 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using FuelStation.Blazor.Shared.ViewModels;
-using Newtonsoft.Json;
+﻿using FuelStation.Blazor.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,22 +12,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FuelStation.Win {
-    public partial class CustomerListF : Form {
+    public partial class ItemListF : Form {
         private readonly HttpClient httpClient = new HttpClient(new HttpClientHandler()) {
             BaseAddress = new Uri("https://localhost:7026")
         };
-        private List<CustomerListViewModel> customerList = new();
-        public CustomerListF() {
+        private List<ItemListViewModel> itemList = new();
+        public ItemListF() {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         public async Task SetUpBindings() {
-            customerList = await httpClient.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
-            grdCustomers.AutoGenerateColumns = false;
-            bsCustomers.DataSource = customerList;
-            grdCustomers.DataSource = bsCustomers;
+            itemList = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("item");
+            grdItems.AutoGenerateColumns = false;
+            bsItems.DataSource = itemList;
+            grdItems.DataSource = bsItems;
         }
-        private async void FormCustomerList_Load(object sender, EventArgs e) {
+
+        private void ItemListF_Load(object sender, EventArgs e) {
             try {
                 SetUpBindings();
             }
@@ -37,6 +36,7 @@ namespace FuelStation.Win {
                 MessageBox.Show(this, $"Error retrieving Data from database.\n[{ex}]",
                 this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
         private void btnClose_Click(object sender, EventArgs e) {
             this.Close();
@@ -45,27 +45,26 @@ namespace FuelStation.Win {
             CallEdit(null);
         }
         private void btnEdit_Click(object sender, EventArgs e) {
-            if (bsCustomers.Current is CustomerListViewModel customer) {
-                CallEdit(customer);
+            if (bsItems.Current is ItemListViewModel item) {
+                CallEdit(item);
             }
         }
-        private void CallEdit(CustomerListViewModel? customer) {
-            if (customer is null) {
-                customer = new CustomerListViewModel();
-                customer.ID = Guid.Empty;
+        private void CallEdit(ItemListViewModel? item) {
+            if (item is null) {
+                item = new ItemListViewModel();
+                item.ID = Guid.Empty;
             }
-            var customerEditForm = new CustomerEditF(customer);
-            customerEditForm.ShowDialog();
-            if (customerEditForm.DialogResult == DialogResult.OK || customerEditForm.DialogResult == DialogResult.Abort || customerEditForm.DialogResult == DialogResult.Cancel) {
+            var itemEditForm = new ItemEditF(item);
+            itemEditForm.ShowDialog();
+            if (itemEditForm.DialogResult == DialogResult.OK || itemEditForm.DialogResult == DialogResult.Abort || itemEditForm.DialogResult == DialogResult.Cancel) {
                 SetUpBindings();
             }
         }
-
         private async void btnDelete_Click(object sender, EventArgs e) {
-            if (bsCustomers.Current is CustomerListViewModel customer) {
+            if (bsItems.Current is ItemListViewModel item) {
                 DialogResult result = MessageBox.Show("Delete selected Customer?", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes) {
-                    var response = await httpClient.DeleteAsync($"customer/{customer.ID}");
+                    var response = await httpClient.DeleteAsync($"item/{item.ID}");
                     if ((int)response.StatusCode != 200) { MessageBox.Show("alert", "Error At Deleting Customer.\nCustomer is tied to a List of Transactions."); }
                     SetUpBindings();
                 }

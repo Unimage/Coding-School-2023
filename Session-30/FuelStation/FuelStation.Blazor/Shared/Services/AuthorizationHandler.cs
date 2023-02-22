@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace FuelStation.Blazor.Shared.Services {
 
-
-    //TODO: Make it work //basic WIP for authorization handling based on given analysis.
     public class AuthorizationHandler {
         public bool HasAccessToItems(LoginStatus loginStatus) {
             if (loginStatus.LoggedIn) { 

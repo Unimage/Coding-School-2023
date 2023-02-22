@@ -18,6 +18,7 @@ namespace FuelStation.Win {
         public HomeF(LoginStatus loginStatus) {
             _loginStatus = loginStatus;
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             HandleAccess();
         }
         
@@ -35,6 +36,12 @@ namespace FuelStation.Win {
         private void btnLogout_Click(object sender, EventArgs e) {
             _loginStatus = null;
             this.Close();
+
+        }
+
+        private void btnItem_Click(object sender, EventArgs e) {
+            var itemListF = new ItemListF();
+            itemListF.Show();
 
         }
     }

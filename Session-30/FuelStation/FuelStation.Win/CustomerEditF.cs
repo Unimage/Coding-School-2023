@@ -27,6 +27,7 @@ namespace FuelStation.Win {
             _customerViewModel = new();
 
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void CustomerEditF_Load(object sender, EventArgs e) {
@@ -38,7 +39,6 @@ namespace FuelStation.Win {
                     try { 
                     
             _customerViewModel = await httpClient.GetFromJsonAsync<CustomerViewModel>($"customer/{_customerListViewmodel.ID}");
-                    MessageBox.Show("two");
                     txtName.Text = _customerViewModel.Name;
                     txtSurname.Text = _customerViewModel.Surname;
                     txtCardNumber.ReadOnly = true;
@@ -65,13 +65,31 @@ namespace FuelStation.Win {
        
 
         private async void btnAdd_Click(object sender, EventArgs e) {
+            _customerViewModel.Name = txtName.Text;
+            _customerViewModel.Surname = txtSurname.Text;
+            _customerViewModel.CardNumber = txtCardNumber.Text;
+            HttpResponseMessage response;
+            try { 
+            if (_customerViewModel.ID == Guid.Empty || _customerViewModel.ID == null) {
+               response = await httpClient.PostAsJsonAsync("customer", _customerViewModel);
+            }
+            else {
+                response = await httpClient.PutAsJsonAsync("customer", _customerViewModel);
+            }
+                if ((int)response.StatusCode == 406) { MessageBox.Show( "Error At Validating Customer Data.\nPlease Ensure the format is correct."); }
+                else if ((int)response.StatusCode == 200) { MessageBox.Show("Success"); this.Close(); }
+                else { MessageBox.Show( "Unexpected Error. Please try again."); }
+            }
+            catch (Exception) {
+                MessageBox.Show("Unexpected Error. Please try again.");
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
         }
         private void GenerateCardNumber() {
-            if (_customerViewModel.ID == null) {
+            if (_customerViewModel.ID == Guid.Empty) {
                 string guidString = Guid.NewGuid().ToString().Replace("-", "");
                 guidString = "A" + guidString;
 

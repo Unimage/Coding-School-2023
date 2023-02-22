@@ -33,9 +33,10 @@
             // btnCustomer
             // 
             this.btnCustomer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCustomer.Location = new System.Drawing.Point(128, 163);
+            this.btnCustomer.Location = new System.Drawing.Point(149, 188);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(164, 67);
+            this.btnCustomer.Size = new System.Drawing.Size(191, 77);
             this.btnCustomer.TabIndex = 0;
             this.btnCustomer.Text = "Customer Management";
             this.btnCustomer.UseVisualStyleBackColor = true;
@@ -45,20 +46,23 @@
             // btnItem
             // 
             this.btnItem.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnItem.Location = new System.Drawing.Point(311, 163);
+            this.btnItem.Location = new System.Drawing.Point(363, 188);
+            this.btnItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnItem.Name = "btnItem";
-            this.btnItem.Size = new System.Drawing.Size(164, 67);
+            this.btnItem.Size = new System.Drawing.Size(191, 77);
             this.btnItem.TabIndex = 1;
             this.btnItem.Text = "Item Management";
             this.btnItem.UseVisualStyleBackColor = true;
             this.btnItem.Visible = false;
+            this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
             // 
             // btnTransactions
             // 
             this.btnTransactions.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnTransactions.Location = new System.Drawing.Point(497, 163);
+            this.btnTransactions.Location = new System.Drawing.Point(580, 188);
+            this.btnTransactions.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnTransactions.Name = "btnTransactions";
-            this.btnTransactions.Size = new System.Drawing.Size(164, 67);
+            this.btnTransactions.Size = new System.Drawing.Size(191, 77);
             this.btnTransactions.TabIndex = 2;
             this.btnTransactions.Text = "Transactions";
             this.btnTransactions.UseVisualStyleBackColor = true;
@@ -68,7 +72,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(339, 85);
+            this.label1.Location = new System.Drawing.Point(396, 98);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 25);
             this.label1.TabIndex = 3;
@@ -77,9 +82,10 @@
             // btnLogout
             // 
             this.btnLogout.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLogout.Location = new System.Drawing.Point(311, 335);
+            this.btnLogout.Location = new System.Drawing.Point(363, 387);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(164, 67);
+            this.btnLogout.Size = new System.Drawing.Size(191, 77);
             this.btnLogout.TabIndex = 4;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -87,14 +93,15 @@
             // 
             // HomeF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(933, 519);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTransactions);
             this.Controls.Add(this.btnItem);
             this.Controls.Add(this.btnCustomer);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "HomeF";
             this.Text = "HomeF";
             this.ResumeLayout(false);
