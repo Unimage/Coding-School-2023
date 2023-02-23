@@ -76,8 +76,8 @@ namespace FuelStation.Win {
                     ToHome = new(_loginStatus);
                     ToHome.Show();
                 }
+                else { MessageBox.Show("Wrong Credentials1."); }
             }
-            else { MessageBox.Show("alert", "Wrong Credentials."); }
         }
     }
 }
