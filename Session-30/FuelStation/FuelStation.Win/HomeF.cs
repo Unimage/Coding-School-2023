@@ -44,5 +44,10 @@ namespace FuelStation.Win {
             itemListF.Show();
 
         }
+
+        private void btnTransactions_Click(object sender, EventArgs e) {
+            TransactionF trans = new TransactionF();
+            trans.Show();
+        }
     }
 }
