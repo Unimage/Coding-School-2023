@@ -38,6 +38,7 @@
             this.btnOrder = new System.Windows.Forms.Button();
             this.bsEmployees = new System.Windows.Forms.BindingSource(this.components);
             this.bsTransactions = new System.Windows.Forms.BindingSource(this.components);
+            this.btnEmployeeTransactions = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridTransactions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmployees)).BeginInit();
@@ -161,11 +162,22 @@
             this.btnOrder.Text = "Add New Order";
             this.btnOrder.UseVisualStyleBackColor = true;
             // 
+            // btnEmployeeTransactions
+            // 
+            this.btnEmployeeTransactions.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnEmployeeTransactions.Location = new System.Drawing.Point(13, 502);
+            this.btnEmployeeTransactions.Name = "btnEmployeeTransactions";
+            this.btnEmployeeTransactions.Size = new System.Drawing.Size(281, 38);
+            this.btnEmployeeTransactions.TabIndex = 9;
+            this.btnEmployeeTransactions.Text = "Veiw Employee Transactions";
+            this.btnEmployeeTransactions.UseVisualStyleBackColor = true;
+            // 
             // TransactionF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 552);
+            this.Controls.Add(this.btnEmployeeTransactions);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.gridEmployees);
             this.Controls.Add(this.gridTransactions);
@@ -197,5 +209,6 @@
         private Button btnOrder;
         private BindingSource bsEmployees;
         private BindingSource bsTransactions;
+        private Button btnEmployeeTransactions;
     }
 }
