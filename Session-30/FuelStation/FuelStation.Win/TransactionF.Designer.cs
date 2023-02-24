@@ -26,10 +26,11 @@
             this.components = new System.ComponentModel.Container();
             this.gridTransactions = new DevExpress.XtraGrid.GridControl();
             this.grvTransactions = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colEmployeeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CustomerCardNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.EmployeeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPaymentMethod = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTotalPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridEmployees = new DevExpress.XtraGrid.GridControl();
             this.grvEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -39,6 +40,9 @@
             this.bsEmployees = new System.Windows.Forms.BindingSource(this.components);
             this.bsTransactions = new System.Windows.Forms.BindingSource(this.components);
             this.btnEmployeeTransactions = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnTransactionDetails = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridTransactions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmployees)).BeginInit();
@@ -49,7 +53,8 @@
             // 
             // gridTransactions
             // 
-            this.gridTransactions.Location = new System.Drawing.Point(12, 12);
+            this.gridTransactions.EmbeddedNavigator.Enabled = false;
+            this.gridTransactions.Location = new System.Drawing.Point(13, 42);
             this.gridTransactions.MainView = this.grvTransactions;
             this.gridTransactions.Name = "gridTransactions";
             this.gridTransactions.Size = new System.Drawing.Size(928, 243);
@@ -61,23 +66,32 @@
             // grvTransactions
             // 
             this.grvTransactions.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colEmployeeName,
+            this.CustomerCardNumber,
+            this.EmployeeName,
             this.colDate,
             this.colPaymentMethod,
-            this.colTotalPrice});
+            this.colTotalValue});
             this.grvTransactions.DetailHeight = 397;
             this.grvTransactions.GridControl = this.gridTransactions;
             this.grvTransactions.Name = "grvTransactions";
             this.grvTransactions.OptionsBehavior.Editable = false;
             this.grvTransactions.OptionsView.ShowGroupPanel = false;
             // 
-            // colEmployeeName
+            // CustomerCardNumber
             // 
-            this.colEmployeeName.Caption = "Employee Name";
-            this.colEmployeeName.FieldName = "EmployeeName";
-            this.colEmployeeName.Name = "colEmployeeName";
-            this.colEmployeeName.Visible = true;
-            this.colEmployeeName.VisibleIndex = 3;
+            this.CustomerCardNumber.Caption = "Card Number";
+            this.CustomerCardNumber.FieldName = "CustomerCardNumber";
+            this.CustomerCardNumber.Name = "CustomerCardNumber";
+            this.CustomerCardNumber.Visible = true;
+            this.CustomerCardNumber.VisibleIndex = 0;
+            // 
+            // EmployeeName
+            // 
+            this.EmployeeName.Caption = "Employee Name";
+            this.EmployeeName.FieldName = "EmployeeName";
+            this.EmployeeName.Name = "EmployeeName";
+            this.EmployeeName.Visible = true;
+            this.EmployeeName.VisibleIndex = 4;
             // 
             // colDate
             // 
@@ -85,7 +99,7 @@
             this.colDate.FieldName = "Date";
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 0;
+            this.colDate.VisibleIndex = 1;
             this.colDate.Width = 66;
             // 
             // colPaymentMethod
@@ -94,21 +108,22 @@
             this.colPaymentMethod.FieldName = "PaymentMethod";
             this.colPaymentMethod.Name = "colPaymentMethod";
             this.colPaymentMethod.Visible = true;
-            this.colPaymentMethod.VisibleIndex = 1;
+            this.colPaymentMethod.VisibleIndex = 2;
             this.colPaymentMethod.Width = 66;
             // 
-            // colTotalPrice
+            // colTotalValue
             // 
-            this.colTotalPrice.Caption = "Total Price";
-            this.colTotalPrice.FieldName = "TotalPrice";
-            this.colTotalPrice.Name = "colTotalPrice";
-            this.colTotalPrice.Visible = true;
-            this.colTotalPrice.VisibleIndex = 2;
-            this.colTotalPrice.Width = 66;
+            this.colTotalValue.Caption = "Total Price";
+            this.colTotalValue.FieldName = "TotalValue";
+            this.colTotalValue.Name = "colTotalValue";
+            this.colTotalValue.Visible = true;
+            this.colTotalValue.VisibleIndex = 3;
+            this.colTotalValue.Width = 66;
             // 
             // gridEmployees
             // 
-            this.gridEmployees.Location = new System.Drawing.Point(13, 276);
+            this.gridEmployees.EmbeddedNavigator.Enabled = false;
+            this.gridEmployees.Location = new System.Drawing.Point(13, 330);
             this.gridEmployees.MainView = this.grvEmployees;
             this.gridEmployees.Name = "gridEmployees";
             this.gridEmployees.Size = new System.Drawing.Size(928, 206);
@@ -154,29 +169,68 @@
             // 
             // btnOrder
             // 
+            this.btnOrder.BackColor = System.Drawing.Color.SpringGreen;
             this.btnOrder.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOrder.Location = new System.Drawing.Point(773, 504);
+            this.btnOrder.Location = new System.Drawing.Point(774, 542);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(167, 38);
             this.btnOrder.TabIndex = 8;
             this.btnOrder.Text = "Add New Order";
-            this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // btnEmployeeTransactions
             // 
+            this.btnEmployeeTransactions.BackColor = System.Drawing.Color.Aquamarine;
             this.btnEmployeeTransactions.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEmployeeTransactions.Location = new System.Drawing.Point(13, 502);
+            this.btnEmployeeTransactions.Location = new System.Drawing.Point(13, 542);
             this.btnEmployeeTransactions.Name = "btnEmployeeTransactions";
             this.btnEmployeeTransactions.Size = new System.Drawing.Size(281, 38);
             this.btnEmployeeTransactions.TabIndex = 9;
             this.btnEmployeeTransactions.Text = "Veiw Employee Transactions";
-            this.btnEmployeeTransactions.UseVisualStyleBackColor = true;
+            this.btnEmployeeTransactions.UseVisualStyleBackColor = false;
+            this.btnEmployeeTransactions.Click += new System.EventHandler(this.btnEmployeeTransactions_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(189, 30);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Transaction History";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(12, 293);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(225, 30);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Eligible Employee View";
+            // 
+            // btnTransactionDetails
+            // 
+            this.btnTransactionDetails.BackColor = System.Drawing.Color.Khaki;
+            this.btnTransactionDetails.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnTransactionDetails.Location = new System.Drawing.Point(660, 289);
+            this.btnTransactionDetails.Name = "btnTransactionDetails";
+            this.btnTransactionDetails.Size = new System.Drawing.Size(281, 38);
+            this.btnTransactionDetails.TabIndex = 12;
+            this.btnTransactionDetails.Text = "Veiw Transaction Details";
+            this.btnTransactionDetails.UseVisualStyleBackColor = false;
+            this.btnTransactionDetails.Click += new System.EventHandler(this.btnTransactionDetails_Click);
             // 
             // TransactionF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 552);
+            this.ClientSize = new System.Drawing.Size(969, 593);
+            this.Controls.Add(this.btnTransactionDetails);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEmployeeTransactions);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.gridEmployees);
@@ -190,6 +244,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -197,10 +252,10 @@
 
         private DevExpress.XtraGrid.GridControl gridTransactions;
         private DevExpress.XtraGrid.Views.Grid.GridView grvTransactions;
-        private DevExpress.XtraGrid.Columns.GridColumn colEmployeeName;
+        private DevExpress.XtraGrid.Columns.GridColumn EmployeeName;
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
         private DevExpress.XtraGrid.Columns.GridColumn colPaymentMethod;
-        private DevExpress.XtraGrid.Columns.GridColumn colTotalPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotalValue;
         private DevExpress.XtraGrid.GridControl gridEmployees;
         private DevExpress.XtraGrid.Views.Grid.GridView grvEmployees;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
@@ -210,5 +265,9 @@
         private BindingSource bsEmployees;
         private BindingSource bsTransactions;
         private Button btnEmployeeTransactions;
+        private DevExpress.XtraGrid.Columns.GridColumn CustomerCardNumber;
+        private Label label1;
+        private Label label2;
+        private Button btnTransactionDetails;
     }
 }

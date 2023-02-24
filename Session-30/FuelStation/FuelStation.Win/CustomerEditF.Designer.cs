@@ -152,6 +152,7 @@
             this.Controls.Add(this.txtName);
             this.Name = "CustomerEditF";
             this.Text = "CustomerEditF";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CustomerEditF_FormClosed);
             this.Load += new System.EventHandler(this.CustomerEditF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomer)).EndInit();
             this.ResumeLayout(false);

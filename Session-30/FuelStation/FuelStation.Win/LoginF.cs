@@ -73,6 +73,7 @@ namespace FuelStation.Win {
                 if (verifiedEmployee.Username is not null) {
                     _loginStatus.LoggedIn = true;
                     _loginStatus.EmployeeType = verifiedEmployee.EmployeeType;
+                    _loginStatus.EmployeeID = verifiedEmployee.ID;
                     ToHome = new(_loginStatus);
                     ToHome.Show();
                 }

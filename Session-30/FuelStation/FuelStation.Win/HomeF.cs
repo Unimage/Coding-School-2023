@@ -46,7 +46,7 @@ namespace FuelStation.Win {
         }
 
         private void btnTransactions_Click(object sender, EventArgs e) {
-            TransactionF trans = new TransactionF();
+            TransactionF trans = new TransactionF(_loginStatus);
             trans.Show();
         }
     }

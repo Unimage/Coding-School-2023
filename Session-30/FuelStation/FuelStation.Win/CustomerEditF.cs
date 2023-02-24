@@ -22,6 +22,7 @@ namespace FuelStation.Win {
         };
         private CustomerViewModel _customerViewModel;
         private CustomerListViewModel _customerListViewmodel;
+        public CustomerViewModel resultCustomer = new();
         public CustomerEditF(CustomerListViewModel customerListViewModel) { 
             _customerListViewmodel = customerListViewModel;
             _customerViewModel = new();
@@ -99,6 +100,11 @@ namespace FuelStation.Win {
                 txtCardNumber.Text = guidString;
             }
             else { MessageBox.Show("Customer Already Has a Card!"); }
+        }
+
+        private void CustomerEditF_FormClosed(object sender, FormClosedEventArgs e) {
+            this.resultCustomer = _customerViewModel;
+           
         }
     }
 }
