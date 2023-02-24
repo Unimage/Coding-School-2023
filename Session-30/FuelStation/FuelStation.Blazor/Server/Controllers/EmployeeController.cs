@@ -131,6 +131,7 @@ namespace FuelStation.Blazor.Server.Controllers {
                     itemToUpdate.EmployeeType = employee.EmployeeType;
                     itemToUpdate.HireDateStart = employee.HireDateStart;
                     itemToUpdate.HireDateEnd = employee.HireDateEnd;
+                    itemToUpdate.SallaryPerMonth= employee.SallaryPerMonth;
                     itemToUpdate.username = employee.username;
                     itemToUpdate.password = employee.password;
                     _employeeRepo.Update(employee.ID, itemToUpdate);
