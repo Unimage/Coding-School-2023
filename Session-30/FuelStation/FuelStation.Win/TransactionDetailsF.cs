@@ -126,6 +126,7 @@ namespace FuelStation.Win {
             }
         }
         private async void SaveTransaction() {
+            newTransaction.ID = Guid.NewGuid();
             newTransaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod),cmbPayment.SelectedItem.ToString());
             newTransaction.CustomerCardNumber = customer.CardNumber;
             newTransaction.EmployeeName = employee.Name + employee.Surname;
@@ -134,6 +135,7 @@ namespace FuelStation.Win {
                 if((int)result.StatusCode == 200) {
                     MessageBox.Show("Transaction Created");
                 foreach(var line in newTransactionLineList) {
+                        line.TransactionID = newTransaction.ID;
                     var resultLine = await httpClient.PostAsJsonAsync("transactionline", line);
                     }
                 }

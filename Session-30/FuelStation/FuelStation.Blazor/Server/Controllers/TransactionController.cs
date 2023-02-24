@@ -32,8 +32,8 @@ namespace FuelStation.Blazor.Server.Controllers {
                 EmployeeID = transaction.EmployeeID,
                 CustomerID = transaction.CustomerID,
                 TotalValue = transaction.TotalValue,
-                CustomerCardNumber = transaction.Customer.CardNumber,
-                EmployeeName = transaction.Employee.Name +" "+ transaction.Employee.Surname
+                CustomerCardNumber = _customerRepo.GetById(transaction.CustomerID).CardNumber,
+                EmployeeName = _employeeRepo.GetById(transaction.EmployeeID).Name + " " + _employeeRepo.GetById(transaction.EmployeeID).Surname
             }) ;
         }
         [HttpDelete("{id:Guid}")]
@@ -54,6 +54,7 @@ namespace FuelStation.Blazor.Server.Controllers {
         public async Task<ActionResult> Post(TransactionListViewModel trans) {
             try {
                 Transaction transToAdd = new();
+                transToAdd.ID= trans.ID;
                 transToAdd.TotalValue = trans.TotalValue;
                 transToAdd.CustomerID = trans.CustomerID;
                 transToAdd.EmployeeID = trans.EmployeeID;

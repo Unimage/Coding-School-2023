@@ -12,6 +12,7 @@ namespace FuelStation.EF.Repositories {
         public void Add(Transaction entity) {
             using var context = new ApplicationContext();
             context.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(Guid ID) {
@@ -20,10 +21,7 @@ namespace FuelStation.EF.Repositories {
 
         public IList<Transaction> GetAll() {
             using var context = new ApplicationContext();
-            return context.Transactions
-                .Include(transaction => transaction.Customer)
-                .Include(transaction => transaction.Employee)
-                .ToList();
+            return context.Transactions.ToList();
         }
 
         public Transaction? GetById(Guid ID) {

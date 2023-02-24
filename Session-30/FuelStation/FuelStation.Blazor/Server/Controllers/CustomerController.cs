@@ -94,7 +94,6 @@ namespace FuelStation.Blazor.Server.Controllers {
                 itemToUpdate.Name = customer.Name;
                 itemToUpdate.Surname = customer.Surname;
                 itemToUpdate.CardNumber = customer.CardNumber;
-                itemToUpdate.Transactions = customer.Transactions;
                 _customerRepo.Update(customer.ID, itemToUpdate);
                 return Ok();
             }

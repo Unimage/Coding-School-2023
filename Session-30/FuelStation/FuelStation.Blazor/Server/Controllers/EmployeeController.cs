@@ -75,7 +75,6 @@ namespace FuelStation.Blazor.Server.Controllers {
                     employee.SallaryPerMonth = employeeDB.SallaryPerMonth;
                     employee.username = employeeDB.username;
                     employee.password = employeeDB.password;
-                    employee.Transactions = employeeDB.Transactions;
                 }
                 return employee;
             }
@@ -134,7 +133,6 @@ namespace FuelStation.Blazor.Server.Controllers {
                     itemToUpdate.HireDateEnd = employee.HireDateEnd;
                     itemToUpdate.username = employee.username;
                     itemToUpdate.password = employee.password;
-                    itemToUpdate.Transactions = employee.Transactions;
                     _employeeRepo.Update(employee.ID, itemToUpdate);
                     return Ok();
                 }
