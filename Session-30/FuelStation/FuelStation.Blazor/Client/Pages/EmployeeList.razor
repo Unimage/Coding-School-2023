@@ -52,7 +52,7 @@
                         <td>
                             <button class="btn btn-primary" @onclick="() => EditEmployee(employee)">Edit</button>
                             <button class="btn btn-secondary" @onclick="() => EmployeeDetails(employee)">Details</button>
-                            <button class="btn btn-warning" @onclick="() => TerminateEmployee(employee)">Terminate</button>
+                            <button class="btn btn-warning" @onclick="() => FireEmployee(employee)">Fire</button>
                             <button class="btn btn-danger" @onclick="() => DeleteEmployee(employee)">Delete</button>
                         </td>
                     </tr>
@@ -145,9 +145,9 @@ else
     public void SetUpTerminated(List<EmployeeListViewModel> employeeList) {
         terminatedEmployeeList = employeeList.Where(employee => employee.HireDateEnd is not null).ToList();
     }
-    private async Task TerminateEmployee(EmployeeListViewModel employee) {
+    private async Task FireEmployee(EmployeeListViewModel employee) {
         var response = await httpClient.PutAsJsonAsync("employee/terminate", employee);
-        if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "Cant Terminate The Employee. Check Roster limits"); }
+        if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "Cant Fire The Employee. Check Roster limits"); }
         await LoadItemsFromServer();
     }
     private async Task ToggleTerminatedEmployees() {
