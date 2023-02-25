@@ -130,7 +130,7 @@ namespace FuelStation.Win {
             newTransaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod),cmbPayment.SelectedItem.ToString());
             newTransaction.CustomerCardNumber = customer.CardNumber;
             newTransaction.EmployeeName = employee.Name + employee.Surname;
-            try { 
+
           var result = await httpClient.PostAsJsonAsync("transaction", newTransaction);
                 if((int)result.StatusCode == 200) {
                     MessageBox.Show("Transaction Created");
@@ -140,10 +140,7 @@ namespace FuelStation.Win {
                     }
                 }
             }
-            catch(Exception e) {
-                MessageBox.Show("Error At creating The transaction");
-
-            }
+ 
         }
     }
-}
+

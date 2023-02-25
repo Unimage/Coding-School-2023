@@ -25,7 +25,12 @@ namespace FuelStation.EF.Repositories {
         }
 
         public Transaction? GetById(Guid ID) {
-            throw new NotImplementedException();
+            using var context = new ApplicationContext();
+            return context.Transactions
+                .Where(transaction => transaction.ID == ID)
+                .Include(transaction => transaction.TransactionLines)
+                    .ThenInclude(transLine => transLine.Item)
+                .SingleOrDefault();
         }
 
         public void Update(Guid ID, Transaction entity) {

@@ -19,7 +19,6 @@ namespace FuelStation.Blazor.Server.Controllers {
 
         [HttpPost]
         public async Task<ActionResult> Post(TransactionLineViewModel transLine) {
-            try { 
             TransactionLine transLineToAdd = new();
             transLineToAdd.TransactionID = transLine.TransactionID;
             transLineToAdd.ItemID = transLine.ItemID;
@@ -31,11 +30,6 @@ namespace FuelStation.Blazor.Server.Controllers {
             _transactionLineRepo.Add(transLineToAdd);
                 return Ok();
             }
-            catch(Exception e) {
-                return StatusCode(StatusCodes.Status406NotAcceptable,
-               "Some Problem with transactionLine");
-
-            }
+            
         }
         }
-}

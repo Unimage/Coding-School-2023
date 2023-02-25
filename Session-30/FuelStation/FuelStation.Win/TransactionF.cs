@@ -60,6 +60,9 @@ namespace FuelStation.Win {
 
         private void btnTransactionDetails_Click(object sender, EventArgs e) {
             //TODO:make it work when im done with getbyid transrepo and translines repo.
+            var selectedTrans = bsTransactions.Current as TransactionListViewModel;
+            var lineForm = new TransactionInfoF(selectedTrans.ID);
+            lineForm.ShowDialog();
         }
     }
 }

@@ -70,6 +70,35 @@ namespace FuelStation.Blazor.Server.Controllers {
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<TransactionListViewModel?> Get(Guid id) {
+            TransactionListViewModel trans = new();
+            try {
+                if (id != Guid.Empty) {
+                    var result = _transactionRepo.GetById(id);
+                    trans.ID = result.ID;
+                    trans.TotalValue = result.TotalValue;
+                    trans.Date = result.Date;
+                    
+                    trans.PaymentMethod= result.PaymentMethod;
+                    trans.TransLines = result.TransactionLines.Select(transactionLine => new TransactionLineViewModel {
+                        ID = transactionLine.ID,
+                        ItemName = transactionLine.Item.Description,
+                        Quantity = transactionLine.Quantity,
+                        ItemPrice= transactionLine.ItemPrice,
+                        TotalValue = transactionLine.TotalValue,
+                        TransactionID = transactionLine.TransactionID,
+                        NetValue = transactionLine.NetValue,
+                    }).ToList();
+                }
+                return trans;
+            }
+            catch (Exception) {
+                return null;
+            }
+
+        }
+
 
     }
 

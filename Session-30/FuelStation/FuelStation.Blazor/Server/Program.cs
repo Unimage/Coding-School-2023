@@ -20,6 +20,7 @@ builder.Services.AddScoped<IEntityRepo<Transaction>, TransactionRepo>();
 builder.Services.AddScoped<IEntityRepo<TransactionLine>, TransactionLineRepo>();
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
