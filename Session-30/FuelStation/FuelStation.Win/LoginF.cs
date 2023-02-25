@@ -30,9 +30,9 @@ namespace FuelStation.Win {
         }
         private void LoginF_Load(object sender, EventArgs e) {
             bsLogin.DataSource = login;
-            btnCashier.Visible = true ;
-            btnStaff.Visible = true;
-            btnManager.Visible = true;
+            btnCashier.Visible = false;
+            btnStaff.Visible = false;
+            btnManager.Visible = false;
             // TODO:Remove em completelly but for now keep em at false
 
         }
