@@ -3,6 +3,7 @@ using FuelStation.EF.Repositories;
 using FuelStation.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace FuelStation.Blazor.Server.Controllers {
     [Route("[controller]")]
@@ -26,6 +27,7 @@ namespace FuelStation.Blazor.Server.Controllers {
         public async Task<IEnumerable<TransactionListViewModel>> Get() {
             var result = _transactionRepo.GetAll();
             return result.Select(transaction => new TransactionListViewModel {
+                
                 ID = transaction.ID,
                 Date = transaction.Date,
                 PaymentMethod = transaction.PaymentMethod,
@@ -33,7 +35,11 @@ namespace FuelStation.Blazor.Server.Controllers {
                 CustomerID = transaction.CustomerID,
                 TotalValue = transaction.TotalValue,
                 CustomerCardNumber = _customerRepo.GetById(transaction.CustomerID).CardNumber,
-                EmployeeName = _employeeRepo.GetById(transaction.EmployeeID).Name + " " + _employeeRepo.GetById(transaction.EmployeeID).Surname
+                EmployeeName = _employeeRepo.GetById(transaction.EmployeeID).Name + " " + _employeeRepo.GetById(transaction.EmployeeID).Surname,
+                TransLines = transaction.TransactionLines.Select(transactionLine => new TransactionLineViewModel {
+                    ID = transactionLine.ID,
+                    ItemID= transactionLine.ItemID,      
+                }).ToList()
             }) ;
         }
         [HttpDelete("{id:Guid}")]

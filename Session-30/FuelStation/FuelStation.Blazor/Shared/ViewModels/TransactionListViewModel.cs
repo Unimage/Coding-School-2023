@@ -16,7 +16,6 @@ namespace FuelStation.Blazor.Shared.ViewModels {
         public string? CustomerCardNumber { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public decimal TotalValue { get; set; }
-        public List<TransactionLine> TransactionLines { get; set; } = new List<TransactionLine>();
         public List<TransactionLineViewModel> TransLines { get; set; } = new List<TransactionLineViewModel>();
     }
 }

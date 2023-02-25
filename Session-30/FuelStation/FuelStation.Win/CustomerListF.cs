@@ -66,7 +66,7 @@ namespace FuelStation.Win {
                 DialogResult result = MessageBox.Show("Delete selected Customer?", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes) {
                     var response = await httpClient.DeleteAsync($"customer/{customer.ID}");
-                    if ((int)response.StatusCode != 200) { MessageBox.Show("alert", "Error At Deleting Customer.\nCustomer is tied to a List of Transactions."); }
+                    if ((int)response.StatusCode != 200) { MessageBox.Show("Error At Deleting Customer.\nCustomer is tied to a List of Transactions."); }
                     SetUpBindings();
                 }
                 else { SetUpBindings(); }

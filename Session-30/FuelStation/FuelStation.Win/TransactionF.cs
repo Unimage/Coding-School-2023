@@ -44,9 +44,7 @@ namespace FuelStation.Win {
 
         private void btnOrder_Click(object sender, EventArgs e) {
             var frm = new SearchCustomerF(_loginStatus);
-            frm.ShowDialog();
-            
-            
+            frm.ShowDialog(); 
         }
 
         private void btnEmployeeTransactions_Click(object sender, EventArgs e) {
@@ -59,7 +57,11 @@ namespace FuelStation.Win {
         }
 
         private void btnTransactionDetails_Click(object sender, EventArgs e) {
-            //TODO:make it work when im done with getbyid transrepo and translines repo.
+            TransactionListViewModel selected  = bsTransactions.Current as TransactionListViewModel;
+            var selectedForm = new SelectedTransactionDetailsF(selected);
+            selectedForm.ShowDialog();
+
+
         }
     }
 }

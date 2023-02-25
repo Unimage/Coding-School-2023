@@ -21,7 +21,10 @@ namespace FuelStation.EF.Repositories {
 
         public IList<Transaction> GetAll() {
             using var context = new ApplicationContext();
-            return context.Transactions.ToList();
+
+            return context.Transactions
+                        .Include(transaction => transaction.TransactionLines)
+                .ToList();
         }
 
         public Transaction? GetById(Guid ID) {
