@@ -16,15 +16,15 @@
     else
     {
         <button class="btn btn-primary" @onclick="AddNewEmployee">New Employee</button>
-        <button class="btn btn-info" @onclick="ToggleTerminatedEmployees">
-            @if (showTerminatedEmployees)
+        <button class="btn btn-info" @onclick="ToggleFiredEmployees">
+            @if (showFiredEmployees)
             {
-                <span>Hide Terminated Employees</span>
+                <span>Hide Fired Employees</span>
             }
             else
 
             {
-                <span>Show Terminated Emplyoees</span>
+                <span>Show Fired Emplyoees</span>
             }
         </button>
 
@@ -52,14 +52,14 @@
                         <td>
                             <button class="btn btn-primary" @onclick="() => EditEmployee(employee)">Edit</button>
                             <button class="btn btn-secondary" @onclick="() => EmployeeDetails(employee)">Details</button>
-                            <button class="btn btn-warning" @onclick="() => TerminateEmployee(employee)">Terminate</button>
+                            <button class="btn btn-warning" @onclick="() => FireEmployee(employee)">Fire</button>
                             <button class="btn btn-danger" @onclick="() => DeleteEmployee(employee)">Delete</button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-        @if (showTerminatedEmployees)
+        @if (showFiredEmployees)
         {
             <table class="table table-striped table-hover" style="margin-top 5px">
                 <thead>
@@ -74,7 +74,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var employee in terminatedEmployeeList)
+                    @foreach (var employee in firedEmployeeList)
                     {
                         <tr>
                             <td>@employee.Name</td>
@@ -105,10 +105,10 @@ else
 
 @code {
     private bool isLoading = true;
-    private bool showTerminatedEmployees = false;
+    private bool showFiredEmployees = false;
     private List<EmployeeListViewModel> employeeList = new();
     private List<EmployeeListViewModel> activeEmployeeList = new();
-    private List<EmployeeListViewModel> terminatedEmployeeList = new();
+    private List<EmployeeListViewModel> firedEmployeeList = new();
 
     protected override async Task OnInitializedAsync() {
         await LoadItemsFromServer();
@@ -118,7 +118,7 @@ else
     private async Task LoadItemsFromServer() {
         employeeList = await httpClient.GetFromJsonAsync<List<EmployeeListViewModel>>("employee");
         SetUpActive(employeeList);
-        SetUpTerminated(employeeList);
+        SetUpFired(employeeList);
 
     }
     private async Task EditEmployee(EmployeeListViewModel employee) {
@@ -142,16 +142,16 @@ else
     public void SetUpActive(List<EmployeeListViewModel> employeeList) {
         activeEmployeeList = employeeList.Where(employee => employee.HireDateEnd is null).ToList() ?? new List<EmployeeListViewModel>();
     }
-    public void SetUpTerminated(List<EmployeeListViewModel> employeeList) {
-        terminatedEmployeeList = employeeList.Where(employee => employee.HireDateEnd is not null).ToList();
+    public void SetUpFired(List<EmployeeListViewModel> employeeList) {
+        firedEmployeeList = employeeList.Where(employee => employee.HireDateEnd is not null).ToList();
     }
-    private async Task TerminateEmployee(EmployeeListViewModel employee) {
-        var response = await httpClient.PutAsJsonAsync("employee/terminate", employee);
-        if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "Cant Terminate The Employee. Check Roster limits"); }
+    private async Task FireEmployee(EmployeeListViewModel employee) {
+        var response = await httpClient.PutAsJsonAsync("employee/fire", employee);
+        if ((int)response.StatusCode == 409) { await jsRuntime.InvokeVoidAsync("alert", "Cant Fire The Employee. Check Roster limits"); }
         await LoadItemsFromServer();
     }
-    private async Task ToggleTerminatedEmployees() {
-        showTerminatedEmployees = (!showTerminatedEmployees);
+    private async Task ToggleFiredEmployees() {
+        showFiredEmployees = (!showFiredEmployees);
         await LoadItemsFromServer();
     }
     private async Task Rehire(EmployeeListViewModel employee) {

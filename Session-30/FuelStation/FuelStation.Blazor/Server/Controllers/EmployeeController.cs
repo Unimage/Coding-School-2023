@@ -146,12 +146,12 @@ namespace FuelStation.Blazor.Server.Controllers {
             }
         }
         //validations done 
-        [HttpPut("terminate")]
-        public async Task<ActionResult> Terminate(EmployeeListViewModel employee) {
+        [HttpPut("fire")]
+        public async Task<ActionResult> Fire(EmployeeListViewModel employee) {
             if (_dataValidator.CheckRosterMinus(_employeeRepo.GetAll().ToList(), employee)) {
-                var itemtoTerminate = _employeeRepo.GetById(employee.ID);
-                itemtoTerminate.HireDateEnd = DateTime.Now;
-                _employeeRepo.Update(employee.ID, itemtoTerminate);
+                var itemtoFire = _employeeRepo.GetById(employee.ID);
+                itemtoFire.HireDateEnd = DateTime.Now;
+                _employeeRepo.Update(employee.ID, itemtoFire);
                 return Ok();
             }
             else {
@@ -163,9 +163,9 @@ namespace FuelStation.Blazor.Server.Controllers {
         [HttpPut("rehire")]
         public async Task<ActionResult> Rehire(EmployeeListViewModel employee) {
             if (_dataValidator.CheckRosterPlus(_employeeRepo.GetAll().ToList(), employee)) {
-                var itemtoTerminate = _employeeRepo.GetById(employee.ID);
-                itemtoTerminate.HireDateEnd = null;
-                _employeeRepo.Update(employee.ID, itemtoTerminate);
+                var itemtoFire = _employeeRepo.GetById(employee.ID);
+                itemtoFire.HireDateEnd = null;
+                _employeeRepo.Update(employee.ID, itemtoFire);
                 return Ok();
             }
             else return StatusCode(StatusCodes.Status409Conflict,

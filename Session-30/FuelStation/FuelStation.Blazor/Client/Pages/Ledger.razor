@@ -1,8 +1,74 @@
-﻿@inject NavigationManager navigationManager
-@inject HttpClient httpClient
-@page "/ledger"
+﻿@page "/ledger"
+@using FuelStation.Blazor.Shared.Services;
 @using FuelStation.Blazor.Shared.ViewModels;
-<h3>Ledger</h3>
-@code{
-    //TODO:finish ledger.razor it tommorrow
+@inject IJSRuntime jsRuntime
+@inject HttpClient httpClient
+@inject LoginStatus LoginStatus
+@inject AuthorizationHandler AuthorizationHandler
+@if (!IsAuthorized())
+{
+    <FuelStation.Blazor.Client.Components.AccessDenied />
+
+}
+else
+{
+    <h3>Ledger</h3>
+    @if (isLoading)
+    {
+        <div class="lds-hourglass"></div>
     }
+    else
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <label for="ledger-date" class="form-label">Date</label>
+                <input type="month" id="ledger-date" class="form-control" value="2023-01" min="2023-01" @onchange="UpdateLedger" />
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Income</th>
+                    <th>Expenses</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@ledger.Year</td>
+                    <td>@ledger.Month</td>
+                    <td>@Decimal.Round(ledger.Income,2)</td>
+                    <td>@Decimal.Round(ledger.Expenses,2)</td>
+                    <td>@Decimal.Round(ledger.Total,2)</td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+@code{
+    private bool isLoading = true;
+    private int currentDayInMonth = DateTime.Now.Day;
+    private LedgerViewModel ledger = new() { Date = new DateTime(2023, 1, 1) };
+
+    protected override async Task OnInitializedAsync() {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadItemsFromServer() {
+        ledger = await httpClient.GetFromJsonAsync<LedgerViewModel>($"ledger/{ledger.Date.Year}/{ledger.Date.Month}");
+    }
+    private async Task UpdateLedger(ChangeEventArgs e) {
+        var date = e.Value.ToString().Split('-');
+        ledger.Date = new DateTime(Convert.ToInt32(date[0]), Convert.ToInt32(date[1]), currentDayInMonth);
+        await LoadItemsFromServer();
+    }
+    private bool IsAuthorized() {
+        return AuthorizationHandler.HasAccessToLedger(LoginStatus);
+    }
+   
+}
