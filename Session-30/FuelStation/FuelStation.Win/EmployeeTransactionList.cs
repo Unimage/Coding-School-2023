@@ -37,5 +37,11 @@ namespace FuelStation.Win {
         private void EmployeeTransactionList_Load(object sender, EventArgs e) {
             Setup();
         }
+
+        private void button1_Click(object sender, EventArgs e) {
+            TransactionListViewModel selected = bsTransactions.Current as TransactionListViewModel;
+            var selectedForm = new SelectedTransactionDetailsF(selected);
+            selectedForm.ShowDialog();
+        }
     }
 }

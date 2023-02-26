@@ -26,10 +26,12 @@ namespace FuelStation.Win {
         public TransactionF(LoginStatus loginStatus) {
             _loginStatus = loginStatus;
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         public async void Setup() {
             employees = await httpClient.GetFromJsonAsync<List<EmployeeListViewModel>>("employee");
             var AllowedEmployees = employees.Where(x => x.EmployeeType == Model.Enumerations.EmployeeType.Manager ||  x.EmployeeType == Model.Enumerations.EmployeeType.Cashier);
+            AllowedEmployees = AllowedEmployees.Where(x => x.HireDateEnd == null);
             bsEmployees.DataSource = AllowedEmployees;
             gridEmployees.DataSource = bsEmployees;
             transactions= await httpClient.GetFromJsonAsync<List<TransactionListViewModel>>("transaction");

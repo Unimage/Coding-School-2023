@@ -8,19 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//TODO:Finish it when ive made a get by id on transrepo and and translinerepo.
 
-namespace FuelStation.Win {
-    
+namespace FuelStation.Win { 
     public partial class SelectedTransactionDetailsF : Form {
         public TransactionListViewModel _trans = new();
         public SelectedTransactionDetailsF(TransactionListViewModel incoming) {
             _trans  = incoming;
+            
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
-
-
         public void SetUp() {
+            labelTransID.Text = "Details of TransactionID: " + _trans.ID;
+            grvTransLines.AutoGenerateColumns = false;
             bsTransLines.DataSource = _trans.TransLines;
             grvTransLines.DataSource = bsTransLines;
         }

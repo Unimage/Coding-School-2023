@@ -17,8 +17,6 @@ namespace FuelStation.Blazor.Shared.Services {
         private decimal _tranasctionsTotalPrice;
         private decimal _employeesTotalCost;
         private decimal _monthlyRentCost;
-        private int _daysPayedPerMonth = 28;
 
-        //TODO:finish ledgerView Model  tommorrow
     }
 }

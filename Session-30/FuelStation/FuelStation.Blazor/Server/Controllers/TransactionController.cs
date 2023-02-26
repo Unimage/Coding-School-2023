@@ -27,7 +27,7 @@ namespace FuelStation.Blazor.Server.Controllers {
         public async Task<IEnumerable<TransactionListViewModel>> Get() {
             var result = _transactionRepo.GetAll();
             return result.Select(transaction => new TransactionListViewModel {
-                
+
                 ID = transaction.ID,
                 Date = transaction.Date,
                 PaymentMethod = transaction.PaymentMethod,
@@ -38,7 +38,11 @@ namespace FuelStation.Blazor.Server.Controllers {
                 EmployeeName = _employeeRepo.GetById(transaction.EmployeeID).Name + " " + _employeeRepo.GetById(transaction.EmployeeID).Surname,
                 TransLines = transaction.TransactionLines.Select(transactionLine => new TransactionLineViewModel {
                     ID = transactionLine.ID,
-                    ItemID= transactionLine.ItemID,      
+                    ItemID = transactionLine.ItemID,
+                    ItemName = transactionLine.Item.Description,
+                    Quantity = transactionLine.Quantity,
+                    NetValue= transactionLine.NetValue
+                    
                 }).ToList()
             }) ;
         }

@@ -16,7 +16,7 @@ namespace FuelStation.Blazor.Shared.Services {
             transaction.TotalValue = transactionLines.Sum(x => x.TotalValue);
             return transaction;
         }
-        public bool HasToPayWithCash(decimal TotalValue) {
+        public bool CheckPaymentMethod(decimal TotalValue) {
             return TotalValue > 50;
         }
         public bool CanAddFuelItem(List<TransactionLineViewModel> transactionLInes, ItemType newItemType) {
@@ -53,5 +53,6 @@ namespace FuelStation.Blazor.Shared.Services {
                 TotalValue = netValue - discountValue
             };
         }
+
     }
 }

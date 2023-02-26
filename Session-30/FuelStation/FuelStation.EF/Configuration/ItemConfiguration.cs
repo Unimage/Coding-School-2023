@@ -25,7 +25,6 @@ namespace FuelStation.EF.Configuration {
             builder.Property(item => item.Cost).HasPrecision(7, 2);
             builder.HasIndex(item => item.Code).IsUnique();
 
-            //TODO: maybe missing a has many with one for translines
         }
     }
 }

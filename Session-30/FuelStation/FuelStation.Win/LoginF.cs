@@ -41,7 +41,8 @@ namespace FuelStation.Win {
             _loginStatus.EmployeeType = EmployeeType.Staff;
             _loginStatus.LoggedIn = true;
             ToHome = new(_loginStatus);
-            ToHome.Show();
+            ToHome.ShowDialog();
+            this.Close();
 
         }
 

@@ -23,8 +23,9 @@ namespace FuelStation.EF.Repositories {
             using var context = new ApplicationContext();
 
             return context.Transactions
-                        .Include(transaction => transaction.TransactionLines)
-                .ToList();
+        .Include(transaction => transaction.TransactionLines)
+            .ThenInclude(transactionLine => transactionLine.Item)
+        .ToList();
         }
 
         public Transaction? GetById(Guid ID) {

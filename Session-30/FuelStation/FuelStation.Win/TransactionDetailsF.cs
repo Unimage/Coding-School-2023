@@ -39,6 +39,7 @@ namespace FuelStation.Win {
             newTransaction.Date = DateTime.Now;
             newTransaction.EmployeeID = employeeID;
             newTransaction.CustomerID = customerID;
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             InitializeComponent();
         }
@@ -127,19 +128,23 @@ namespace FuelStation.Win {
         }
         private async void SaveTransaction() {
             newTransaction.ID = Guid.NewGuid();
-            newTransaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod),cmbPayment.SelectedItem.ToString());
-            newTransaction.CustomerCardNumber = customer.CardNumber;
-            newTransaction.EmployeeName = employee.Name + employee.Surname;
+            newTransaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), cmbPayment.SelectedItem.ToString());
+            if (_transactionHandler.CheckPaymentMethod(newTransaction.TotalValue) && newTransaction.PaymentMethod == PaymentMethod.Cash)
+                {
+                newTransaction.CustomerCardNumber = customer.CardNumber;
+                newTransaction.EmployeeName = employee.Name + employee.Surname;
 
-          var result = await httpClient.PostAsJsonAsync("transaction", newTransaction);
-                if((int)result.StatusCode == 200) {
+                var result = await httpClient.PostAsJsonAsync("transaction", newTransaction);
+                if ((int)result.StatusCode == 200) {
                     MessageBox.Show("Transaction Created");
-                foreach(var line in newTransactionLineList) {
+                    foreach (var line in newTransactionLineList) {
                         line.TransactionID = newTransaction.ID;
-                    var resultLine = await httpClient.PostAsJsonAsync("transactionline", line);
+                        var resultLine = await httpClient.PostAsJsonAsync("transactionline", line);
                     }
                 }
             }
+            else { MessageBox.Show("Total Price Restricts the use of Card as Payment Method.\n Please use cash!"); }
+        }
  
         }
     }

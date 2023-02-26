@@ -27,6 +27,7 @@ namespace FuelStation.Blazor.Server.Controllers {
             transLineToAdd.NetValue = transLine.NetValue;
             transLineToAdd.DiscountPercent = transLine.DiscountPercent;
             transLineToAdd.DiscountValue = transLine.DiscountValue;
+            transLineToAdd.TotalValue= transLine.TotalValue;
             _transactionLineRepo.Add(transLineToAdd);
                 return Ok();
             }

@@ -14,7 +14,6 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FuelStation.Win {
-    //TODO:Change on edit so it takes current ItemType when editing an existing Item instead of a default.
     public partial class ItemEditF : Form {
         private readonly HttpClient httpClient = new HttpClient(new HttpClientHandler()) {
             BaseAddress = new Uri("https://localhost:7026")
