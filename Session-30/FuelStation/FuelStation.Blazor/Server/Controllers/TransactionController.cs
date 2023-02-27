@@ -108,6 +108,7 @@ namespace FuelStation.Blazor.Server.Controllers {
             }
 
         }
+
         public async Task<ActionResult> Put(TransactionListViewModel trans) {
             try {
                 Transaction transToAdd = _transactionRepo.GetById(trans.ID);

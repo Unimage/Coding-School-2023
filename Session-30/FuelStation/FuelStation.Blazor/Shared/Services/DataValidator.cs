@@ -76,9 +76,6 @@ namespace FuelStation.Blazor.Shared.Services {
             }
             return false;
         }
-
-
-
         #endregion
         #region Item Validations
         public bool ValidateItemData(ItemViewModel item) {
