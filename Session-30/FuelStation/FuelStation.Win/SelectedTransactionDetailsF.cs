@@ -45,7 +45,8 @@ namespace FuelStation.Win {
                 if (result == DialogResult.Yes) {
                     var response = await httpClient.DeleteAsync($"transactionLine/{selected.ID}");
                     if ((int)response.StatusCode != 200) { MessageBox.Show("Error At deleting Specified Transaction Line"); }
-                    _trans =_transactionHandler.RemoveTransLine(_trans,selected.ID);
+                    _trans.TransLines.Remove(selected);
+                    _trans =_transactionHandler.UpdateTransactionTotal(_trans , _trans.TransLines);
                     response = await httpClient.PutAsJsonAsync("transaction", _trans);
                     if ((int)response.StatusCode != 200) { MessageBox.Show("Error At Updating Transactions Total Value"); } else { MessageBox.Show("Transaction Line has been deleted Sucessfullu!");}
                     this.Close();

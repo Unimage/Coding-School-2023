@@ -21,6 +21,11 @@ namespace FuelStation.Blazor.Shared.Services {
 
 
         }
+        public TransactionListViewModel UpdateTransactionTotal(TransactionListViewModel transaction, List<TransactionLineViewModel> transactionLines) {
+           
+            transaction.TotalValue = transactionLines.Sum(x => x.Quantity * x.NetValue);
+            return transaction;
+        }
         public bool CanAddFuelItem(List<TransactionLineViewModel> transactionLInes, ItemType newItemType) {
             if (newItemType == ItemType.Fuel) {
                 if (transactionLInes.Where(x => x.ItemType == ItemType.Fuel).Count() > 0) return false;
