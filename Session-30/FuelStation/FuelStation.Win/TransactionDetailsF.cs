@@ -19,8 +19,8 @@ using System.Windows.Forms;
 
 namespace FuelStation.Win {
     public partial class TransactionDetailsF : Form {
-        private EmployeeViewModel employee;
-        private CustomerViewModel customer;
+        private EmployeeViewModel employee = new();
+        private CustomerViewModel customer = new();
         private readonly TransactionHandler _transactionHandler;
         private List<ItemListViewModel> itemList = new();
         private List<TransactionListViewModel> transactions = new List<TransactionListViewModel>();
