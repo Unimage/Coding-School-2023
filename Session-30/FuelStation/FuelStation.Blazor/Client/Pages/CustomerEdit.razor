@@ -12,7 +12,7 @@
 {
     @if (isLoading)
     {
-        <div class="lds-hourglass"></div>
+        <div class="lds-roller"></div>
     }
     else
     {
@@ -28,11 +28,10 @@
                     <label class="form-label">Surname</label>
                     <InputText class="form-control" id="description" @bind-Value="customer.Surname" />
                 </div>
-                <div class="col-md-6">
-                    <label class="form-label">Card Number</label>
-                    <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
-                </div>
-
+                    <div class="col-md-6">
+                        <label class="form-label">Card Number</label>
+                        <InputText class="form-control" id="price" @bind-Value="customer.CardNumber" />
+                    </div>
                 <div class="row mt-4">
                     <div class="col">
                         <button class="btn btn-success" type="submit">Save</button>
@@ -57,13 +56,14 @@ else
     private bool isLoading = true;
     private CustomerViewModel? customer = new();
 
+
     protected override async Task OnInitializedAsync() {
         await LoadItemsFromServer();
         isLoading = false;
     }
     private async Task LoadItemsFromServer() {
         if (ID.HasValue)
-            customer = await httpClient.GetFromJsonAsync<CustomerViewModel>($"customer/{ID}");
+        customer = await httpClient.GetFromJsonAsync<CustomerViewModel>($"customer/{ID}");
     }
     private void OnCancel() {
         navigationManager.NavigateTo("customers");

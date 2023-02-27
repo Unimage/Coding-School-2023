@@ -11,7 +11,7 @@
 @if (IsAuthorized())
 {
 @if (isLoading) {
-            <div class="lds-hourglass"></div>
+            <div class="lds-roller"></div>
 }
 else {
             <EditForm Model="@employee" OnValidSubmit="@OnSave">

@@ -46,7 +46,8 @@ namespace FuelStation.Win {
 
         private void btnOrder_Click(object sender, EventArgs e) {
             var frm = new SearchCustomerF(_loginStatus);
-            frm.ShowDialog(); 
+            frm.ShowDialog();
+            if (frm.DialogResult == DialogResult.OK || frm.DialogResult == DialogResult.Cancel || frm.DialogResult == DialogResult.Abort) { Setup(); }
         }
 
         private void btnEmployeeTransactions_Click(object sender, EventArgs e) {

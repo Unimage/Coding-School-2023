@@ -284,9 +284,8 @@
             this.labelTotalPrice.Location = new System.Drawing.Point(672, 42);
             this.labelTotalPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelTotalPrice.Name = "labelTotalPrice";
-            this.labelTotalPrice.Size = new System.Drawing.Size(108, 23);
+            this.labelTotalPrice.Size = new System.Drawing.Size(0, 23);
             this.labelTotalPrice.TabIndex = 30;
-            this.labelTotalPrice.Text = "labelControl1";
             // 
             // cmbPayment
             // 

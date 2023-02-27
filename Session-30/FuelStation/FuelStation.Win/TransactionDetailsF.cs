@@ -58,7 +58,6 @@ namespace FuelStation.Win {
         private void TransactionDetailsF_Load(object sender, EventArgs e) {
             LoadData();  
         }
-
         private void btnAdd_Click(object sender, EventArgs e) {
             CreateNewLine();
             RefreshGrids();
@@ -93,11 +92,9 @@ namespace FuelStation.Win {
 
             spinEditQuantity.Text = "1";
         }
-
         private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
         }
-
         private void btnRemove_Click(object sender, EventArgs e) {
             if (ConfirmDelete()) {
                 DeleteTransactionLine();
@@ -121,6 +118,7 @@ namespace FuelStation.Win {
             
             if (newTransactionLineList.Count > 0) {
                 SaveTransaction();
+                
             }
             else {
                 MessageBox.Show(this, $"There Are Transaction Lines in this Transaction");     
@@ -129,8 +127,9 @@ namespace FuelStation.Win {
         private async void SaveTransaction() {
             newTransaction.ID = Guid.NewGuid();
             newTransaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), cmbPayment.SelectedItem.ToString());
-            if (_transactionHandler.CheckPaymentMethod(newTransaction.TotalValue) && newTransaction.PaymentMethod == PaymentMethod.Cash)
-                {
+            if (!_transactionHandler.CanUseCreditCard(newTransaction.TotalValue) && newTransaction.PaymentMethod == PaymentMethod.CreditCard)
+                { MessageBox.Show("Total Price Restricts the use of Card as Payment Method.\n Please use cash!"); }
+            else {
                 newTransaction.CustomerCardNumber = customer.CardNumber;
                 newTransaction.EmployeeName = employee.Name + employee.Surname;
 
@@ -140,12 +139,14 @@ namespace FuelStation.Win {
                     foreach (var line in newTransactionLineList) {
                         line.TransactionID = newTransaction.ID;
                         var resultLine = await httpClient.PostAsJsonAsync("transactionline", line);
+                        
+
                     }
+                    MessageBox.Show("Transactions added. Total is: " + newTransaction.TotalValue.ToString());
+                    this.Close();
                 }
             }
-            else { MessageBox.Show("Total Price Restricts the use of Card as Payment Method.\n Please use cash!"); }
-        }
- 
-        }
-    }
+        }    
+    }   
+}
 

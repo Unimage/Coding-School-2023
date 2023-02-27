@@ -25,6 +25,7 @@ namespace FuelStation.Win {
         public SearchCustomerF(LoginStatus loginStatus) {
             _loginStatus = loginStatus;
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private async void button1_Click(object sender, EventArgs e) {
@@ -45,6 +46,7 @@ namespace FuelStation.Win {
                 MessageBox.Show("Customer Found!\n" + foundcus.Name + " " + foundcus.Surname);
                 var trForm = new TransactionDetailsF(_loginStatus.EmployeeID, foundcus.ID);
                 trForm.ShowDialog();
+                this.Close();
             }
             else {
                 MessageBox.Show("Customer not Found!\n");
@@ -53,6 +55,7 @@ namespace FuelStation.Win {
                 customers = await httpClient.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
                 var trForm = new TransactionDetailsF(_loginStatus.EmployeeID, customers.Where(c => c.CardNumber == form.resultCustomer.CardNumber).Select(c => c.ID).SingleOrDefault());
                 trForm.ShowDialog();
+                this.Close();
             }
         }
     }
