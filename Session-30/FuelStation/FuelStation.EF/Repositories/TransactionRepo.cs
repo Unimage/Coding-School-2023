@@ -38,7 +38,13 @@ namespace FuelStation.EF.Repositories {
         }
 
         public void Update(Guid ID, Transaction entity) {
-            throw new NotImplementedException();
+            using var context = new ApplicationContext();
+            var TransactionDb = context.Transactions
+                .Where(tr => tr.ID == ID)
+                .SingleOrDefault();
+            if (TransactionDb is null) throw new KeyNotFoundException($"Given id '{ID}' was not found");
+            TransactionDb.TotalValue = entity.TotalValue;
+            context.SaveChanges();
         }
     }
 }

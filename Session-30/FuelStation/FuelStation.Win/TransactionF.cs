@@ -55,6 +55,7 @@ namespace FuelStation.Win {
                 var SelectedEmployee = bsEmployees.Current as EmployeeListViewModel;
                 var form = new EmployeeTransactionList(SelectedEmployee, transactions);
                 form.ShowDialog();
+                if(form.DialogResult == DialogResult.OK || form.DialogResult == DialogResult.Cancel || form.DialogResult == DialogResult.Abort) { Setup(); }
             }
             else { MessageBox.Show("Only Managers Are authorized Transactions of Other Employees"); }
         }
@@ -63,6 +64,7 @@ namespace FuelStation.Win {
             TransactionListViewModel selected  = bsTransactions.Current as TransactionListViewModel;
             var selectedForm = new SelectedTransactionDetailsF(selected);
             selectedForm.ShowDialog();
+            if (selectedForm.DialogResult == DialogResult.OK || selectedForm.DialogResult == DialogResult.Cancel || selectedForm.DialogResult == DialogResult.Abort) { Setup(); }
 
 
         }

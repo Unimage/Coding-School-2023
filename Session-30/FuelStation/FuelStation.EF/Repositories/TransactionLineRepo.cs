@@ -16,7 +16,13 @@ namespace FuelStation.EF.Repositories {
         }
 
         public void Delete(Guid ID) {
-            throw new NotImplementedException();
+            using var context = new ApplicationContext();
+            var dbTransactionLine = context.TransactionLines.Where(t => t.ID ==ID).SingleOrDefault();
+            if (dbTransactionLine == null) {
+                throw new Exception($"Transaction Line with id: {ID} not found ");
+            }
+            context.Remove(dbTransactionLine);
+            context.SaveChanges();
         }
 
         public IList<TransactionLine> GetAll() {
@@ -24,7 +30,8 @@ namespace FuelStation.EF.Repositories {
         }
 
         public TransactionLine? GetById(Guid ID) {
-            throw new NotImplementedException();
+            using var context = new ApplicationContext();
+            return context.TransactionLines.Where(t => t.ID == ID).SingleOrDefault();
         }
 
         public void Update(Guid ID, TransactionLine entity) {

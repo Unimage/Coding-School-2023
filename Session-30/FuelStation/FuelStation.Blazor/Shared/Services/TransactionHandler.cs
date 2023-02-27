@@ -56,5 +56,14 @@ namespace FuelStation.Blazor.Shared.Services {
             };
         }
 
+        public  TransactionListViewModel RemoveTransLine(TransactionListViewModel incoming , Guid transLineID) {
+            foreach(var tr in incoming.TransLines) {
+                if(tr.ID== transLineID) {
+                    incoming.TotalValue = incoming.TotalValue - tr.TotalValue;
+                }
+            }
+            return incoming;
+        }
+
     }
 }

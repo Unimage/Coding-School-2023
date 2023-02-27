@@ -108,6 +108,19 @@ namespace FuelStation.Blazor.Server.Controllers {
             }
 
         }
+        public async Task<ActionResult> Put(TransactionListViewModel trans) {
+            try {
+                Transaction transToAdd = _transactionRepo.GetById(trans.ID);
+                transToAdd.TotalValue = trans.TotalValue;
+                _transactionRepo.Update(transToAdd.ID,transToAdd);
+                return Ok();
+            }
+            catch (Exception e) {
+                return StatusCode(StatusCodes.Status406NotAcceptable,
+               "Some Problem with transactionLine");
+
+            }
+        }
 
 
     }
