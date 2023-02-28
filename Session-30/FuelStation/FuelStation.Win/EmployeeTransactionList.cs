@@ -24,6 +24,7 @@ namespace FuelStation.Win {
             _employee = employee;
 
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public async void Setup() {
