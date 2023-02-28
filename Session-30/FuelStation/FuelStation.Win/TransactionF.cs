@@ -62,10 +62,13 @@ namespace FuelStation.Win {
 
         private void btnTransactionDetails_Click(object sender, EventArgs e) {
             TransactionListViewModel selected  = bsTransactions.Current as TransactionListViewModel;
+            if(selected != null) { 
             var selectedForm = new SelectedTransactionDetailsF(selected);
             selectedForm.ShowDialog();
-            if (selectedForm.DialogResult == DialogResult.OK || selectedForm.DialogResult == DialogResult.Cancel || selectedForm.DialogResult == DialogResult.Abort) { Setup(); }
 
+            if (selectedForm.DialogResult == DialogResult.OK || selectedForm.DialogResult == DialogResult.Cancel || selectedForm.DialogResult == DialogResult.Abort) { Setup(); }
+            }
+            else { MessageBox.Show("There is nothing to see here yet"); }
 
         }
     }

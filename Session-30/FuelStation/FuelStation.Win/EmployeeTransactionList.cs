@@ -40,8 +40,12 @@ namespace FuelStation.Win {
 
         private void button1_Click(object sender, EventArgs e) {
             TransactionListViewModel selected = bsTransactions.Current as TransactionListViewModel;
+            if(selected != null) { 
             var selectedForm = new SelectedTransactionDetailsF(selected);
-            selectedForm.ShowDialog();
+                selectedForm.ShowDialog();
+            }
+            else { MessageBox.Show("There is nothing to see here!"); }
+           
         }
     }
 }
